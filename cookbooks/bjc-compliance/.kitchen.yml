@@ -1,9 +1,24 @@
 ---
 driver:
-  name: vagrant
-  customize:
-    memory: 1024
-    cpus: 2
+  name: ec2
+  require_chef_omnibus: true
+  image_id: ami-b330f5d3
+  region: us-west-2
+  availability_zone: us-west-2a
+  instance_type: c3.large
+  aws_ssh_key_id: nweddle-west
+  tags: {
+    Name: "bjc-kitchen",
+    created-by: "test-kitchen"
+    }
+  # aws_access_key_id: <%= ENV['AWS_ACCESS_KEY_ID'] %>
+  # aws_secret_access_key: <%= ENV['AWS_SECRET_ACCESS_KEY'] %>
+  # security_group_ids: ["sg-a78bf6c0", "sg-a58bf6c2" ]
+  # subnet_id: subnet-28119003
+
+transport:
+  username: ubuntu
+  ssh_key: ~/.ssh/nweddle-west.pem
 
 provisioner:
   name: chef_zero
@@ -12,7 +27,7 @@ verifier:
   name: inspec
 
 platforms:
-  - name: ubuntu-14.04
+  - name: ec2-ubuntu-14.04
 
 suites:
   - name: default
