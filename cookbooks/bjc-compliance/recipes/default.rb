@@ -11,8 +11,6 @@ cookbook_file src_filepath do
   source src_filename
 end
 
-package 'curl'
-
 bash 'upload_profile' do
   cwd ::File.dirname(src_filepath)
   code <<-EOH
