@@ -1,0 +1,10 @@
+name: apache_webserver
+title: Basic Apache Webserver Security
+maintainer: Chef Software, Inc.
+copyright: Chef Software, Inc.
+copyright_email: support@chef.io
+license: Apache License, Version 2.0
+version: 0.1.2
+summary: Verify that Apache2 web server is configured securely
+supports:
+  - os-family: linux
