@@ -1,0 +1,5 @@
+source 'https://supermarket.chef.io'
+
+metadata
+
+cookbook 'base-web', git: 'https://github.com/chef-cft/bjc/', rel: "cookbooks/base-web"
