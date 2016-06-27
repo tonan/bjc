@@ -12,8 +12,7 @@
     "source_ami": "ami-8c4cb0ec",
     "compliance": "1.3.1",
     "domain": "chordata.biz",
-    "org": "diprotodontia",
-    "build-nodes": "1"
+    "org": "diprotodontia"
   },
 
   "builders": [
@@ -28,7 +27,7 @@
       "ssh_private_ip": false,
       "ssh_username": "ubuntu",
       "ssh_pty" : true,
-      "ami_name": "compliance-{{timestamp}}"
+      "ami_name": "bjc-compliance-{{timestamp}}"
     },
     {
       "type": "azure-arm",
@@ -39,7 +38,7 @@
       "subscription_id": "{{user `azure_subscription_id`}}",
       "tenant_id": "{{user `azure_tenant_id`}}",
       "capture_container_name": "images",
-      "capture_name_prefix": "complaince",
+      "capture_name_prefix": "bjc-complaince",
       "image_publisher": "Canonical",
       "image_offer": "UbuntuServer",
       "image_sku": "14.04.3-LTS",
@@ -51,30 +50,9 @@
 
   "provisioners" : [
     {
-      "type": "file",
-      "source": "{{template_dir}}/files/",
-      "destination": "/tmp"
-    },
-    {
-      "type": "file",
-      "source": "{{template_dir}}/keys/",
-      "destination": "/tmp"
-    },
-    {
       "type": "chef-solo",
-      "cookbook_paths": [ "{{pwd}}/vendored-cookbooks/compliance" ],
-      "run_list": [ "apt", "compliance" ],
-      "json": {
-        "demo": {
-          "domain": "{{user `domain`}}",
-          "enterprise": "{{user `enterprise`}}",
-          "org": "{{user `org`}}",
-          "build-nodes": "{{user `build-nodes`}}",
-          "versions": {
-            "compliance": "{{user `compliance`}}"
-          }
-        }
-      }
+      "cookbook_paths": [ "{{pwd}}/vendored-cookbooks/bjc-compliance" ],
+      "run_list": [ "bjc-compliance" ]
     }
   ]
 }
