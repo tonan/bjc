@@ -5,7 +5,8 @@ require 'json'
 namespace :cookbook do
   desc 'Vendor cookbooks for a template'
   task :vendor, :template do |_t, args|
-    has_cookbook = %w(bjc-workstation bjc-delivery bjc-compliance bjc-chef-server)
+    # As new cookbooks are created, the has_cookbook array will need to be updated.
+    has_cookbook = %w(bjc-delivery bjc-compliance)
     base = args[:template].split('.json')[0]
     if has_cookbook.any? { |t| args[:template].include? t }
       sh "rm -rf vendored-cookbooks/#{base}"
@@ -17,11 +18,22 @@ namespace :cookbook do
 end
 
 namespace :packer do
+
+  desc 'Build an AMI. Syntax: rake packer:build_ami[TEMPLATE-NAME]'
   task :build_ami, :template do |_t, args|
     Rake::Task['cookbook:vendor'].invoke(args[:template])
     Rake::Task['cookbook:vendor'].reenable
     sh packer_build(args[:template], 'amazon-ebs')
   end
+
+  desc 'Build all AMIs from a wombat lock file.'
+  task :build_amis do
+    templates.each do |template|
+      Rake::Task['packer:build_ami'].invoke("#{template}")
+      Rake::Task['packer:build_ami'].reenable
+    end
+  end
+
 end
 
 def wombat_lock
