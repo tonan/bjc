@@ -46,7 +46,7 @@ def source_ami_from_lock(ami)
 end
 
 def packer_build(template, builder)
-  ami_name = template.split('-')[1]
+  ami_name = template.split('-',2)[1]
   source_ami = source_ami_from_lock(ami_name)
   log_name = template
 
