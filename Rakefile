@@ -6,7 +6,7 @@ namespace :cookbook do
   desc 'Vendor cookbooks for a template'
   task :vendor, :template do |_t, args|
     # As new cookbooks are created, the has_cookbook array will need to be updated.
-    has_cookbook = %w(bjc-delivery bjc-compliance)
+    has_cookbook = %w(bjc-compliance bjc-workstation bjc-chef-server bjc-delivery bjc-compliance)
     base = args[:template].split('.json')[0]
     if has_cookbook.any? { |t| args[:template].include? t }
       sh "rm -rf vendored-cookbooks/#{base}"
@@ -46,7 +46,7 @@ def source_ami_from_lock(ami)
 end
 
 def packer_build(template, builder)
-  ami_name = template.split('-')[1]
+  ami_name = template.split('-',2)[1]
   source_ami = source_ami_from_lock(ami_name)
   log_name = template
 
