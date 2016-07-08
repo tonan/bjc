@@ -5,3 +5,7 @@ metadata
 cookbook 'workstation', 
   git: 'git@github.com:chef-cft/wombat.git',
   rel: 'cookbooks/workstation'
+
+cookbook 'wombat', 
+  git: 'git@github.com:chef-cft/wombat.git',
+  rel: 'cookbooks/wombat'
