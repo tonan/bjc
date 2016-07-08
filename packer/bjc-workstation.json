@@ -33,12 +33,12 @@
   "provisioners" : [
     {
       "type": "windows-shell",
-      "inline": ["mkdir $HOME\\cookbooks"]
+      "inline": ["mkdir C:\\Users\\{{user `winrm_username`}}\\cookbooks"]
     },
     {
       "type": "file",
       "source": "{{template_dir}}/../cookbooks/site-config",
-      "destination": "$HOME\\cookbooks\\site-config"
+      "destination": "C:\\Users\\{{user `winrm_username`}}\\cookbooks\\site-config"
     },
     {
       "type": "file",
