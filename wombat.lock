@@ -54,7 +54,7 @@
       "compliance": "ami-41519121",
       "chef-server": "ami-42529222",
       "delivery": "ami-144f8f74",
-      "workstation": "ami-a9dd1cc9"
+      "workstation": "ami-5d6cac3d"
     }
   },
   "last_updated": "20160707230554"
