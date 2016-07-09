@@ -48,6 +48,7 @@
     {
       "type": "chef-solo",
       "guest_os_type": "windows",
+      "execute_command": "c:/opscode/chef/bin/chef-solo.bat --no-color -c {{.ConfigPath}} -j {{.JsonPath}} -L C:/windows/temp/packerbuild.log",
       "cookbook_paths": [ "{{pwd}}/vendored-cookbooks/bjc-workstation" ],
       "run_list": [ "bjc-workstation" ],
       "json": {
