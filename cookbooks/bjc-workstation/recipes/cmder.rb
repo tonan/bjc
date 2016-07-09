@@ -1,6 +1,6 @@
 #
 # Cookbook Name:: bjc-workstation
-# Recipe:: cmdr
+# Recipe:: cmder
 #
 # Copyright (c) 2016 The Authors, All Rights Reserved.
 

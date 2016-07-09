@@ -32,15 +32,6 @@
 
   "provisioners" : [
     {
-      "type": "windows-shell",
-      "inline": ["mkdir C:\\Users\\{{user `winrm_username`}}\\cookbooks"]
-    },
-    {
-      "type": "file",
-      "source": "{{template_dir}}/../cookbooks/site-config",
-      "destination": "C:\\Users\\{{user `winrm_username`}}\\cookbooks\\site-config"
-    },
-    {
       "type": "file",
       "source": "{{template_dir}}/keys/",
       "destination": "C:\\Windows\\Temp"
