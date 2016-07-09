@@ -18,6 +18,24 @@ bash 'create-project' do
   EOH
 end
 
+cookbook_file '/tmp/delivery_backup.tar' do
+  source 'delivery_backup.tar'
+  notifies :run, 'execute[restore backup data into delivery]'
+  checksum 'e916c8ad718ae104e53246a48011e600fa82af625b0c136503373630f05a80de'
+end
+
+execute 'restore backup data into delivery' do
+  command 'delivery-ctl restore-data -b /tmp/delivery_backup.tar --no-confirm'
+  notifies :restart, 'omnibus_service[ ]'
+  action :nothing
+end
+
+omnibus_service ' ' do
+  ctl_command 'delivery-ctl'
+  action :nothing
+end
+
+
 # # Clone project cookbooks
 # # Stage GitHub Deploy Key
 # cookbook_file "#{Chef::Config['file_cache_path']}/bjc-deploy.key" do
