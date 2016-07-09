@@ -1,3 +1,4 @@
 *.log
 vendored-cookbooks
 cloudformation/*.json
+.delivery/cli.toml
