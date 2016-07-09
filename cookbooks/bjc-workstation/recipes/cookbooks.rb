@@ -13,11 +13,10 @@ end
 
 node['bjc-workstation']['cookbooks'].each do |cookbook|
 
-  aws_s3_file "#{home}/cookbooks/#{cookbook}.zip" do
-    bucket 'bjcpublic'
-    remote_path "#{cookbook}.zip"
-    region 'us-west-2'
+  remote_file "#{home}/cookbooks/#{cookbook}.zip" do
+    source "https://s3-us-west-2.amazonaws.com/bjcpublic/#{cookbook}.zip"
   end
+  
 
   windows_zipfile "#{home}/cookbooks/#{cookbook}" do
     source "#{home}/cookbooks/#{cookbook}.zip"
