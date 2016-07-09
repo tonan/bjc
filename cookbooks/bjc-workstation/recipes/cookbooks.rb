@@ -18,7 +18,7 @@ node['bjc-workstation']['cookbooks'].each do |cookbook|
   end
   
 
-  windows_zipfile "#{home}/cookbooks/#{cookbook}" do
+  windows_zipfile "#{home}/cookbooks/" do
     source "#{home}/cookbooks/#{cookbook}.zip"
     action :unzip
   end
