@@ -42,6 +42,11 @@
     },
     {
       "type": "file",
+      "source": "{{template_dir}}/keys/",
+      "destination": "C:\\Windows\\Temp"
+    },
+    {
+      "type": "file",
       "source": "{{template_dir}}/files/",
       "destination": "C:\\Windows\\Temp"
     },
@@ -53,10 +58,14 @@
       "run_list": [ "bjc-workstation" ],
       "json": {
         "demo": {
+          "domain_prefix": "{{user `domain_prefix`}}",
           "domain": "{{user `domain`}}",
           "enterprise": "{{user `enterprise`}}",
           "org": "{{user `org`}}",
-          "build-nodes": "{{user `build-nodes`}}"
+          "build-nodes": "{{user `build-nodes`}}",
+          "versions": {
+            "chefdk": "{{user `chefdk`}}"
+          }
         }
       }
     }
