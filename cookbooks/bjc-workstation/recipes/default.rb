@@ -7,5 +7,4 @@
 include_recipe 'workstation'
 include_recipe 'bjc-workstation::cmder'
 include_recipe 'bjc-workstation::cookbooks'
-
-
+include_recipe 'bjc-workstation::gitconfig'
