@@ -1,7 +1,7 @@
 ---
 driver:
   name: ec2
-  aws_ssh_key_id: binamov-sa #change this to yours ;)
+  aws_ssh_key_id: <%= ENV["EC2_SSH_KEY_NAME"] %> #change this to yours ;)
   region: us-west-2
   availability_zone: us-west-2c
   security_group_ids: sg-401e0e25
@@ -25,7 +25,7 @@ platforms:
     transport:
 #      username: Administrator #don't need those, until you're testing an AMi with baked-in creds
 #      password: not@shar3dKEY
-      ssh_key: ~/.ssh/binamov-sa.pem # change it; this is needed so kitchen can retrieve the Admin password
+      ssh_key: ~/.ssh/<%= ENV["EC2_SSH_KEY_PATH"] %> # change it; this is needed so kitchen can retrieve the Admin password
 
 suites:
   - name: default
