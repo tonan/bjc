@@ -6,13 +6,10 @@
 
 home = Dir.home
 
-file "#{home}/.gitconfig" do
-  action :create
-  content <<-EOS
-[credential]
-    helper = manager
-[user]
-    email = delivery@automate-demo.com
-    name = delivery
-  EOS
+template "#{home}/.gitconfig" do
+  source 'gitconfig.erb'
+  variables(
+    domain: node['demo']['domain'],
+    user: node['demo']['users']['delivery']['first']
+  )
 end
