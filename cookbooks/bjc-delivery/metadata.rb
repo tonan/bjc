@@ -7,4 +7,4 @@ long_description 'Installs/Configures bjc-delivery'
 version '0.1.1'
 
 depends 'wombat'
-# depends 'delivery'
+depends 'delivery'

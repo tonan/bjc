@@ -3,4 +3,8 @@ source 'https://supermarket.chef.io'
 metadata
 
 cookbook 'wombat',   github: 'chef-cft/wombat', rel: 'cookbooks/wombat'
-# cookbook 'delivery', github: 'chef-cft/wombat', rel: 'cookbooks/delivery'
+cookbook 'delivery', github: 'chef-cft/wombat', rel: 'cookbooks/delivery'
+
+group :integration do
+  cookbook 'test', path: './test/fixtures/cookbooks/test'
+end
