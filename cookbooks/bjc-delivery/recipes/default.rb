@@ -4,6 +4,8 @@
 #
 # Copyright (c) 2016 The Authors, All Rights Reserved.
 
+include_recipe 'delivery'
+
 user_name = node['demo']['users']['admin']['first']
 user_pass = node['demo']['users']['admin']['password']
 api_uri = "https://#{node['bjc']['api_host']}/api/v0/e/#{node['bjc']['ent_name']}"
