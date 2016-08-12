@@ -1,5 +1,5 @@
 {
-  "name": "automate-demo-seed",
+  "name": "bjc-demo",
   "domain": "automate-demo.com",
   "enterprise": "automate-demo",
   "org": "automate",
@@ -24,18 +24,18 @@
   },
   "version": "0.0.12",
   "products": {
-    "chef-server": "stable-12.7.0",
-    "chefdk": "stable-0.15.16",
+    "chef-server": "stable-12.8.0",
+    "chefdk": "stable-0.16.28",
     "compliance": "stable-1.3.1",
-    "delivery": "stable-0.4.522"
+    "delivery": "stable-0.5.118"
   },
   "aws": {
     "region": "us-west-2",
     "az": "us-west-2c",
     "keypair": "chef-demo-infra",
     "source_ami": {
-      "ubuntu": "ami-8c4cb0ec",
-      "windows": "ami-e108cd81"
+      "ubuntu": "ami-70b67d10",
+      "windows": "ami-8d0acfed"
     }
   },
   "amis": {
@@ -52,10 +52,10 @@
         "union": "ami-845191e4"
       },
       "compliance": "ami-41519121",
-      "chef-server": "ami-42529222",
-      "delivery": "ami-144f8f74",
-      "workstation": "ami-8d0acfed"
+      "chef-server": "ami-e23bf082",
+      "delivery": "ami-813bf0e1",
+      "workstation": "ami-ec3af18c"
     }
   },
-  "last_updated": "20160707230554"
+  "last_updated": "20160811165438"
 }
