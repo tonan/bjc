@@ -9,12 +9,12 @@ driver:
   aws_ssh_key_id: <%= ENV["EC2_SSH_KEY_NAME"] %>
   tags:
     Name: "bjc-chef-server-localdev-kitchen-instance"
-    created-by: "bjc-chef-server-test-kitchen"
+    created-by: "test-kitchen"
     user: <%= ENV['USER'] %>
 
 transport:
   username: ubuntu
-  ssh_key: ~/.ssh/<%= ENV["EC2_SSH_KEY_PATH"] %>
+  ssh_key: <%= ENV["EC2_SSH_KEY_PATH"] %>
 
 provisioner:
   name: chef_zero

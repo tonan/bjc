@@ -11,7 +11,7 @@ driver:
   tags:
     # Replace NAME and COMPANY
     Name: "bjc-workstation-localdev-kitchen-instance"
-    created-by: "bjc-workstation-test-kitchen"
+    created-by: "test-kitchen"
     user: <%= ENV['USER'] %>
 
 provisioner:
@@ -25,7 +25,7 @@ platforms:
     transport:
 #      username: Administrator #don't need those, until you're testing an AMi with baked-in creds
 #      password: not@shar3dKEY
-      ssh_key: ~/.ssh/<%= ENV["EC2_SSH_KEY_PATH"] %> # change it; this is needed so kitchen can retrieve the Admin password
+      ssh_key: <%= ENV["EC2_SSH_KEY_PATH"] %> # change it; this is needed so kitchen can retrieve the Admin password
 
 suites:
   - name: default
