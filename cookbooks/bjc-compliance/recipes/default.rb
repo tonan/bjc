@@ -4,6 +4,8 @@
 #
 # Copyright (c) 2016 The Authors, All Rights Reserved.
 
+include_recipe 'compliance'
+
 src_filename = 'apache.tar.gz'
 src_filepath = "#{Chef::Config['file_cache_path']}/#{src_filename}"
 

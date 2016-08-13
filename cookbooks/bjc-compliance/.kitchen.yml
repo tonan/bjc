@@ -2,23 +2,19 @@
 driver:
   name: ec2
   require_chef_omnibus: true
-  image_id: ami-b330f5d3
   region: us-west-2
+  security_group_ids: sg-2560a741
   availability_zone: us-west-2a
   instance_type: c3.large
-  aws_ssh_key_id: nweddle-west
-  tags: {
-    Name: "bjc-kitchen",
+  aws_ssh_key_id: <%= ENV["EC2_SSH_KEY_NAME"] %>
+  tags:
+    Name: "bjc-compliance-localdev-kitchen-instance"
     created-by: "test-kitchen"
-    }
-  # aws_access_key_id: <%= ENV['AWS_ACCESS_KEY_ID'] %>
-  # aws_secret_access_key: <%= ENV['AWS_SECRET_ACCESS_KEY'] %>
-  # security_group_ids: ["sg-a78bf6c0", "sg-a58bf6c2" ]
-  # subnet_id: subnet-28119003
+    user: <%= ENV['USER'] %>
 
 transport:
   username: ubuntu
-  ssh_key: ~/.ssh/nweddle-west.pem
+  ssh_key: <%= ENV["EC2_SSH_KEY_PATH"] %>
 
 provisioner:
   name: chef_zero
@@ -27,10 +23,23 @@ verifier:
   name: inspec
 
 platforms:
-  - name: ec2-ubuntu-14.04
+  - name: ubuntu-14.04
 
 suites:
   - name: default
     run_list:
+      - recipe[test::default]
       - recipe[bjc-compliance::default]
     attributes:
+      demo:
+        domain_prefix: ''
+        domain: 'automate-demo.com'
+        enterprise: 'automate-demo'
+        org: 'automate'
+        hosts:
+          chef-server: '172.31.54.10'
+          delivery: '172.31.54.11'
+          compliance: '172.31.54.12'
+        versions:
+          chefdk: 'stable-0.16.28'
+          compliance: 'stable-1.3.1-1'
