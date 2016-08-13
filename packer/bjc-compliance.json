@@ -50,6 +50,11 @@
 
   "provisioners" : [
     {
+      "type": "file",
+      "source": "{{template_dir}}/keys/",
+      "destination": "/tmp"
+    },
+    {
       "type": "chef-solo",
       "cookbook_paths": [ "{{pwd}}/vendored-cookbooks/bjc-compliance" ],
       "run_list": [ "bjc-compliance" ]
