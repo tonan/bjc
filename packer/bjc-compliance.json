@@ -57,7 +57,19 @@
     {
       "type": "chef-solo",
       "cookbook_paths": [ "{{pwd}}/vendored-cookbooks/bjc-compliance" ],
-      "run_list": [ "bjc-compliance" ]
+      "run_list": [ "bjc-compliance" ],
+      "json": {
+        "demo": {
+          "domain_prefix": "{{user `domain_prefix`}}",
+          "domain": "{{user `domain`}}",
+          "enterprise": "{{user `enterprise`}}",
+          "org": "{{user `org`}}",
+          "build-nodes": "{{user `build-nodes`}}",
+          "versions": {
+            "compliance": "{{user `compliance`}}"
+          }
+        }
+      }
     }
   ]
 }
