@@ -22,7 +22,7 @@
       "recipe[site-config]"
     ]
   },
-  "version": "0.0.13",
+  "version": "0.0.14",
   "products": {
     "chef-server": "stable-12.8.0",
     "chefdk": "stable-0.16.28",
@@ -57,5 +57,5 @@
       "workstation": "ami-ec3af18c"
     }
   },
-  "last_updated": "20160812185833"
+  "last_updated": "20160815161321"
 }
