@@ -51,7 +51,7 @@
         "rehearsal": "ami-de5191be",
         "union": "ami-845191e4"
       },
-      "compliance": "ami-008a4060",
+      "compliance": "ami-a11ed4c1",
       "chef-server": "ami-e23bf082",
       "delivery": "ami-813bf0e1",
       "workstation": "ami-ec3af18c"
