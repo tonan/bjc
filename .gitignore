@@ -1,7 +1,6 @@
 *.log
 vendored-cookbooks
 packer/keys
-cloudformation/*.json
 .delivery/cli.toml
 chef-server.crt
 chef-server.key
