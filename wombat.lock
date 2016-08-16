@@ -3,7 +3,7 @@
   "domain": "automate-demo.com",
   "enterprise": "automate-demo",
   "org": "automate",
-  "build-nodes": 3,
+  "build-nodes": "3",
   "infranodes": {
     "acceptance": [
       "recipe[push-jobs]",
@@ -22,7 +22,7 @@
       "recipe[site-config]"
     ]
   },
-  "version": "0.0.17",
+  "version": "0.0.18",
   "products": {
     "chef-server": "stable-12.8.0",
     "chefdk": "stable-0.16.28",
@@ -51,11 +51,11 @@
         "rehearsal": "ami-de5191be",
         "union": "ami-845191e4"
       },
-      "compliance": "ami-8720eae7",
-      "chef-server": "ami-8e38f2ee",
-      "delivery": "ami-0325ef63",
+      "compliance": "ami-2d68a24d",
+      "chef-server": "ami-ec549e8c",
+      "delivery": "ami-426fa522",
       "workstation": "ami-4e3ef42e"
     }
   },
-  "last_updated": "20160815202913"
+  "last_updated": "20160816144523"
 }
