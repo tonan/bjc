@@ -114,6 +114,7 @@ def packer_build(template, builder)
   cmd.insert(2, "--var delivery=#{wombat_lock['products']['delivery']}")
   cmd.insert(2, "--var compliance=#{wombat_lock['products']['compliance']}")
   cmd.insert(2, "--var chef-server=#{wombat_lock['products']['chef-server']}")
+  cmd.insert(2, "--var build-nodes=#{wombat_lock['build-nodes']}")
   cmd.insert(2, "--var source_ami=#{source_ami}")
   cmd.join(' ')
 end
