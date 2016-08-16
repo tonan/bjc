@@ -101,7 +101,13 @@ end
 
 def packer_build(template, builder)
   ami_name = template.split('-', 2)[1]
-  source_ami = source_ami_from_lock(ami_name)
+#  source_ami = source_ami_from_lock(ami_name)
+# disabling this because I always want to build from a clean AMI
+  if template == 'bjc-workstation'
+    source_ami = wombat_lock['aws']['source_ami']['windows']
+  else
+    source_ami = wombat_lock['aws']['source_ami']['ubuntu']
+  end
   log_name = template
 
   cmd = %W(packer build packer/#{template}.json | tee packer/logs/ami-#{log_name}.log)
