@@ -5,7 +5,7 @@
   "org": "automate",
   "build-nodes": "3",
   "infranodes": {
-    "acceptance": [
+    "site-config-acceptance": [
       "recipe[push-jobs]",
       "recipe[site-config]"
     ],
@@ -22,7 +22,7 @@
       "recipe[site-config]"
     ]
   },
-  "version": "0.0.14",
+  "version": "0.0.15",
   "products": {
     "chef-server": "stable-12.8.0",
     "chefdk": "stable-0.16.28",
@@ -46,16 +46,16 @@
         "3": "ami-8a4e8eea"
       },
       "infranodes": {
-        "acceptance": "ami-ce4f8fae",
+        "site-config-acceptance": "ami-ce4f8fae",
         "delivered": "ami-d44f8fb4",
         "rehearsal": "ami-de5191be",
         "union": "ami-845191e4"
       },
-      "compliance": "ami-a11ed4c1",
-      "chef-server": "ami-e23bf082",
+      "compliance": "ami-8720eae7",
+      "chef-server": "ami-6021eb00",
       "delivery": "ami-813bf0e1",
       "workstation": "ami-ec3af18c"
     }
   },
-  "last_updated": "20160815161321"
+  "last_updated": "20160815200411"
 }

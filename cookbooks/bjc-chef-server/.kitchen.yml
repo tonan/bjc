@@ -35,6 +35,7 @@ suites:
         domain_prefix: ''
         domain: 'automate-demo.com'
         enterprise: 'automate-demo'
+        build-nodes: '3'
         org: 'automate'
         hosts:
           chef-server: '172.31.54.10'
