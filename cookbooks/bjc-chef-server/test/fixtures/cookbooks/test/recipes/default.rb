@@ -9,7 +9,8 @@
    delivery.crt
    compliance.crt
    public.pub
-   private.pem).each do |f|
+   private.pem
+   infranodes-info.json).each do |f|
   cookbook_file "/tmp/#{f}" do
   	source f
   	sensitive true
