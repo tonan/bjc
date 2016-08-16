@@ -16,7 +16,7 @@
     "Version": {
       "Description": "Version",
       "Type": "String",
-      "Default": "0.0.15"
+      "Default": "0.0.16"
     },
     "KeyName": {
       "Description": "Name of an existing ec2 KeyPair to enable SSH access",
@@ -69,6 +69,11 @@
       "Default": "ami-8a4e8eea",
       "Description": "AMI ID for Build Node 3"
     },
+    "acceptanceAMI": {
+      "Type": "String",
+      "Default": "ami-ce4f8fae",
+      "Description": "AMI ID for acceptance"
+    },
     "deliveredAMI": {
       "Type": "String",
       "Default": "ami-d44f8fb4",
@@ -78,11 +83,6 @@
       "Type": "String",
       "Default": "ami-de5191be",
       "Description": "AMI ID for rehearsal"
-    },
-    "site-config-acceptanceAMI": {
-      "Type": "String",
-      "Default": "ami-ce4f8fae",
-      "Description": "AMI ID for site-config-acceptance"
     },
     "unionAMI": {
       "Type": "String",
@@ -509,7 +509,7 @@
         ]
       }
     },
-    "delivered": {
+    "acceptance": {
       "Type": "AWS::EC2::Instance",
       "Properties": {
         "InstanceType": "m3.large",
@@ -523,6 +523,45 @@
             ],
             "AssociatePublicIpAddress": "true",
             "PrivateIpAddress": "172.31.54.201",
+            "DeviceIndex": "0",
+            "DeleteOnTermination": "true",
+            "SubnetId": {
+              "Ref": "SubnetDelivery"
+            }
+          }
+        ],
+        "KeyName": { "Ref": "KeyName" },
+        "UserData": { "Fn::Base64" : { "Fn::Join" : ["", [
+             "#!/bin/bash -xe\n",
+             "hostnamectl set-hostname acceptance\n"]]}
+        },
+        "ImageId": {
+              "Ref": "acceptanceAMI"
+        },
+        "Tags": [
+          {
+            "Key": "Name",
+            "Value": {
+              "Fn::Join" : [ " ", [ { "Ref": "DemoName" }, "acceptance" ] ]
+            }
+          }
+        ]
+      }
+    },
+    "delivered": {
+      "Type": "AWS::EC2::Instance",
+      "Properties": {
+        "InstanceType": "m3.large",
+        "AvailabilityZone": { "Ref": "AvailabilityZone" },
+        "NetworkInterfaces": [
+          {
+            "GroupSet": [
+              {
+                "Ref": "DemoSecurityGroup"
+              }
+            ],
+            "AssociatePublicIpAddress": "true",
+            "PrivateIpAddress": "172.31.54.202",
             "DeviceIndex": "0",
             "DeleteOnTermination": "true",
             "SubnetId": {
@@ -561,7 +600,7 @@
               }
             ],
             "AssociatePublicIpAddress": "true",
-            "PrivateIpAddress": "172.31.54.202",
+            "PrivateIpAddress": "172.31.54.203",
             "DeviceIndex": "0",
             "DeleteOnTermination": "true",
             "SubnetId": {
@@ -582,45 +621,6 @@
             "Key": "Name",
             "Value": {
               "Fn::Join" : [ " ", [ { "Ref": "DemoName" }, "rehearsal" ] ]
-            }
-          }
-        ]
-      }
-    },
-    "site-config-acceptance": {
-      "Type": "AWS::EC2::Instance",
-      "Properties": {
-        "InstanceType": "m3.large",
-        "AvailabilityZone": { "Ref": "AvailabilityZone" },
-        "NetworkInterfaces": [
-          {
-            "GroupSet": [
-              {
-                "Ref": "DemoSecurityGroup"
-              }
-            ],
-            "AssociatePublicIpAddress": "true",
-            "PrivateIpAddress": "172.31.54.203",
-            "DeviceIndex": "0",
-            "DeleteOnTermination": "true",
-            "SubnetId": {
-              "Ref": "SubnetDelivery"
-            }
-          }
-        ],
-        "KeyName": { "Ref": "KeyName" },
-        "UserData": { "Fn::Base64" : { "Fn::Join" : ["", [
-             "#!/bin/bash -xe\n",
-             "hostnamectl set-hostname site-config-acceptance\n"]]}
-        },
-        "ImageId": {
-              "Ref": "site-config-acceptanceAMI"
-        },
-        "Tags": [
-          {
-            "Key": "Name",
-            "Value": {
-              "Fn::Join" : [ " ", [ { "Ref": "DemoName" }, "site-config-acceptance" ] ]
             }
           }
         ]
