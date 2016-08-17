@@ -23,7 +23,7 @@
       "recipe[site-config]"
     ]
   },
-  "version": "0.0.19",
+  "version": "0.0.20",
   "products": {
     "chef": "stable-12.13.37",
     "chef-server": "stable-12.8.0",
@@ -54,10 +54,10 @@
         "union": "ami-7165af11"
       },
       "compliance": "ami-2d68a24d",
-      "chef-server": "ami-ec549e8c",
+      "chef-server": "ami-1b93467b",
       "delivery": "ami-426fa522",
       "workstation": "ami-4e3ef42e"
     }
   },
-  "last_updated": "20160816181247"
+  "last_updated": "20160816233031"
 }
