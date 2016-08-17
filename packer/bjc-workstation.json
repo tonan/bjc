@@ -9,7 +9,8 @@
     "domain": "chordata.biz",
     "enterprise": "mammalia",
     "org": "diprotodontia",
-    "build-nodes": "1"
+    "build-nodes": "1",
+    "workstations": "1"
   },
 
   "builders": [

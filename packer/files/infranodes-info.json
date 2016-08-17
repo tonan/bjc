@@ -1,6 +1,30 @@
-{
-	"acceptance" : [ "recipe[push-jobs]", "recipe[site-config]" ],
-	"union" : [ "recipe[push-jobs]", "recipe[site-config]" ],
-	"rehearsal" : [ "recipe[push-jobs]", "recipe[site-config]" ],
-	"delivered" : [ "recipe[push-jobs]", "recipe[site-config]" ]
-}
+[
+  [
+    "acceptance",
+    [
+      "recipe[push-jobs]",
+      "recipe[site-config]"
+    ]
+  ],
+  [
+    "delivered",
+    [
+      "recipe[push-jobs]",
+      "recipe[site-config]"
+    ]
+  ],
+  [
+    "rehearsal",
+    [
+      "recipe[push-jobs]",
+      "recipe[site-config]"
+    ]
+  ],
+  [
+    "union",
+    [
+      "recipe[push-jobs]",
+      "recipe[site-config]"
+    ]
+  ]
+]

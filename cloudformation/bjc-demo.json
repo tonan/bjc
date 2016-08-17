@@ -16,7 +16,7 @@
     "Version": {
       "Description": "Version",
       "Type": "String",
-      "Default": "0.0.18"
+      "Default": "0.0.19"
     },
     "KeyName": {
       "Description": "Name of an existing ec2 KeyPair to enable SSH access",
@@ -56,37 +56,37 @@
     },
     "BuildNode1AMI": {
       "Type": "String",
-      "Default": "ami-2d4d8d4d",
+      "Default": "ami-b56fa5d5",
       "Description": "AMI ID for Build Node 1"
     },
     "BuildNode2AMI": {
       "Type": "String",
-      "Default": "ami-fe50909e",
+      "Default": "ami-b16ca6d1",
       "Description": "AMI ID for Build Node 2"
     },
     "BuildNode3AMI": {
       "Type": "String",
-      "Default": "ami-8a4e8eea",
+      "Default": "ami-4d65af2d",
       "Description": "AMI ID for Build Node 3"
     },
     "acceptanceAMI": {
       "Type": "String",
-      "Default": "ami-ce4f8fae",
+      "Default": "ami-2664ae46",
       "Description": "AMI ID for acceptance"
     },
     "deliveredAMI": {
       "Type": "String",
-      "Default": "ami-d44f8fb4",
+      "Default": "ami-a863a9c8",
       "Description": "AMI ID for delivered"
     },
     "rehearsalAMI": {
       "Type": "String",
-      "Default": "ami-de5191be",
+      "Default": "ami-0e7bb16e",
       "Description": "AMI ID for rehearsal"
     },
     "unionAMI": {
       "Type": "String",
-      "Default": "ami-845191e4",
+      "Default": "ami-7165af11",
       "Description": "AMI ID for union"
     },
     "WindowsWorkstationAMI": {
