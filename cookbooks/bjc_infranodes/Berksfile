@@ -1,0 +1,10 @@
+source 'https://supermarket.chef.io'
+
+metadata
+
+cookbook 'wombat',   github: 'chef-cft/wombat', rel: 'cookbooks/wombat'
+cookbook 'infranodes', github: 'chef-cft/wombat', rel: 'cookbooks/infranodes'
+
+group :integration do
+  cookbook 'test', path: './test/fixtures/cookbooks/test'
+end
