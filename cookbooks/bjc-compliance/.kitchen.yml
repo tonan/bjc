@@ -30,6 +30,7 @@ suites:
     run_list:
       - recipe[test::default]
       - recipe[bjc-compliance::default]
+      - recipe[bjc-compliance::restore_backup]
     attributes:
       demo:
         domain_prefix: ''

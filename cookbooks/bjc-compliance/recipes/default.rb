@@ -23,3 +23,5 @@ bash 'upload_profile' do
   EOH
   #not_if { ::File.exist?(src_filepath) }
 end
+
+include_recipe 'bjc-compliance::restore_backup'
