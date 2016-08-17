@@ -100,7 +100,7 @@ def create_stack(stack, region, keypair)
   cmd.insert(3, "--template-body \"#{template_file}\"")
   cmd.insert(3, "--parameters ParameterKey='KeyName',ParameterValue='#{keypair}'")
   cmd.insert(3, "--region #{region}")
-  cmd.insert(3, "--stack-name #{ENV['EC2_SSH_KEY_NAME']}-#{stack}-#{timestamp}")
+  cmd.insert(3, "--stack-name #{ENV['USER']}-#{stack}-#{timestamp}")
   cmd.join(' ')
 end
 
