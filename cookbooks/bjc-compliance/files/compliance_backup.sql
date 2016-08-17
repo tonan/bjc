@@ -13,6 +13,113 @@ SET check_function_bodies = false;
 SET client_min_messages = warning;
 SET row_security = off;
 
+SET search_path = sqitch, pg_catalog;
+
+ALTER TABLE ONLY sqitch.tags DROP CONSTRAINT tags_project_fkey;
+ALTER TABLE ONLY sqitch.tags DROP CONSTRAINT tags_change_id_fkey;
+ALTER TABLE ONLY sqitch.events DROP CONSTRAINT events_project_fkey;
+ALTER TABLE ONLY sqitch.dependencies DROP CONSTRAINT dependencies_dependency_id_fkey;
+ALTER TABLE ONLY sqitch.dependencies DROP CONSTRAINT dependencies_change_id_fkey;
+ALTER TABLE ONLY sqitch.changes DROP CONSTRAINT changes_project_fkey;
+SET search_path = public, pg_catalog;
+
+ALTER TABLE ONLY public.owners DROP CONSTRAINT owners_fk_source;
+ALTER TABLE ONLY public.nodes DROP CONSTRAINT nodes_fkey_owner;
+ALTER TABLE ONLY public.nodes DROP CONSTRAINT nodes_fkey_environment;
+SET search_path = sqitch, pg_catalog;
+
+ALTER TABLE ONLY sqitch.tags DROP CONSTRAINT tags_project_tag_key;
+ALTER TABLE ONLY sqitch.tags DROP CONSTRAINT tags_pkey;
+ALTER TABLE ONLY sqitch.projects DROP CONSTRAINT projects_uri_key;
+ALTER TABLE ONLY sqitch.projects DROP CONSTRAINT projects_pkey;
+ALTER TABLE ONLY sqitch.events DROP CONSTRAINT events_pkey;
+ALTER TABLE ONLY sqitch.dependencies DROP CONSTRAINT dependencies_pkey;
+ALTER TABLE ONLY sqitch.changes DROP CONSTRAINT changes_pkey;
+SET search_path = public, pg_catalog;
+
+ALTER TABLE ONLY public.user_preferences DROP CONSTRAINT user_preferences_pkey;
+ALTER TABLE ONLY public.user_permissions DROP CONSTRAINT user_permissions_pkey;
+ALTER TABLE ONLY public.teams DROP CONSTRAINT teams_pkey;
+ALTER TABLE ONLY public.team_members DROP CONSTRAINT team_members_pkey;
+ALTER TABLE ONLY public.sources DROP CONSTRAINT sources_pkey;
+ALTER TABLE ONLY public.scans DROP CONSTRAINT scans_pkey;
+ALTER TABLE ONLY public.scan_rule_results DROP CONSTRAINT scan_rule_results_pkey;
+ALTER TABLE ONLY public.scan_node_results DROP CONSTRAINT scan_node_results_pkey;
+ALTER TABLE ONLY public.role_permissions DROP CONSTRAINT role_permissions_pkey;
+ALTER TABLE ONLY public.patch_runs DROP CONSTRAINT patch_runs_pkey;
+ALTER TABLE ONLY public.patch_node_results DROP CONSTRAINT patch_node_results_pkey;
+ALTER TABLE ONLY public.packages_installed DROP CONSTRAINT packages_installed_pkey;
+ALTER TABLE ONLY public.packages_install DROP CONSTRAINT packages_install_pkey;
+ALTER TABLE ONLY public.packages_available DROP CONSTRAINT packages_available_pkey;
+ALTER TABLE ONLY public.package_confs DROP CONSTRAINT package_confs_pkey;
+ALTER TABLE ONLY public.package_conf_profiles DROP CONSTRAINT package_conf_profiles_pkey;
+ALTER TABLE ONLY public.owners DROP CONSTRAINT owners_pkey;
+ALTER TABLE ONLY public.nodes DROP CONSTRAINT nodes_pkey;
+ALTER TABLE ONLY public.owners DROP CONSTRAINT login_uniqueness;
+ALTER TABLE ONLY public.jobs DROP CONSTRAINT jobs_pkey;
+ALTER TABLE ONLY public.job_tasks DROP CONSTRAINT job_tasks_pkey;
+ALTER TABLE ONLY public.job_runs DROP CONSTRAINT job_runs_pkey;
+ALTER TABLE ONLY public.hardening_config DROP CONSTRAINT hardening_config_pkey;
+ALTER TABLE ONLY public.environments DROP CONSTRAINT environments_pkey;
+ALTER TABLE ONLY public.access_keys DROP CONSTRAINT access_keys_uniqueness;
+ALTER TABLE ONLY public.access_keys DROP CONSTRAINT access_keys_pkey;
+SET search_path = sqitch, pg_catalog;
+
+SET search_path = public, pg_catalog;
+
+SET search_path = sqitch, pg_catalog;
+
+DROP TABLE sqitch.tags;
+DROP TABLE sqitch.projects;
+DROP TABLE sqitch.events;
+DROP TABLE sqitch.dependencies;
+DROP TABLE sqitch.changes;
+SET search_path = public, pg_catalog;
+
+DROP TABLE public.user_preferences;
+DROP TABLE public.user_permissions;
+DROP TABLE public.teams;
+DROP TABLE public.team_members;
+DROP TABLE public.sources;
+DROP TABLE public.scans;
+DROP TABLE public.scan_rule_results;
+DROP TABLE public.scan_node_results;
+DROP TABLE public.role_permissions;
+DROP TABLE public.patch_runs;
+DROP TABLE public.patch_node_results;
+DROP TABLE public.packages_installed;
+DROP TABLE public.packages_install;
+DROP TABLE public.packages_available;
+DROP TABLE public.package_confs;
+DROP TABLE public.package_conf_profiles;
+DROP TABLE public.owners;
+DROP TABLE public.nodes;
+DROP TABLE public.jobs;
+DROP TABLE public.job_tasks;
+DROP TABLE public.job_runs;
+DROP TABLE public.hardening_config;
+DROP TABLE public.environments;
+DROP TABLE public.access_keys;
+DROP TYPE public.source;
+DROP EXTENSION plpgsql;
+DROP SCHEMA sqitch;
+DROP SCHEMA public;
+--
+-- Name: public; Type: SCHEMA; Schema: -; Owner: chef-pgsql
+--
+
+CREATE SCHEMA public;
+
+
+ALTER SCHEMA public OWNER TO "chef-pgsql";
+
+--
+-- Name: SCHEMA public; Type: COMMENT; Schema: -; Owner: chef-pgsql
+--
+
+COMMENT ON SCHEMA public IS 'standard public schema';
+
+
 --
 -- Name: sqitch; Type: SCHEMA; Schema: -; Owner: chef-pgsql
 --
