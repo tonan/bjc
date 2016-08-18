@@ -7,7 +7,7 @@
 require 'spec_helper'
 
 describe 'bjc-workstation::default' do
-  context 'When all attributes are default, on an unspecified platform' do
+  context 'When all attributes are default, on Windows Server 2012 R2' do
     let(:chef_run) do
       runner = ChefSpec::ServerRunner.new(platform: 'windows', version: '2012R2')
       runner.converge(described_recipe)

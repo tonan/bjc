@@ -7,8 +7,8 @@ powershell_script 'bypass execution policy' do
 	code 'set-executionpolicy -executionpolicy bypass -force'
 end
 
-%w(chef-server.crt
-   delivery.crt
+%w(chef.crt
+   automate.crt
    compliance.crt
    public.pub
    private.pem).each do |f|

@@ -8,7 +8,7 @@ driver:
   instance_type: c3.large
   aws_ssh_key_id: <%= ENV["EC2_SSH_KEY_NAME"] %>
   tags:
-    Name: "bjc-delivery-localdev-kitchen-instance"
+    Name: "bjc-automate-localdev-kitchen-instance"
     created-by: "test-kitchen"
     user: <%= ENV['USER'] %>
 
@@ -36,10 +36,8 @@ suites:
         domain: 'automate-demo.com'
         enterprise: 'automate-demo'
         org: 'automate'
+        build-nodes: 3
         hosts:
-          chef-server: '172.31.54.10'
-          delivery: '172.31.54.11'
-          compliance: '172.31.54.12'
         versions:
-          delivery: 'stable-0.5.93'
-          chefdk: 'stable-0.16.28'
+          automate: 'stable-0.5.125'
+          chefdk: 'stable-latest'

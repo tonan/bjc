@@ -4,7 +4,7 @@
 #
 # Copyright (c) 2016 The Authors, All Rights Reserved.
 
-include_recipe 'delivery'
+include_recipe 'automate'
 
 user_name = node['demo']['users']['admin']['first']
 user_pass = node['demo']['users']['admin']['password']
@@ -22,11 +22,11 @@ end
 
 cookbook_file '/tmp/delivery_backup.tar' do
   source 'delivery_backup.tar'
-  notifies :run, 'execute[restore backup data into delivery]'
+  notifies :run, 'execute[restore backup data into automate]'
   checksum 'e916c8ad718ae104e53246a48011e600fa82af625b0c136503373630f05a80de'
 end
 
-execute 'restore backup data into delivery' do
+execute 'restore backup data into automate' do
   command 'delivery-ctl restore-data -b /tmp/delivery_backup.tar --no-confirm'
   notifies :restart, 'omnibus_service[ ]'
   action :nothing

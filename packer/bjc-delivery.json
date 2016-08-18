@@ -73,7 +73,7 @@
           "build-nodes": "{{user `build-nodes`}}",
           "versions": {
             "chefdk": "{{user `chefdk`}}",
-            "delivery": "{{user `delivery`}}"
+            "automate": "{{user `automate`}}"
           }
         }
       }

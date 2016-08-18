@@ -10,6 +10,7 @@
     "enterprise": "mammalia",
     "org": "diprotodontia",
     "build-nodes": "1",
+    "workstation-number": "1",
     "workstations": "1"
   },
 
