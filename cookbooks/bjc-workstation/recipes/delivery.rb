@@ -15,6 +15,6 @@ template "#{home}/.delivery/cli.toml" do
     server: "#{node['demo']['domain_prefix']}automate.#{node['demo']['domain']}",
     ent: node['demo']['enterprise'],
     org: node['demo']['org'],
-    user: node['demo']['users']['automate']['first']
+    user: "workstation-#{node['demo']['workstation-number']}"
   )
 end
