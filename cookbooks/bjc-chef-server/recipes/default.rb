@@ -5,7 +5,7 @@
 # Copyright (c) 2016 The Authors, All Rights Reserved.
 
 include_recipe 'apt'
-include_recipe 'chef-server'
+include_recipe 'chef_server'
 
 chef_ingredient 'chef-server' do
   action :reconfigure
@@ -16,4 +16,4 @@ data_collector['token'] = '93a49a4f2482c64126f7b6015e6b0f30284287ee4054ff8807fb6
 EOS
 end
 
-include_recipe 'bjc-chef-server::cheffish'
+include_recipe 'bjc-chef-server::content'

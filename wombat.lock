@@ -5,31 +5,56 @@
   "org": "automate",
   "build-nodes": "3",
   "workstations": "1",
-  "infranodes": {
-    "acceptance": [
-      "recipe[push-jobs]",
-      "recipe[site-config]"
-    ],
-    "union": [
-      "recipe[push-jobs]",
-      "recipe[site-config]"
-    ],
-    "rehearsal": [
-      "recipe[push-jobs]",
-      "recipe[site-config]"
-    ],
-    "delivered": [
-      "recipe[push-jobs]",
-      "recipe[site-config]"
-    ]
-  },
-  "version": "0.0.23",
+  "infranodes": [
+  [
+    "acceptance", {
+      "environment": "acceptance-automate-demo-automate-site-config-master"
+    }, {
+      "run_list": [
+        "recipe[push-jobs]",
+        "recipe[site-config]"
+      ]
+    }
+  ],
+  [
+    "delivered", {
+      "environment": "delivered"
+    }, {
+      "run_list": [
+        "recipe[push-jobs]",
+        "recipe[site-config]"
+      ]
+    }
+  ],
+  [
+    "rehearsal", {
+      "environment": "rehearsal"
+    }, {
+      "run_list": [
+        "recipe[push-jobs]",
+        "recipe[site-config]"
+      ]
+    }
+  ],
+  [
+    "union", {
+      "environment": "union"
+    }, {
+      "run_list": [
+        "recipe[push-jobs]",
+        "recipe[site-config]"
+      ]
+    }
+  ]
+]
+,
+  "version": "0.0.24",
   "products": {
     "chef": "stable-12.13.37",
     "chef-server": "stable-12.8.0",
     "chefdk": "stable-0.16.28",
     "compliance": "stable-1.3.1-1",
-    "delivery": "stable-0.5.125"
+    "automate": "stable-0.5.125"
   },
   "aws": {
     "region": "us-west-2",
@@ -43,21 +68,21 @@
   "amis": {
     "us-west-2": {
       "build-node": {
-        "1": "ami-b56fa5d5",
-        "2": "ami-b16ca6d1",
-        "3": "ami-4d65af2d"
+        "1": "ami-c2d80da2",
+        "2": "ami-b3dc09d3",
+        "3": "ami-83c411e3"
       },
       "infranodes": {
-        "acceptance": "ami-2664ae46",
-        "delivered": "ami-a863a9c8",
-        "rehearsal": "ami-0e7bb16e",
-        "union": "ami-7165af11"
+        "acceptance": "ami-04c61364",
+        "delivered": "ami-bac510da",
+        "rehearsal": "ami-3ec1145e",
+        "union": "ami-50c31630"
       },
       "compliance": "ami-e3be6b83",
-      "chef-server": "ami-1b93467b",
-      "delivery": "ami-426fa522",
-      "workstation": "ami-4e3ef42e"
+      "chef-server": "ami-e7de0b87",
+      "delivery": "ami-76da0f16",
+      "workstation": "ami-e5c21785"
     }
   },
-  "last_updated": "20160816233031"
+  "last_updated": "20160818003429"
 }
