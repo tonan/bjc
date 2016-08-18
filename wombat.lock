@@ -48,7 +48,7 @@
   ]
 ]
 ,
-  "version": "0.0.25",
+  "version": "0.0.26",
   "products": {
     "chef": "stable-12.13.37",
     "chef-server": "stable-12.8.0",
@@ -68,9 +68,9 @@
   "amis": {
     "us-west-2": {
       "build-node": {
-        "1": "ami-83ed38e3",
-        "2": "ami-a7ec39c7",
-        "3": "ami-a7e336c7"
+        "1": "ami-fdeb3e9d",
+        "2": "ami-6614c106",
+        "3": "ami-6c14c10c"
       },
       "infranodes": {
         "acceptance": "ami-8ced38ec",
@@ -79,10 +79,10 @@
         "union": "ami-50c31630"
       },
       "compliance": "ami-00ee3b60",
-      "chef-server": "ami-caee3baa",
-      "delivery": "ami-4dee3b2d",
+      "chef-server": "ami-aaea3fca",
+      "delivery": "ami-edeb3e8d",
       "workstation": "ami-09e83d69"
     }
   },
-  "last_updated": "20160818115211"
+  "last_updated": "20160818132411"
 }
