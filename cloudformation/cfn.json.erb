@@ -483,7 +483,7 @@
         "KeyName": { "Ref": "KeyName" },
         "UserData": { "Fn::Base64" : { "Fn::Join" : ["", [
              "#!/bin/bash -xe\n",
-             "hostnamectl set-hostname chef-server\n",
+             "hostnamectl set-hostname chef\n",
              "chef-server-ctl reconfigure\n"]]}
         },
         "ImageId": {
@@ -529,7 +529,7 @@
         "KeyName": { "Ref": "KeyName" },
         "UserData": { "Fn::Base64" : { "Fn::Join" : ["", [
              "#!/bin/bash -xe\n",
-             "hostnamectl set-hostname delivery\n",
+             "hostnamectl set-hostname automate\n",
              "delivery-ctl reconfigure\n"]]}
         },
         "ImageId": {

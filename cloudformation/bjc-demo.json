@@ -16,7 +16,7 @@
     "Version": {
       "Description": "Version",
       "Type": "String",
-      "Default": "0.0.25"
+      "Default": "0.0.27"
     },
     "KeyName": {
       "Description": "Name of an existing ec2 KeyPair to enable SSH access",
@@ -41,12 +41,12 @@
     },
     "ChefServerAMI": {
       "Type": "String",
-      "Default": "ami-caee3baa",
+      "Default": "ami-aaea3fca",
       "Description": "AMI ID for the Chef Server"
     },
     "DeliveryServerAMI": {
       "Type": "String",
-      "Default": "ami-4dee3b2d",
+      "Default": "ami-edeb3e8d",
       "Description": "AMI ID for the Delivery Server"
     },
     "ComplianceServerAMI": {
@@ -56,17 +56,17 @@
     },
     "BuildNode1AMI": {
       "Type": "String",
-      "Default": "ami-83ed38e3",
+      "Default": "ami-fdeb3e9d",
       "Description": "AMI ID for Build Node 1"
     },
     "BuildNode2AMI": {
       "Type": "String",
-      "Default": "ami-a7ec39c7",
+      "Default": "ami-6614c106",
       "Description": "AMI ID for Build Node 2"
     },
     "BuildNode3AMI": {
       "Type": "String",
-      "Default": "ami-a7e336c7",
+      "Default": "ami-6c14c10c",
       "Description": "AMI ID for Build Node 3"
     },
     "acceptanceAMI": {
@@ -91,7 +91,7 @@
     },
     "WindowsWorkstationAMI": {
       "Type": "String",
-      "Default": "ami-09e83d69",
+      "Default": "ami-4b12c72b",
       "Description": "AMI ID for the Windows Workstation"
     }
   },
@@ -695,7 +695,7 @@
         "KeyName": { "Ref": "KeyName" },
         "UserData": { "Fn::Base64" : { "Fn::Join" : ["", [
              "#!/bin/bash -xe\n",
-             "hostnamectl set-hostname chef-server\n",
+             "hostnamectl set-hostname chef\n",
              "chef-server-ctl reconfigure\n"]]}
         },
         "ImageId": {
@@ -741,7 +741,7 @@
         "KeyName": { "Ref": "KeyName" },
         "UserData": { "Fn::Base64" : { "Fn::Join" : ["", [
              "#!/bin/bash -xe\n",
-             "hostnamectl set-hostname delivery\n",
+             "hostnamectl set-hostname automate\n",
              "delivery-ctl reconfigure\n"]]}
         },
         "ImageId": {

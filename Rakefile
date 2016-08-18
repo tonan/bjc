@@ -26,6 +26,16 @@ namespace :packer do
     sh packer_build(args[:template], 'amazon-ebs')
   end
 
+  desc 'Build all workstations'
+  task :build_workstations do
+    Rake::Task['cookbook:vendor'].invoke('bjc-workstation')
+    Rake::Task['cookbook:vendor'].reenable
+    #bootstrap_aws
+    workstations.each do |name, num|
+      sh packer_build('bjc-workstation', 'amazon-ebs', {'workstation-number' => num})
+    end
+  end
+
   desc 'Build all build-nodes AMIs'
   task :build_builders do
     Rake::Task['cookbook:vendor'].invoke('bjc_build_node')
@@ -125,7 +135,7 @@ def packer_build(template, builder, options={})
   create_infranodes_json
     if template == 'bjc-build-node'
      log_name = "build-node-#{options['node-number']}"
-  elsif template == 'workstation'
+  elsif template == 'bjc-workstation'
      log_name = "workstation-#{options['workstation-number']}"
   elsif template == 'bjc_infranodes'
      log_name = "infranodes-#{options['node-name']}"
@@ -193,4 +203,12 @@ def build_nodes
     build_nodes["build-node-#{i}"] = i
   end
   build_nodes
+end
+
+def workstations
+  workstations = {}
+  1.upto(wombat_lock['workstations'].to_i) do |i|
+    workstations["workstation-#{i}"] = i
+  end
+  workstations
 end
