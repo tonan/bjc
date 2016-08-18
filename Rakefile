@@ -159,7 +159,7 @@ def packer_build(template, builder, options={})
   cmd.insert(2, "--var chefdk=#{wombat_lock['products']['chefdk']}")
   cmd.insert(2, "--var chef_ver=#{wombat_lock['products']['chef'].split('-')[1]}")
   cmd.insert(2, "--var chef_channel=#{wombat_lock['products']['chef'].split('-')[0]}")
-  cmd.insert(2, "--var delivery=#{wombat_lock['products']['delivery']}")
+  cmd.insert(2, "--var automate=#{wombat_lock['products']['automate']}")
   cmd.insert(2, "--var compliance=#{wombat_lock['products']['compliance']}")
   cmd.insert(2, "--var chef-server=#{wombat_lock['products']['chef-server']}")
   cmd.insert(2, "--var node-name=#{options['node-name']}") if template =~ /bjc-infranodes/

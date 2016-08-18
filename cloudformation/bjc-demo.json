@@ -16,7 +16,7 @@
     "Version": {
       "Description": "Version",
       "Type": "String",
-      "Default": "0.0.23"
+      "Default": "0.0.25"
     },
     "KeyName": {
       "Description": "Name of an existing ec2 KeyPair to enable SSH access",
@@ -41,57 +41,57 @@
     },
     "ChefServerAMI": {
       "Type": "String",
-      "Default": "ami-1b93467b",
+      "Default": "ami-caee3baa",
       "Description": "AMI ID for the Chef Server"
     },
     "DeliveryServerAMI": {
       "Type": "String",
-      "Default": "ami-426fa522",
+      "Default": "ami-4dee3b2d",
       "Description": "AMI ID for the Delivery Server"
     },
     "ComplianceServerAMI": {
       "Type": "String",
-      "Default": "ami-e3be6b83",
+      "Default": "ami-00ee3b60",
       "Description": "AMI ID for the Compliance Server"
     },
     "BuildNode1AMI": {
       "Type": "String",
-      "Default": "ami-b56fa5d5",
+      "Default": "ami-83ed38e3",
       "Description": "AMI ID for Build Node 1"
     },
     "BuildNode2AMI": {
       "Type": "String",
-      "Default": "ami-b16ca6d1",
+      "Default": "ami-a7ec39c7",
       "Description": "AMI ID for Build Node 2"
     },
     "BuildNode3AMI": {
       "Type": "String",
-      "Default": "ami-4d65af2d",
+      "Default": "ami-a7e336c7",
       "Description": "AMI ID for Build Node 3"
     },
     "acceptanceAMI": {
       "Type": "String",
-      "Default": "ami-2664ae46",
+      "Default": "ami-8ced38ec",
       "Description": "AMI ID for acceptance"
     },
     "deliveredAMI": {
       "Type": "String",
-      "Default": "ami-a863a9c8",
+      "Default": "ami-ceef3aae",
       "Description": "AMI ID for delivered"
     },
     "rehearsalAMI": {
       "Type": "String",
-      "Default": "ami-0e7bb16e",
+      "Default": "ami-5beb3e3b",
       "Description": "AMI ID for rehearsal"
     },
     "unionAMI": {
       "Type": "String",
-      "Default": "ami-7165af11",
+      "Default": "ami-50c31630",
       "Description": "AMI ID for union"
     },
     "WindowsWorkstationAMI": {
       "Type": "String",
-      "Default": "ami-4e3ef42e",
+      "Default": "ami-09e83d69",
       "Description": "AMI ID for the Windows Workstation"
     }
   },
