@@ -10,6 +10,6 @@ template "#{home}/.gitconfig" do
   source 'gitconfig.erb'
   variables(
     domain: node['demo']['domain'],
-    user: node['demo']['users']['delivery']['first']
+    user: node['demo']['users']['automate']['first']
   )
 end

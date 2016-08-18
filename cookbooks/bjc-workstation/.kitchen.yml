@@ -1,15 +1,14 @@
 ---
 driver:
   name: ec2
-  aws_ssh_key_id: <%= ENV["EC2_SSH_KEY_NAME"] %> #change this to yours ;)
+  aws_ssh_key_id: <%= ENV["EC2_SSH_KEY_NAME"] %>
   region: us-west-2
   availability_zone: us-west-2c
   security_group_ids: sg-401e0e25
-  subnet_id: subnet-5b32ef02 #you may change this if you want to launch the instance into an existing stack
+  subnet_id: subnet-5b32ef02
   instance_type: m3.large
   associate_public_ip: true
   tags:
-    # Replace NAME and COMPANY
     Name: "bjc-workstation-localdev-kitchen-instance"
     created-by: "test-kitchen"
     user: <%= ENV['USER'] %>
@@ -23,8 +22,6 @@ platforms:
       image_id: ami-8d0acfed
       retryable_tries: 80
     transport:
-#      username: Administrator #don't need those, until you're testing an AMi with baked-in creds
-#      password: not@shar3dKEY
       ssh_key: <%= ENV["EC2_SSH_KEY_PATH"] %> # change it; this is needed so kitchen can retrieve the Admin password
 
 suites:
@@ -40,7 +37,5 @@ suites:
         enterprise: 'automate-demo'
         org: 'automate'
         hosts:
-          chef-server: '172.31.54.10'
-          delivery: '172.31.54.11'
-          compliance: '172.31.54.12'
-
+        versions:
+          chefdk: 'stable-0.16.28'

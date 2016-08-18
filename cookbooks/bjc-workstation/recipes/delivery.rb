@@ -12,9 +12,9 @@ end
 template "#{home}/.delivery/cli.toml" do
   source 'cli.toml.erb'
   variables(
-    server: "#{node['demo']['domain_prefix']}delivery.#{node['demo']['domain']}",
+    server: "#{node['demo']['domain_prefix']}automate.#{node['demo']['domain']}",
     ent: node['demo']['enterprise'],
     org: node['demo']['org'],
-    user: node['demo']['users']['delivery']['first']
+    user: node['demo']['users']['automate']['first']
   )
 end
