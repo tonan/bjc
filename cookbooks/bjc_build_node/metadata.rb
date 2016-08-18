@@ -4,6 +4,6 @@ maintainer_email 'you@example.com'
 license 'all_rights'
 description 'Installs/Configures bjc_build_node'
 long_description 'Installs/Configures bjc_build_node'
-version '0.1.0'
+version '0.1.1'
 
-depends 'build-node'
+depends 'build_node'

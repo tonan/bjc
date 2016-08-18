@@ -38,8 +38,5 @@ suites:
         build-nodes: '3'
         org: 'automate'
         hosts:
-          chef-server: '172.31.54.10'
-          delivery: '172.31.54.11'
-          compliance: '172.31.54.12'
         versions:
           chefdk: 'stable-0.16.28'
