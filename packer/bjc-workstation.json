@@ -28,7 +28,7 @@
       "winrm_username": "{{user `winrm_username`}}",
       "winrm_password": "{{user `winrm_password`}}",
       "user_data_file": "{{template_dir}}/scripts/bootstrap-aws.txt",
-      "ami_name": "bjc-workstation-{{timestamp}}"
+      "ami_name": "workstation-{{user `workstation-number`}}-{{timestamp}}"
     }
   ],
 
@@ -56,6 +56,7 @@
           "enterprise": "{{user `enterprise`}}",
           "org": "{{user `org`}}",
           "build-nodes": "{{user `build-nodes`}}",
+          "workstation-number": "{{user `workstation-number`}}",
           "versions": {
             "chefdk": "{{user `chefdk`}}"
           }
