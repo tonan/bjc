@@ -8,8 +8,7 @@
   "infranodes": [
   [
     "acceptance", {
-      "environment": "acceptance-automate-demo-automate-site-config-master"
-    }, {
+      "environment": "acceptance-automate-demo-automate-site-config-master",
       "run_list": [
         "recipe[push-jobs]",
         "recipe[site-config]"
@@ -18,8 +17,7 @@
   ],
   [
     "delivered", {
-      "environment": "delivered"
-    }, {
+      "environment": "delivered",
       "run_list": [
         "recipe[push-jobs]",
         "recipe[site-config]"
@@ -28,8 +26,7 @@
   ],
   [
     "rehearsal", {
-      "environment": "rehearsal"
-    }, {
+      "environment": "rehearsal",
       "run_list": [
         "recipe[push-jobs]",
         "recipe[site-config]"
@@ -38,8 +35,7 @@
   ],
   [
     "union", {
-      "environment": "union"
-    }, {
+      "environment": "union",
       "run_list": [
         "recipe[push-jobs]",
         "recipe[site-config]"
@@ -48,7 +44,7 @@
   ]
 ]
 ,
-  "version": "0.0.27",
+  "version": "0.0.29",
   "products": {
     "chef": "stable-12.13.37",
     "chef-server": "stable-12.8.0",
@@ -68,21 +64,21 @@
   "amis": {
     "us-west-2": {
       "build-node": {
-        "1": "ami-fdeb3e9d",
-        "2": "ami-6614c106",
-        "3": "ami-6c14c10c"
+        "1": "ami-0403d664",
+        "2": "ami-0e06d36e",
+        "3": "ami-a506d3c5"
       },
       "infranodes": {
-        "acceptance": "ami-8ced38ec",
-        "delivered": "ami-ceef3aae",
-        "rehearsal": "ami-5beb3e3b",
-        "union": "ami-50c31630"
+        "acceptance": "ami-8c0cd9ec",
+        "delivered": "ami-e30cd983",
+        "rehearsal": "ami-d40dd8b4",
+        "union": "ami-6608dd06"
       },
       "compliance": "ami-00ee3b60",
-      "chef-server": "ami-aaea3fca",
-      "delivery": "ami-edeb3e8d",
-      "workstation": "ami-4b12c72b"
+      "chef-server": "ami-b609dcd6",
+      "delivery": "ami-2c0cd94c",
+      "workstation": "ami-c834e1a8"
     }
   },
-  "last_updated": "20160818141713"
+  "last_updated": "20160818185121"
 }

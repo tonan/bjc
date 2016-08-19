@@ -385,7 +385,7 @@
               }
             ],
             "AssociatePublicIpAddress": "true",
-            "PrivateIpAddress": "172.31.54.<%= 100 + i %>",
+            "PrivateIpAddress": "172.31.54.<%= 50 + i %>",
             "DeviceIndex": "0",
             "DeleteOnTermination": "true",
             "SubnetId": {
@@ -426,7 +426,7 @@
               }
             ],
             "AssociatePublicIpAddress": "true",
-            "PrivateIpAddress": "172.31.54.<%= 201 + @infra.keys.find_index(name) %>",
+            "PrivateIpAddress": "172.31.54.<%= 101 + @infra.keys.find_index(name) %>",
             "DeviceIndex": "0",
             "DeleteOnTermination": "true",
             "SubnetId": {
