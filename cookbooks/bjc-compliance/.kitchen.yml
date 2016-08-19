@@ -31,6 +31,7 @@ suites:
       - recipe[test::default]
       - recipe[bjc-compliance::default]
       - recipe[bjc-compliance::restore_backup]
+      - recipe[test::fixhosts]
     attributes:
       demo:
         domain_prefix: ''
