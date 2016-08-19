@@ -16,7 +16,7 @@
     "Version": {
       "Description": "Version",
       "Type": "String",
-      "Default": "0.0.27"
+      "Default": "0.0.29"
     },
     "KeyName": {
       "Description": "Name of an existing ec2 KeyPair to enable SSH access",
@@ -46,7 +46,7 @@
     },
     "DeliveryServerAMI": {
       "Type": "String",
-      "Default": "ami-edeb3e8d",
+      "Default": "ami-2c0cd94c",
       "Description": "AMI ID for the Delivery Server"
     },
     "ComplianceServerAMI": {
@@ -56,42 +56,42 @@
     },
     "BuildNode1AMI": {
       "Type": "String",
-      "Default": "ami-fdeb3e9d",
+      "Default": "ami-0403d664",
       "Description": "AMI ID for Build Node 1"
     },
     "BuildNode2AMI": {
       "Type": "String",
-      "Default": "ami-6614c106",
+      "Default": "ami-0e06d36e",
       "Description": "AMI ID for Build Node 2"
     },
     "BuildNode3AMI": {
       "Type": "String",
-      "Default": "ami-6c14c10c",
+      "Default": "ami-a506d3c5",
       "Description": "AMI ID for Build Node 3"
     },
     "acceptanceAMI": {
       "Type": "String",
-      "Default": "ami-8ced38ec",
+      "Default": "ami-8c0cd9ec",
       "Description": "AMI ID for acceptance"
     },
     "deliveredAMI": {
       "Type": "String",
-      "Default": "ami-ceef3aae",
+      "Default": "ami-e30cd983",
       "Description": "AMI ID for delivered"
     },
     "rehearsalAMI": {
       "Type": "String",
-      "Default": "ami-5beb3e3b",
+      "Default": "ami-d40dd8b4",
       "Description": "AMI ID for rehearsal"
     },
     "unionAMI": {
       "Type": "String",
-      "Default": "ami-50c31630",
+      "Default": "ami-6608dd06",
       "Description": "AMI ID for union"
     },
     "WindowsWorkstationAMI": {
       "Type": "String",
-      "Default": "ami-4b12c72b",
+      "Default": "ami-9d01d4fd",
       "Description": "AMI ID for the Windows Workstation"
     }
   },
@@ -405,7 +405,7 @@
               }
             ],
             "AssociatePublicIpAddress": "true",
-            "PrivateIpAddress": "172.31.54.101",
+            "PrivateIpAddress": "172.31.54.51",
             "DeviceIndex": "0",
             "DeleteOnTermination": "true",
             "SubnetId": {
@@ -444,7 +444,7 @@
               }
             ],
             "AssociatePublicIpAddress": "true",
-            "PrivateIpAddress": "172.31.54.102",
+            "PrivateIpAddress": "172.31.54.52",
             "DeviceIndex": "0",
             "DeleteOnTermination": "true",
             "SubnetId": {
@@ -483,7 +483,7 @@
               }
             ],
             "AssociatePublicIpAddress": "true",
-            "PrivateIpAddress": "172.31.54.103",
+            "PrivateIpAddress": "172.31.54.53",
             "DeviceIndex": "0",
             "DeleteOnTermination": "true",
             "SubnetId": {
@@ -522,7 +522,7 @@
               }
             ],
             "AssociatePublicIpAddress": "true",
-            "PrivateIpAddress": "172.31.54.201",
+            "PrivateIpAddress": "172.31.54.101",
             "DeviceIndex": "0",
             "DeleteOnTermination": "true",
             "SubnetId": {
@@ -561,7 +561,7 @@
               }
             ],
             "AssociatePublicIpAddress": "true",
-            "PrivateIpAddress": "172.31.54.202",
+            "PrivateIpAddress": "172.31.54.102",
             "DeviceIndex": "0",
             "DeleteOnTermination": "true",
             "SubnetId": {
@@ -600,7 +600,7 @@
               }
             ],
             "AssociatePublicIpAddress": "true",
-            "PrivateIpAddress": "172.31.54.203",
+            "PrivateIpAddress": "172.31.54.103",
             "DeviceIndex": "0",
             "DeleteOnTermination": "true",
             "SubnetId": {
@@ -639,7 +639,7 @@
               }
             ],
             "AssociatePublicIpAddress": "true",
-            "PrivateIpAddress": "172.31.54.204",
+            "PrivateIpAddress": "172.31.54.104",
             "DeviceIndex": "0",
             "DeleteOnTermination": "true",
             "SubnetId": {
