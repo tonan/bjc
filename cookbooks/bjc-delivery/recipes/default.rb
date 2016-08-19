@@ -10,20 +10,20 @@ user_name = node['demo']['users']['admin']['first']
 user_pass = node['demo']['users']['admin']['password']
 api_uri = "https://#{node['bjc']['api_host']}/api/v0/e/#{node['bjc']['ent_name']}"
 
-bash 'create-project' do
-  code <<-EOH
-  #!/bin/bash
-  export API_TOKEN
-  API_TOKEN=$(curl -X POST #{api_uri}/users/#{user_name}/get-token -v -k -H 'Content-Type: application/json' -d '{ "username": "#{user_name}", "password": "#{user_pass}" }' | jq -r '.token')
-  curl -X POST #{api_uri}/orgs -v -k -H 'Content-Type: application/json' -H 'chef-delivery-user: '#{user_name}'' -H 'chef-delivery-token: '$API_TOKEN'' -d '{ "name": "#{node['bjc']['org']}" }'
-  curl -X POST #{api_uri}/orgs/#{node['bjc']['org']}/projects -v -k -H 'Content-Type: application/json' -H 'chef-delivery-user: '#{user_name}'' -H 'chef-delivery-token: '$API_TOKEN'' -d '{ "name": "#{node['bjc']['project']}" }'
-  EOH
-end
+# bash 'create-project' do
+#   code <<-EOH
+#   #!/bin/bash
+#   export API_TOKEN
+#   API_TOKEN=$(curl -X POST #{api_uri}/users/#{user_name}/get-token -v -k -H 'Content-Type: application/json' -d '{ "username": "#{user_name}", "password": "#{user_pass}" }' | jq -r '.token')
+#   curl -X POST #{api_uri}/orgs -v -k -H 'Content-Type: application/json' -H 'chef-delivery-user: '#{user_name}'' -H 'chef-delivery-token: '$API_TOKEN'' -d '{ "name": "#{node['bjc']['org']}" }'
+#   curl -X POST #{api_uri}/orgs/#{node['bjc']['org']}/projects -v -k -H 'Content-Type: application/json' -H 'chef-delivery-user: '#{user_name}'' -H 'chef-delivery-token: '$API_TOKEN'' -d '{ "name": "#{node['bjc']['project']}" }'
+#   EOH
+# end
 
 cookbook_file '/tmp/delivery_backup.tar' do
   source 'delivery_backup.tar'
   notifies :run, 'execute[restore backup data into automate]'
-  checksum 'e916c8ad718ae104e53246a48011e600fa82af625b0c136503373630f05a80de'
+  checksum '551864514fbccbc10521852d6c7c6bd51f1811cf29fe45d4d0a439cc7433960d'
 end
 
 execute 'restore backup data into automate' do
