@@ -182,7 +182,7 @@ def packer_build(template, builder, options={})
 end
 
 def templates
-  %w(bjc-compliance bjc-chef-server bjc-delivery bjc-workstation)
+  %w(bjc-compliance bjc-chef-server bjc-delivery bjc-workstation bjc-infranodes bjc-build-node)
 end
 
 def create_infranodes_json

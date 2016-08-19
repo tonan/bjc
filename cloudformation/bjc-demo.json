@@ -41,7 +41,7 @@
     },
     "ChefServerAMI": {
       "Type": "String",
-      "Default": "ami-aaea3fca",
+      "Default": "ami-b609dcd6",
       "Description": "AMI ID for the Chef Server"
     },
     "DeliveryServerAMI": {
@@ -91,7 +91,7 @@
     },
     "WindowsWorkstationAMI": {
       "Type": "String",
-      "Default": "ami-9d01d4fd",
+      "Default": "ami-c834e1a8",
       "Description": "AMI ID for the Windows Workstation"
     }
   },

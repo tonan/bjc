@@ -8,8 +8,7 @@
   "infranodes": [
   [
     "acceptance", {
-      "environment": "acceptance-automate-demo-automate-site-config-master"
-    }, {
+      "environment": "acceptance-automate-demo-automate-site-config-master",
       "run_list": [
         "recipe[push-jobs]",
         "recipe[site-config]"
@@ -18,8 +17,7 @@
   ],
   [
     "delivered", {
-      "environment": "delivered"
-    }, {
+      "environment": "delivered",
       "run_list": [
         "recipe[push-jobs]",
         "recipe[site-config]"
@@ -28,8 +26,7 @@
   ],
   [
     "rehearsal", {
-      "environment": "rehearsal"
-    }, {
+      "environment": "rehearsal",
       "run_list": [
         "recipe[push-jobs]",
         "recipe[site-config]"
@@ -38,8 +35,7 @@
   ],
   [
     "union", {
-      "environment": "union"
-    }, {
+      "environment": "union",
       "run_list": [
         "recipe[push-jobs]",
         "recipe[site-config]"
@@ -79,9 +75,9 @@
         "union": "ami-6608dd06"
       },
       "compliance": "ami-00ee3b60",
-      "chef-server": "ami-aaea3fca",
+      "chef-server": "ami-b609dcd6",
       "delivery": "ami-2c0cd94c",
-      "workstation": "ami-9d01d4fd"
+      "workstation": "ami-c834e1a8"
     }
   },
   "last_updated": "20160818185121"

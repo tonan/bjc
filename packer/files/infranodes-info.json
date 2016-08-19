@@ -2,9 +2,7 @@
   [
     "acceptance",
     {
-      "environment": "acceptance-automate-demo-automate-site-config-master"
-    },
-    {
+      "environment": "acceptance-automate-demo-automate-site-config-master",
       "run_list": [
         "recipe[push-jobs]",
         "recipe[site-config]"
@@ -14,9 +12,7 @@
   [
     "delivered",
     {
-      "environment": "delivered"
-    },
-    {
+      "environment": "delivered",
       "run_list": [
         "recipe[push-jobs]",
         "recipe[site-config]"
@@ -26,9 +22,7 @@
   [
     "rehearsal",
     {
-      "environment": "rehearsal"
-    },
-    {
+      "environment": "rehearsal",
       "run_list": [
         "recipe[push-jobs]",
         "recipe[site-config]"
@@ -38,9 +32,7 @@
   [
     "union",
     {
-      "environment": "union"
-    },
-    {
+      "environment": "union",
       "run_list": [
         "recipe[push-jobs]",
         "recipe[site-config]"
