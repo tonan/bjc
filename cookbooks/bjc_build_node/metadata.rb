@@ -4,6 +4,7 @@ maintainer_email 'you@example.com'
 license 'all_rights'
 description 'Installs/Configures bjc_build_node'
 long_description 'Installs/Configures bjc_build_node'
-version '0.1.1'
+version '0.1.2'
 
 depends 'build_node'
+depends 'wombat'
