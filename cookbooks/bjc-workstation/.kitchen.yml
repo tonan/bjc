@@ -37,5 +37,7 @@ suites:
         enterprise: 'automate-demo'
         org: 'automate'
         hosts:
+        workstations: 1
+        workstation-number: 1
         versions:
           chefdk: 'stable-0.16.28'
