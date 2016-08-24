@@ -44,7 +44,7 @@
   ]
 ]
 ,
-  "version": "0.0.29",
+  "version": "0.0.30",
   "products": {
     "chef": "stable-12.13.37",
     "chef-server": "stable-12.8.0",
