@@ -3,8 +3,7 @@ source 'https://supermarket.chef.io'
 metadata
 
 cookbook 'workstation',
-  # This branch can be removed once upstream gets their act together  ;-)
-  git: 'git@github.com:chef-cft/wombat.git', branch: 'scarolan/IdempotencyTreatment',
+  git: 'git@github.com:chef-cft/wombat.git', 
   rel: 'cookbooks/workstation'
 
 cookbook 'wombat',
