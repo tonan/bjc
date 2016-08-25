@@ -16,7 +16,7 @@
     "Version": {
       "Description": "Version",
       "Type": "String",
-      "Default": "0.0.30"
+      "Default": "0.0.31"
     },
     "KeyName": {
       "Description": "Name of an existing ec2 KeyPair to enable SSH access",
@@ -91,7 +91,7 @@
     },
     "WindowsWorkstationAMI": {
       "Type": "String",
-      "Default": "ami-81dc0be1",
+      "Default": "ami-d8d80fb8",
       "Description": "AMI ID for the Windows Workstation"
     }
   },

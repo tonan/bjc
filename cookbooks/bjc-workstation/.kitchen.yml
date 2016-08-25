@@ -5,6 +5,7 @@ driver:
   region: us-west-2
   availability_zone: us-west-2c
   security_group_ids: sg-401e0e25
+  iam_profile_name: testKitchenAndKnifeEc2
   subnet_id: subnet-5b32ef02
   instance_type: m3.large
   associate_public_ip: true
