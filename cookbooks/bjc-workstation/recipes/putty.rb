@@ -19,9 +19,9 @@ windows_shortcut "#{home}/Desktop/putty.lnk" do
 end
 
 # Create the settings
-template "#{home}/putty.reg" do
+cookbook_file "#{home}/putty.reg" do
   action :create
-  source 'putty.reg.erb'
+  source 'putty.reg'
 end
 
 # Import the settings
