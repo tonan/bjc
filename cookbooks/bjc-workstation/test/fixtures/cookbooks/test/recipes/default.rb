@@ -3,6 +3,8 @@
 # Recipe:: default
 #
 # Copyright (c) 2016 The Authors, All Rights Reserved.
+home = Dir.home
+
 powershell_script 'bypass execution policy' do
 	code 'set-executionpolicy -executionpolicy bypass -force'
 end
@@ -16,4 +18,10 @@ end
   	source f
   	sensitive true
   end
+end
+
+cookbook_file "#{home}/.ssh/id_rsa.ppk" do
+  action :create
+  source 'putty.ppk'
+  sensitive true
 end
