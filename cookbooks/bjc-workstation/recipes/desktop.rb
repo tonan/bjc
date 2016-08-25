@@ -13,6 +13,6 @@ template "#{home}/Desktop/Start_Demo.ps1" do
 end
 
 # Your puny restrictions are no match for my powershell
-powershell_script 'Set-ExecutionPolicy Unrestricted' do
-  action :run
+powershell_script 'bypass execution policy' do
+  code 'set-executionpolicy -executionpolicy bypass -force'
 end

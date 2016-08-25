@@ -3,3 +3,5 @@
 & "C:\ProgramData\chocolatey\bin\PUTTY.EXE" -load delivered.automate-demo.com
 & "C:\Users\Administrator\AppData\Local\atom\bin\atom.cmd" C:\Users\Administrator\cookbooks\site-config
 & "C:\tools\cmder\Cmder.exe"
+ssh compliance sudo chef-compliance-ctl restart
+knife ssh *:* sudo chef-client -a name

@@ -48,7 +48,7 @@
       "guest_os_type": "windows",
       "execute_command": "c:/opscode/chef/bin/chef-solo.bat --no-color -c {{.ConfigPath}} -j {{.JsonPath}} -L C:/windows/temp/packerbuild.log -l error",
       "cookbook_paths": [ "{{pwd}}/vendored-cookbooks/bjc-workstation" ],
-      "run_list": [ "bjc-workstation" ],
+      "run_list": [ "bjc-workstation", "bjc-workstation::environment" ],
       "json": {
         "demo": {
           "domain_prefix": "{{user `domain_prefix`}}",
