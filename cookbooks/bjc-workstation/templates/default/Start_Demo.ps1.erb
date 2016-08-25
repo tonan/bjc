@@ -1,7 +1,8 @@
 # Chef Demo Startup Script
+<% home = Dir.home -%>
 & "C:\Program Files (x86)\Google\Chrome\Application\chrome.exe"
 & "C:\ProgramData\chocolatey\bin\PUTTY.EXE" -load delivered.automate-demo.com
-& "C:\Users\Administrator\AppData\Local\atom\bin\atom.cmd" C:\Users\Administrator\cookbooks\site-config
+& "<%= home -%>\AppData\Local\atom\bin\atom.cmd" <%= home -%>\cookbooks\site-config
 & "C:\tools\cmder\Cmder.exe"
 ssh compliance sudo chef-compliance-ctl restart
 knife ssh *:* sudo chef-client -a name
