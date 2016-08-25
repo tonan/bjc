@@ -16,3 +16,12 @@ end
 powershell_script 'bypass execution policy' do
   code 'set-executionpolicy -executionpolicy bypass -force'
 end
+
+# Remove EC2 shortcuts
+file "#{home}/Desktop/EC2 Feedback.website" do
+  action :delete
+end
+
+file "#{home}/Desktop/EC2 Microsoft Windows Guide.website" do
+  action :delete
+end
