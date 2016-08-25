@@ -27,7 +27,8 @@ platforms:
 suites:
   - name: default
     run_list:
-      # Replace with the name of the COOKBOOK
+      # The test cookbook is located in test/fixtures.
+      # It is what puts secret keys, certs, etc. in place
       - recipe[test::default]
       - recipe[bjc-workstation::default]
     attributes:
