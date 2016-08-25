@@ -20,6 +20,7 @@ node['bjc-workstation']['cookbooks'].each do |cookbook|
   windows_zipfile "#{home}/cookbooks/" do
     source "#{home}/cookbooks/#{cookbook}.zip"
     action :unzip
+    not_if { File.exist?("#{home}/cookbooks/#{cookbook}") }
   end
 
 end

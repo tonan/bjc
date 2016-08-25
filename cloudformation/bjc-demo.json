@@ -16,7 +16,7 @@
     "Version": {
       "Description": "Version",
       "Type": "String",
-      "Default": "0.0.29"
+      "Default": "0.0.30"
     },
     "KeyName": {
       "Description": "Name of an existing ec2 KeyPair to enable SSH access",
@@ -91,11 +91,18 @@
     },
     "WindowsWorkstationAMI": {
       "Type": "String",
-      "Default": "ami-c834e1a8",
+      "Default": "ami-81dc0be1",
       "Description": "AMI ID for the Windows Workstation"
     }
   },
   "Resources": {
+    "InstanceProfile" : {
+      "Type" : "AWS::IAM::InstanceProfile",
+      "Properties" : {
+        "Path" : "/",
+        "Roles" : ["testKitchenAndKnifeEc2"]
+      }
+    },
     "VPC": {
       "Type": "AWS::EC2::VPC",
       "Properties": {

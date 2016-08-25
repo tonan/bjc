@@ -89,6 +89,7 @@ namespace :cfn do
     @availability_zone = wombat_lock['aws']['az']
     @demo = wombat_lock['name']
     @version = wombat_lock['version']
+    @iam_profile = wombat_lock['iam_profile']
     rendered_cfn = ERB.new(File.read('cloudformation/cfn.json.erb'), nil, '-').result
     File.open("cloudformation/#{@demo}.json", 'w') { |file| file.puts rendered_cfn }
     puts "Generated cloudformation/#{@demo}.json"
@@ -110,6 +111,7 @@ def create_stack(stack, region, keypair)
   cmd.insert(3, "--template-body \"#{template_file}\"")
   cmd.insert(3, "--parameters ParameterKey='KeyName',ParameterValue='#{keypair}'")
   cmd.insert(3, "--region #{region}")
+  cmd.insert(3, "--capabilities CAPABILITY_IAM")
   cmd.insert(3, "--stack-name #{ENV['USER']}-#{stack}-#{timestamp}")
   cmd.join(' ')
 end
