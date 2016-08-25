@@ -91,11 +91,18 @@
     },
     "WindowsWorkstationAMI": {
       "Type": "String",
-      "Default": "ami-adde09cd",
+      "Default": "ami-81dc0be1",
       "Description": "AMI ID for the Windows Workstation"
     }
   },
   "Resources": {
+    "InstanceProfile" : {
+      "Type" : "AWS::IAM::InstanceProfile",
+      "Properties" : {
+        "Path" : "/",
+        "Roles" : ["testKitchenAndKnifeEc2"]
+      }
+    },
     "VPC": {
       "Type": "AWS::EC2::VPC",
       "Properties": {
