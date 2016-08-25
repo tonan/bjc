@@ -366,6 +366,7 @@
       "Type": "AWS::EC2::Instance",
       "Properties": {
         "InstanceType": "m3.large",
+        "IamInstanceProfile" : {"Ref" : "InstanceProfile"},
         "AvailabilityZone": { "Ref": "AvailabilityZone" },
         "NetworkInterfaces": [
           {
