@@ -16,7 +16,7 @@
     "Version": {
       "Description": "Version",
       "Type": "String",
-      "Default": "0.0.31"
+      "Default": "0.0.32"
     },
     "KeyName": {
       "Description": "Name of an existing ec2 KeyPair to enable SSH access",
@@ -51,7 +51,7 @@
     },
     "ComplianceServerAMI": {
       "Type": "String",
-      "Default": "ami-00ee3b60",
+      "Default": "ami-4f0dda2f",
       "Description": "AMI ID for the Compliance Server"
     },
     "BuildNode1AMI": {
@@ -91,7 +91,7 @@
     },
     "WindowsWorkstationAMI": {
       "Type": "String",
-      "Default": "ami-d8d80fb8",
+      "Default": "ami-2d02d54d",
       "Description": "AMI ID for the Windows Workstation"
     }
   },

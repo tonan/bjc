@@ -1,8 +1,14 @@
 # Chef Demo Startup Script
 <% home = Dir.home -%>
+echo "Starting Google Chrome..."
 & "C:\Program Files (x86)\Google\Chrome\Application\chrome.exe"
+echo "Starting PuTTY..."
 & "C:\ProgramData\chocolatey\bin\PUTTY.EXE" -load delivered.automate-demo.com
+echo "Starting Atom..."
 & "<%= home -%>\AppData\Local\atom\bin\atom.cmd" <%= home -%>\cookbooks\site-config
+echo "Starting cmder..."
 & "C:\tools\cmder\Cmder.exe"
-ssh compliance sudo chef-compliance-ctl restart
+echo "Preparing AURD nodes for demo..."
 knife ssh *:* sudo chef-client -a name
+echo "Loading compliance profiles..."
+ssh compliance "sudo chef-compliance-ctl restart; sleep 60; sudo /home/ubuntu/upload_apache_profile.sh"

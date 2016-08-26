@@ -22,3 +22,10 @@ execute 'Restore Chef Compliance Backup' do
   sensitive true
   # TO DO: write a guard for this
 end
+
+# Wait...
+ruby_block 'Wait for compliance to get its act together' do
+  block do
+    sleep(60)
+  end
+end
