@@ -4,21 +4,14 @@
 #
 # Copyright (c) 2016 The Authors, All Rights Reserved.
 
-src_filename = 'apache.tar.gz'
-src_filepath = "#{Chef::Config['file_cache_path']}/#{src_filename}"
-
-cookbook_file src_filepath do
-  source src_filename
+# Stage the Apache profile to prepare it to be loaded into compliance
+cookbook_file '/home/ubuntu/apache.tar.gz' do
+  action :create
+  source 'apache.tar.gz'
 end
 
-cookbook_file "#{Chef::Config['file_cache_path']}/upload_apache_profile.sh" do
+cookbook_file "/home/ubuntu/upload_apache_profile.sh" do
   action :create
   source 'upload_apache_profile.sh'
   mode '0755'
 end
-
-# This doesn't work. You MUST run this script manually or via SSH
-#bash "Import Apache Compliance profile" do
-#  code "#{Chef::Config['file_cache_path']}/upload_apache_profile.sh"
-#  action :run
-#end
