@@ -5,8 +5,8 @@
 # Copyright (c) 2016 The Authors, All Rights Reserved.
 
 # Copied from bjc-chef-server, not sure if needed here
-%w(chef-server.crt
-	chef-server.key
+%w(chef.crt
+	chef.key
 	delivery.crt
 	compliance.crt
 	compliance.key
