@@ -83,8 +83,8 @@
       },
       "infranodes": {
         "acceptance": "ami-938f5ef3",
-        "ecomacceptance": "ami-a28e5fc2",
-        "delivered": "ami-a08e5fc0",
+        "ecomacceptance": "ami-a08e5fc0",
+        "delivered": "ami-a28e5fc2",
         "rehearsal": "ami-f6b06196",
         "union": "ami-f0b06190"
       },

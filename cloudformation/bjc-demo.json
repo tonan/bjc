@@ -76,12 +76,12 @@
     },
     "deliveredAMI": {
       "Type": "String",
-      "Default": "ami-a08e5fc0",
+      "Default": "ami-a28e5fc2",
       "Description": "AMI ID for delivered"
     },
     "ecomacceptanceAMI": {
       "Type": "String",
-      "Default": "ami-a28e5fc2",
+      "Default": "ami-a08e5fc0",
       "Description": "AMI ID for ecomacceptance"
     },
     "rehearsalAMI": {
