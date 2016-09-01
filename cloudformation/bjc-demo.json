@@ -16,7 +16,7 @@
     "Version": {
       "Description": "Version",
       "Type": "String",
-      "Default": "0.0.32"
+      "Default": "0.0.33"
     },
     "KeyName": {
       "Description": "Name of an existing ec2 KeyPair to enable SSH access",
@@ -41,7 +41,7 @@
     },
     "ChefServerAMI": {
       "Type": "String",
-      "Default": "ami-b609dcd6",
+      "Default": "ami-888455e8",
       "Description": "AMI ID for the Chef Server"
     },
     "DeliveryServerAMI": {
@@ -71,22 +71,22 @@
     },
     "acceptanceAMI": {
       "Type": "String",
-      "Default": "ami-8c0cd9ec",
+      "Default": "ami-948455f4",
       "Description": "AMI ID for acceptance"
     },
     "deliveredAMI": {
       "Type": "String",
-      "Default": "ami-e30cd983",
+      "Default": "ami-928455f2",
       "Description": "AMI ID for delivered"
     },
     "rehearsalAMI": {
       "Type": "String",
-      "Default": "ami-d40dd8b4",
+      "Default": "ami-d38150b3",
       "Description": "AMI ID for rehearsal"
     },
     "unionAMI": {
       "Type": "String",
-      "Default": "ami-6608dd06",
+      "Default": "ami-7c81501c",
       "Description": "AMI ID for union"
     },
     "WindowsWorkstationAMI": {

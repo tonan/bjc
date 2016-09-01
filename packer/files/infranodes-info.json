@@ -5,7 +5,8 @@
       "environment": "acceptance-automate-demo-automate-site-config-master",
       "run_list": [
         "recipe[push-jobs]",
-        "recipe[site-config]"
+        "recipe[site-config]",
+        "recipe[bjc-ecommerce]"
       ]
     }
   ],
@@ -15,7 +16,8 @@
       "environment": "delivered",
       "run_list": [
         "recipe[push-jobs]",
-        "recipe[site-config]"
+        "recipe[site-config]",
+        "recipe[bjc-ecommerce]"
       ]
     }
   ],
@@ -25,7 +27,8 @@
       "environment": "rehearsal",
       "run_list": [
         "recipe[push-jobs]",
-        "recipe[site-config]"
+        "recipe[site-config]",
+        "recipe[bjc-ecommerce]"
       ]
     }
   ],
@@ -35,7 +38,8 @@
       "environment": "union",
       "run_list": [
         "recipe[push-jobs]",
-        "recipe[site-config]"
+        "recipe[site-config]",
+        "recipe[bjc-ecommerce]"
       ]
     }
   ]

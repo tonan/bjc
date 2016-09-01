@@ -12,7 +12,8 @@
       "environment": "acceptance-automate-demo-automate-site-config-master",
       "run_list": [
         "recipe[push-jobs]",
-        "recipe[site-config]"
+        "recipe[site-config]",
+        "recipe[bjc-ecommerce]"
       ]
     }
   ],
@@ -21,7 +22,8 @@
       "environment": "delivered",
       "run_list": [
         "recipe[push-jobs]",
-        "recipe[site-config]"
+        "recipe[site-config]",
+        "recipe[bjc-ecommerce]"
       ]
     }
   ],
@@ -30,7 +32,8 @@
       "environment": "rehearsal",
       "run_list": [
         "recipe[push-jobs]",
-        "recipe[site-config]"
+        "recipe[site-config]",
+        "recipe[bjc-ecommerce]"
       ]
     }
   ],
@@ -39,13 +42,14 @@
       "environment": "union",
       "run_list": [
         "recipe[push-jobs]",
-        "recipe[site-config]"
+        "recipe[site-config]",
+        "recipe[bjc-ecommerce]"
       ]
     }
   ]
 ]
 ,
-  "version": "0.0.32",
+  "version": "0.0.33",
   "products": {
     "chef": "stable-12.13.37",
     "chef-server": "stable-12.8.0",
@@ -70,13 +74,13 @@
         "3": "ami-a506d3c5"
       },
       "infranodes": {
-        "acceptance": "ami-8c0cd9ec",
-        "delivered": "ami-e30cd983",
-        "rehearsal": "ami-d40dd8b4",
-        "union": "ami-6608dd06"
+        "acceptance": "ami-948455f4",
+        "delivered": "ami-928455f2",
+        "rehearsal": "ami-d38150b3",
+        "union": "ami-7c81501c"
       },
       "compliance": "ami-4f0dda2f",
-      "chef-server": "ami-b609dcd6",
+      "chef-server": "ami-888455e8",
       "delivery": "ami-2c0cd94c",
       "workstation": "ami-2d02d54d"
     }

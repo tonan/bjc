@@ -45,10 +45,10 @@ chef_gem 'berkshelf' do
   version '4.3.5'
 end
 
-%w(push-jobs-3.2.0 site-config).each do |cookbook|
+%w(push-jobs-3.2.0 site-config bjc-ecommerce).each do |cookbook|
   if cookbook == 'push-jobs-3.2.0'
   	cookbook_source = 'https://github.com/chef-cookbooks/push-jobs/archive/v3.2.0.zip'
-  elsif cookbook == 'site-config'
+  else
     cookbook_source = "https://s3-us-west-2.amazonaws.com/bjcpublic/#{cookbook}.zip"
   end
 
