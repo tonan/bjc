@@ -41,57 +41,62 @@
     },
     "ChefServerAMI": {
       "Type": "String",
-      "Default": "ami-888455e8",
+      "Default": "ami-988756f8",
       "Description": "AMI ID for the Chef Server"
     },
     "DeliveryServerAMI": {
       "Type": "String",
-      "Default": "ami-2c0cd94c",
+      "Default": "ami-5eb2633e",
       "Description": "AMI ID for the Delivery Server"
     },
     "ComplianceServerAMI": {
       "Type": "String",
-      "Default": "ami-4f0dda2f",
+      "Default": "ami-e18c5d81",
       "Description": "AMI ID for the Compliance Server"
     },
     "BuildNode1AMI": {
       "Type": "String",
-      "Default": "ami-0403d664",
+      "Default": "ami-208c5d40",
       "Description": "AMI ID for Build Node 1"
     },
     "BuildNode2AMI": {
       "Type": "String",
-      "Default": "ami-0e06d36e",
+      "Default": "ami-ddb263bd",
       "Description": "AMI ID for Build Node 2"
     },
     "BuildNode3AMI": {
       "Type": "String",
-      "Default": "ami-a506d3c5",
+      "Default": "ami-2c8e5f4c",
       "Description": "AMI ID for Build Node 3"
     },
     "acceptanceAMI": {
       "Type": "String",
-      "Default": "ami-948455f4",
+      "Default": "ami-938f5ef3",
       "Description": "AMI ID for acceptance"
     },
     "deliveredAMI": {
       "Type": "String",
-      "Default": "ami-928455f2",
+      "Default": "ami-a08e5fc0",
       "Description": "AMI ID for delivered"
+    },
+    "ecomacceptanceAMI": {
+      "Type": "String",
+      "Default": "ami-a28e5fc2",
+      "Description": "AMI ID for ecomacceptance"
     },
     "rehearsalAMI": {
       "Type": "String",
-      "Default": "ami-d38150b3",
+      "Default": "ami-f6b06196",
       "Description": "AMI ID for rehearsal"
     },
     "unionAMI": {
       "Type": "String",
-      "Default": "ami-7c81501c",
+      "Default": "ami-f0b06190",
       "Description": "AMI ID for union"
     },
     "WindowsWorkstationAMI": {
       "Type": "String",
-      "Default": "ami-2d02d54d",
+      "Default": "ami-33b56453",
       "Description": "AMI ID for the Windows Workstation"
     }
   },
@@ -595,7 +600,7 @@
         ]
       }
     },
-    "rehearsal": {
+    "ecomacceptance": {
       "Type": "AWS::EC2::Instance",
       "Properties": {
         "InstanceType": "m3.large",
@@ -609,6 +614,45 @@
             ],
             "AssociatePublicIpAddress": "true",
             "PrivateIpAddress": "172.31.54.103",
+            "DeviceIndex": "0",
+            "DeleteOnTermination": "true",
+            "SubnetId": {
+              "Ref": "SubnetDelivery"
+            }
+          }
+        ],
+        "KeyName": { "Ref": "KeyName" },
+        "UserData": { "Fn::Base64" : { "Fn::Join" : ["", [
+             "#!/bin/bash -xe\n",
+             "hostnamectl set-hostname ecomacceptance\n"]]}
+        },
+        "ImageId": {
+              "Ref": "ecomacceptanceAMI"
+        },
+        "Tags": [
+          {
+            "Key": "Name",
+            "Value": {
+              "Fn::Join" : [ " ", [ { "Ref": "DemoName" }, "ecomacceptance" ] ]
+            }
+          }
+        ]
+      }
+    },
+    "rehearsal": {
+      "Type": "AWS::EC2::Instance",
+      "Properties": {
+        "InstanceType": "m3.large",
+        "AvailabilityZone": { "Ref": "AvailabilityZone" },
+        "NetworkInterfaces": [
+          {
+            "GroupSet": [
+              {
+                "Ref": "DemoSecurityGroup"
+              }
+            ],
+            "AssociatePublicIpAddress": "true",
+            "PrivateIpAddress": "172.31.54.104",
             "DeviceIndex": "0",
             "DeleteOnTermination": "true",
             "SubnetId": {
@@ -647,7 +691,7 @@
               }
             ],
             "AssociatePublicIpAddress": "true",
-            "PrivateIpAddress": "172.31.54.104",
+            "PrivateIpAddress": "172.31.54.105",
             "DeviceIndex": "0",
             "DeleteOnTermination": "true",
             "SubnetId": {

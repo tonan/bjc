@@ -12,7 +12,15 @@
       "environment": "acceptance-automate-demo-automate-site-config-master",
       "run_list": [
         "recipe[push-jobs]",
-        "recipe[site-config]",
+        "recipe[site-config]"
+      ]
+    }
+  ],
+  [
+    "ecomacceptance", {
+      "environment": "acceptance-automate-demo-automate-bjc-ecommerce-master",
+      "run_list": [
+        "recipe[push-jobs]",
         "recipe[bjc-ecommerce]"
       ]
     }
@@ -69,20 +77,21 @@
   "amis": {
     "us-west-2": {
       "build-node": {
-        "1": "ami-0403d664",
-        "2": "ami-0e06d36e",
-        "3": "ami-a506d3c5"
+        "1": "ami-208c5d40",
+        "2": "ami-ddb263bd",
+        "3": "ami-2c8e5f4c"
       },
       "infranodes": {
-        "acceptance": "ami-948455f4",
-        "delivered": "ami-928455f2",
-        "rehearsal": "ami-d38150b3",
-        "union": "ami-7c81501c"
+        "acceptance": "ami-938f5ef3",
+        "ecomacceptance": "ami-a28e5fc2",
+        "delivered": "ami-a08e5fc0",
+        "rehearsal": "ami-f6b06196",
+        "union": "ami-f0b06190"
       },
-      "compliance": "ami-4f0dda2f",
-      "chef-server": "ami-888455e8",
-      "delivery": "ami-2c0cd94c",
-      "workstation": "ami-2d02d54d"
+      "compliance": "ami-e18c5d81",
+      "chef-server": "ami-988756f8",
+      "delivery": "ami-5eb2633e",
+      "workstation": "ami-33b56453"
     }
   },
   "last_updated": "20160818185121"
