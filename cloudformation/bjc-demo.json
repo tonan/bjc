@@ -41,62 +41,62 @@
     },
     "ChefServerAMI": {
       "Type": "String",
-      "Default": "ami-988756f8",
+      "Default": "ami-c3bf6ea3",
       "Description": "AMI ID for the Chef Server"
     },
     "DeliveryServerAMI": {
       "Type": "String",
-      "Default": "ami-5eb2633e",
+      "Default": "ami-12a07172",
       "Description": "AMI ID for the Delivery Server"
     },
     "ComplianceServerAMI": {
       "Type": "String",
-      "Default": "ami-e18c5d81",
+      "Default": "ami-d0bc6db0",
       "Description": "AMI ID for the Compliance Server"
     },
     "BuildNode1AMI": {
       "Type": "String",
-      "Default": "ami-208c5d40",
+      "Default": "ami-18bf6e78",
       "Description": "AMI ID for Build Node 1"
     },
     "BuildNode2AMI": {
       "Type": "String",
-      "Default": "ami-ddb263bd",
+      "Default": "ami-95bd6cf5",
       "Description": "AMI ID for Build Node 2"
     },
     "BuildNode3AMI": {
       "Type": "String",
-      "Default": "ami-2c8e5f4c",
+      "Default": "ami-95be6ff5",
       "Description": "AMI ID for Build Node 3"
     },
     "acceptanceAMI": {
       "Type": "String",
-      "Default": "ami-938f5ef3",
+      "Default": "ami-a0b968c0",
       "Description": "AMI ID for acceptance"
     },
     "deliveredAMI": {
       "Type": "String",
-      "Default": "ami-a28e5fc2",
+      "Default": "ami-d4bf6eb4",
       "Description": "AMI ID for delivered"
     },
     "ecomacceptanceAMI": {
       "Type": "String",
-      "Default": "ami-a08e5fc0",
+      "Default": "ami-75a17015",
       "Description": "AMI ID for ecomacceptance"
     },
     "rehearsalAMI": {
       "Type": "String",
-      "Default": "ami-f6b06196",
+      "Default": "ami-eeba6b8e",
       "Description": "AMI ID for rehearsal"
     },
     "unionAMI": {
       "Type": "String",
-      "Default": "ami-f0b06190",
+      "Default": "ami-7ca1701c",
       "Description": "AMI ID for union"
     },
     "WindowsWorkstationAMI": {
       "Type": "String",
-      "Default": "ami-33b56453",
+      "Default": "ami-02a07162",
       "Description": "AMI ID for the Windows Workstation"
     }
   },
