@@ -39,5 +39,5 @@ suites:
         build-nodes: 3
         hosts:
         versions:
-          automate: 'stable-0.5.125'
+          automate: 'stable-0.5.204'
           chefdk: 'stable-latest'

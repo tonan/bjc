@@ -16,7 +16,7 @@
     "Version": {
       "Description": "Version",
       "Type": "String",
-      "Default": "0.0.33"
+      "Default": "0.0.34"
     },
     "KeyName": {
       "Description": "Name of an existing ec2 KeyPair to enable SSH access",
@@ -46,7 +46,7 @@
     },
     "DeliveryServerAMI": {
       "Type": "String",
-      "Default": "ami-12a07172",
+      "Default": "ami-14aa7b74",
       "Description": "AMI ID for the Delivery Server"
     },
     "ComplianceServerAMI": {
