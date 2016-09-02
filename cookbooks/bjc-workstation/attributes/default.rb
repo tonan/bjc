@@ -1,1 +1,1 @@
-default['bjc-workstation']['cookbooks'] = ['bass_web','site-config']
+default['bjc-workstation']['cookbooks'] = ['bass_web','site-config','bjc-ecommerce']

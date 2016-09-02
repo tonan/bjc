@@ -16,7 +16,7 @@
     "Version": {
       "Description": "Version",
       "Type": "String",
-      "Default": "0.0.32"
+      "Default": "0.0.33"
     },
     "KeyName": {
       "Description": "Name of an existing ec2 KeyPair to enable SSH access",
@@ -41,57 +41,62 @@
     },
     "ChefServerAMI": {
       "Type": "String",
-      "Default": "ami-b609dcd6",
+      "Default": "ami-c3bf6ea3",
       "Description": "AMI ID for the Chef Server"
     },
     "DeliveryServerAMI": {
       "Type": "String",
-      "Default": "ami-2c0cd94c",
+      "Default": "ami-12a07172",
       "Description": "AMI ID for the Delivery Server"
     },
     "ComplianceServerAMI": {
       "Type": "String",
-      "Default": "ami-4f0dda2f",
+      "Default": "ami-d0bc6db0",
       "Description": "AMI ID for the Compliance Server"
     },
     "BuildNode1AMI": {
       "Type": "String",
-      "Default": "ami-0403d664",
+      "Default": "ami-18bf6e78",
       "Description": "AMI ID for Build Node 1"
     },
     "BuildNode2AMI": {
       "Type": "String",
-      "Default": "ami-0e06d36e",
+      "Default": "ami-95bd6cf5",
       "Description": "AMI ID for Build Node 2"
     },
     "BuildNode3AMI": {
       "Type": "String",
-      "Default": "ami-a506d3c5",
+      "Default": "ami-95be6ff5",
       "Description": "AMI ID for Build Node 3"
     },
     "acceptanceAMI": {
       "Type": "String",
-      "Default": "ami-8c0cd9ec",
+      "Default": "ami-a0b968c0",
       "Description": "AMI ID for acceptance"
     },
     "deliveredAMI": {
       "Type": "String",
-      "Default": "ami-e30cd983",
+      "Default": "ami-d4bf6eb4",
       "Description": "AMI ID for delivered"
+    },
+    "ecomacceptanceAMI": {
+      "Type": "String",
+      "Default": "ami-75a17015",
+      "Description": "AMI ID for ecomacceptance"
     },
     "rehearsalAMI": {
       "Type": "String",
-      "Default": "ami-d40dd8b4",
+      "Default": "ami-eeba6b8e",
       "Description": "AMI ID for rehearsal"
     },
     "unionAMI": {
       "Type": "String",
-      "Default": "ami-6608dd06",
+      "Default": "ami-7ca1701c",
       "Description": "AMI ID for union"
     },
     "WindowsWorkstationAMI": {
       "Type": "String",
-      "Default": "ami-2d02d54d",
+      "Default": "ami-30a27350",
       "Description": "AMI ID for the Windows Workstation"
     }
   },
@@ -595,7 +600,7 @@
         ]
       }
     },
-    "rehearsal": {
+    "ecomacceptance": {
       "Type": "AWS::EC2::Instance",
       "Properties": {
         "InstanceType": "m3.large",
@@ -609,6 +614,45 @@
             ],
             "AssociatePublicIpAddress": "true",
             "PrivateIpAddress": "172.31.54.103",
+            "DeviceIndex": "0",
+            "DeleteOnTermination": "true",
+            "SubnetId": {
+              "Ref": "SubnetDelivery"
+            }
+          }
+        ],
+        "KeyName": { "Ref": "KeyName" },
+        "UserData": { "Fn::Base64" : { "Fn::Join" : ["", [
+             "#!/bin/bash -xe\n",
+             "hostnamectl set-hostname ecomacceptance\n"]]}
+        },
+        "ImageId": {
+              "Ref": "ecomacceptanceAMI"
+        },
+        "Tags": [
+          {
+            "Key": "Name",
+            "Value": {
+              "Fn::Join" : [ " ", [ { "Ref": "DemoName" }, "ecomacceptance" ] ]
+            }
+          }
+        ]
+      }
+    },
+    "rehearsal": {
+      "Type": "AWS::EC2::Instance",
+      "Properties": {
+        "InstanceType": "m3.large",
+        "AvailabilityZone": { "Ref": "AvailabilityZone" },
+        "NetworkInterfaces": [
+          {
+            "GroupSet": [
+              {
+                "Ref": "DemoSecurityGroup"
+              }
+            ],
+            "AssociatePublicIpAddress": "true",
+            "PrivateIpAddress": "172.31.54.104",
             "DeviceIndex": "0",
             "DeleteOnTermination": "true",
             "SubnetId": {
@@ -647,7 +691,7 @@
               }
             ],
             "AssociatePublicIpAddress": "true",
-            "PrivateIpAddress": "172.31.54.104",
+            "PrivateIpAddress": "172.31.54.105",
             "DeviceIndex": "0",
             "DeleteOnTermination": "true",
             "SubnetId": {
