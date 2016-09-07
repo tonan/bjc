@@ -14,7 +14,7 @@ driver:
     created-by: "test-kitchen"
     user: <%= ENV['USER'] %>
     X-Dept: Sales
-    X-Contact: scarolan
+    X-Contact: <%= ENV['USER'] %>
     X-Production: false
 
 provisioner:
