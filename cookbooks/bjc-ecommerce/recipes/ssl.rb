@@ -42,3 +42,8 @@ template '/etc/tomcat7/server.xml' do
   notifies :restart, 'service[tomcat7]'
 end
 
+execute 'Create crt file for import into Workstation' do
+  command "openssl x509 -outform der -in /etc/ssl/certs/ssl-cert-snakeoil.pem -out /home/ubuntu/#{node['hostname']}.crt"
+  action :run
+end
+
