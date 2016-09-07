@@ -57,7 +57,7 @@
   ]
 ]
 ,
-  "version": "0.0.36",
+  "version": "0.0.37",
   "products": {
     "chef": "stable-12.13.37",
     "chef-server": "stable-12.8.0",
@@ -89,7 +89,7 @@
         "union": "ami-7ca1701c"
       },
       "compliance": "ami-77cf1e17",
-      "chef-server": "ami-c3bf6ea3",
+      "chef-server": "ami-6c10c00c",
       "delivery": "ami-14aa7b74",
       "workstation": "ami-30a27350"
     }
