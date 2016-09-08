@@ -12,3 +12,12 @@ echo "Preparing AURD nodes for demo..."
 knife ssh *:* sudo chef-client -a name
 echo "Loading compliance profiles..."
 ssh compliance "sudo chef-compliance-ctl restart; sleep 60; sudo /home/ubuntu/upload_apache_profile.sh"
+echo "Importing infrastructure SSL certs..."
+scp ecomacceptance:/home/ubuntu/ecomacceptance.crt /c/Users/Administrator/Downloads/
+scp union:/home/ubuntu/union.crt /c/Users/Administrator/Downloads/
+scp rehearsal:/home/ubuntu/rehearsal.crt /c/Users/Administrator/Downloads/
+scp delivered:/home/ubuntu/delivered.crt /c/Users/Administrator/Downloads/
+Import-Certificate -FilePath C:\Users\Administrator\Downloads\ecomacceptance.crt -CertStoreLocation Cert:/LocalMachine/Root
+Import-Certificate -FilePath C:\Users\Administrator\Downloads\union.crt -CertStoreLocation Cert:/LocalMachine/Root
+Import-Certificate -FilePath C:\Users\Administrator\Downloads\rehearsal.crt -CertStoreLocation Cert:/LocalMachine/Root
+Import-Certificate -FilePath C:\Users\Administrator\Downloads\delivered.crt -CertStoreLocation Cert:/LocalMachine/Root
