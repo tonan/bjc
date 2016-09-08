@@ -57,12 +57,16 @@
   ]
 ]
 ,
+<<<<<<< HEAD
+  "version": "0.0.38",
+=======
   "version": "0.0.37",
+>>>>>>> f493bb8126c10d85dae5f3bc4d3056e09d375213
   "products": {
     "chef": "stable-12.13.37",
     "chef-server": "stable-12.8.0",
     "chefdk": "stable-0.16.28",
-    "compliance": "stable-1.4.10-1",
+    "compliance": "stable-1.5.6-1",
     "automate": "stable-0.5.204"
   },
   "aws": {
