@@ -57,7 +57,11 @@
   ]
 ]
 ,
+<<<<<<< HEAD
   "version": "0.0.38",
+=======
+  "version": "0.0.37",
+>>>>>>> f493bb8126c10d85dae5f3bc4d3056e09d375213
   "products": {
     "chef": "stable-12.13.37",
     "chef-server": "stable-12.8.0",
@@ -88,10 +92,10 @@
         "rehearsal": "ami-eeba6b8e",
         "union": "ami-7ca1701c"
       },
-      "compliance": "ami-a44696c4",
-      "chef-server": "ami-c3bf6ea3",
+      "compliance": "ami-77cf1e17",
+      "chef-server": "ami-6500d005",
       "delivery": "ami-14aa7b74",
-      "workstation": "ami-30a27350"
+      "workstation": "ami-6b17c70b"
     }
   },
   "last_updated": "20160901171533"

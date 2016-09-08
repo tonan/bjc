@@ -13,6 +13,9 @@ driver:
     Name: "bjc-workstation-localdev-kitchen-instance"
     created-by: "test-kitchen"
     user: <%= ENV['USER'] %>
+    X-Dept: Sales
+    X-Contact: <%= ENV['USER'] %>
+    X-Production: false
 
 provisioner:
   name: chef_zero

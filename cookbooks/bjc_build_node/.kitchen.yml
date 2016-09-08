@@ -11,6 +11,9 @@ driver:
     Name: "bjc-buildnode-localdev-kitchen-instance"
     created-by: "test-kitchen"
     user: <%= ENV['USER'] %>
+    X-Dept: Sales
+    X-Contact: <%= ENV['USER'] %>
+    X-Production: false
 
 transport:
   username: ubuntu
