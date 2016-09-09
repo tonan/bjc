@@ -11,7 +11,7 @@ echo "Starting cmder..."
 echo "Preparing AURD nodes for demo..."
 knife ssh *:* sudo chef-client -a name
 echo "Loading compliance profiles..."
-ssh compliance "sudo chef-compliance-ctl restart; sleep 60; sudo /home/ubuntu/upload_apache_profile.sh"
+ssh compliance "sudo chef-compliance-ctl restart; sleep 60; sudo /home/ubuntu/upload_apache_profile.sh; sudo /home/ubuntu/upload_ssl_profile.sh"
 echo "Importing infrastructure SSL certs..."
 scp ecomacceptance:/home/ubuntu/ecomacceptance.crt /c/Users/Administrator/Downloads/
 scp union:/home/ubuntu/union.crt /c/Users/Administrator/Downloads/
