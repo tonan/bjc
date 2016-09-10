@@ -12,3 +12,9 @@ file "#{home}/.ssh/id_rsa.ppk" do
   content lazy { IO.read("C:/Windows/Temp/putty.ppk") }
   action :create
 end
+
+# Set powershell execution policy
+powershell_script 'Bypass Execution Policy' do
+  action :run
+  code 'Set-ExecutionPolicy Bypass'
+end
