@@ -57,7 +57,7 @@
   ]
 ]
 ,
-  "version": "0.1.0",
+  "version": "0.1.1",
   "products": {
     "chef": "stable-12.13.37",
     "chef-server": "stable-12.8.0",
@@ -91,7 +91,7 @@
       "compliance": "ami-9576a6f5",
       "chef-server": "ami-6500d005",
       "delivery": "ami-14aa7b74",
-      "workstation": "ami-247aaa44"
+      "workstation": "ami-95aa79f5"
     }
   },
   "last_updated": "20160901171533"

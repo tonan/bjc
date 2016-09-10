@@ -4,7 +4,7 @@ maintainer_email 'you@example.com'
 license 'all_rights'
 description 'Installs/Configures bjc-workstation'
 long_description 'Installs/Configures bjc-workstation'
-version '0.1.9'
+version '0.1.10'
 
 depends 'workstation'
 depends 'windows'
