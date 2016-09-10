@@ -11,6 +11,8 @@ include_recipe 'bjc-workstation::gitconfig'
 include_recipe 'bjc-workstation::delivery'
 include_recipe 'bjc-workstation::berksconfig'
 include_recipe 'bjc-workstation::putty'
+include_recipe 'bjc-workstation::editors'
 include_recipe 'bjc-workstation::desktop'
 include_recipe 'bjc-workstation::browser'
 include_recipe 'bjc-workstation::environment'
+
