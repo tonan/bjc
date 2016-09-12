@@ -11,7 +11,7 @@
     "acceptance", {
       "environment": "acceptance-automate-demo-automate-site-config-master",
       "run_list": [
-        "recipe[push-jobs]",
+        "recipe[bjc_bass]",
         "recipe[site-config]"
       ]
     }
@@ -20,7 +20,7 @@
     "ecomacceptance", {
       "environment": "acceptance-automate-demo-automate-bjc-ecommerce-master",
       "run_list": [
-        "recipe[push-jobs]",
+        "recipe[bjc_bass]",
         "recipe[bjc-ecommerce]"
       ]
     }
@@ -29,7 +29,7 @@
     "delivered", {
       "environment": "delivered",
       "run_list": [
-        "recipe[push-jobs]",
+        "recipe[bjc_bass]",
         "recipe[site-config]",
         "recipe[bjc-ecommerce]"
       ]
@@ -39,7 +39,7 @@
     "rehearsal", {
       "environment": "rehearsal",
       "run_list": [
-        "recipe[push-jobs]",
+        "recipe[bjc_bass]",
         "recipe[site-config]",
         "recipe[bjc-ecommerce]"
       ]
@@ -49,7 +49,7 @@
     "union", {
       "environment": "union",
       "run_list": [
-        "recipe[push-jobs]",
+        "recipe[bjc_bass]",
         "recipe[site-config]",
         "recipe[bjc-ecommerce]"
       ]
@@ -57,7 +57,7 @@
   ]
 ]
 ,
-  "version": "0.1.1",
+  "version": "0.1.2",
   "products": {
     "chef": "stable-12.13.37",
     "chef-server": "stable-12.8.0",
@@ -88,11 +88,11 @@
         "rehearsal": "ami-eeba6b8e",
         "union": "ami-7ca1701c"
       },
-      "compliance": "ami-9576a6f5",
-      "chef-server": "ami-6500d005",
-      "delivery": "ami-14aa7b74",
-      "workstation": "ami-54f32034"
+      "compliance": "ami-3f4a995f",
+      "chef-server": "ami-67499a07",
+      "delivery": "ami-aa4291ca",
+      "workstation": "ami-304b9850"
     }
   },
-  "last_updated": "20160901171533"
+  "last_updated": "20160912155011"
 }
