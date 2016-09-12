@@ -13,7 +13,7 @@ driver:
     user: <%= ENV['USER'] %>
     X-Dept: Sales
     X-Contact: <%= ENV['USER'] %>
-    X-Production: false
+    X-Production: "false"
 
 transport:
   username: ubuntu
