@@ -23,7 +23,7 @@ api_uri = "https://#{node['bjc']['api_host']}/api/v0/e/#{node['bjc']['ent_name']
 cookbook_file '/tmp/delivery_backup.tar' do
   source 'delivery_backup.tar'
   notifies :run, 'execute[restore backup data into automate]'
-  checksum '551864514fbccbc10521852d6c7c6bd51f1811cf29fe45d4d0a439cc7433960d'
+  checksum '65bdf7ba0597337fe7ea1e9371b8047e43bb37b26f387368c9bad811cf6827ec'
 end
 
 execute 'restore backup data into automate' do
