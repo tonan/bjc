@@ -96,7 +96,7 @@
     },
     "WindowsWorkstationAMI": {
       "Type": "String",
-      "Default": "ami-304b9850",
+      "Default": "ami-ef4e9d8f",
       "Description": "AMI ID for the Windows Workstation"
     }
   },
