@@ -4,10 +4,11 @@
 #
 # Copyright (c) 2016 The Authors, All Rights Reserved.
 
-%w(chef-server.crt
-   chef-server.key
+%w(chef.crt
+   chef.key
    delivery.crt
    compliance.crt
+   automate.crt
    public.pub
    private.pem
    infranodes-info.json).each do |f|
