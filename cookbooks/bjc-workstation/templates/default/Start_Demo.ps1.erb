@@ -27,3 +27,5 @@ Import-Certificate -FilePath C:\Users\Administrator\Downloads\ecomacceptance.crt
 Import-Certificate -FilePath C:\Users\Administrator\Downloads\union.crt -CertStoreLocation Cert:/LocalMachine/Root
 Import-Certificate -FilePath C:\Users\Administrator\Downloads\rehearsal.crt -CertStoreLocation Cert:/LocalMachine/Root
 Import-Certificate -FilePath C:\Users\Administrator\Downloads\delivered.crt -CertStoreLocation Cert:/LocalMachine/Root
+echo "second run to report compliance results"
+knife ssh *:* sudo chef-client -a name
