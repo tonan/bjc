@@ -67,7 +67,9 @@ end
 
   execute "berks upload #{cookbook}" do
     cwd "/tmp/cookbooks/#{cookbook}"
-    command 'berks upload'
+    # This doesn't work either...still throws an SSL error
+    #command "berks upload -c #{home}/.berkshelf/config.json"
+    command "berks upload"
     action :run
   end
 end
