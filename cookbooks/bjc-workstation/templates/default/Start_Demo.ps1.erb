@@ -1,13 +1,5 @@
 # Chef Demo Startup Script
 <% home = Dir.home -%>
-echo "Starting Google Chrome..."
-& "C:\Program Files (x86)\Google\Chrome\Application\chrome.exe"
-echo "Starting PuTTY..."
-& "C:\ProgramData\chocolatey\bin\PUTTY.EXE" -load delivered.automate-demo.com
-echo "Starting Atom..."
-& "<%= home -%>\AppData\Local\atom\bin\atom.cmd" <%= home -%>\cookbooks\site-config
-echo "Starting cmder..."
-& "C:\tools\cmder\Cmder.exe"
 echo "Loading compliance profiles..."
 ssh compliance "sudo chef-compliance-ctl restart; sleep 60; sudo /home/ubuntu/upload_apache_profile.sh; sudo /home/ubuntu/upload_ssl_profile.sh"
 echo "Copying compliance OIDC_CLIENT_ID to chef CHEF_GATE_OIDC_CLIENT_ID"
@@ -29,3 +21,11 @@ Import-Certificate -FilePath C:\Users\Administrator\Downloads\rehearsal.crt -Cer
 Import-Certificate -FilePath C:\Users\Administrator\Downloads\delivered.crt -CertStoreLocation Cert:/LocalMachine/Root
 echo "second run to report compliance results"
 knife ssh *:* sudo chef-client -a name
+echo "Starting PuTTY..."
+& "C:\ProgramData\chocolatey\bin\PUTTY.EXE" -load delivered.automate-demo.com
+echo "Starting Atom..."
+& "<%= home -%>\AppData\Local\atom\bin\atom.cmd" <%= home -%>\cookbooks\site-config
+echo "Starting cmder..."
+& "C:\tools\cmder\Cmder.exe"
+echo "Starting Google Chrome..."
+& "C:\Program Files (x86)\Google\Chrome\Application\chrome.exe"
