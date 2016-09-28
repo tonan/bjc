@@ -69,7 +69,7 @@ end
     cwd "/tmp/cookbooks/#{cookbook}"
     # This doesn't work either...still throws an SSL error
     #command "berks upload -c #{home}/.berkshelf/config.json"
-    command "berks upload"
+    command "berks upload --no-ssl-verify"
     action :run
   end
 end
