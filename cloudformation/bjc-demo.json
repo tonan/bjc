@@ -41,7 +41,7 @@
     },
     "ChefServerAMI": {
       "Type": "String",
-      "Default": "ami-4c7fa02c",
+      "Default": "ami-7929f719",
       "Description": "AMI ID for the Chef Server"
     },
     "DeliveryServerAMI": {
@@ -71,32 +71,32 @@
     },
     "acceptanceAMI": {
       "Type": "String",
-      "Default": "ami-c44f90a4",
+      "Default": "ami-3835eb58",
       "Description": "AMI ID for acceptance"
     },
     "deliveredAMI": {
       "Type": "String",
-      "Default": "ami-29518e49",
+      "Default": "ami-f039e790",
       "Description": "AMI ID for delivered"
     },
     "ecomacceptanceAMI": {
       "Type": "String",
-      "Default": "ami-90518ef0",
+      "Default": "ami-8037e9e0",
       "Description": "AMI ID for ecomacceptance"
     },
     "rehearsalAMI": {
       "Type": "String",
-      "Default": "ami-074f9067",
+      "Default": "ami-bc39e7dc",
       "Description": "AMI ID for rehearsal"
     },
     "unionAMI": {
       "Type": "String",
-      "Default": "ami-3b508f5b",
+      "Default": "ami-3b34ea5b",
       "Description": "AMI ID for union"
     },
     "WindowsWorkstationAMI": {
       "Type": "String",
-      "Default": "ami-f273ac92",
+      "Default": "ami-8f14caef",
       "Description": "AMI ID for the Windows Workstation"
     }
   },

@@ -82,16 +82,16 @@
         "3": "ami-95be6ff5"
       },
       "infranodes": {
-        "acceptance": "ami-c44f90a4",
-        "delivered": "ami-29518e49",
-        "ecomacceptance": "ami-90518ef0",
-        "rehearsal": "ami-074f9067",
-        "union": "ami-3b508f5b"
+        "acceptance": "ami-3835eb58",
+        "delivered": "ami-f039e790",
+        "ecomacceptance": "ami-8037e9e0",
+        "rehearsal": "ami-bc39e7dc",
+        "union": "ami-3b34ea5b"
       },
       "compliance": "ami-3f4a995f",
-      "chef-server": "ami-4c7fa02c",
+      "chef-server": "ami-7929f719",
       "delivery": "ami-f374a793",
-      "workstation": "ami-f273ac92"
+      "workstation": "ami-8f14caef"
     }
   },
   "last_updated": "20160912203417"
