@@ -7,3 +7,4 @@ long_description 'Installs/Configures bjc-compliance'
 version '0.1.5'
 
 depends 'compliance'
+depends 'audit'

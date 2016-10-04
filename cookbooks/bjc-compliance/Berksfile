@@ -5,6 +5,7 @@ metadata
 cookbook 'wombat',   github: 'chef-cft/wombat', rel: 'cookbooks/wombat'
 cookbook 'compliance', github: 'chef-cft/wombat', rel: 'cookbooks/compliance'
 cookbook 'ccc', git: 'https://github.com/cheeseplus/ccc.git', branch: "updates"
+cookbook 'audit', git: 'https://github.com/chef-cookbooks/audit', branch: "master"
 
 group :integration do
   cookbook 'test', path: './test/fixtures/cookbooks/test'
