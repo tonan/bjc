@@ -51,7 +51,7 @@
     },
     "ComplianceServerAMI": {
       "Type": "String",
-      "Default": "ami-3f4a995f",
+      "Default": "ami-30508950",
       "Description": "AMI ID for the Compliance Server"
     },
     "BuildNode1AMI": {
