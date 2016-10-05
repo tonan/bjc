@@ -41,10 +41,6 @@ end
     action :run
   end
 
-  file "#{home}/cookbooks/#{cookbook}/Berksfile.lock" do
-    action :delete
-  end
-
   execute "berks install #{cookbook}" do
   	cwd "#{home}/cookbooks/#{cookbook}"
     command '/opt/opscode/embedded/bin/berks install'
