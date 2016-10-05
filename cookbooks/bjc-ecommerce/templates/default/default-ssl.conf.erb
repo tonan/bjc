@@ -1,6 +1,21 @@
 
 <IfModule mod_ssl.c>
         <VirtualHost _default_:443>
+                ##############################################################################
+                # "Modern" configuration, defined by the Mozilla Foundation's SSL Configuration
+                # Generator as of August 2016. This tool is available at
+                # https://mozilla.github.io/server-side-tls/ssl-config-generator/
+                # Many ciphers defined here require a modern version (1.0.1+) of OpenSSL. Some
+                # require OpenSSL 1.1.0, which as of this writing was in pre-release.
+                #
+                # Uncomment the lines below to make the Apache server more secure:
+                ##############################################################################
+                #SSLProtocol         all -SSLv3 -TLSv1 -TLSv1.1
+                #SSLCipherSuite      ECDHE-ECDSA-AES256-GCM-SHA384:ECDHE-RSA-AES256-GCM-SHA384:ECDHE-ECDSA-CHACHA20-POLY1305:ECDHE-RSA-CHACHA20-POLY1305:ECDHE-ECDSA-AES128-GCM-SHA256:ECDHE-RSA-AES128-GCM-SHA256:ECDHE-ECDSA-AES256-SHA384:ECDHE-RSA-AES256-SHA384:ECDHE-ECDSA-AES128-SHA256:ECDHE-RSA-AES128-SHA256
+                #SSLHonorCipherOrder on
+                #SSLCompression      off
+                #SSLSessionTickets   off
+
                 ServerAdmin webmaster@localhost
 
                 # Allows traffic to pass through to Tomcat
@@ -33,8 +48,8 @@
                 #   /usr/share/doc/apache2/README.Debian.gz for more info.
                 #   If both key and certificate are stored in the same file, only the
                 #   SSLCertificateFile directive is needed.
-				SSLCertificateFile      /etc/ssl/certs/<%= node['hostname'] -%>.automate-demo.com.crt
-				SSLCertificateKeyFile   /etc/ssl/private/<%= node['hostname'] -%>.automate-demo.com.key
+				        SSLCertificateFile      /etc/ssl/certs/<%= node['hostname'] -%>.automate-demo.com.crt
+				        SSLCertificateKeyFile   /etc/ssl/private/<%= node['hostname'] -%>.automate-demo.com.key
 
                 #   Server Certificate Chain:
                 #   Point SSLCertificateChainFile at a file containing the

@@ -19,16 +19,29 @@ execute "Download Shopping Cart" do
   action :run
 end
 
+ruby_block "fix_encoding" do
+  block do
+    Encoding.default_internal = nil
+  end
+end
+
+remote_file "#{Chef::Config['file_cache_path']}/softslate-3.3.5.war" do
+  action :create
+  source 'https://www.softslate.com/distributions/community/3.3.5/softslate-3.3.5.war'
+end
+
 execute "Install Shopping Cart" do
   command "cp #{Chef::Config['file_cache_path']}/softslate-3.3.5.war /var/lib/tomcat7/webapps/cart.war"
   action :run
   not_if { File.exist?("/var/lib/tomcat7/webapps/cart.war") }
+  notifies :run, 'ruby_block[Sleep my pretty...]', :immediate
 end
 
 ruby_block "Sleep my pretty..." do
   block do
     sleep(60)
   end
+  action :nothing
 end
 
 basedir = '/var/lib/tomcat7/webapps/cart/WEB-INF'
@@ -76,5 +89,4 @@ end
 service 'tomcat7' do
   action :restart
 end
-
 

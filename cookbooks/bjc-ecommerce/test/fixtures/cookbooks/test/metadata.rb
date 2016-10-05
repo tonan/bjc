@@ -1,6 +1,8 @@
 name 'test'
 maintainer 'The Authors'
 maintainer_email 'you@example.com'
+source_url 'https://github.com/chef-cft/bjc'
+issues_url 'https://github.com/chef-cft/bjc/issues'
 license 'all_rights'
 description 'Installs/Configures test'
 long_description 'Installs/Configures test'
