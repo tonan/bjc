@@ -41,7 +41,7 @@
     },
     "ChefServerAMI": {
       "Type": "String",
-      "Default": "ami-6a4d940a",
+      "Default": "ami-4c8e562c",
       "Description": "AMI ID for the Chef Server"
     },
     "DeliveryServerAMI": {
@@ -51,7 +51,7 @@
     },
     "ComplianceServerAMI": {
       "Type": "String",
-      "Default": "ami-3f4a995f",
+      "Default": "ami-30508950",
       "Description": "AMI ID for the Compliance Server"
     },
     "BuildNode1AMI": {
@@ -96,7 +96,7 @@
     },
     "WindowsWorkstationAMI": {
       "Type": "String",
-      "Default": "ami-8f14caef",
+      "Default": "ami-2b9e464b",
       "Description": "AMI ID for the Windows Workstation"
     }
   },

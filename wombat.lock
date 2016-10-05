@@ -88,10 +88,10 @@
         "rehearsal": "ami-bc39e7dc",
         "union": "ami-3b34ea5b"
       },
-      "compliance": "ami-3f4a995f",
-      "chef-server": "ami-6a4d940a",
+      "compliance": "ami-30508950",
+      "chef-server": "ami-4c8e562c",
       "delivery": "ami-f374a793",
-      "workstation": "ami-8f14caef"
+      "workstation": "ami-2b9e464b"
     }
   },
   "last_updated": "20161004192407"
