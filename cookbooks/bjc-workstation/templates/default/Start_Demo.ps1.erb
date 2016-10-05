@@ -1,13 +1,5 @@
 # Chef Demo Startup Script
 <% home = Dir.home -%>
-echo "Starting Google Chrome..."
-& "C:\Program Files (x86)\Google\Chrome\Application\chrome.exe"
-echo "Starting PuTTY..."
-& "C:\ProgramData\chocolatey\bin\PUTTY.EXE" -load delivered.automate-demo.com
-echo "Starting Atom..."
-& "<%= home -%>\AppData\Local\atom\bin\atom.cmd" <%= home -%>\cookbooks\site-config
-echo "Starting cmder..."
-& "C:\tools\cmder\Cmder.exe"
 echo "Loading compliance profiles..."
 ssh compliance "sudo chef-compliance-ctl restart; sleep 60; sudo /home/ubuntu/upload_apache_profile.sh; sudo /home/ubuntu/upload_ssl_profile.sh"
 echo "Copying compliance OIDC_CLIENT_ID to chef CHEF_GATE_OIDC_CLIENT_ID"
@@ -19,13 +11,21 @@ ssh chef 'sudo mv /tmp/CHEF_GATE_OIDC_CLIENT_ID /opt/opscode/sv/chef_gate/env/CH
 echo "Preparing AURD nodes for demo..."
 knife ssh *:* sudo chef-client -a name
 echo "Importing infrastructure SSL certs..."
-scp ecomacceptance:/home/ubuntu/ecomacceptance.crt /c/Users/Administrator/Downloads/
-scp union:/home/ubuntu/union.crt /c/Users/Administrator/Downloads/
-scp rehearsal:/home/ubuntu/rehearsal.crt /c/Users/Administrator/Downloads/
-scp delivered:/home/ubuntu/delivered.crt /c/Users/Administrator/Downloads/
-Import-Certificate -FilePath C:\Users\Administrator\Downloads\ecomacceptance.crt -CertStoreLocation Cert:/LocalMachine/Root
-Import-Certificate -FilePath C:\Users\Administrator\Downloads\union.crt -CertStoreLocation Cert:/LocalMachine/Root
-Import-Certificate -FilePath C:\Users\Administrator\Downloads\rehearsal.crt -CertStoreLocation Cert:/LocalMachine/Root
-Import-Certificate -FilePath C:\Users\Administrator\Downloads\delivered.crt -CertStoreLocation Cert:/LocalMachine/Root
+scp ecomacceptance:/home/ubuntu/ecomacceptance.automate-demo.com.crt /c/Users/Administrator/Downloads/
+scp union:/home/ubuntu/union.automate-demo.com.crt /c/Users/Administrator/Downloads/
+scp rehearsal:/home/ubuntu/rehearsal.automate-demo.com.crt /c/Users/Administrator/Downloads/
+scp delivered:/home/ubuntu/delivered.automate-demo.com.crt /c/Users/Administrator/Downloads/
+Import-Certificate -FilePath C:\Users\Administrator\Downloads\ecomacceptance.automate-demo.com.crt -CertStoreLocation Cert:/LocalMachine/Root
+Import-Certificate -FilePath C:\Users\Administrator\Downloads\union.automate-demo.com.crt -CertStoreLocation Cert:/LocalMachine/Root
+Import-Certificate -FilePath C:\Users\Administrator\Downloads\rehearsal.automate-demo.com.crt -CertStoreLocation Cert:/LocalMachine/Root
+Import-Certificate -FilePath C:\Users\Administrator\Downloads\delivered.automate-demo.com.crt -CertStoreLocation Cert:/LocalMachine/Root
 echo "second run to report compliance results"
 knife ssh *:* sudo chef-client -a name
+echo "Starting PuTTY..."
+& "C:\ProgramData\chocolatey\bin\PUTTY.EXE" -load delivered.automate-demo.com
+echo "Starting Atom..."
+& "<%= home -%>\AppData\Local\atom\bin\atom.cmd" <%= home -%>\cookbooks\site-config
+echo "Starting cmder..."
+& "C:\tools\cmder\Cmder.exe"
+echo "Starting Google Chrome..."
+& "C:\Program Files (x86)\Google\Chrome\Application\chrome.exe"

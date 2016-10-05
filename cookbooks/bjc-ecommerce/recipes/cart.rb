@@ -4,10 +4,19 @@
 #
 # Copyright (c) 2016 The Authors, All Rights Reserved.
 
-# We should probably stage this file in S3.  Or in the cookbook itself.
-remote_file "#{Chef::Config['file_cache_path']}/softslate-3.3.5.war" do
-  action :create
-  source 'https://www.softslate.com/distributions/community/3.3.5/softslate-3.3.5.war'
+# Why not use remote_file you ask?  Because it's buggy and throws this error:
+# Encoding::UndefinedConversionError
+# ----------------------------------
+# "\x9A" from ASCII-8BIT to UTF-8
+
+# remote_file "#{Chef::Config['file_cache_path']}/softslate-3.3.5.war" do
+#  action :create
+#  source 'https://www.softslate.com/distributions/community/3.3.5/softslate-3.3.5.war'
+# end
+
+execute "Download Shopping Cart" do
+  command "wget -O #{Chef::Config['file_cache_path']}/softslate-3.3.5.war https://www.softslate.com/distributions/community/3.3.5/softslate-3.3.5.war"
+  action :run
 end
 
 execute "Install Shopping Cart" do

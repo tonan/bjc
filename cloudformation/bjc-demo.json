@@ -16,7 +16,7 @@
     "Version": {
       "Description": "Version",
       "Type": "String",
-      "Default": "0.1.4"
+      "Default": "0.1.5"
     },
     "KeyName": {
       "Description": "Name of an existing ec2 KeyPair to enable SSH access",
@@ -35,13 +35,13 @@
     "TTL": {
       "Description": "Time in hours for the demo to stay active. Default is 4, maximum is 720 hours (30 days).",
       "Type": "Number",
-      "Default": 4,
+      "Default": 8,
       "MinValue": 0,
       "MaxValue": 720
     },
     "ChefServerAMI": {
       "Type": "String",
-      "Default": "ami-9b7ba8fb",
+      "Default": "ami-7929f719",
       "Description": "AMI ID for the Chef Server"
     },
     "DeliveryServerAMI": {
@@ -71,32 +71,32 @@
     },
     "acceptanceAMI": {
       "Type": "String",
-      "Default": "ami-0d84566d",
+      "Default": "ami-3835eb58",
       "Description": "AMI ID for acceptance"
     },
     "deliveredAMI": {
       "Type": "String",
-      "Default": "ami-848755e4",
+      "Default": "ami-f039e790",
       "Description": "AMI ID for delivered"
     },
     "ecomacceptanceAMI": {
       "Type": "String",
-      "Default": "ami-408b5920",
+      "Default": "ami-8037e9e0",
       "Description": "AMI ID for ecomacceptance"
     },
     "rehearsalAMI": {
       "Type": "String",
-      "Default": "ami-e2815382",
+      "Default": "ami-bc39e7dc",
       "Description": "AMI ID for rehearsal"
     },
     "unionAMI": {
       "Type": "String",
-      "Default": "ami-4b8b592b",
+      "Default": "ami-3b34ea5b",
       "Description": "AMI ID for union"
     },
     "WindowsWorkstationAMI": {
       "Type": "String",
-      "Default": "ami-c574a7a5",
+      "Default": "ami-8f14caef",
       "Description": "AMI ID for the Windows Workstation"
     }
   },
