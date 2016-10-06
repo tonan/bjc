@@ -64,7 +64,7 @@
     {
       "type": "chef-solo",
       "cookbook_paths": [ "{{pwd}}/vendored-cookbooks/bjc-delivery" ],
-      "run_list": [ "apt", "bjc-delivery" ],
+      "run_list": [ "bjc-delivery" ],
       "json": {
         "demo": {
           "domain": "{{user `domain`}}",

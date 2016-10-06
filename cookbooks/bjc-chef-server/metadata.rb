@@ -4,7 +4,7 @@ maintainer_email 'you@example.com'
 license 'all_rights'
 description 'Installs/Configures bjc-chef-server'
 long_description 'Installs/Configures bjc-chef-server'
-version '0.1.8'
+version '0.1.9'
 
 depends 'chef_server'
 depends 'apt'

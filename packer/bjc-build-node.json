@@ -71,7 +71,7 @@
       "type": "chef-solo",
       "install_command": "{{user `chef_install_url`}} | sudo bash -s -- -c {{user `chef_channel`}} -v {{user `chef_ver`}}",
       "cookbook_paths": [ "{{pwd}}/vendored-cookbooks/bjc_build_node" ],
-      "run_list": [ "apt", "bjc_build_node" ],
+      "run_list": [ "bjc_build_node" ],
       "json": {
         "demo": {
           "domain_prefix": "{{user `domain_prefix`}}",

@@ -63,7 +63,7 @@
     {
       "type": "chef-solo",
       "cookbook_paths": [ "{{pwd}}/vendored-cookbooks/bjc-chef-server" ],
-      "run_list": [ "apt", "bjc-chef-server", "wombat::authorized-keys", "wombat::etc-hosts" ],
+      "run_list": [ "bjc-chef-server" ],
       "json": {
         "demo": {
           "domain": "{{user `domain`}}",

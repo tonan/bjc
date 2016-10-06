@@ -33,8 +33,6 @@ suites:
     run_list:
       - recipe[test::default]
       - recipe[bjc-chef-server::default]
-      - recipe[wombat::authorized-keys]
-      - recipe[wombat::etc-hosts]
     attributes:
       demo:
         domain_prefix: ''

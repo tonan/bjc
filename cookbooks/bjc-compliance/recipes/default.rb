@@ -14,3 +14,6 @@ file '/opt/chef-compliance/sv/core/env/CHEF_GATE_COMPLIANCE_SECRET' do
 	content lazy { IO.read('/tmp/public.pub') }
 	sensitive true
 end
+
+include_recipe 'wombat::authorized-keys'
+include_recipe 'wombat::etc-hosts'
