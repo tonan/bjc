@@ -16,7 +16,7 @@
     "Version": {
       "Description": "Version",
       "Type": "String",
-      "Default": "0.1.6"
+      "Default": "0.1.7"
     },
     "KeyName": {
       "Description": "Name of an existing ec2 KeyPair to enable SSH access",
@@ -51,7 +51,7 @@
     },
     "ComplianceServerAMI": {
       "Type": "String",
-      "Default": "ami-1cc51d7c",
+      "Default": "ami-cfc71faf",
       "Description": "AMI ID for the Compliance Server"
     },
     "BuildNode1AMI": {
