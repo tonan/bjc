@@ -89,7 +89,7 @@
         "union": "ami-3b34ea5b"
       },
       "compliance": "ami-30508950",
-      "chef-server": "ami-4c8e562c",
+      "chef-server": "ami-1ab36b7a",
       "delivery": "ami-f374a793",
       "workstation": "ami-2b9e464b"
     }
