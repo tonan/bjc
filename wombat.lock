@@ -91,7 +91,7 @@
       "compliance": "ami-cfc71faf",
       "chef-server": "ami-1ab36b7a",
       "delivery": "ami-f374a793",
-      "workstation": "ami-2b9e464b"
+      "workstation": "ami-5af32b3a"
     }
   },
   "last_updated": "20161004192407"
