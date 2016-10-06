@@ -10,3 +10,6 @@ template '/etc/rc.local' do
   action :create
   source 'rc.local.erb'
 end
+
+include_recipe 'wombat::authorized-keys'
+include_recipe 'wombat::etc-hosts'

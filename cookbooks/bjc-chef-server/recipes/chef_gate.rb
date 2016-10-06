@@ -45,7 +45,7 @@ EOS
 end
 
 omnibus_service 'chef-server/nginx' do
-	action :restart
+	action :stop
 end
 
 {	CHEF_GATE_CHEF_SERVER_URL: "https://#{node['demo']['domain_prefix']}chef.#{node['demo']['domain']}",

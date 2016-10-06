@@ -57,12 +57,12 @@
   ]
 ]
 ,
-  "version": "0.1.6",
+  "version": "0.1.7",
   "products": {
     "chef": "stable-12.13.37",
-    "chef-server": "stable-12.8.0",
+    "chef-server": "stable-12.9.1",
     "chefdk": "stable-0.16.28",
-    "compliance": "stable-1.5.6-1",
+    "compliance": "stable-1.6.8-1",
     "automate": "stable-0.5.204"
   },
   "aws": {
@@ -71,7 +71,7 @@
     "keypair": "chef-demo-infra",
     "source_ami": {
       "ubuntu": "ami-70b67d10",
-      "windows": "ami-8d0acfed"
+      "windows": "ami-4428fa24"
     }
   },
   "amis": {
@@ -88,10 +88,10 @@
         "rehearsal": "ami-bc39e7dc",
         "union": "ami-3b34ea5b"
       },
-      "compliance": "ami-30508950",
+      "compliance": "ami-1cc51d7c",
       "chef-server": "ami-1ab36b7a",
       "delivery": "ami-f374a793",
-      "workstation": "ami-2b9e464b"
+      "workstation": "ami-5af32b3a"
     }
   },
   "last_updated": "20161004192407"
