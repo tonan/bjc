@@ -9,3 +9,6 @@ include_recipe 'build_node'
 template '/var/opt/delivery/workspace/.chef/knife.rb' do
   source 'knife.erb'
 end
+
+include_recipe 'wombat::authorized-keys'
+include_recipe 'wombat::etc-hosts'

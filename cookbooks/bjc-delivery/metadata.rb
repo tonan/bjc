@@ -4,7 +4,7 @@ maintainer_email 'you@example.com'
 license 'all_rights'
 description 'Installs/Configures bjc-automate'
 long_description 'Installs/Configures bjc-automate'
-version '0.1.6'
+version '0.1.7'
 
 depends 'wombat'
 depends 'automate'
