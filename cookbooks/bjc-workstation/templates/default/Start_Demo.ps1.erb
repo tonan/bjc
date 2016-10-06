@@ -1,7 +1,7 @@
 # Chef Demo Startup Script
 <% home = Dir.home -%>
 echo "Loading compliance profiles..."
-ssh compliance "sudo chef-compliance-ctl restart; sleep 60; sudo /home/ubuntu/upload_profiles.sh"
+ssh compliance "sudo chef-compliance-ctl restart; sleep 60; /home/ubuntu/upload_profiles.sh"
 echo "Copying compliance OIDC_CLIENT_ID to chef CHEF_GATE_OIDC_CLIENT_ID"
 scp ~/.ssh/id_rsa.pub compliance:/tmp/CHEF_GATE_COMPLIANCE_SECRET
 ssh compliance 'sudo mv /tmp/CHEF_GATE_COMPLIANCE_SECRET /opt/chef-compliance/sv/core/env/CHEF_GATE_COMPLIANCE_SECRET && sudo chef-compliance-ctl restart core'

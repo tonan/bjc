@@ -71,7 +71,7 @@
     "keypair": "chef-demo-infra",
     "source_ami": {
       "ubuntu": "ami-70b67d10",
-      "windows": "ami-8d0acfed"
+      "windows": "ami-4428fa24"
     }
   },
   "amis": {
