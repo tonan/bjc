@@ -1,4 +1,4 @@
-# bjc-delivery
+# bjc_automate
 
 TODO: Enter the cookbook description here.
 

@@ -32,7 +32,7 @@ suites:
   - name: default
     run_list:
       - recipe[test::default]
-      - recipe[bjc-delivery::default]
+      - recipe[bjc_automate::default]
     attributes:
       demo:
         domain_prefix: ''
