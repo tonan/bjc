@@ -8,7 +8,7 @@ driver:
   instance_type: c3.large
   aws_ssh_key_id: <%= ENV["EC2_SSH_KEY_NAME"] %>
   tags:
-    Name: "bjc-compliance-localdev-kitchen-instance"
+    Name: "bjc_compliance-localdev-kitchen-instance"
     created-by: "test-kitchen"
     user: <%= ENV['USER'] %>
     X-Dept: Sales
@@ -32,8 +32,8 @@ suites:
   - name: default
     run_list:
       - recipe[test::default]
-      - recipe[bjc-compliance::default]
-      - recipe[bjc-compliance::restore_backup]
+      - recipe[bjc_compliance::default]
+      - recipe[bjc_compliance::restore_backup]
       - recipe[test::fixhosts]
     attributes:
       demo:

@@ -28,7 +28,7 @@
       "ssh_private_ip": false,
       "ssh_username": "ubuntu",
       "ssh_pty" : true,
-      "ami_name": "bjc-compliance-{{timestamp}}"
+      "ami_name": "bjc_compliance-{{timestamp}}"
     },
     {
       "type": "azure-arm",
@@ -62,8 +62,8 @@
     },
     {
       "type": "chef-solo",
-      "cookbook_paths": [ "{{pwd}}/vendored-cookbooks/bjc-compliance" ],
-      "run_list": [ "bjc-compliance" ],
+      "cookbook_paths": [ "{{pwd}}/vendored-cookbooks/bjc_compliance" ],
+      "run_list": [ "bjc_compliance" ],
       "json": {
         "demo": {
           "domain_prefix": "{{user `domain_prefix`}}",

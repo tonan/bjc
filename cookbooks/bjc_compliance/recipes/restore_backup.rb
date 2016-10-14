@@ -1,5 +1,5 @@
 #
-# Cookbook Name:: bjc-compliance
+# Cookbook Name:: bjc_compliance
 # Recipe:: restore_backup
 #
 # Copyright (c) 2016 The Authors, All Rights Reserved.

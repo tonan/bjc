@@ -1,6 +1,6 @@
 # # encoding: utf-8
 
-# Inspec test for recipe bjc-compliance::load_profiles
+# Inspec test for recipe bjc_compliance::load_profiles
 
 # The Inspec reference, with examples and extensive documentation, can be
 # found at https://docs.chef.io/inspec_reference.html

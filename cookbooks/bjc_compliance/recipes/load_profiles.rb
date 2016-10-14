@@ -1,5 +1,5 @@
 #
-# Cookbook Name:: bjc-compliance
+# Cookbook Name:: bjc_compliance
 # Recipe:: load_profiles
 #
 # Copyright (c) 2016 The Authors, All Rights Reserved.

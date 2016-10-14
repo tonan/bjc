@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe 'bjc-compliance::default' do
+describe 'bjc_compliance::default' do
   # Serverspec examples can be found at
   # http://serverspec.org/resource_types.html
   it 'does something' do

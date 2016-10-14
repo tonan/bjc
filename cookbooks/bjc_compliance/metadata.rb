@@ -1,9 +1,9 @@
-name 'bjc-compliance'
+name 'bjc_compliance'
 maintainer 'The Authors'
 maintainer_email 'you@example.com'
 license 'all_rights'
-description 'Installs/Configures bjc-compliance'
-long_description 'Installs/Configures bjc-compliance'
+description 'Installs/Configures bjc_compliance'
+long_description 'Installs/Configures bjc_compliance'
 version '0.1.7'
 
 depends 'compliance'

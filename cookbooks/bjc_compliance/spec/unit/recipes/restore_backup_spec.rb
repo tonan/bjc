@@ -1,12 +1,12 @@
 #
-# Cookbook Name:: bjc-compliance
+# Cookbook Name:: bjc_compliance
 # Spec:: default
 #
 # Copyright (c) 2016 The Authors, All Rights Reserved.
 
 require 'spec_helper'
 
-describe 'bjc-compliance::load_apache_profile' do
+describe 'bjc_compliance::restore_backup' do
   context 'When all attributes are default, on an unspecified platform' do
     let(:chef_run) do
       runner = ChefSpec::ServerRunner.new
