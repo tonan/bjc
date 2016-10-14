@@ -1,12 +1,12 @@
 #
-# Cookbook Name:: bjc-chef-server
+# Cookbook Name:: bjc_chef_server
 # Spec:: default
 #
 # Copyright (c) 2016 The Authors, All Rights Reserved.
 
 require 'spec_helper'
 
-describe 'bjc-chef-server::cheffish' do
+describe 'bjc_chef_server::default' do
   context 'When all attributes are default, on an unspecified platform' do
     let(:chef_run) do
       runner = ChefSpec::ServerRunner.new

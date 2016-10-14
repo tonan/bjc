@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe 'bjc-chef-server::default' do
+describe 'bjc_chef_server::default' do
   # Serverspec examples can be found at
   # http://serverspec.org/resource_types.html
   it 'does something' do

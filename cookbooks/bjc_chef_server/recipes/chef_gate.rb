@@ -1,5 +1,5 @@
 #
-# Cookbook Name:: bjc-chef-server
+# Cookbook Name:: bjc_chef_server
 # Recipe:: chef_gate
 #
 # Copyright (c) 2016 The Authors, All Rights Reserved.

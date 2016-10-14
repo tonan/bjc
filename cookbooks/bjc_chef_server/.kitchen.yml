@@ -8,7 +8,7 @@ driver:
   instance_type: c3.large
   aws_ssh_key_id: <%= ENV["EC2_SSH_KEY_NAME"] %>
   tags:
-    Name: "bjc-chef-server-localdev-kitchen-instance"
+    Name: "bjc_chef_server-localdev-kitchen-instance"
     created-by: "test-kitchen"
     user: <%= ENV['USER'] %>
     X-Dept: Sales
@@ -32,7 +32,7 @@ suites:
   - name: default
     run_list:
       - recipe[test::default]
-      - recipe[bjc-chef-server::default]
+      - recipe[bjc_chef_server::default]
     attributes:
       demo:
         domain_prefix: ''
