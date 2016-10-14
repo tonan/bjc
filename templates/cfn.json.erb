@@ -1,7 +1,7 @@
 
 {
   "AWSTemplateFormatVersion": "2010-09-09",
-  "Description": "Chef Automate Demo",
+  "Description": "wombat",
   "Parameters": {
     "AvailabilityZone": {
       "Description": "Availability Zone",
@@ -35,7 +35,7 @@
     "TTL": {
       "Description": "Time in hours for the demo to stay active. Default is 4, maximum is 720 hours (30 days).",
       "Type": "Number",
-      "Default": 8,
+      "Default": <%= @ttl %>,
       "MinValue": 0,
       "MaxValue": 720
     },
@@ -44,12 +44,12 @@
       "Default": "<%= @chef_server_ami %>",
       "Description": "AMI ID for the Chef Server"
     },
-    "DeliveryServerAMI": {
+    "AutomateAMI": {
       "Type": "String",
-      "Default": "<%= @delivery_ami %>",
-      "Description": "AMI ID for the Delivery Server"
+      "Default": "<%= @automate_ami %>",
+      "Description": "AMI ID for the Automate Server"
     },
-    "ComplianceServerAMI": {
+    "ComplianceAMI": {
       "Type": "String",
       "Default": "<%= @compliance_ami %>",
       "Description": "AMI ID for the Compliance Server"
@@ -68,20 +68,15 @@
       "Description": "AMI ID for <%= name %>"
     },
 <% end -%>
-    "WindowsWorkstationAMI": {
+<% 1.upto(@workstations) do |i| -%>
+    "WindowsWorkstation<%= i.to_s %>AMI": {
       "Type": "String",
-      "Default": "<%= @workstation_ami %>",
+      "Default": "<%= @workstation_ami[i] %>",
       "Description": "AMI ID for the Windows Workstation"
     }
+<% end -%>
   },
   "Resources": {
-    "InstanceProfile" : {
-      "Type" : "AWS::IAM::InstanceProfile",
-      "Properties" : {
-        "Path" : "/",
-        "Roles" : ["<%= @iam_profile %>"]
-      }
-    },
     "VPC": {
       "Type": "AWS::EC2::VPC",
       "Properties": {
@@ -102,7 +97,7 @@
         ]
       }
     },
-    "SubnetDelivery": {
+    "SubnetAutomate": {
       "Type": "AWS::EC2::Subnet",
       "Properties": {
         "AvailabilityZone": { "Ref": "AvailabilityZone" },
@@ -118,7 +113,7 @@
             },
             "Key": "Name",
             "Value": {
-              "Fn::Join" : [ " ", [ { "Ref": "DemoName" }, "Delivery Subnet" ] ]
+              "Fn::Join" : [ " ", [ { "Ref": "DemoName" }, "Automate Subnet" ] ]
             }
           }
         ]
@@ -229,11 +224,11 @@
         }
       }
     },
-    "SubnetRouteTableAssociationDelivery": {
+    "SubnetRouteTableAssociationAutomate": {
       "Type": "AWS::EC2::SubnetRouteTableAssociation",
       "Properties": {
         "SubnetId": {
-          "Ref": "SubnetDelivery"
+          "Ref": "SubnetAutomate"
         },
         "RouteTableId": {
           "Ref": "RouteTable"
@@ -308,11 +303,11 @@
         "CidrBlock": "0.0.0.0/0"
       }
     },
-    "SubnetNetworkAclAssociationDelivery": {
+    "SubnetNetworkAclAssociationAutomate": {
       "Type": "AWS::EC2::SubnetNetworkAclAssociation",
       "Properties": {
         "SubnetId": {
-          "Ref": "SubnetDelivery"
+          "Ref": "SubnetAutomate"
         },
         "NetworkAclId": {
           "Ref": "NetworkAcl"
@@ -341,11 +336,11 @@
         }
       }
     },
-    "WindowsWorkstation": {
+<% 1.upto(@workstations) do |i| -%>
+    "WindowsWorkstation<%= i.to_s %>": {
       "Type": "AWS::EC2::Instance",
       "Properties": {
         "InstanceType": "m3.large",
-        "IamInstanceProfile" : {"Ref" : "InstanceProfile"},
         "AvailabilityZone": { "Ref": "AvailabilityZone" },
         "NetworkInterfaces": [
           {
@@ -355,11 +350,11 @@
               }
             ],
             "AssociatePublicIpAddress": "true",
-            "PrivateIpAddress": "172.31.54.135",
+            "PrivateIpAddress": "172.31.54.<%= 200 + i %>",
             "DeviceIndex": "0",
             "DeleteOnTermination": "true",
             "SubnetId": {
-              "Ref": "SubnetDelivery"
+              "Ref": "SubnetAutomate"
             }
           }
         ],
@@ -367,7 +362,7 @@
           "Ref": "KeyName"
         },
         "ImageId": {
-              "Ref": "WindowsWorkstationAMI"
+              "Ref": "WindowsWorkstation<%= i.to_s %>AMI"
         },
         "Tags": [
           {
@@ -379,6 +374,7 @@
         ]
       }
     },
+<% end -%>
 <% 1.upto(@build_nodes) do |i| -%>
     "BuildNode<%= i.to_s %>": {
       "Type": "AWS::EC2::Instance",
@@ -397,7 +393,7 @@
             "DeviceIndex": "0",
             "DeleteOnTermination": "true",
             "SubnetId": {
-              "Ref": "SubnetDelivery"
+              "Ref": "SubnetAutomate"
             }
           }
         ],
@@ -438,7 +434,7 @@
             "DeviceIndex": "0",
             "DeleteOnTermination": "true",
             "SubnetId": {
-              "Ref": "SubnetDelivery"
+              "Ref": "SubnetAutomate"
             }
           }
         ],
@@ -461,7 +457,7 @@
       }
     },
 <% end -%>
-    "ChefServer": {
+    "Chef": {
       "Type": "AWS::EC2::Instance",
       "Properties": {
         "InstanceType": "c3.xlarge",
@@ -484,7 +480,7 @@
             "DeviceIndex": "0",
             "DeleteOnTermination": "true",
             "SubnetId": {
-              "Ref": "SubnetDelivery"
+              "Ref": "SubnetAutomate"
             }
           }
         ],
@@ -507,7 +503,7 @@
         ]
       }
     },
-    "DeliveryServer": {
+    "Automate": {
       "Type": "AWS::EC2::Instance",
       "Properties": {
         "InstanceType": "c3.xlarge",
@@ -530,7 +526,7 @@
             "DeviceIndex": "0",
             "DeleteOnTermination": "true",
             "SubnetId": {
-              "Ref": "SubnetDelivery"
+              "Ref": "SubnetAutomate"
             }
           }
         ],
@@ -541,19 +537,19 @@
              "delivery-ctl reconfigure\n"]]}
         },
         "ImageId": {
-              "Ref": "DeliveryServerAMI"
+              "Ref": "AutomateAMI"
         },
         "Tags": [
           {
             "Key": "Name",
             "Value": {
-              "Fn::Join" : [ " ", [ { "Ref": "DemoName" }, "Delivery Server" ] ]
+              "Fn::Join" : [ " ", [ { "Ref": "DemoName" }, "Automate Server" ] ]
             }
           }
         ]
       }
     },
-    "ComplianceServer": {
+    "Compliance": {
       "Type": "AWS::EC2::Instance",
       "Properties": {
         "InstanceType": "c3.large",
@@ -576,7 +572,7 @@
             "DeviceIndex": "0",
             "DeleteOnTermination": "true",
             "SubnetId": {
-              "Ref": "SubnetDelivery"
+              "Ref": "SubnetAutomate"
             }
           }
         ],
@@ -587,7 +583,7 @@
              "chef-compliance-ctl reconfigure\n"]]}
         },
         "ImageId": {
-              "Ref": "ComplianceServerAMI"
+              "Ref": "ComplianceAMI"
         },
         "Tags": [
           {
@@ -650,14 +646,16 @@
     }
   },
   "Outputs": {
-    "WindowsWorkstationPubDNS": {
+<% 1.upto(@workstations) do |i| -%>
+    "WindowsWorkstation<%= i.to_s %>PubDNS": {
       "Description": "Public IP address of the Windows Workstation",
       "Value": {
         "Fn::GetAtt": [
-          "WindowsWorkstation",
+          "WindowsWorkstation<%= i.to_s %>",
           "PublicIp"
           ]
       }
     }
+<% end -%>
   }
 }

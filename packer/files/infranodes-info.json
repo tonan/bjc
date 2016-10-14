@@ -6,50 +6,38 @@
       "run_list": [
         "recipe[bjc_bass]",
         "recipe[site-config]"
-      ]
-    }
-  ],
-  [
-    "delivered",
-    {
-      "environment": "delivered",
-      "run_list": [
-        "recipe[bjc_bass]",
-        "recipe[site-config]",
-        "recipe[bjc-ecommerce]"
-      ]
-    }
-  ],
-  [
-    "ecomacceptance",
-    {
-      "environment": "acceptance-automate-demo-automate-bjc-ecommerce-master",
-      "run_list": [
-        "recipe[bjc_bass]",
-        "recipe[bjc-ecommerce]"
-      ]
-    }
-  ],
-  [
-    "rehearsal",
-    {
-      "environment": "rehearsal",
-      "run_list": [
-        "recipe[bjc_bass]",
-        "recipe[site-config]",
-        "recipe[bjc-ecommerce]"
-      ]
-    }
-  ],
-  [
-    "union",
-    {
-      "environment": "union",
-      "run_list": [
-        "recipe[bjc_bass]",
-        "recipe[site-config]",
-        "recipe[bjc-ecommerce]"
-      ]
+      ],
+      "ecomacceptance": {
+        "environment": "acceptance-automate-demo-automate-bjc-ecommerce-master",
+        "run_list": [
+          "recipe[bjc_bass]",
+          "recipe[bjc-ecommerce]"
+        ]
+      },
+      "delivered": {
+        "environment": "delivered",
+        "run_list": [
+          "recipe[bjc_bass]",
+          "recipe[site-config]",
+          "recipe[bjc-ecommerce]"
+        ]
+      },
+      "rehearsal": {
+        "environment": "rehearsal",
+        "run_list": [
+          "recipe[bjc_bass]",
+          "recipe[site-config]",
+          "recipe[bjc-ecommerce]"
+        ]
+      },
+      "union": {
+        "environment": "union",
+        "run_list": [
+          "recipe[bjc_bass]",
+          "recipe[site-config]",
+          "recipe[bjc-ecommerce]"
+        ]
+      }
     }
   ]
 ]
