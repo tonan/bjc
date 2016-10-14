@@ -1,5 +1,6 @@
 # Chef Demo Startup Script
 <% home = Dir.home -%>
+set-executionpolicy -executionpolicy bypass -force
 echo "Loading compliance profiles..."
 ssh compliance "sudo chef-compliance-ctl restart; sleep 60; /home/ubuntu/upload_profiles.sh"
 echo "Copying compliance OIDC_CLIENT_ID to chef CHEF_GATE_OIDC_CLIENT_ID"

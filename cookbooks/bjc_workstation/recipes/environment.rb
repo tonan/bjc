@@ -13,8 +13,3 @@ file "#{home}/.ssh/id_rsa.ppk" do
   action :create
 end
 
-# Set powershell execution policy
-powershell_script 'Bypass Execution Policy' do
-  action :run
-  code 'Set-ExecutionPolicy Bypass'
-end
