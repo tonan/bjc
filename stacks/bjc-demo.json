@@ -71,27 +71,27 @@
     },
     "acceptanceAMI": {
       "Type": "String",
-      "Default": "ami-d013c9b0",
+      "Default": "ami-4f02d82f",
       "Description": "AMI ID for acceptance"
     },
     "deliveredAMI": {
       "Type": "String",
-      "Default": "ami-d013c9b0",
+      "Default": "ami-4f02d82f",
       "Description": "AMI ID for delivered"
     },
     "ecomacceptanceAMI": {
       "Type": "String",
-      "Default": "ami-d013c9b0",
+      "Default": "ami-4f02d82f",
       "Description": "AMI ID for ecomacceptance"
     },
     "rehearsalAMI": {
       "Type": "String",
-      "Default": "ami-d013c9b0",
+      "Default": "ami-4f02d82f",
       "Description": "AMI ID for rehearsal"
     },
     "unionAMI": {
       "Type": "String",
-      "Default": "ami-d013c9b0",
+      "Default": "ami-4f02d82f",
       "Description": "AMI ID for union"
     },
     "WindowsWorkstation1AMI": {

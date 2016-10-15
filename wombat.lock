@@ -104,16 +104,16 @@
         "3": "ami-2b1dc74b"
       },
       "infranodes": {
-        "acceptance": "ami-d013c9b0",
-        "delivered": "ami-d013c9b0",
-        "ecomacceptance": "ami-d013c9b0",
-        "rehearsal": "ami-d013c9b0",
-        "union": "ami-d013c9b0"
+        "acceptance": "ami-4f02d82f",
+        "delivered": "ami-4f02d82f",
+        "ecomacceptance": "ami-4f02d82f",
+        "rehearsal": "ami-4f02d82f",
+        "union": "ami-4f02d82f"
       },
       "workstation": {
         "1": "ami-d50ad0b5"
       }
     }
   },
-  "last_updated": "20161015004058"
+  "last_updated": "20161015011927"
 }
