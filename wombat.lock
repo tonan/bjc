@@ -99,15 +99,15 @@
       "bjc-chef-server": "ami-6515cf05",
       "bjc-compliance": "ami-dc1bc1bc",
       "build-node": {
-        "1": "ami-2b1dc74b",
-        "2": "ami-2b1dc74b",
+        "1": "ami-c612c8a6",
+        "2": "ami-6f13c90f",
         "3": "ami-2b1dc74b"
       },
       "infranodes": {
-        "acceptance": "ami-4f02d82f",
-        "delivered": "ami-4f02d82f",
-        "ecomacceptance": "ami-4f02d82f",
-        "rehearsal": "ami-4f02d82f",
+        "acceptance": "ami-5002d830",
+        "delivered": "ami-180dd778",
+        "ecomacceptance": "ami-520dd732",
+        "rehearsal": "ami-530dd733",
         "union": "ami-4f02d82f"
       },
       "workstation": {
@@ -115,5 +115,5 @@
       }
     }
   },
-  "last_updated": "20161015011927"
+  "last_updated": "20161015212955"
 }

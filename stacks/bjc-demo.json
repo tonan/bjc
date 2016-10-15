@@ -56,12 +56,12 @@
     },
     "BuildNode1AMI": {
       "Type": "String",
-      "Default": "ami-2b1dc74b",
+      "Default": "ami-c612c8a6",
       "Description": "AMI ID for Build Node 1"
     },
     "BuildNode2AMI": {
       "Type": "String",
-      "Default": "ami-2b1dc74b",
+      "Default": "ami-6f13c90f",
       "Description": "AMI ID for Build Node 2"
     },
     "BuildNode3AMI": {
@@ -71,22 +71,22 @@
     },
     "acceptanceAMI": {
       "Type": "String",
-      "Default": "ami-4f02d82f",
+      "Default": "ami-5002d830",
       "Description": "AMI ID for acceptance"
     },
     "deliveredAMI": {
       "Type": "String",
-      "Default": "ami-4f02d82f",
+      "Default": "ami-180dd778",
       "Description": "AMI ID for delivered"
     },
     "ecomacceptanceAMI": {
       "Type": "String",
-      "Default": "ami-4f02d82f",
+      "Default": "ami-520dd732",
       "Description": "AMI ID for ecomacceptance"
     },
     "rehearsalAMI": {
       "Type": "String",
-      "Default": "ami-4f02d82f",
+      "Default": "ami-530dd733",
       "Description": "AMI ID for rehearsal"
     },
     "unionAMI": {
