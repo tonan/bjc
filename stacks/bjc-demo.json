@@ -6,17 +6,17 @@
     "AvailabilityZone": {
       "Description": "Availability Zone",
       "Type": "String",
-      "Default": "<%= @availability_zone %>"
+      "Default": "us-west-2c"
     },
     "DemoName": {
       "Description": "Name of the customer or organization",
       "Type": "String",
-      "Default": "<%= @demo %>"
+      "Default": "bjc-demo"
     },
     "Version": {
       "Description": "Version",
       "Type": "String",
-      "Default": "<%= @version %>"
+      "Default": "0.2.0"
     },
     "KeyName": {
       "Description": "Name of an existing ec2 KeyPair to enable SSH access",
@@ -35,46 +35,70 @@
     "TTL": {
       "Description": "Time in hours for the demo to stay active. Default is 4, maximum is 720 hours (30 days).",
       "Type": "Number",
-      "Default": <%= @ttl %>,
+      "Default": 8,
       "MinValue": 0,
       "MaxValue": 720
     },
     "ChefServerAMI": {
       "Type": "String",
-      "Default": "<%= @chef_server_ami %>",
+      "Default": "ami-6515cf05",
       "Description": "AMI ID for the Chef Server"
     },
     "AutomateAMI": {
       "Type": "String",
-      "Default": "<%= @automate_ami %>",
+      "Default": "ami-fd1bc19d",
       "Description": "AMI ID for the Automate Server"
     },
     "ComplianceAMI": {
       "Type": "String",
-      "Default": "<%= @compliance_ami %>",
+      "Default": "ami-dc1bc1bc",
       "Description": "AMI ID for the Compliance Server"
     },
-<% 1.upto(@build_nodes) do |i| -%>
-    "BuildNode<%= i.to_s %>AMI": {
+    "BuildNode1AMI": {
       "Type": "String",
-      "Default": "<%= @build_node_ami[i] %>",
-      "Description": "AMI ID for Build Node <%= i %>"
+      "Default": "ami-2b1dc74b",
+      "Description": "AMI ID for Build Node 1"
     },
-<% end -%>
-<% @infra.each do |name, ami| -%>
-    "<%= name %>AMI": {
+    "BuildNode2AMI": {
       "Type": "String",
-      "Default": "<%= ami %>",
-      "Description": "AMI ID for <%= name %>"
+      "Default": "ami-2b1dc74b",
+      "Description": "AMI ID for Build Node 2"
     },
-<% end -%>
-<% 1.upto(@workstations) do |i| -%>
-    "WindowsWorkstation<%= i.to_s %>AMI": {
+    "BuildNode3AMI": {
       "Type": "String",
-      "Default": "<%= @workstation_ami[i] %>",
+      "Default": "ami-2b1dc74b",
+      "Description": "AMI ID for Build Node 3"
+    },
+    "acceptanceAMI": {
+      "Type": "String",
+      "Default": "ami-d013c9b0",
+      "Description": "AMI ID for acceptance"
+    },
+    "deliveredAMI": {
+      "Type": "String",
+      "Default": "ami-d013c9b0",
+      "Description": "AMI ID for delivered"
+    },
+    "ecomacceptanceAMI": {
+      "Type": "String",
+      "Default": "ami-d013c9b0",
+      "Description": "AMI ID for ecomacceptance"
+    },
+    "rehearsalAMI": {
+      "Type": "String",
+      "Default": "ami-d013c9b0",
+      "Description": "AMI ID for rehearsal"
+    },
+    "unionAMI": {
+      "Type": "String",
+      "Default": "ami-d013c9b0",
+      "Description": "AMI ID for union"
+    },
+    "WindowsWorkstation1AMI": {
+      "Type": "String",
+      "Default": "ami-d50ad0b5",
       "Description": "AMI ID for the Windows Workstation"
     }
-<% end -%>
   },
   "Resources": {
     "VPC": {
@@ -336,8 +360,7 @@
         }
       }
     },
-<% 1.upto(@workstations) do |i| -%>
-    "WindowsWorkstation<%= i.to_s %>": {
+    "WindowsWorkstation1": {
       "Type": "AWS::EC2::Instance",
       "Properties": {
         "InstanceType": "m3.large",
@@ -350,7 +373,7 @@
               }
             ],
             "AssociatePublicIpAddress": "true",
-            "PrivateIpAddress": "172.31.54.<%= 200 + i %>",
+            "PrivateIpAddress": "172.31.54.201",
             "DeviceIndex": "0",
             "DeleteOnTermination": "true",
             "SubnetId": {
@@ -362,7 +385,7 @@
           "Ref": "KeyName"
         },
         "ImageId": {
-              "Ref": "WindowsWorkstation<%= i.to_s %>AMI"
+              "Ref": "WindowsWorkstation1AMI"
         },
         "Tags": [
           {
@@ -374,9 +397,7 @@
         ]
       }
     },
-<% end -%>
-<% 1.upto(@build_nodes) do |i| -%>
-    "BuildNode<%= i.to_s %>": {
+    "BuildNode1": {
       "Type": "AWS::EC2::Instance",
       "Properties": {
         "InstanceType": "m3.large",
@@ -389,7 +410,7 @@
               }
             ],
             "AssociatePublicIpAddress": "true",
-            "PrivateIpAddress": "172.31.54.<%= 50 + i %>",
+            "PrivateIpAddress": "172.31.54.51",
             "DeviceIndex": "0",
             "DeleteOnTermination": "true",
             "SubnetId": {
@@ -400,24 +421,22 @@
         "KeyName": { "Ref": "KeyName" },
         "UserData": { "Fn::Base64" : { "Fn::Join" : ["", [
              "#!/bin/bash -xe\n",
-             "hostnamectl set-hostname build-node-<%= i.to_s %>\n"]]}
+             "hostnamectl set-hostname build-node-1\n"]]}
         },
         "ImageId": {
-              "Ref": "BuildNode<%= i.to_s %>AMI"
+              "Ref": "BuildNode1AMI"
         },
         "Tags": [
           {
             "Key": "Name",
             "Value": {
-              "Fn::Join" : [ " ", [ { "Ref": "DemoName" }, "Build Node <%= i.to_s %>" ] ]
+              "Fn::Join" : [ " ", [ { "Ref": "DemoName" }, "Build Node 1" ] ]
             }
           }
         ]
       }
     },
-<% end -%>
-<% @infra.sort.each do |name, _ami| -%>
-    "<%= name %>": {
+    "BuildNode2": {
       "Type": "AWS::EC2::Instance",
       "Properties": {
         "InstanceType": "m3.large",
@@ -430,7 +449,7 @@
               }
             ],
             "AssociatePublicIpAddress": "true",
-            "PrivateIpAddress": "172.31.54.<%= 101 + @infra.keys.find_index(name) %>",
+            "PrivateIpAddress": "172.31.54.52",
             "DeviceIndex": "0",
             "DeleteOnTermination": "true",
             "SubnetId": {
@@ -441,22 +460,255 @@
         "KeyName": { "Ref": "KeyName" },
         "UserData": { "Fn::Base64" : { "Fn::Join" : ["", [
              "#!/bin/bash -xe\n",
-             "hostnamectl set-hostname <%= name %>\n"]]}
+             "hostnamectl set-hostname build-node-2\n"]]}
         },
         "ImageId": {
-              "Ref": "<%= name %>AMI"
+              "Ref": "BuildNode2AMI"
         },
         "Tags": [
           {
             "Key": "Name",
             "Value": {
-              "Fn::Join" : [ " ", [ { "Ref": "DemoName" }, "<%= name %>" ] ]
+              "Fn::Join" : [ " ", [ { "Ref": "DemoName" }, "Build Node 2" ] ]
             }
           }
         ]
       }
     },
-<% end -%>
+    "BuildNode3": {
+      "Type": "AWS::EC2::Instance",
+      "Properties": {
+        "InstanceType": "m3.large",
+        "AvailabilityZone": { "Ref": "AvailabilityZone" },
+        "NetworkInterfaces": [
+          {
+            "GroupSet": [
+              {
+                "Ref": "DemoSecurityGroup"
+              }
+            ],
+            "AssociatePublicIpAddress": "true",
+            "PrivateIpAddress": "172.31.54.53",
+            "DeviceIndex": "0",
+            "DeleteOnTermination": "true",
+            "SubnetId": {
+              "Ref": "SubnetAutomate"
+            }
+          }
+        ],
+        "KeyName": { "Ref": "KeyName" },
+        "UserData": { "Fn::Base64" : { "Fn::Join" : ["", [
+             "#!/bin/bash -xe\n",
+             "hostnamectl set-hostname build-node-3\n"]]}
+        },
+        "ImageId": {
+              "Ref": "BuildNode3AMI"
+        },
+        "Tags": [
+          {
+            "Key": "Name",
+            "Value": {
+              "Fn::Join" : [ " ", [ { "Ref": "DemoName" }, "Build Node 3" ] ]
+            }
+          }
+        ]
+      }
+    },
+    "acceptance": {
+      "Type": "AWS::EC2::Instance",
+      "Properties": {
+        "InstanceType": "m3.large",
+        "AvailabilityZone": { "Ref": "AvailabilityZone" },
+        "NetworkInterfaces": [
+          {
+            "GroupSet": [
+              {
+                "Ref": "DemoSecurityGroup"
+              }
+            ],
+            "AssociatePublicIpAddress": "true",
+            "PrivateIpAddress": "172.31.54.101",
+            "DeviceIndex": "0",
+            "DeleteOnTermination": "true",
+            "SubnetId": {
+              "Ref": "SubnetAutomate"
+            }
+          }
+        ],
+        "KeyName": { "Ref": "KeyName" },
+        "UserData": { "Fn::Base64" : { "Fn::Join" : ["", [
+             "#!/bin/bash -xe\n",
+             "hostnamectl set-hostname acceptance\n"]]}
+        },
+        "ImageId": {
+              "Ref": "acceptanceAMI"
+        },
+        "Tags": [
+          {
+            "Key": "Name",
+            "Value": {
+              "Fn::Join" : [ " ", [ { "Ref": "DemoName" }, "acceptance" ] ]
+            }
+          }
+        ]
+      }
+    },
+    "delivered": {
+      "Type": "AWS::EC2::Instance",
+      "Properties": {
+        "InstanceType": "m3.large",
+        "AvailabilityZone": { "Ref": "AvailabilityZone" },
+        "NetworkInterfaces": [
+          {
+            "GroupSet": [
+              {
+                "Ref": "DemoSecurityGroup"
+              }
+            ],
+            "AssociatePublicIpAddress": "true",
+            "PrivateIpAddress": "172.31.54.102",
+            "DeviceIndex": "0",
+            "DeleteOnTermination": "true",
+            "SubnetId": {
+              "Ref": "SubnetAutomate"
+            }
+          }
+        ],
+        "KeyName": { "Ref": "KeyName" },
+        "UserData": { "Fn::Base64" : { "Fn::Join" : ["", [
+             "#!/bin/bash -xe\n",
+             "hostnamectl set-hostname delivered\n"]]}
+        },
+        "ImageId": {
+              "Ref": "deliveredAMI"
+        },
+        "Tags": [
+          {
+            "Key": "Name",
+            "Value": {
+              "Fn::Join" : [ " ", [ { "Ref": "DemoName" }, "delivered" ] ]
+            }
+          }
+        ]
+      }
+    },
+    "ecomacceptance": {
+      "Type": "AWS::EC2::Instance",
+      "Properties": {
+        "InstanceType": "m3.large",
+        "AvailabilityZone": { "Ref": "AvailabilityZone" },
+        "NetworkInterfaces": [
+          {
+            "GroupSet": [
+              {
+                "Ref": "DemoSecurityGroup"
+              }
+            ],
+            "AssociatePublicIpAddress": "true",
+            "PrivateIpAddress": "172.31.54.103",
+            "DeviceIndex": "0",
+            "DeleteOnTermination": "true",
+            "SubnetId": {
+              "Ref": "SubnetAutomate"
+            }
+          }
+        ],
+        "KeyName": { "Ref": "KeyName" },
+        "UserData": { "Fn::Base64" : { "Fn::Join" : ["", [
+             "#!/bin/bash -xe\n",
+             "hostnamectl set-hostname ecomacceptance\n"]]}
+        },
+        "ImageId": {
+              "Ref": "ecomacceptanceAMI"
+        },
+        "Tags": [
+          {
+            "Key": "Name",
+            "Value": {
+              "Fn::Join" : [ " ", [ { "Ref": "DemoName" }, "ecomacceptance" ] ]
+            }
+          }
+        ]
+      }
+    },
+    "rehearsal": {
+      "Type": "AWS::EC2::Instance",
+      "Properties": {
+        "InstanceType": "m3.large",
+        "AvailabilityZone": { "Ref": "AvailabilityZone" },
+        "NetworkInterfaces": [
+          {
+            "GroupSet": [
+              {
+                "Ref": "DemoSecurityGroup"
+              }
+            ],
+            "AssociatePublicIpAddress": "true",
+            "PrivateIpAddress": "172.31.54.104",
+            "DeviceIndex": "0",
+            "DeleteOnTermination": "true",
+            "SubnetId": {
+              "Ref": "SubnetAutomate"
+            }
+          }
+        ],
+        "KeyName": { "Ref": "KeyName" },
+        "UserData": { "Fn::Base64" : { "Fn::Join" : ["", [
+             "#!/bin/bash -xe\n",
+             "hostnamectl set-hostname rehearsal\n"]]}
+        },
+        "ImageId": {
+              "Ref": "rehearsalAMI"
+        },
+        "Tags": [
+          {
+            "Key": "Name",
+            "Value": {
+              "Fn::Join" : [ " ", [ { "Ref": "DemoName" }, "rehearsal" ] ]
+            }
+          }
+        ]
+      }
+    },
+    "union": {
+      "Type": "AWS::EC2::Instance",
+      "Properties": {
+        "InstanceType": "m3.large",
+        "AvailabilityZone": { "Ref": "AvailabilityZone" },
+        "NetworkInterfaces": [
+          {
+            "GroupSet": [
+              {
+                "Ref": "DemoSecurityGroup"
+              }
+            ],
+            "AssociatePublicIpAddress": "true",
+            "PrivateIpAddress": "172.31.54.105",
+            "DeviceIndex": "0",
+            "DeleteOnTermination": "true",
+            "SubnetId": {
+              "Ref": "SubnetAutomate"
+            }
+          }
+        ],
+        "KeyName": { "Ref": "KeyName" },
+        "UserData": { "Fn::Base64" : { "Fn::Join" : ["", [
+             "#!/bin/bash -xe\n",
+             "hostnamectl set-hostname union\n"]]}
+        },
+        "ImageId": {
+              "Ref": "unionAMI"
+        },
+        "Tags": [
+          {
+            "Key": "Name",
+            "Value": {
+              "Fn::Join" : [ " ", [ { "Ref": "DemoName" }, "union" ] ]
+            }
+          }
+        ]
+      }
+    },
     "Chef": {
       "Type": "AWS::EC2::Instance",
       "Properties": {
@@ -646,16 +898,14 @@
     }
   },
   "Outputs": {
-<% 1.upto(@workstations) do |i| -%>
-    "WindowsWorkstation<%= i.to_s %>PubDNS": {
+    "WindowsWorkstation1PubDNS": {
       "Description": "Public IP address of the Windows Workstation",
       "Value": {
         "Fn::GetAtt": [
-          "WindowsWorkstation<%= i.to_s %>",
+          "WindowsWorkstation1",
           "PublicIp"
           ]
       }
     }
-<% end -%>
   }
 }

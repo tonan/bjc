@@ -1,0 +1,119 @@
+{
+  "name": "bjc-demo",
+  "domain": "automate-demo.com",
+  "enterprise": "automate-demo",
+  "org": "automate",
+  "certs": [
+    "automate",
+    "chef",
+    "compliance"
+  ],
+  "ttl": 8,
+  "linux": "ubuntu",
+  "version": "0.2.0",
+  "products": {
+    "chef": "stable-12.13.37",
+    "chef-server": "stable-12.9.1",
+    "chefdk": "stable-0.16.28",
+    "compliance": "stable-1.5.6",
+    "automate": "stable-0.5.204",
+    "push-jobs-server": "stable-latest",
+    "manage": "stable-2.4.3"
+  },
+  "build-nodes": {
+    "count": 3
+  },
+  "workstations": {
+    "platform": "windows",
+    "password": "RL9@T40BTmXh",
+    "count": 1
+  },
+  "infranodes": {
+    "acceptance": {
+      "environment": "acceptance-automate-demo-automate-site-config-master",
+      "run_list": [
+        "recipe[bjc_bass]",
+        "recipe[site-config]"
+      ]
+    },
+    "ecomacceptance": {
+      "environment": "acceptance-automate-demo-automate-bjc-ecommerce-master",
+      "run_list": [
+        "recipe[bjc_bass]",
+        "recipe[bjc-ecommerce]"
+      ]
+    },
+    "delivered": {
+      "environment": "delivered",
+      "run_list": [
+        "recipe[bjc_bass]",
+        "recipe[site-config]",
+        "recipe[bjc-ecommerce]"
+      ]
+    },
+    "rehearsal": {
+      "environment": "rehearsal",
+      "run_list": [
+        "recipe[bjc_bass]",
+        "recipe[site-config]",
+        "recipe[bjc-ecommerce]"
+      ]
+    },
+    "union": {
+      "environment": "union",
+      "run_list": [
+        "recipe[bjc_bass]",
+        "recipe[site-config]",
+        "recipe[bjc-ecommerce]"
+      ]
+    }
+  },
+  "conf": {
+    "key_dir": "packer/keys",
+    "cookbook_dir": "cookbooks",
+    "packer_dir": "packer",
+    "templates_dir": "templates",
+    "log_dir": "packer/logs",
+    "stack_dir": "stacks"
+  },
+  "aws": {
+    "az": "us-west-2c",
+    "keypair": "chef-demo-infra",
+    "region": "us-west-2",
+    "source_ami": {
+      "ubuntu": "ami-70b67d10",
+      "windows": "ami-4428fa24",
+      "centos": "ami-6d1c2007"
+    }
+  },
+  "gce": {
+    "zone": "us-east1-b",
+    "source_image": {
+      "ubuntu": "ubuntu-1404-trusty-v20160809a",
+      "windows": "windows-server-2012-r2-dc-v20160809"
+    }
+  },
+  "amis": {
+    "us-west-2": {
+      "bjc-automate": "ami-fd1bc19d",
+      "bjc-chef-server": "ami-6515cf05",
+      "bjc-compliance": "ami-dc1bc1bc",
+      "build-node": {
+        "1": "ami-2b1dc74b",
+        "2": "ami-2b1dc74b",
+        "3": "ami-2b1dc74b"
+      },
+      "infranodes": {
+        "acceptance": "ami-d013c9b0",
+        "delivered": "ami-d013c9b0",
+        "ecomacceptance": "ami-d013c9b0",
+        "rehearsal": "ami-d013c9b0",
+        "union": "ami-d013c9b0"
+      },
+      "workstation": {
+        "1": "ami-d50ad0b5"
+      }
+    }
+  },
+  "last_updated": "20161015004058"
+}

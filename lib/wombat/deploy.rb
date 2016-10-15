@@ -23,7 +23,7 @@ class DeployRunner
   private
 
   def create_stack(stack)
-    template_file = File.read("#{stack_dir}/#{stack}.json")
+    template_file = File.read("#{stack_dir}/#{@demo}.json")
     cfn = Aws::CloudFormation::Client.new(region: lock['aws']['region'])
 
     banner("Creating CloudFormation stack")
@@ -45,9 +45,9 @@ class DeployRunner
   def create_template
     banner('Creating template...')
     region = lock['aws']['region']
-    @chef_server_ami = lock['amis'][region]['chef-server']
-    @automate_ami = lock['amis'][region]['automate']
-    @compliance_ami = lock['amis'][region]['compliance']
+    @chef_server_ami = lock['amis'][region]['bjc-chef-server']
+    @automate_ami = lock['amis'][region]['bjc-automate']
+    @compliance_ami = lock['amis'][region]['bjc-compliance']
     @build_nodes = lock['build-nodes']['count'].to_i
     @build_node_ami = {}
     1.upto(@build_nodes) do |i|
