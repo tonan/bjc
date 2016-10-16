@@ -41,12 +41,12 @@
     },
     "ChefServerAMI": {
       "Type": "String",
-      "Default": "ami-6515cf05",
+      "Default": "ami-e2489282",
       "Description": "AMI ID for the Chef Server"
     },
     "AutomateAMI": {
       "Type": "String",
-      "Default": "ami-ca518baa",
+      "Default": "ami-d14c96b1",
       "Description": "AMI ID for the Automate Server"
     },
     "ComplianceAMI": {
@@ -96,7 +96,7 @@
     },
     "WindowsWorkstation1AMI": {
       "Type": "String",
-      "Default": "ami-ac5d87cc",
+      "Default": "ami-67429807",
       "Description": "AMI ID for the Windows Workstation"
     }
   },

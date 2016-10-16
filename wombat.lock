@@ -95,8 +95,8 @@
   },
   "amis": {
     "us-west-2": {
-      "bjc-automate": "ami-ca518baa",
-      "bjc-chef-server": "ami-6515cf05",
+      "bjc-automate": "ami-d14c96b1",
+      "bjc-chef-server": "ami-e2489282",
       "bjc-compliance": "ami-00518b60",
       "build-node": {
         "1": "ami-c612c8a6",
@@ -111,9 +111,9 @@
         "union": "ami-4f02d82f"
       },
       "workstation": {
-        "1": "ami-ac5d87cc"
+        "1": "ami-67429807"
       }
     }
   },
-  "last_updated": "20161016022230"
+  "last_updated": "20161016053837"
 }
