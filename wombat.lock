@@ -95,9 +95,9 @@
   },
   "amis": {
     "us-west-2": {
-      "bjc-automate": "ami-fd1bc19d",
+      "bjc-automate": "ami-ca518baa",
       "bjc-chef-server": "ami-6515cf05",
-      "bjc-compliance": "ami-dc1bc1bc",
+      "bjc-compliance": "ami-00518b60",
       "build-node": {
         "1": "ami-c612c8a6",
         "2": "ami-6f13c90f",
@@ -111,9 +111,9 @@
         "union": "ami-4f02d82f"
       },
       "workstation": {
-        "1": "ami-d50ad0b5"
+        "1": "ami-ac5d87cc"
       }
     }
   },
-  "last_updated": "20161015212955"
+  "last_updated": "20161016022230"
 }

@@ -46,12 +46,12 @@
     },
     "AutomateAMI": {
       "Type": "String",
-      "Default": "ami-fd1bc19d",
+      "Default": "ami-ca518baa",
       "Description": "AMI ID for the Automate Server"
     },
     "ComplianceAMI": {
       "Type": "String",
-      "Default": "ami-dc1bc1bc",
+      "Default": "ami-00518b60",
       "Description": "AMI ID for the Compliance Server"
     },
     "BuildNode1AMI": {
@@ -96,7 +96,7 @@
     },
     "WindowsWorkstation1AMI": {
       "Type": "String",
-      "Default": "ami-d50ad0b5",
+      "Default": "ami-ac5d87cc",
       "Description": "AMI ID for the Windows Workstation"
     }
   },
