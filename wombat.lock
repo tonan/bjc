@@ -32,39 +32,39 @@
     "acceptance": {
       "environment": "acceptance-automate-demo-automate-site-config-master",
       "run_list": [
-        "recipe[bjc_bass]",
-        "recipe[site-config]"
+        "recipe[site-config]",
+        "recipe[bjc_bass]"
       ]
     },
     "ecomacceptance": {
       "environment": "acceptance-automate-demo-automate-bjc-ecommerce-master",
       "run_list": [
-        "recipe[bjc_bass]",
-        "recipe[bjc-ecommerce]"
+        "recipe[bjc-ecommerce]",
+        "recipe[bjc_bass]"
       ]
     },
     "delivered": {
       "environment": "delivered",
       "run_list": [
-        "recipe[bjc_bass]",
         "recipe[site-config]",
-        "recipe[bjc-ecommerce]"
+        "recipe[bjc-ecommerce]",
+        "recipe[bjc_bass]"
       ]
     },
     "rehearsal": {
       "environment": "rehearsal",
       "run_list": [
-        "recipe[bjc_bass]",
         "recipe[site-config]",
-        "recipe[bjc-ecommerce]"
+        "recipe[bjc-ecommerce]",
+        "recipe[bjc_bass]"
       ]
     },
     "union": {
       "environment": "union",
       "run_list": [
-        "recipe[bjc_bass]",
         "recipe[site-config]",
-        "recipe[bjc-ecommerce]"
+        "recipe[bjc-ecommerce]",
+        "recipe[bjc_bass]"
       ]
     }
   },
@@ -96,7 +96,7 @@
   "amis": {
     "us-west-2": {
       "bjc-automate": "ami-d14c96b1",
-      "bjc-chef-server": "ami-e2489282",
+      "bjc-chef-server": "ami-26469c46",
       "bjc-compliance": "ami-00518b60",
       "build-node": {
         "1": "ami-c612c8a6",
@@ -115,5 +115,5 @@
       }
     }
   },
-  "last_updated": "20161016053837"
+  "last_updated": "20161016081036"
 }

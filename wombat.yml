@@ -30,31 +30,31 @@ infranodes:
   acceptance:
     environment: acceptance-automate-demo-automate-site-config-master
     run_list:
-      - recipe[bjc_bass]
       - recipe[site-config]
+      - recipe[bjc_bass]
   ecomacceptance:
     environment: acceptance-automate-demo-automate-bjc-ecommerce-master
     run_list:
-      - recipe[bjc_bass]
       - recipe[bjc-ecommerce]
+      - recipe[bjc_bass]
   delivered:
     environment: delivered
     run_list:
-      - recipe[bjc_bass]
       - recipe[site-config]
       - recipe[bjc-ecommerce]
+      - recipe[bjc_bass]
   rehearsal:
     environment: rehearsal
     run_list:
-      - recipe[bjc_bass]
       - recipe[site-config]
       - recipe[bjc-ecommerce]
+      - recipe[bjc_bass]
   union:
     environment: union
     run_list:
-      - recipe[bjc_bass]
       - recipe[site-config]
       - recipe[bjc-ecommerce]
+      - recipe[bjc_bass]
 conf:
   key_dir: 'packer/keys'
   cookbook_dir: 'cookbooks'

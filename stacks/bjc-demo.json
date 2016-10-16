@@ -41,7 +41,7 @@
     },
     "ChefServerAMI": {
       "Type": "String",
-      "Default": "ami-e2489282",
+      "Default": "ami-26469c46",
       "Description": "AMI ID for the Chef Server"
     },
     "AutomateAMI": {
