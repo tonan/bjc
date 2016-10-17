@@ -18,7 +18,7 @@
     "enterprise": "mammals",
     "node-name": "acceptance",
     "org": "marsupials",
-    "source_ami": "ami-8c4cb0ec",
+    "aws_source_ami": "ami-8c4cb0ec",
     "workstations": "1"
   },
 
@@ -27,7 +27,7 @@
       "access_key": "{{user `aws_access_key`}}",
       "secret_key": "{{user `aws_secret_key`}}",
       "region": "{{user `aws_region`}}",
-      "source_ami": "{{user `source_ami`}}",
+      "source_ami": "{{user `aws_source_ami`}}",
       "instance_type": "c3.xlarge",
       "communicator": "ssh",
       "associate_public_ip_address": true,
