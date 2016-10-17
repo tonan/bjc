@@ -3,96 +3,117 @@
   "domain": "automate-demo.com",
   "enterprise": "automate-demo",
   "org": "automate",
-  "build-nodes": "3",
-  "workstations": "1",
-  "iam_profile": "testKitchenAndKnifeEc2",
-  "infranodes": [
-  [
-    "acceptance", {
-      "environment": "acceptance-automate-demo-automate-site-config-master",
-      "run_list": [
-        "recipe[bjc_bass]",
-        "recipe[site-config]"
-      ]
-    }
+  "certs": [
+    "automate",
+    "chef",
+    "compliance"
   ],
-  [
-    "ecomacceptance", {
-      "environment": "acceptance-automate-demo-automate-bjc-ecommerce-master",
-      "run_list": [
-        "recipe[bjc_bass]",
-        "recipe[bjc-ecommerce]"
-      ]
-    }
-  ],
-  [
-    "delivered", {
-      "environment": "delivered",
-      "run_list": [
-        "recipe[bjc_bass]",
-        "recipe[site-config]",
-        "recipe[bjc-ecommerce]"
-      ]
-    }
-  ],
-  [
-    "rehearsal", {
-      "environment": "rehearsal",
-      "run_list": [
-        "recipe[bjc_bass]",
-        "recipe[site-config]",
-        "recipe[bjc-ecommerce]"
-      ]
-    }
-  ],
-  [
-    "union", {
-      "environment": "union",
-      "run_list": [
-        "recipe[bjc_bass]",
-        "recipe[site-config]",
-        "recipe[bjc-ecommerce]"
-      ]
-    }
-  ]
-]
-,
-  "version": "0.1.7",
+  "ttl": 8,
+  "linux": "ubuntu",
+  "version": "0.2.0",
   "products": {
     "chef": "stable-12.13.37",
     "chef-server": "stable-12.9.1",
     "chefdk": "stable-0.16.28",
-    "compliance": "stable-1.6.8-1",
-    "automate": "stable-0.5.204"
+    "compliance": "stable-1.5.6",
+    "automate": "stable-0.5.204",
+    "push-jobs-server": "stable-latest",
+    "manage": "stable-2.4.3"
+  },
+  "build-nodes": {
+    "count": 3
+  },
+  "workstations": {
+    "platform": "windows",
+    "password": "RL9@T40BTmXh",
+    "count": 1
+  },
+  "infranodes": {
+    "acceptance": {
+      "environment": "acceptance-automate-demo-automate-site-config-master",
+      "run_list": [
+        "recipe[site-config]",
+        "recipe[bjc_bass]"
+      ]
+    },
+    "ecomacceptance": {
+      "environment": "acceptance-automate-demo-automate-bjc-ecommerce-master",
+      "run_list": [
+        "recipe[bjc-ecommerce]",
+        "recipe[bjc_bass]"
+      ]
+    },
+    "delivered": {
+      "environment": "delivered",
+      "run_list": [
+        "recipe[site-config]",
+        "recipe[bjc-ecommerce]",
+        "recipe[bjc_bass]"
+      ]
+    },
+    "rehearsal": {
+      "environment": "rehearsal",
+      "run_list": [
+        "recipe[site-config]",
+        "recipe[bjc-ecommerce]",
+        "recipe[bjc_bass]"
+      ]
+    },
+    "union": {
+      "environment": "union",
+      "run_list": [
+        "recipe[site-config]",
+        "recipe[bjc-ecommerce]",
+        "recipe[bjc_bass]"
+      ]
+    }
+  },
+  "conf": {
+    "key_dir": "packer/keys",
+    "cookbook_dir": "cookbooks",
+    "packer_dir": "packer",
+    "templates_dir": "templates",
+    "log_dir": "packer/logs",
+    "stack_dir": "stacks"
   },
   "aws": {
-    "region": "us-west-2",
     "az": "us-west-2c",
     "keypair": "chef-demo-infra",
+    "region": "us-west-2",
     "source_ami": {
       "ubuntu": "ami-70b67d10",
-      "windows": "ami-4428fa24"
+      "windows": "ami-4428fa24",
+      "centos": "ami-6d1c2007"
+    }
+  },
+  "gce": {
+    "zone": "us-east1-b",
+    "source_image": {
+      "ubuntu": "ubuntu-1404-trusty-v20160809a",
+      "windows": "windows-server-2012-r2-dc-v20160809"
     }
   },
   "amis": {
     "us-west-2": {
+      "bjc-automate": "ami-d14c96b1",
+      "bjc-chef-server": "ami-26469c46",
+      "bjc-compliance": "ami-00518b60",
       "build-node": {
-        "1": "ami-18bf6e78",
-        "2": "ami-95bd6cf5",
-        "3": "ami-95be6ff5"
+        "1": "ami-c612c8a6",
+        "2": "ami-6f13c90f",
+        "3": "ami-2b1dc74b"
       },
       "infranodes": {
-        "acceptance": "ami-3835eb58",
-        "delivered": "ami-f039e790",
-        "ecomacceptance": "ami-8037e9e0",
-        "rehearsal": "ami-bc39e7dc",
-        "union": "ami-3b34ea5b"
+        "acceptance": "ami-5002d830",
+        "delivered": "ami-180dd778",
+        "ecomacceptance": "ami-520dd732",
+        "rehearsal": "ami-530dd733",
+        "union": "ami-4f02d82f"
       },
-      "compliance": "ami-1cc51d7c",
-      "chef-server": "ami-1ab36b7a",
-      "delivery": "ami-f374a793",
-      "workstation": "ami-5af32b3a"
+      "workstation": {
+        "1": "ami-67429807"
+      }
     }
   },
-  "last_updated": "20161004192407"
+  "last_updated": "20161016081036"
 }

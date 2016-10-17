@@ -10,7 +10,8 @@
     "azure_storage_account": "{{env `AZURE_STORAGE_ACCOUNT`}}",
     "azure_resource_group": "{{env `AZURE_RESOURCE_GROUP`}}",
     "source_ami": "ami-8c4cb0ec",
-    "compliance": "1.5.6",
+    "chefdk": "0.14.25",
+    "delivery": "0.4.437",
     "domain": "chordata.biz",
     "org": "diprotodontia",
     "build-nodes": "1"
@@ -28,7 +29,7 @@
       "ssh_private_ip": false,
       "ssh_username": "ubuntu",
       "ssh_pty" : true,
-      "ami_name": "bjc_compliance-{{timestamp}}"
+      "ami_name": "bjc_automate-{{timestamp}}"
     },
     {
       "type": "azure-arm",
@@ -39,7 +40,7 @@
       "subscription_id": "{{user `azure_subscription_id`}}",
       "tenant_id": "{{user `azure_tenant_id`}}",
       "capture_container_name": "images",
-      "capture_name_prefix": "bjc-complaince",
+      "capture_name_prefix": "bjc_automate",
       "image_publisher": "Canonical",
       "image_offer": "UbuntuServer",
       "image_sku": "14.04.3-LTS",
@@ -62,17 +63,17 @@
     },
     {
       "type": "chef-solo",
-      "cookbook_paths": [ "{{pwd}}/vendored-cookbooks/bjc_compliance" ],
-      "run_list": [ "bjc_compliance" ],
+      "cookbook_paths": [ "{{pwd}}/vendored-cookbooks/bjc_automate" ],
+      "run_list": [ "bjc_automate" ],
       "json": {
         "demo": {
-          "domain_prefix": "{{user `domain_prefix`}}",
           "domain": "{{user `domain`}}",
           "enterprise": "{{user `enterprise`}}",
           "org": "{{user `org`}}",
           "build-nodes": "{{user `build-nodes`}}",
           "versions": {
-            "compliance": "{{user `compliance`}}"
+            "chefdk": "{{user `chefdk`}}",
+            "automate": "{{user `automate`}}"
           }
         }
       }

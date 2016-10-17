@@ -1,0 +1,77 @@
+---
+name: bjc-demo
+# Uncomment domain_prefix if you wish to prepend your generated domain.
+# Ex: The below example would create foo-chef.animals.biz.
+# domain_prefix: foo-
+domain: automate-demo.com
+enterprise: automate-demo
+org: automate
+certs: ['automate', 'chef', 'compliance']
+ttl: 8
+linux: ubuntu
+# Must meet the minimum Microsoft Complexity Requirements
+# https://technet.microsoft.com/en-us/library/hh994562(v=ws.11).aspx)
+version: 0.2.0
+products:
+  chef: stable-12.13.37
+  chef-server: stable-12.9.1
+  chefdk: stable-0.16.28
+  compliance: stable-1.5.6
+  automate: stable-0.5.204
+  push-jobs-server: stable-latest
+  manage: stable-2.4.3
+build-nodes:
+  count: 3
+workstations:
+  platform: windows
+  password: 'RL9@T40BTmXh'
+  count: 1
+infranodes:
+  acceptance:
+    environment: acceptance-automate-demo-automate-site-config-master
+    run_list:
+      - recipe[site-config]
+      - recipe[bjc_bass]
+  ecomacceptance:
+    environment: acceptance-automate-demo-automate-bjc-ecommerce-master
+    run_list:
+      - recipe[bjc-ecommerce]
+      - recipe[bjc_bass]
+  delivered:
+    environment: delivered
+    run_list:
+      - recipe[site-config]
+      - recipe[bjc-ecommerce]
+      - recipe[bjc_bass]
+  rehearsal:
+    environment: rehearsal
+    run_list:
+      - recipe[site-config]
+      - recipe[bjc-ecommerce]
+      - recipe[bjc_bass]
+  union:
+    environment: union
+    run_list:
+      - recipe[site-config]
+      - recipe[bjc-ecommerce]
+      - recipe[bjc_bass]
+conf:
+  key_dir: 'packer/keys'
+  cookbook_dir: 'cookbooks'
+  packer_dir: 'packer'
+  templates_dir: 'templates'
+  log_dir: 'packer/logs'
+  stack_dir: stacks
+aws:
+  az: us-west-2c
+  keypair: chef-demo-infra
+  region: us-west-2
+  source_ami:
+    ubuntu: ami-70b67d10
+    windows: ami-4428fa24
+    centos: ami-6d1c2007
+gce:
+  zone: us-east1-b
+  source_image:
+    ubuntu: ubuntu-1404-trusty-v20160809a
+    windows: windows-server-2012-r2-dc-v20160809
