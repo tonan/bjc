@@ -14,7 +14,8 @@ end
 
 # Your puny restrictions are no match for my powershell
 powershell_script 'bypass execution policy' do
-  code 'set-executionpolicy -executionpolicy bypass -force'
+  #code 'set-executionpolicy -executionpolicy bypass -force'
+  code 'set-executionpolicy -executionpolicy unrestricted -force'
 end
 
 # Remove EC2 shortcuts
