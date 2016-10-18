@@ -12,12 +12,6 @@ template "#{home}/Desktop/Start_Demo.ps1" do
   source "Start_Demo.ps1.erb"
 end
 
-# Your puny restrictions are no match for my powershell
-powershell_script 'bypass execution policy' do
-  #code 'set-executionpolicy -executionpolicy bypass -force'
-  code 'set-executionpolicy -executionpolicy unrestricted -force'
-end
-
 # Remove EC2 shortcuts
 file "#{home}/Desktop/EC2 Feedback.website" do
   action :delete
