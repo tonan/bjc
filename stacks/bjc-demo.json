@@ -41,63 +41,63 @@
     },
     "ChefServerAMI": {
       "Type": "String",
-      "Default": "ami-26469c46",
+      "Default": "ami-56993c36",
       "Description": "AMI ID for the Chef Server"
-    },
-    "AutomateAMI": {
-      "Type": "String",
-      "Default": "ami-d14c96b1",
-      "Description": "AMI ID for the Automate Server"
     },
     "ComplianceAMI": {
       "Type": "String",
-      "Default": "ami-00518b60",
+      "Default": "ami-969237f6",
       "Description": "AMI ID for the Compliance Server"
     },
     "BuildNode1AMI": {
       "Type": "String",
-      "Default": "ami-c612c8a6",
+      "Default": "ami-3b993c5b",
       "Description": "AMI ID for Build Node 1"
     },
     "BuildNode2AMI": {
       "Type": "String",
-      "Default": "ami-6f13c90f",
+      "Default": "ami-d69d38b6",
       "Description": "AMI ID for Build Node 2"
     },
     "BuildNode3AMI": {
       "Type": "String",
-      "Default": "ami-2b1dc74b",
+      "Default": "ami-0e983d6e",
       "Description": "AMI ID for Build Node 3"
     },
     "acceptanceAMI": {
       "Type": "String",
-      "Default": "ami-5002d830",
+      "Default": "ami-de9c39be",
       "Description": "AMI ID for acceptance"
     },
     "deliveredAMI": {
       "Type": "String",
-      "Default": "ami-180dd778",
+      "Default": "ami-f09e3b90",
       "Description": "AMI ID for delivered"
     },
     "ecomacceptanceAMI": {
       "Type": "String",
-      "Default": "ami-520dd732",
+      "Default": "ami-829f3ae2",
       "Description": "AMI ID for ecomacceptance"
     },
     "rehearsalAMI": {
       "Type": "String",
-      "Default": "ami-530dd733",
+      "Default": "ami-0c983d6c",
       "Description": "AMI ID for rehearsal"
     },
     "unionAMI": {
       "Type": "String",
-      "Default": "ami-4f02d82f",
+      "Default": "ami-53993c33",
       "Description": "AMI ID for union"
     },
     "WindowsWorkstation1AMI": {
       "Type": "String",
-      "Default": "ami-67429807",
+      "Default": "ami-759a3f15",
       "Description": "AMI ID for the Windows Workstation"
+    },
+    "AutomateAMI": {
+      "Type": "String",
+      "Default": "ami-6a9b3e0a",
+      "Description": "AMI ID for the Automate Server"
     }
   },
   "Resources": {
@@ -897,15 +897,6 @@
       }
     }
   },
-  "Outputs": {
-    "WindowsWorkstation1PubDNS": {
-      "Description": "Public IP address of the Windows Workstation",
-      "Value": {
-        "Fn::GetAtt": [
-          "WindowsWorkstation1",
-          "PublicIp"
-          ]
-      }
-    }
-  }
+  "Outputs":
+{"WindowsWorkstation1PubDNS":{"Description":"Public IP address of the Windows Workstation","Value":{"Fn::GetAtt":["WindowsWorkstation1","PublicIp"]}}}
 }
