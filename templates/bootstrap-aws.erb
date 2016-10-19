@@ -31,6 +31,6 @@ cmd.exe /c sc config winrm start= auto
 cmd.exe /c net start winrm
 cmd.exe /c wmic useraccount where "name='Administrator'" set PasswordExpires=FALSE
 
-set-executionpolicy -executionpolicy bypass -force
+set-executionpolicy -executionpolicy unrestricted -force -scope LocalMachine
 
 </powershell>

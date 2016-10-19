@@ -1,0 +1,31 @@
+#!/bin/bash
+# Builds Chef Demo environment with a Cloudformation template
+
+# Usage and help
+USAGE="Usage: $0 [demo-version] [customer name or description] [your aws key name] [hours to keep the demo up] [your name] [your department]\n\nExample:\n$0 1.0.4 'Paper Street' \$AWS_KEYPAIR_NAME 4 'Tyler Durden' 'Sales'"
+
+if [[ $# -ne 6 ]]; then
+  echo -e $USAGE
+  exit 1
+fi
+
+# Variables
+VERSION=$1
+CUSTOMER=$2
+CUSTOMER="${CUSTOMER// /-}"
+SSH_KEY=$3
+TTL=$4
+CONTACT=$5
+DEPARTMENT=$6
+TERMINATION_DATE=$(date -j -v +$4H +%F)
+REGION=us-west-2
+
+# Here's where we create the stack
+aws cloudformation create-stack \
+--stack-name "${USER}-${CUSTOMER}-Chef-Demo-$(date +'%Y%m%d%H%M%S')" \
+--capabilities CAPABILITY_IAM \
+--region $REGION \
+--tags Key=TTL,Value=${TTL} Key=X-Contact,Value="${CONTACT}" Key=X-Dept,Value="${DEPARTMENT}" Key=X-Project,Value="${CUSTOMER}" Key=X-Termination-Date,Value=${TERMINATION_DATE} \
+--template-body file://stacks/bjc-demo-${VERSION}.json \
+--parameters ParameterKey=KeyName,ParameterValue=${SSH_KEY} ParameterKey=TTL,ParameterValue=${TTL}
+
