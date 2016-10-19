@@ -10,7 +10,7 @@
   ],
   "ttl": 8,
   "linux": "ubuntu",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "products": {
     "chef": "stable-12.13.37",
     "chef-server": "stable-12.9.1",
@@ -111,9 +111,9 @@
         "union": "ami-53993c33"
       },
       "workstation": {
-        "1": "ami-759a3f15"
+        "1": "ami-0778dd67"
       }
     }
   },
-  "last_updated": "20161018231743"
+  "last_updated": "20161019071018"
 }
