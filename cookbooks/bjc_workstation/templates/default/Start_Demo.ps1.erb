@@ -1,4 +1,4 @@
-# Chef Demo Startup Script
+set-executionpolicy -executionpolicy unrestricted -force -scope LocalMachine
 <% home = Dir.home -%>
 echo "Loading compliance profiles..."
 ssh compliance "sudo chef-compliance-ctl restart; sleep 60; /home/ubuntu/upload_profiles.sh"
