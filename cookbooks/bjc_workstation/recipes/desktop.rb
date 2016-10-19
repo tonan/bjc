@@ -26,3 +26,17 @@ end
 file "#{home}/Desktop/EC2 Microsoft Windows Guide.website" do
   action :delete
 end
+
+# Enable ClearType
+registry_key "HKEY_CURRENT_USER\\Control Panel\\Desktop" do
+  values [{
+      :name => "FontSmoothing",
+      :type => :string,
+      :data => 2
+  },{
+      :name => "FontSmoothingType",
+      :type => :dword,
+      :data => 2
+  }]
+  action :create
+end
