@@ -23,7 +23,7 @@ provisioner:
 platforms:
   - name: windows-2012r2
     driver_config:
-      image_id: ami-8d0acfed
+      image_id: ami-4428fa24
       retryable_tries: 80
     transport:
       ssh_key: <%= ENV["EC2_SSH_KEY_PATH"] %> # change it; this is needed so kitchen can retrieve the Admin password
