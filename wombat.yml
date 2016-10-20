@@ -59,7 +59,7 @@ conf:
   key_dir: 'packer/keys'
   cookbook_dir: 'cookbooks'
   packer_dir: 'packer'
-  templates_dir: 'templates'
+  template_dir: 'templates'
   log_dir: 'packer/logs'
   stack_dir: stacks
 aws:
