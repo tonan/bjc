@@ -101,6 +101,13 @@
     }
   },
   "Resources": {
+    "InstanceProfile" : {
+      "Type" : "AWS::IAM::InstanceProfile",
+      "Properties" : {
+        "Path" : "/",
+        "Roles" : ["testKitchenAndKnifeEc2"]
+      }
+    },
     "VPC": {
       "Type": "AWS::EC2::VPC",
       "Properties": {
@@ -364,6 +371,7 @@
       "Type": "AWS::EC2::Instance",
       "Properties": {
         "InstanceType": "m3.large",
+				"IamInstanceProfile" : {"Ref" : "InstanceProfile"},
         "AvailabilityZone": { "Ref": "AvailabilityZone" },
         "NetworkInterfaces": [
           {

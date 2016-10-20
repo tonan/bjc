@@ -41,66 +41,73 @@
     },
     "ChefServerAMI": {
       "Type": "String",
-      "Default": "ami-d49e3bb4",
+      "Default": "ami-a91db8c9",
       "Description": "AMI ID for the Chef Server"
     },
     "ComplianceAMI": {
       "Type": "String",
-      "Default": "ami-e7983d87",
+      "Default": "ami-661ebb06",
       "Description": "AMI ID for the Compliance Server"
     },
     "BuildNode1AMI": {
       "Type": "String",
-      "Default": "ami-8f9e3bef",
+      "Default": "ami-d410b5b4",
       "Description": "AMI ID for Build Node 1"
     },
     "BuildNode2AMI": {
       "Type": "String",
-      "Default": "ami-c1993ca1",
+      "Default": "ami-651ebb05",
       "Description": "AMI ID for Build Node 2"
     },
     "BuildNode3AMI": {
       "Type": "String",
-      "Default": "ami-eb9a3f8b",
+      "Default": "ami-fc11b49c",
       "Description": "AMI ID for Build Node 3"
     },
     "acceptanceAMI": {
       "Type": "String",
-      "Default": "ami-8d9e3bed",
+      "Default": "ami-301fba50",
       "Description": "AMI ID for acceptance"
     },
     "deliveredAMI": {
       "Type": "String",
-      "Default": "ami-75983d15",
+      "Default": "ami-671ebb07",
       "Description": "AMI ID for delivered"
     },
     "ecomacceptanceAMI": {
       "Type": "String",
-      "Default": "ami-bc9b3edc",
+      "Default": "ami-6c1cb90c",
       "Description": "AMI ID for ecomacceptance"
     },
     "rehearsalAMI": {
       "Type": "String",
-      "Default": "ami-cd9e3bad",
+      "Default": "ami-3d1cb95d",
       "Description": "AMI ID for rehearsal"
     },
     "unionAMI": {
       "Type": "String",
-      "Default": "ami-229a3f42",
+      "Default": "ami-9710b5f7",
       "Description": "AMI ID for union"
     },
     "WindowsWorkstation1AMI": {
       "Type": "String",
-      "Default": "ami-852782e5",
+      "Default": "ami-051fba65",
       "Description": "AMI ID for the Windows Workstation"
     },
     "AutomateAMI": {
       "Type": "String",
-      "Default": "ami-009b3e60",
+      "Default": "ami-3f1cb95f",
       "Description": "AMI ID for the Automate Server"
     }
   },
   "Resources": {
+    "InstanceProfile" : {
+      "Type" : "AWS::IAM::InstanceProfile",
+      "Properties" : {
+        "Path" : "/",
+        "Roles" : ["testKitchenAndKnifeEc2"]
+      }
+    },
     "VPC": {
       "Type": "AWS::EC2::VPC",
       "Properties": {
@@ -364,6 +371,7 @@
       "Type": "AWS::EC2::Instance",
       "Properties": {
         "InstanceType": "m3.large",
+				"IamInstanceProfile" : {"Ref" : "InstanceProfile"},
         "AvailabilityZone": { "Ref": "AvailabilityZone" },
         "NetworkInterfaces": [
           {
