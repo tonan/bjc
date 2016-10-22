@@ -10,8 +10,7 @@ package 'unzip'
 package 'git'
 include_recipe 'build-essential'
 
-%w( .chef
-    cookbooks).each do |structure|
+%w(.chef cookbooks).each do |structure|
   directory "#{home}/#{structure}"
 end
 
@@ -25,9 +24,11 @@ ssl_verify_mode :verify_none
 EOS
 end
 
-%w( site-config
-    bjc-ecommerce
-    bjc_bass).each do |cookbook|
+%w(
+  site-config
+  bjc-ecommerce
+  bjc_bass
+).each do |cookbook|
   cookbook_source = "https://s3-us-west-2.amazonaws.com/bjcpublic/#{cookbook}.zip"
 
   remote_file "#{home}/cookbooks/#{cookbook}.zip" do
@@ -42,7 +43,7 @@ end
   end
 
   execute "berks install #{cookbook}" do
-  	cwd "#{home}/cookbooks/#{cookbook}"
+    cwd "#{home}/cookbooks/#{cookbook}"
     command '/opt/opscode/embedded/bin/berks install'
     action :run
   end

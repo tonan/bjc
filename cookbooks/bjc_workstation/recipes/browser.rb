@@ -4,20 +4,9 @@
 #
 # Copyright (c) 2016 The Authors, All Rights Reserved.
 
-directory 'C:\Users\Administrator\AppData\Local\Google' do
-  action :create
-end
-
-directory 'C:\Users\Administrator\AppData\Local\Google\Chrome' do
-  action :create
-end
-
-directory 'C:\Users\Administrator\AppData\Local\Google\Chrome\User Data' do
-  action :create
-end
-
 directory 'C:\Users\Administrator\AppData\Local\Google\Chrome\User Data\Default' do
   action :create
+  recursive true
 end
 
 template 'C:\Users\Administrator\AppData\Local\Google\Chrome\User Data\Default\Bookmarks' do

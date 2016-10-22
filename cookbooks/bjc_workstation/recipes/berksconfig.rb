@@ -8,7 +8,7 @@ home = Dir.home
 directory "#{home}/.berkshelf"
 
 file "#{home}/.berkshelf/config.json" do
-    content <<-EOS
+  content <<-EOS
 {"ssl": {"verify": false}}
   EOS
 end

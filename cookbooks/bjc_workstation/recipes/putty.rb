@@ -8,7 +8,7 @@ home = Dir.home
 
 # Install the Putty
 chocolatey 'putty' do
-  options ({ '-allow-empty-checksums' => '' })
+  options( '-allow-empty-checksums' => '' )
 end
 
 # Make the shortcut
@@ -27,6 +27,6 @@ end
 # Import the settings
 batch 'Import PuTTY Settings' do
   code 'reg import putty.reg'
-  cwd "#{home}"
+  cwd home
   action :run
 end

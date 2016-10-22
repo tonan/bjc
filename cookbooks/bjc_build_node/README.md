@@ -1,4 +1,4 @@
 # bjc_build_node
 
-TODO: Enter the cookbook description here.
+Creates build nodes for the BJC demo.
 

@@ -15,4 +15,3 @@ include_recipe 'bjc_workstation::editors'
 include_recipe 'bjc_workstation::desktop'
 include_recipe 'bjc_workstation::browser'
 include_recipe 'bjc_workstation::environment'
-

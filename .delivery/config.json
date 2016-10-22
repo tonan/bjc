@@ -4,6 +4,13 @@
     "name": "build-cookbook",
     "path": ".delivery/build-cookbook"
   },
+  "delivery-truck": {
+    "lint": {
+      "foodcritic": {
+        "excludes": ["test", "spec"]
+      }
+    }
+  },
   "skip_phases": [
     "provision",
     "deploy",
