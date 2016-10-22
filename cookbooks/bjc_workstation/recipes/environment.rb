@@ -12,4 +12,3 @@ cookbook_file "#{home}/.ssh/id_rsa.ppk" do
   source 'putty.ppk'
   action :create
 end
-

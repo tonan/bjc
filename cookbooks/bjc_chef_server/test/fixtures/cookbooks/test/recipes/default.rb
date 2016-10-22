@@ -12,7 +12,7 @@
    private.pem
    infranodes-info.json).each do |f|
   cookbook_file "/tmp/#{f}" do
-  	source f
-  	sensitive true
+    source f
+    sensitive true
   end
 end

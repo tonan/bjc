@@ -10,9 +10,7 @@ directory "#{home}/cookbooks" do
   action :create
 end
 
-
 node['bjc_workstation']['cookbooks'].each do |cookbook|
-
   remote_file "#{home}/cookbooks/#{cookbook}.zip" do
     source "https://s3-us-west-2.amazonaws.com/bjcpublic/#{cookbook}.zip"
   end
@@ -22,7 +20,6 @@ node['bjc_workstation']['cookbooks'].each do |cookbook|
     action :unzip
     not_if { File.exist?("#{home}/cookbooks/#{cookbook}") }
   end
-
 end
 
 template "#{home}/cookbooks/site-config/.kitchen.yml" do

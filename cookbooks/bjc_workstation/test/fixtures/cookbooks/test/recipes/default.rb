@@ -5,17 +5,19 @@
 # Copyright (c) 2016 The Authors, All Rights Reserved.
 
 powershell_script 'bypass execution policy' do
-	code 'set-executionpolicy -executionpolicy bypass -force'
+  code 'set-executionpolicy -executionpolicy bypass -force'
 end
 
-%w(chef.crt
-   automate.crt
-   compliance.crt
-   public.pub
-   private.pem
-   putty.ppk).each do |f|
+%w(
+  chef.crt
+  automate.crt
+  compliance.crt
+  public.pub
+  private.pem
+  putty.ppk
+).each do |f|
   cookbook_file "C:/Windows/Temp/#{f}" do
-  	source f
-  	sensitive true
+    source f
+    sensitive true
   end
 end
