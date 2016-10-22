@@ -5,3 +5,5 @@ license 'all_rights'
 version '0.1.0'
 
 depends 'packer'
+depends 'delivery-truck'
+depends 'delivery-sugar'
