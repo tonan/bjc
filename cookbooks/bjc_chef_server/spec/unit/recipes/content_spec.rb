@@ -9,7 +9,7 @@ require 'spec_helper'
 home = Dir.home
 
 describe 'bjc_chef_server::content' do
-  context 'When all attributes are default, on an unspecified platform' do
+  context 'When all attributes are default, on Ubuntu 14.04 platform' do
     let(:chef_run) do
       runner = ChefSpec::SoloRunner.new(platform: 'ubuntu', version: '14.04')
       # runner = ChefSpec::ServerRunner.new

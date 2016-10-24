@@ -7,7 +7,7 @@
 require 'spec_helper'
 
 describe 'bjc_chef_server::chef_gate' do
-  context 'When all attributes are default, on an unspecified platform' do
+  context 'When all attributes are default, on Ubuntu 14.04 platform' do
     let(:chef_run) do
       ChefSpec::ServerRunner.new(platform: 'ubuntu', version: '14.04') do |node|
         #node.normal['bjc_workstation']['cookbooks'] = ['bass_web', 'site-config', 'bjc-ecommerce', 'bjc_bass']

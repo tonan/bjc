@@ -4,8 +4,8 @@
 #
 # Copyright (c) 2016 The Authors, All Rights Reserved.
 
-include_recipe 'compliance'
-include_recipe 'audit'
+include_recipe 'compliance::default'
+include_recipe 'audit::default'
 include_recipe 'bjc_compliance::restore_backup'
 include_recipe 'bjc_compliance::load_profiles'
 
