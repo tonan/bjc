@@ -4,7 +4,7 @@
 #
 # Copyright (c) 2016 The Authors, All Rights Reserved.
 
-include_recipe 'automate'
+include_recipe 'automate::default'
 
 cookbook_file '/tmp/delivery_backup.tar' do
   source 'delivery_backup.tar'
