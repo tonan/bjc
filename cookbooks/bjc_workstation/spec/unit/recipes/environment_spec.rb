@@ -6,11 +6,17 @@
 
 require 'spec_helper'
 
+home = Dir.home
+
 describe 'bjc_workstation::environment' do
-  context 'When all attributes are default, on an unspecified platform' do
+  context 'When all attributes are default, on Windows Server 2012R2 platform' do
     let(:chef_run) do
-      runner = ChefSpec::ServerRunner.new
+      runner = ChefSpec::ServerRunner.new(platform: 'windows', version: '2012R2')
       runner.converge(described_recipe)
+    end
+
+    it 'creates the putty PPK file' do
+      expect(chef_run).to render_file("#{home}/.ssh/id_rsa.ppk")
     end
 
     it 'converges successfully' do

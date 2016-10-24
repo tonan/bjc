@@ -7,10 +7,14 @@
 require 'spec_helper'
 
 describe 'bjc_workstation::7zip' do
-  context 'When all attributes are default, on an unspecified platform' do
+  context 'When all attributes are default, on Windows Server 2012R2 platform' do
     let(:chef_run) do
       runner = ChefSpec::ServerRunner.new
       runner.converge(described_recipe)
+    end
+
+    it 'installs 7zip' do
+      expect(chef_run).to install_chocolatey_package('7zip')
     end
 
     it 'converges successfully' do
