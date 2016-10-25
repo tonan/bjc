@@ -7,10 +7,18 @@
 require 'spec_helper'
 
 describe 'bjc_workstation::browser' do
-  context 'When all attributes are default, on an unspecified platform' do
+  context 'When all attributes are default, on Windows Server 2012R2 platform' do
     let(:chef_run) do
       runner = ChefSpec::ServerRunner.new
       runner.converge(described_recipe)
+    end
+
+    it 'creates the Chrome bookmarks directory' do
+      expect(chef_run).to create_directory('C:\Users\Administrator\AppData\Local\Google\Chrome\User Data\Default')
+    end
+
+    it 'renders the Chrome bookmarks file' do
+      expect(chef_run).to render_file('C:\Users\Administrator\AppData\Local\Google\Chrome\User Data\Default\Bookmarks')
     end
 
     it 'converges successfully' do

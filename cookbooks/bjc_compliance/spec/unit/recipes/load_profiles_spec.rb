@@ -6,11 +6,31 @@
 
 require 'spec_helper'
 
+# Current list of profiles that we load into the demo
+profiles = %w(
+  apache.tar.gz
+  cis-apachetomcat-5.5-6.0-level1.zip
+  cis-apachetomcat-5.5-6.0-level2.zip
+  cis-microsoftwindows2012r2-level1-memberserver.tar.gz
+  ssl-benchmark.tar.gz
+  stig-redhat.zip
+)
+
 describe 'bjc_compliance::load_profiles' do
-  context 'When all attributes are default, on an unspecified platform' do
+  context 'When all attributes are default, on Ubuntu 14.04 platform' do
     let(:chef_run) do
       runner = ChefSpec::ServerRunner.new
       runner.converge(described_recipe)
+    end
+
+    it 'loads the chef compliance profiles' do
+	    profiles.each do |p|
+        expect(chef_run).to render_file("/home/ubuntu/#{p}")
+      end
+    end
+
+    it 'renders the upload_profiles.sh script' do
+      expect(chef_run).to render_file('/home/ubuntu/upload_profiles.sh').with_content('Authorization: Bearer $API_TOKEN"')
     end
 
     it 'converges successfully' do
