@@ -28,6 +28,6 @@ ruby_block "verify_packer_templates" do
   block do
     require 'json'
     Dir.chdir("#{workflow_workspace_repo}/packer")
-    Dir.glob("*.json") {|t| puts "#{t}";JSON(File.read(t))}
+    Dir.glob("*.json") {|t| JSON(File.read(t))}
   end
 end
