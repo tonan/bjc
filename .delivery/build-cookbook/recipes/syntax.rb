@@ -23,12 +23,11 @@ ruby_block "verify_wombat_yaml" do
     puts YAML.load_file("#{workflow_workspace_repo}/wombat.yml")
   end
 end
-require 'pry';binding.pry
 
 ruby_block "verify_packer_templates" do
   block do
     require 'json'
-    puts Dir.glob("#{workflow_workspace_repo}/packer/*.json")
-#
+    Dir.chdir("#{workflow_workspace_repo}/packer")
+    Dir.glob("*.json")
   end
 end
