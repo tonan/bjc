@@ -12,7 +12,7 @@ template "#{home}\\Start_Demo.ps1" do
   source "Start_Demo.ps1.erb"
 end
 
-windows_shortcut "#{home}\\Desktop\\start it up.lnk" do
+windows_shortcut "#{home}\\Desktop\\start me up.lnk" do
   target "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe"
   arguments " #{home}\\Start_Demo.ps1"
   description "Start the Chef demo"
