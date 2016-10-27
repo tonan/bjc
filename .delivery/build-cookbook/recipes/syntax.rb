@@ -28,6 +28,7 @@ ruby_block "verify_packer_templates" do
   block do
     require 'json'
     templates = Dir.glob("#{workflow_workspace_repo}/packer/*.json")
+    puts templates
     templates.each do |t|
       puts JSON(File.read(t))
     end
