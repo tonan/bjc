@@ -15,5 +15,11 @@ file '/opt/chef-compliance/sv/core/env/CHEF_GATE_COMPLIANCE_SECRET' do
   sensitive true
 end
 
+#Run startup commands to populate profiles via /etc/rc.local
+template '/etc/rc.local' do
+  action :create
+  source 'rc.local.erb'
+end
+
 include_recipe 'wombat::authorized-keys'
 include_recipe 'wombat::etc-hosts'

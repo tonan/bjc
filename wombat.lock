@@ -103,10 +103,10 @@
         "3": "ami-a0a703c0"
       },
       "bjc-chef-server": "ami-6ca0040c",
-      "bjc-compliance": "ami-9aa400fa",
+      "bjc-compliance": "ami-aa3592ca",
       "workstation": {
         "workstation": null,
-        "1": "ami-6ab3170a"
+        "1": "ami-c5288fa5"
       },
       "infranodes": {
         "acceptance": "ami-c3a602a3",
@@ -117,5 +117,5 @@
       }
     }
   },
-  "last_updated": "20161022000404"
+  "last_updated": "20161027205428"
 }
