@@ -16,3 +16,18 @@
 #
 
 include_recipe 'delivery-truck::syntax'
+
+ruby_block "verify_wombat_yaml" do
+  block do
+    require 'yaml'
+    puts YAML.load_file("#{workflow_workspace_repo}/wombat.yml")
+  end
+end
+
+ruby_block "verify_packer_templates" do
+  block do
+    require 'json'
+    Dir.chdir("#{workflow_workspace_repo}/packer")
+    Dir.glob("*.json") {|t| JSON(File.read(t))}
+  end
+end
