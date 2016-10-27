@@ -59,13 +59,14 @@ conf:
   key_dir: 'packer/keys'
   cookbook_dir: 'cookbooks'
   packer_dir: 'packer'
-  templates_dir: 'templates'
+  template_dir: 'templates'
   log_dir: 'packer/logs'
   stack_dir: stacks
 aws:
   az: us-west-2c
   keypair: chef-demo-infra
   region: us-west-2
+  iam_roles: ['testKitchenAndKnifeEc2']
   source_ami:
     ubuntu: ami-70b67d10
     windows: ami-4428fa24
