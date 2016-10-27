@@ -28,6 +28,7 @@ module Common
 
   def wombat
     if !File.exists?('wombat.yml')
+      warn('No wombat.yml found, copying example')
       File.open('wombat.yml', 'w') do |f|
         f.puts File.read('wombat.example.yml')
       end
@@ -36,14 +37,19 @@ module Common
   end
 
   def lock
-    JSON.parse(File.read('wombat.lock'))
+    if !File.exists?('wombat.lock')
+      warn('No wombat.lock found')
+      return 1
+    else
+      JSON.parse(File.read('wombat.lock'))
+    end
   end
 
   def bootstrap_aws
     @workstation_passwd = wombat['workstations']['password']
-    rendered = ERB.new(File.read('templates/bootstrap-aws.erb'), nil, '-').result(binding)
-    File.open("#{packer_dir}/scripts/bootstrap-aws.txt", 'w') { |file| file.puts rendered }
-    banner("Generated: #{packer_dir}/scripts/bootstrap-aws.txt")
+    rendered = ERB.new(File.read("#{conf['template_dir']}/bootstrap-aws.erb"), nil, '-').result(binding)
+    File.open("#{conf['packer_dir']}/scripts/bootstrap-aws.txt", 'w') { |file| file.puts rendered }
+    banner("Generated: #{conf['packer_dir']}/scripts/bootstrap-aws.txt")
   end
 
   def gen_x509_cert(hostname)
@@ -73,11 +79,11 @@ module Common
 
     cert.sign(rsa_key, OpenSSL::Digest::SHA256.new)
 
-    if File.exist?("#{key_dir}/#{hostname}.crt") && File.exist?("#{key_dir}/#{hostname}.key")
+    if File.exist?("#{conf['key_dir']}/#{hostname}.crt") && File.exist?("#{conf['key_dir']}/#{hostname}.key")
       puts "An x509 certificate already exists for #{hostname}"
     else
-      File.open("#{key_dir}/#{hostname}.crt", 'w') { |file| file.puts cert.to_pem }
-      File.open("#{key_dir}/#{hostname}.key", 'w') { |file| file.puts rsa_key.to_pem }
+      File.open("#{conf['key_dir']}/#{hostname}.crt", 'w') { |file| file.puts cert.to_pem }
+      File.open("#{conf['key_dir']}/#{hostname}.key", 'w') { |file| file.puts rsa_key.to_pem }
       puts "Certificate created for #{wombat['domain_prefix']}#{hostname}.#{wombat['domain']}"
     end
   end
@@ -90,11 +96,11 @@ module Common
 
     openssh_format = "#{type} #{data}"
 
-    if File.exist?("#{key_dir}/public.pub") && File.exist?("#{key_dir}/private.pem")
+    if File.exist?("#{conf['key_dir']}/public.pub") && File.exist?("#{conf['key_dir']}/private.pem")
       puts 'An SSH keypair already exists'
     else
-      File.open("#{key_dir}/public.pub", 'w') { |file| file.puts openssh_format }
-      File.open("#{key_dir}/private.pem", 'w') { |file| file.puts rsa_key.to_pem }
+      File.open("#{conf['key_dir']}/public.pub", 'w') { |file| file.puts openssh_format }
+      File.open("#{conf['key_dir']}/private.pem", 'w') { |file| file.puts rsa_key.to_pem }
       puts 'SSH Keypair created'
     end
   end
@@ -129,13 +135,13 @@ module Common
   end
 
   def create_infranodes_json
-    if File.exists?("#{packer_dir}/file/infranodes-info.json")
+    if File.exists?("#{conf['packer_dir']}/file/infranodes-info.json")
       current_state = JSON(File.read('files/infranodes-info.json'))
     else
       current_state = nil
     end
     return if current_state == infranodes # yay idempotence
-    File.open("#{packer_dir}/files/infranodes-info.json", 'w') do |f|
+    File.open("#{conf['packer_dir']}/files/infranodes-info.json", 'w') do |f|
       f.puts JSON.pretty_generate(infranodes)
     end
   end
@@ -144,28 +150,18 @@ module Common
     wombat['linux'].nil? ? 'ubuntu' : wombat['linux']
   end
 
-  def key_dir
-    wombat['conf'].nil? ? 'keys' : wombat['conf']['key_dir']
-  end
-
-  def cookbook_dir
-    wombat['conf'].nil? ? 'cookbooks' : wombat['conf']['cookbook_dir']
-  end
-
-  def packer_dir
-    wombat['conf'].nil? ? 'packer' : wombat['conf']['packer_dir']
-  end
-
-  def log_dir
-    wombat['conf'].nil? ? 'logs' : wombat['conf']['log_dir']
-  end
-
-  def stack_dir
-    wombat['conf'].nil? ? 'stacks' : wombat['conf']['stack_dir']
-  end
-
-  def timeout
-    wombat['conf']['timeout'] ||= 7200
+  def conf
+    conf = wombat['conf']
+    conf ||= {}
+    conf['key_dir'] ||= 'keys'
+    conf['cookbook_dir'] ||= 'cookbooks'
+    conf['packer_dir'] ||= 'packer'
+    conf['log_dir'] ||= 'logs'
+    conf['stack_dir'] ||= 'stacks'
+    conf['template_dir'] ||= 'templates'
+    conf['timeout'] ||= 7200
+    conf['audio'] ||= false
+    conf
   end
 
   def is_mac?
@@ -173,6 +169,80 @@ module Common
   end
 
   def audio?
-    is_mac? && wombat['conf']['audio']
+    is_mac? && conf['audio']
+  end
+
+  def logs
+    Dir.glob("#{conf['log_dir']}/#{cloud}*.log").reject { |l| !l.match(wombat['linux']) }
+  end
+
+  def update_lock(cloud)
+    copy = {}
+    copy = wombat
+    region = copy[cloud]['region']
+    linux = copy['linux']
+    copy['amis'] = { region => {} }
+
+    if logs.length == 0
+      warn('No logs found - skipping lock update')
+    else
+      logs.each do |log|
+        case log
+        when /build-node/
+          copy['amis'][region]['build-node'] ||= {}
+          num = log.split('-')[3]
+          copy['amis'][region]['build-node'].store(num, parse_log(log, cloud))
+        when /workstation/
+          copy['amis'][region]['workstation'] ||= {}
+          num = log.split('-')[2]
+          copy['amis'][region]['workstation'].store(num, parse_log(log, cloud))
+        when /infranodes/
+          copy['amis'][region]['infranodes'] ||= {}
+          name = log.split('-')[2]
+          copy['amis'][region]['infranodes'].store(name, parse_log(log, cloud))
+        else
+          instance = log.match("#{cloud}-(.*)-(.*)\.log")[1]
+          copy['amis'][region].store(instance, parse_log(log, cloud))
+        end
+      end
+      copy['last_updated'] = Time.now.gmtime.strftime('%Y%m%d%H%M%S')
+      banner('Updating wombat.lock')
+      File.open('wombat.lock', 'w') do |f|
+        f.write(JSON.pretty_generate(copy))
+      end
+    end
+  end
+
+  def update_template(cloud)
+    if lock == 1
+      warn('No lock - skipping template creation')
+    else
+      region = lock['aws']['region']
+      @chef_server_ami = lock['amis'][region]['bjc-chef-server']
+      @automate_ami = lock['amis'][region]['bjc-automate']
+      @compliance_ami = lock['amis'][region]['bjc-compliance']
+      @build_nodes = lock['build-nodes']['count'].to_i
+      @build_node_ami = {}
+      1.upto(@build_nodes) do |i|
+        @build_node_ami[i] = lock['amis'][region]['build-node'][i.to_s]
+      end
+      @infra = {}
+      infranodes.each do |name, _rl|
+        @infra[name] = lock['amis'][region]['infranodes'][name]
+      end
+      @workstations = lock['workstations']['count'].to_i
+      @workstation_ami = {}
+      1.upto(@workstations) do |i|
+        @workstation_ami[i] = lock['amis'][region]['workstation'][i.to_s]
+      end
+      @availability_zone = lock['aws']['az']
+      @iam_roles = lock['aws']['iam_roles']
+      @demo = lock['name']
+      @version = lock['version']
+      @ttl = lock['ttl']
+      rendered_cfn = ERB.new(File.read("#{conf['template_dir']}/cfn.json.erb"), nil, '-').result(binding)
+      File.open("#{conf['stack_dir']}/#{@demo}.json", 'w') { |file| file.puts rendered_cfn }
+      banner("Generated: #{conf['stack_dir']}/#{@demo}.json")
+    end
   end
 end

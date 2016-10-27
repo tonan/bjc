@@ -10,7 +10,7 @@
   ],
   "ttl": 8,
   "linux": "ubuntu",
-  "version": "0.2.3",
+  "version": "0.2.4",
   "products": {
     "chef": "stable-12.13.37",
     "chef-server": "stable-12.9.1",
@@ -72,7 +72,7 @@
     "key_dir": "packer/keys",
     "cookbook_dir": "cookbooks",
     "packer_dir": "packer",
-    "templates_dir": "templates",
+    "template_dir": "templates",
     "log_dir": "packer/logs",
     "stack_dir": "stacks"
   },
@@ -80,6 +80,9 @@
     "az": "us-west-2c",
     "keypair": "chef-demo-infra",
     "region": "us-west-2",
+    "iam_roles": [
+      "testKitchenAndKnifeEc2"
+    ],
     "source_ami": {
       "ubuntu": "ami-70b67d10",
       "windows": "ami-4428fa24",
@@ -103,10 +106,10 @@
         "3": "ami-a0a703c0"
       },
       "bjc-chef-server": "ami-6ca0040c",
-      "bjc-compliance": "ami-9aa400fa",
+      "bjc-compliance": "ami-03319663",
       "workstation": {
         "workstation": null,
-        "1": "ami-6ab3170a"
+        "1": "ami-c5288fa5"
       },
       "infranodes": {
         "acceptance": "ami-c3a602a3",
@@ -117,5 +120,5 @@
       }
     }
   },
-  "last_updated": "20161022000404"
+  "last_updated": "20161027220546"
 }
