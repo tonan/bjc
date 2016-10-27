@@ -4,4 +4,6 @@
 #
 # Copyright (c) 2016 The Authors, All Rights Reserved.
 
-include_recipe 'packer'
+#include_recipe 'packer'
+gem_package 'wombat-cli'
+
