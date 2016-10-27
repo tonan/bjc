@@ -66,6 +66,7 @@ aws:
   az: us-west-2c
   keypair: chef-demo-infra
   region: us-west-2
+  iam_roles: ['testKitchenAndKnifeEc2']
   source_ami:
     ubuntu: ami-70b67d10
     windows: ami-4428fa24
