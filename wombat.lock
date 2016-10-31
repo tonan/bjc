@@ -106,7 +106,7 @@
         "3": "ami-a0a703c0"
       },
       "bjc-chef-server": "ami-6ca0040c",
-      "bjc-compliance": "ami-51238531",
+      "bjc-compliance": "ami-302c8a50",
       "workstation": {
         "workstation": null,
         "1": "ami-c5288fa5"
@@ -120,5 +120,5 @@
       }
     }
   },
-  "last_updated": "20161031185045"
+  "last_updated": "20161031193149"
 }
