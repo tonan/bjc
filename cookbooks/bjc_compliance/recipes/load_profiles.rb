@@ -9,7 +9,7 @@ profiles = %w(
   cis-apachetomcat-5.5-6.0-level1.zip
   cis-apachetomcat-5.5-6.0-level2.zip
   cis-microsoftwindows2012r2-level1-memberserver.tar.gz
-  ssl-benchmark.tar.gz
+  ssl-benchmark.zip
   stig-redhat.zip
 )
 
