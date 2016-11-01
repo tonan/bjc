@@ -41,62 +41,62 @@
     },
     "ChefServerAMI": {
       "Type": "String",
-      "Default": "ami-6ca0040c",
+      "Default": "ami-7bf4551b",
       "Description": "AMI ID for the Chef Server"
     },
     "ComplianceAMI": {
       "Type": "String",
-      "Default": "ami-7b2a8c1b",
+      "Default": "ami-5ef2533e",
       "Description": "AMI ID for the Compliance Server"
     },
     "BuildNode1AMI": {
       "Type": "String",
-      "Default": "ami-a2a703c2",
+      "Default": "ami-83f253e3",
       "Description": "AMI ID for Build Node 1"
     },
     "BuildNode2AMI": {
       "Type": "String",
-      "Default": "ami-a5a703c5",
+      "Default": "ami-2ef7564e",
       "Description": "AMI ID for Build Node 2"
     },
     "BuildNode3AMI": {
       "Type": "String",
-      "Default": "ami-a0a703c0",
+      "Default": "ami-68f75608",
       "Description": "AMI ID for Build Node 3"
     },
     "acceptanceAMI": {
       "Type": "String",
-      "Default": "ami-c3a602a3",
+      "Default": "ami-ecf3528c",
       "Description": "AMI ID for acceptance"
     },
     "deliveredAMI": {
       "Type": "String",
-      "Default": "ami-d0a501b0",
+      "Default": "ami-a8f756c8",
       "Description": "AMI ID for delivered"
     },
     "ecomacceptanceAMI": {
       "Type": "String",
-      "Default": "ami-2ca0044c",
+      "Default": "ami-e3f35283",
       "Description": "AMI ID for ecomacceptance"
     },
     "rehearsalAMI": {
       "Type": "String",
-      "Default": "ami-aba004cb",
+      "Default": "ami-f4f25394",
       "Description": "AMI ID for rehearsal"
     },
     "unionAMI": {
       "Type": "String",
-      "Default": "ami-8fa501ef",
+      "Default": "ami-72f45512",
       "Description": "AMI ID for union"
     },
     "WindowsWorkstation1AMI": {
       "Type": "String",
-      "Default": "ami-c5288fa5",
+      "Default": "ami-6ffe5f0f",
       "Description": "AMI ID for the Windows Workstation"
     },
     "AutomateAMI": {
       "Type": "String",
-      "Default": "ami-92a501f2",
+      "Default": "ami-8df253ed",
       "Description": "AMI ID for the Automate Server"
     }
   },

@@ -98,27 +98,27 @@
   },
   "amis": {
     "us-west-2": {
-      "bjc-automate": "ami-92a501f2",
+      "bjc-automate": "ami-8df253ed",
       "build-node": {
         "node": "ami-9b9134fb",
-        "1": "ami-a2a703c2",
-        "2": "ami-a5a703c5",
-        "3": "ami-a0a703c0"
+        "1": "ami-83f253e3",
+        "2": "ami-2ef7564e",
+        "3": "ami-68f75608"
       },
-      "bjc-chef-server": "ami-6ca0040c",
-      "bjc-compliance": "ami-7b2a8c1b",
+      "bjc-chef-server": "ami-7bf4551b",
+      "bjc-compliance": "ami-5ef2533e",
       "workstation": {
         "workstation": null,
-        "1": "ami-c5288fa5"
+        "1": "ami-6ffe5f0f"
       },
       "infranodes": {
-        "acceptance": "ami-c3a602a3",
-        "delivered": "ami-d0a501b0",
-        "ecomacceptance": "ami-2ca0044c",
-        "rehearsal": "ami-aba004cb",
-        "union": "ami-8fa501ef"
+        "acceptance": "ami-ecf3528c",
+        "delivered": "ami-a8f756c8",
+        "ecomacceptance": "ami-e3f35283",
+        "rehearsal": "ami-f4f25394",
+        "union": "ami-72f45512"
       }
     }
   },
-  "last_updated": "20161031202721"
+  "last_updated": "20161101221400"
 }
