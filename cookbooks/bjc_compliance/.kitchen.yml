@@ -47,4 +47,4 @@ suites:
           compliance: '172.31.54.12'
         versions:
           chefdk: 'stable-0.16.28'
-          compliance: 'stable-1.5.6-1'
+          compliance: 'stable-1.6.8-1'
