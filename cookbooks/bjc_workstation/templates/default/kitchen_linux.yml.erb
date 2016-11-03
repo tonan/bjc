@@ -1,0 +1,32 @@
+---
+driver:
+  name: ec2
+  aws_ssh_key_id: chef_demo
+  region: us-west-2
+  security_group_ids: sg-2560a741
+  associate_public_ip: true
+  instance_type: t2.micro
+  tags:
+    # Replace YOURNAME and YOURCOMPANY here
+    Name: "Chef Training Node for YOURNAME, YOURCOMPANY"
+    created-by: "test-kitchen"
+    user: <%= ENV['USER'] %>
+
+provisioner:
+  name: chef_zero
+
+verifier:
+  name: inspec
+  format: documentation
+
+platforms:
+  - name: ubuntu-14.04
+    transport:
+      username: ubuntu
+      ssh_key: C:\Users\Administrator\.ssh\id_rsa
+
+suites:
+  - name: default
+    run_list:
+      #- recipe[cookbook_name::recipe_name]
+    attributes:

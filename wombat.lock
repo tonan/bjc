@@ -10,7 +10,7 @@
   ],
   "ttl": 8,
   "linux": "ubuntu",
-  "version": "0.2.5",
+  "version": "0.2.6",
   "products": {
     "chef": "stable-12.13.37",
     "chef-server": "stable-12.9.1",
@@ -98,10 +98,27 @@
   },
   "amis": {
     "us-west-2": {
+      "bjc-automate": "ami-8df253ed",
+      "build-node": {
+        "node": "ami-9b9134fb",
+        "1": "ami-83f253e3",
+        "2": "ami-2ef7564e",
+        "3": "ami-68f75608"
+      },
+      "bjc-chef-server": "ami-7bf4551b",
+      "bjc-compliance": "ami-538d2c33",
       "workstation": {
-        "1": "ami-fba7069b"
+        "workstation": null,
+        "1": "ami-1d95347d"
+      },
+      "infranodes": {
+        "acceptance": "ami-ecf3528c",
+        "delivered": "ami-a8f756c8",
+        "ecomacceptance": "ami-e3f35283",
+        "rehearsal": "ami-f4f25394",
+        "union": "ami-72f45512"
       }
     }
   },
-  "last_updated": "20161102133602"
+  "last_updated": "20161103093532"
 }

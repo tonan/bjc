@@ -16,7 +16,7 @@ describe 'bjc_workstation::desktop' do
     end
 
     it 'creates the demo startup script' do
-      expect(chef_run).to render_file("#{home}\\Start_Demo.ps1").with_content('C:\Program Files (x86)\Google\Chrome\Application\chrome.exe')
+      expect(chef_run).to render_file("#{home}\\Start_Demo.ps1").with_content('Restart the jankmobile')
     end
 
     it 'removes the EC2 shortcuts' do

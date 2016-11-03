@@ -40,3 +40,19 @@ registry_key "HKEY_CURRENT_USER\\Control Panel\\Desktop" do
   }]
   action :create
 end
+
+# Create sample kitchen configs directory
+directory "#{home}/Desktop/Test_Kitchen" do
+  action :create
+end
+
+# Render sample kitchen templates
+template "#{home}/Desktop/Test_Kitchen/kitchen_windows.yml" do
+  action :create
+  source 'kitchen_windows.yml.erb'
+end
+
+template "#{home}/Desktop/Test_Kitchen/kitchen_linux.yml" do
+  action :create
+  source 'kitchen_linux.yml.erb'
+end
