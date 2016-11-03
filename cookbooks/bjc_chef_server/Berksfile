@@ -2,8 +2,8 @@ source 'https://supermarket.chef.io'
 
 metadata
 
-cookbook 'wombat', github: 'chef-cft/wombat', rel: 'generator_files/cookbooks/wombat'
-cookbook 'chef_server', github: 'chef-cft/wombat', rel: 'generator_files/cookbooks/chef_server'
+cookbook 'wombat', github: 'chef-cft/wombat', rel: 'generator_files/cookbooks/wombat', tag: 'v0.3.0'
+cookbook 'chef_server', github: 'chef-cft/wombat', rel: 'generator_files/cookbooks/chef_server', tag: 'v0.3.0'
 
 group :integration do
   cookbook 'test', path: './test/fixtures/cookbooks/test'
