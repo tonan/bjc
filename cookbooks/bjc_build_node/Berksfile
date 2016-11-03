@@ -2,7 +2,7 @@ source 'https://supermarket.chef.io'
 
 metadata
 
-cookbook 'wombat', github: 'chef-cft/wombat', rel: 'cookbooks/wombat'
+cookbook 'wombat', github: 'chef-cft/wombat', rel: 'generator_files/cookbooks/wombat'
 cookbook 'build_node', github: 'chef-cft/wombat', rel: 'cookbooks/build_node'
 cookbook 'delivery_build', git: "https://github.com/andrewelizondo/delivery_build"
 cookbook 'delivery-base', git: "https://github.com/chef-cookbooks/delivery-base"

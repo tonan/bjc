@@ -2,7 +2,7 @@ source 'https://supermarket.chef.io'
 
 metadata
 
-cookbook 'wombat', github: 'chef-cft/wombat', rel: 'cookbooks/wombat'
+cookbook 'wombat', github: 'chef-cft/wombat', rel: 'generator_files/cookbooks/wombat'
 cookbook 'infranodes', github: 'chef-cft/wombat', rel: 'cookbooks/infranodes'
 
 group :integration do
