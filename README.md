@@ -7,12 +7,8 @@ Here you will find instructions on how to spin up a standard Chef Demo environme
 ---
 ## What is BJC?
 ---
-BJC stands for Blue Jean Committee. It's also the code name for the Chef Demo project. The different parts of the project are described below:
+BJC stands for Blue Jean Committee. It's also the code name for the Chef Demo project.
 
-* *Wombat:*  Wombat is a system for building standard Chef components from source code.  It is meant to be modular and used as the base for other projects, such as BJC.  The wombat project can be viewed here: https://github.com/chef-cft/wombat
-* *Packer:* Packer is open source software for building standard Virtual Machine images on various platforms.  It is used in BJC (and wombat) to build Amazon AMIs for use in demos.
-* *Test Kitchen:* Test kitchen configs are included with each cookbook in BJC.  These cookbooks all wrap functionality contained in the upstream Wombat project.  We build our Test Kitchen instances from a bare-bones OS.  The wombat cookbooks handle installation and basic setup, then the bjc_cookbook wrappers add extra functionality and settings appropriate for demos.
-* *Fixture Cookbooks:* A fixture cookbook contains recipes that can be added to a run list during testing, but not used in production environments.  This allows Test Kitchen to mock attributes and settings that may be required.  Each bjc-cookbook has a subdirectory called `test`.  Look in the `fixtures` subdirectory to see the test recipes.  You may see these recipes in the run_list in the .kitchen.yml.
 ---
 ## How do I spin up a demo?
 ---
@@ -21,7 +17,6 @@ BJC stands for Blue Jean Committee. It's also the code name for the Chef Demo pr
 2. Change into the bjc directory: `cd bjc`
 3. Set environment variables for your AWS SSH key name and path, like so.
     * Put these lines into your ~/.bashrc or ~/.zshrc if you want to make them permanent.
-4.  asdfasdfasdf
 
    ```bash
    export EC2_SSH_KEY_NAME=binamov-sa
@@ -43,11 +38,19 @@ BJC stands for Blue Jean Committee. It's also the code name for the Chef Demo pr
     * The IP is listed under your stack's outputs in the AWS CloudFormation Management Console.
     * Workstation credentials are pinned in #chef-demo-project.
     * Report any issues you find here:  [https://waffle.io/chef-cft/bjc](https://waffle.io/chef-cft/bjc)
+
 ---
 ## How do I contribute to the demo?
 ---
 This demo is built by wrapping the wombat project cookbooks and packer templates.
 You should take a little time and become familiar with wombat and how it works: [https://github.com/chef-cft/wombat](https://github.com/chef-cft/wombat)
+
+The different parts of the project are described below:
+
+* *Wombat:*  Wombat is a system for building standard Chef components from source code.  It is meant to be modular and used as the base for other projects, such as BJC.  The wombat project can be viewed here: https://github.com/chef-cft/wombat
+* *Packer:* Packer is open source software for building standard Virtual Machine images on various platforms.  It is used in BJC (and wombat) to build Amazon AMIs for use in demos.
+* *Test Kitchen:* Test kitchen configs are included with each cookbook in BJC.  These cookbooks all wrap functionality contained in the upstream Wombat project.  We build our Test Kitchen instances from a bare-bones OS.  The wombat cookbooks handle installation and basic setup, then the bjc_cookbook wrappers add extra functionality and settings appropriate for demos.
+* *Fixture Cookbooks:* A fixture cookbook contains recipes that can be added to a run list during testing, but not used in production environments.  This allows Test Kitchen to mock attributes and settings that may be required.  Each bjc-cookbook has a subdirectory called `test`.  Look in the `fixtures` subdirectory to see the test recipes.  You may see these recipes in the run_list in the .kitchen.yml.
 
 #### Prerequisites
 
@@ -66,8 +69,8 @@ You should take a little time and become familiar with wombat and how it works: 
 * Uninstall the wombat gem:  `chef gem uninstall wombat`
 * Install the necessary SSL certs and keys required to build new AMIs
 
-  Download the `keys.tar.gz` file that is pinned to the #chef-demo-project slack channel.  This tarball contains the SSL certs and keys that are required to build new AMIs with Packer and Test Kitchen.  You'll need to unpack this into six directories: the `test/fixtures/cookbooks/test/files/default` directory inside each of the bjc_automate, bjc_compliance, bjc_workstation, bjc_chef_server, bjc_infranodes, bjc_build_node cookbooks, and the packer/keys directory as well.  This only needs to be done once, and these files will be excluded from your git commits by the .gitignore file in the repository root directory. So for example, if you downloaded `keys.tar.gz` into your Downloads directory you could run the following scripticle:  
-    
+  Download the `keys.tar.gz` file that is pinned to the #chef-demo-project slack channel.  This tarball contains the SSL certs and keys that are required to build new AMIs with Packer and Test Kitchen.  You'll need to unpack this into six directories: the `test/fixtures/cookbooks/test/files/default` directory inside each of the bjc_automate, bjc_compliance, bjc_workstation, bjc_chef_server, bjc_infranodes, bjc_build_node cookbooks, and the packer/keys directory as well.  This only needs to be done once, and these files will be excluded from your git commits by the .gitignore file in the repository root directory. So for example, if you downloaded `keys.tar.gz` into your Downloads directory you could run the following scripticle:
+
   ```bash
   tar -zxvf ~/Downloads/keys.tar.gz -C cookbooks/bjc_compliance/test/fixtures/cookbooks/test/files/default/
   tar -zxvf ~/Downloads/keys.tar.gz -C cookbooks/bjc_automate/test/fixtures/cookbooks/test/files/default/
