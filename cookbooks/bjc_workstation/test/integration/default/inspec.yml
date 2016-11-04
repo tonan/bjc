@@ -1,0 +1,10 @@
+name: bjc-workstation-tests
+title: BJC Workstation Integration Tests
+maintainer: The Aristocrats
+copyright: All Rights Reserved
+copyright_email: saleseng@chef.io
+license: Apache 2 license
+summary: Tests for bjc_workstation cookbook
+version: 0.1.0
+supports:
+  - inspec: '>= 0.33.2'
