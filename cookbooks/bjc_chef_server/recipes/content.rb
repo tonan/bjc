@@ -25,7 +25,6 @@ EOS
 end
 
 %w(
-  site-config
   bjc-ecommerce
   bjc_bass
 ).each do |cookbook|
