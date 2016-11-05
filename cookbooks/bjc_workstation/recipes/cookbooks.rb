@@ -22,11 +22,6 @@ node['bjc_workstation']['cookbooks'].each do |cookbook|
   end
 end
 
-template "#{home}/cookbooks/site-config/.kitchen.yml" do
-  action :create
-  source 'kitchen_siteconfig.yml.erb'
-end
-
 template "#{home}/cookbooks/bjc-ecommerce/.kitchen.yml" do
   action :create
   source 'kitchen_ecom.yml.erb'
