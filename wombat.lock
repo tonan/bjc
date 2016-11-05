@@ -10,7 +10,7 @@
   ],
   "ttl": 8,
   "linux": "ubuntu",
-  "version": "0.2.6",
+  "version": "0.9.10",
   "products": {
     "chef": "stable-12.13.37",
     "chef-server": "stable-12.9.1",
@@ -29,13 +29,6 @@
     "count": 1
   },
   "infranodes": {
-    "acceptance": {
-      "environment": "acceptance-automate-demo-automate-site-config-master",
-      "run_list": [
-        "recipe[site-config]",
-        "recipe[bjc_bass]"
-      ]
-    },
     "ecomacceptance": {
       "environment": "acceptance-automate-demo-automate-bjc-ecommerce-master",
       "run_list": [
@@ -46,7 +39,6 @@
     "delivered": {
       "environment": "delivered",
       "run_list": [
-        "recipe[site-config]",
         "recipe[bjc-ecommerce]",
         "recipe[bjc_bass]"
       ]
@@ -54,7 +46,6 @@
     "rehearsal": {
       "environment": "rehearsal",
       "run_list": [
-        "recipe[site-config]",
         "recipe[bjc-ecommerce]",
         "recipe[bjc_bass]"
       ]
@@ -62,7 +53,6 @@
     "union": {
       "environment": "union",
       "run_list": [
-        "recipe[site-config]",
         "recipe[bjc-ecommerce]",
         "recipe[bjc_bass]"
       ]
@@ -98,27 +88,24 @@
   },
   "amis": {
     "us-west-2": {
-      "bjc-automate": "ami-8df253ed",
+      "automate": "ami-d0ef4fb0",
       "build-node": {
-        "node": "ami-9b9134fb",
-        "1": "ami-83f253e3",
-        "2": "ami-2ef7564e",
-        "3": "ami-68f75608"
+        "1": "ami-4df1512d",
+        "2": "ami-bbef4fdb",
+        "3": "ami-54ef4f34"
       },
-      "bjc-chef-server": "ami-7bf4551b",
-      "bjc-compliance": "ami-538d2c33",
-      "workstation": {
-        "workstation": null,
-        "1": "ami-1d95347d"
-      },
+      "chef-server": "ami-0ffd5d6f",
+      "compliance": "ami-4aef4f2a",
       "infranodes": {
-        "acceptance": "ami-ecf3528c",
-        "delivered": "ami-a8f756c8",
-        "ecomacceptance": "ami-e3f35283",
-        "rehearsal": "ami-f4f25394",
-        "union": "ami-72f45512"
+        "delivered": "ami-89ee4ee9",
+        "ecomacceptance": "ami-a9f252c9",
+        "rehearsal": "ami-58f05038",
+        "union": "ami-8eee4eee"
+      },
+      "workstation": {
+        "1": "ami-e6f45486"
       }
     }
   },
-  "last_updated": "20161103093532"
+  "last_updated": "20161105060050"
 }

@@ -11,7 +11,7 @@ ttl: 8
 linux: ubuntu
 # Must meet the minimum Microsoft Complexity Requirements
 # https://technet.microsoft.com/en-us/library/hh994562(v=ws.11).aspx)
-version: 0.2.6
+version: 0.9.10
 products:
   chef: stable-12.13.37
   chef-server: stable-12.9.1
@@ -27,11 +27,6 @@ workstations:
   password: 'RL9@T40BTmXh'
   count: 1
 infranodes:
-  acceptance:
-    environment: acceptance-automate-demo-automate-site-config-master
-    run_list:
-      - recipe[site-config]
-      - recipe[bjc_bass]
   ecomacceptance:
     environment: acceptance-automate-demo-automate-bjc-ecommerce-master
     run_list:
@@ -40,19 +35,16 @@ infranodes:
   delivered:
     environment: delivered
     run_list:
-      - recipe[site-config]
       - recipe[bjc-ecommerce]
       - recipe[bjc_bass]
   rehearsal:
     environment: rehearsal
     run_list:
-      - recipe[site-config]
       - recipe[bjc-ecommerce]
       - recipe[bjc_bass]
   union:
     environment: union
     run_list:
-      - recipe[site-config]
       - recipe[bjc-ecommerce]
       - recipe[bjc_bass]
 conf:
