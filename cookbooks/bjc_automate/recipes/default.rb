@@ -9,7 +9,7 @@ include_recipe 'automate::default'
 cookbook_file '/tmp/delivery_backup.tar' do
   source 'delivery_backup.tar'
   notifies :run, 'execute[restore backup data into automate]'
-  checksum 'e0196441114e86c6c94b50cae2a83c9c573fecba9709e0aab3fb2f2bc56bad32'
+  checksum 'bb28ec8970c74e9e68fabf2a3eec8c867217f42b446cce8336b25163a7a37ef2'
 end
 
 execute 'restore backup data into automate' do
