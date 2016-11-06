@@ -29,3 +29,6 @@ suites:
     run_list:
       - recipe[bjc-ecommerce::default]
     attributes:
+    verifier:
+      inspec_tests:
+      - test/compliance/ssl_benchmark.rb

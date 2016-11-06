@@ -6,6 +6,7 @@ ssh compliance 'sudo mv /tmp/CHEF_GATE_COMPLIANCE_SECRET /opt/chef-compliance/sv
 ssh compliance 'sudo cp /opt/chef-compliance/sv/core/env/OIDC_CLIENT_ID /tmp && sudo chmod +r /tmp/OIDC_CLIENT_ID'
 scp -3 compliance:/tmp/OIDC_CLIENT_ID chef:/tmp/CHEF_GATE_OIDC_CLIENT_ID
 ssh chef 'sudo mv /tmp/CHEF_GATE_OIDC_CLIENT_ID /opt/opscode/sv/chef_gate/env/CHEF_GATE_OIDC_CLIENT_ID && sudo /opt/opscode/embedded/bin/sv restart chef_gate'
+sleep 20
 echo "Preparing AURD nodes for demo..."
 knife ssh *:* sudo chef-client -a name
 echo "Importing infrastructure SSL certs..."
