@@ -10,11 +10,11 @@
   ],
   "ttl": 8,
   "linux": "ubuntu",
-  "version": "0.9.10",
+  "version": "0.9.11",
   "products": {
     "chef": "stable-12.13.37",
     "chef-server": "stable-12.9.1",
-    "chefdk": "stable-0.16.28",
+    "chefdk": "stable-0.18.30",
     "compliance": "stable-1.6.8",
     "automate": "stable-0.5.204",
     "push-jobs-server": "stable-latest",
@@ -88,24 +88,24 @@
   },
   "amis": {
     "us-west-2": {
-      "automate": "ami-d0ef4fb0",
+      "automate": "ami-52ad0d32",
       "build-node": {
-        "1": "ami-4df1512d",
-        "2": "ami-bbef4fdb",
-        "3": "ami-54ef4f34"
+        "1": "ami-5fae0e3f",
+        "2": "ami-4fab0b2f",
+        "3": "ami-f2ac0c92"
       },
-      "chef-server": "ami-0ffd5d6f",
-      "compliance": "ami-4aef4f2a",
+      "chef-server": "ami-6eb1110e",
+      "compliance": "ami-2baf0f4b",
       "infranodes": {
-        "delivered": "ami-89ee4ee9",
-        "ecomacceptance": "ami-a9f252c9",
-        "rehearsal": "ami-58f05038",
-        "union": "ami-8eee4eee"
+        "delivered": "ami-afb010cf",
+        "ecomacceptance": "ami-50ad0d30",
+        "rehearsal": "ami-aeb010ce",
+        "union": "ami-a5af0fc5"
       },
       "workstation": {
-        "1": "ami-e6f45486"
+        "1": "ami-3fb0105f"
       }
     }
   },
-  "last_updated": "20161105060050"
+  "last_updated": "20161106054314"
 }
