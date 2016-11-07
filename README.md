@@ -24,6 +24,7 @@ BJC stands for Blue Jean Committee. It's also the code name for the Chef Demo pr
    ```
 
 #### Next, follow these steps to spin up your own dev/test environment:
+The demo environment will provision in AWS fairly quickly; within a few minutes.  However, there is a start-up script, which configures the demo environment, that also needs to be run.  This script can take 10 minutes or more to complete.  Be sure to give yourself plenty of time prior to the start of your demo for the environment to spin up and for the startup script to run to completion.
 
 1.  `git pull` to fetch the latest changes.
 2.  Use the `build_demo.sh` script in the ./bin directory to stand up the latest stack in us-west-2.
@@ -34,9 +35,12 @@ BJC stands for Blue Jean Committee. It's also the code name for the Chef Demo pr
   ./bin/build_demo.sh 0.2.1 RobCo scarolan_sa 4 'Sean Carolan' 'Solutions Architects'
   ```
 
-3.  Log onto your stack's workstation and get your demo on!
+3.  Log onto your stack's workstation
     * The IP is listed under your stack's outputs in the AWS CloudFormation Management Console.
     * Workstation credentials are pinned in #chef-demo-project.
+
+4.  Run the "start me up" script on the desktop and get your demo on!
+    * This is the script that can take 10+ minutes to complete
     * Report any issues you find here:  [https://waffle.io/chef-cft/bjc](https://waffle.io/chef-cft/bjc)
 
 ---
