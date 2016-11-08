@@ -77,6 +77,10 @@ control 'bjc-configfiles' do
     it { should be_file }
     its('content') { should match('sg-2560a741')}
   end
+  describe file('C:\Users\Administrator\user_data') do
+    it { should be_file }
+    its('content') { should match('Defaults:centos !requiretty')}
+  end
   describe file('C:\Users\Administrator\Start_Demo.ps1') do
     it { should be_file }
     its('content') { should match('Restart the jankmobile')}
