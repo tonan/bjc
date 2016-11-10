@@ -89,23 +89,23 @@
   "amis": {
     "us-west-2": {
       "workstation": {
-        "1": "ami-4e68cb2e"
+        "1": "ami-3b75d65b"
       },
-      "automate": "ami-2f6fcc4f",
+      "automate": "ami-b671d2d6",
       "build-node": {
-        "1": "ami-5566c535",
-        "3": "ami-0968cb69",
-        "2": "ami-1668cb76"
+        "1": "ami-a170d3c1",
+        "3": "ami-2676d546",
+        "2": "ami-3271d252"
       },
       "infranodes": {
-        "rehearsal": "ami-966bc8f6",
-        "ecomacceptance": "ami-b06ac9d0",
-        "delivered": "ami-ee6bc88e",
-        "union": "ami-b16ac9d1"
+        "rehearsal": "ami-d26ccfb2",
+        "ecomacceptance": "ami-ab71d2cb",
+        "delivered": "ami-3470d354",
+        "union": "ami-4d73d02d"
       },
-      "compliance": "ami-bc6ac9dc",
-      "chef-server": "ami-4264c722"
+      "compliance": "ami-ae70d3ce",
+      "chef-server": "ami-9e6fccfe"
     }
   },
-  "last_updated": "20161110164517"
+  "last_updated": "20161110195932"
 }
