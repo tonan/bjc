@@ -41,57 +41,57 @@
     },
     "ChefServerAMI": {
       "Type": "String",
-      "Default": "ami-9e6fccfe",
+      "Default": "ami-bc02a1dc",
       "Description": "AMI ID for the Chef Server"
     },
     "ComplianceAMI": {
       "Type": "String",
-      "Default": "ami-ae70d3ce",
+      "Default": "ami-8001a2e0",
       "Description": "AMI ID for the Compliance Server"
     },
     "BuildNode1AMI": {
       "Type": "String",
-      "Default": "ami-a170d3c1",
+      "Default": "ami-1a00a37a",
       "Description": "AMI ID for Build Node 1"
     },
     "BuildNode2AMI": {
       "Type": "String",
-      "Default": "ami-3271d252",
+      "Default": "ami-5903a039",
       "Description": "AMI ID for Build Node 2"
     },
     "BuildNode3AMI": {
       "Type": "String",
-      "Default": "ami-2676d546",
+      "Default": "ami-be02a1de",
       "Description": "AMI ID for Build Node 3"
     },
     "deliveredAMI": {
       "Type": "String",
-      "Default": "ami-3470d354",
+      "Default": "ami-4d3c9f2d",
       "Description": "AMI ID for delivered"
     },
     "ecomacceptanceAMI": {
       "Type": "String",
-      "Default": "ami-ab71d2cb",
+      "Default": "ami-5d02a13d",
       "Description": "AMI ID for ecomacceptance"
     },
     "rehearsalAMI": {
       "Type": "String",
-      "Default": "ami-d26ccfb2",
+      "Default": "ami-5b03a03b",
       "Description": "AMI ID for rehearsal"
     },
     "unionAMI": {
       "Type": "String",
-      "Default": "ami-4d73d02d",
+      "Default": "ami-f402a194",
       "Description": "AMI ID for union"
     },
     "WindowsWorkstation1AMI": {
       "Type": "String",
-      "Default": "ami-3b75d65b",
+      "Default": "ami-ce03a0ae",
       "Description": "AMI ID for the Windows Workstation"
     },
     "AutomateAMI": {
       "Type": "String",
-      "Default": "ami-b671d2d6",
+      "Default": "ami-9d3c9ffd",
       "Description": "AMI ID for the Automate Server"
     }
   },
