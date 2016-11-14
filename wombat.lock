@@ -17,7 +17,7 @@
     "chefdk": "stable-0.18.30",
     "compliance": "stable-1.6.8",
     "automate": "stable-0.5.204",
-    "push-jobs-server": "stable-latest",
+    "push-jobs-server": "stable-1.1.6",
     "manage": "stable-2.4.3"
   },
   "build-nodes": {
@@ -89,23 +89,23 @@
   "amis": {
     "us-west-2": {
       "workstation": {
-        "1": "ami-ce03a0ae"
+        "1": null
       },
-      "automate": "ami-9d3c9ffd",
+      "automate": "ami-3b4ae85b",
       "build-node": {
-        "1": "ami-1a00a37a",
-        "3": "ami-be02a1de",
-        "2": "ami-5903a039"
+        "1": "ami-db41e3bb",
+        "3": "ami-8d47e5ed",
+        "2": "ami-3645e756"
       },
       "infranodes": {
-        "rehearsal": "ami-5b03a03b",
-        "ecomacceptance": "ami-5d02a13d",
-        "delivered": "ami-4d3c9f2d",
-        "union": "ami-f402a194"
+        "rehearsal": "ami-d046e4b0",
+        "ecomacceptance": "ami-f146e491",
+        "delivered": "ami-314ae851",
+        "union": "ami-d146e4b1"
       },
-      "compliance": "ami-8001a2e0",
-      "chef-server": "ami-bc02a1dc"
+      "compliance": "ami-a445e7c4",
+      "chef-server": "ami-0c4be96c"
     }
   },
-  "last_updated": "20161111182023"
+  "last_updated": "20161114200629"
 }
