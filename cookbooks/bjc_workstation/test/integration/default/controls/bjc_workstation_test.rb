@@ -65,10 +65,6 @@ control 'bjc-configfiles' do
     it { should be_file }
     its('content') { should match('{"ssl": {"verify": false}}')}
   end
-  describe file('C:\Users\Administrator\cookbooks\site-config\.kitchen.yml') do
-    it { should be_file }
-    its('content') { should match('sg-2560a741')}
-  end
   describe file('C:\Users\Administrator\cookbooks\bjc-ecommerce\.kitchen.yml') do
     it { should be_file }
     its('content') { should match('sg-2560a741')}
@@ -80,6 +76,10 @@ control 'bjc-configfiles' do
   describe file('C:\Users\Administrator\Desktop\Test_Kitchen\kitchen_linux.yml') do
     it { should be_file }
     its('content') { should match('sg-2560a741')}
+  end
+  describe file('C:\Users\Administrator\user_data') do
+    it { should be_file }
+    its('content') { should match('Defaults:centos !requiretty')}
   end
   describe file('C:\Users\Administrator\Start_Demo.ps1') do
     it { should be_file }
@@ -97,7 +97,7 @@ end
 
 control "bjc-cookbooks" do
   title "Required cookbooks are downloaded from S3"
-  cookbooks = %w(site-config.zip bjc-ecommerce.zip bjc_bass.zip bass_web.zip)
+  cookbooks = %w(bjc-ecommerce.zip bjc_bass.zip)
   cookbooks.each do |cb|
     describe file("C:\\Users\\Administrator\\cookbooks\\#{cb}") do
       it { should be_file }

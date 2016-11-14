@@ -12,7 +12,7 @@ describe 'bjc_workstation::cookbooks' do
   context 'When all attributes are default, on Windows Server 2012R2 platform' do
     let(:chef_run) do
       ChefSpec::ServerRunner.new do |node|
-        node.normal['bjc_workstation']['cookbooks'] = ['bass_web', 'site-config', 'bjc-ecommerce', 'bjc_bass']
+        node.normal['bjc_workstation']['cookbooks'] = ['bjc-ecommerce', 'bjc_bass']
       end.converge(described_recipe)
     end
 
@@ -21,14 +21,12 @@ describe 'bjc_workstation::cookbooks' do
     end
 
     it 'downloads the payload cookbooks' do
-      expect(chef_run).to create_remote_file("#{home}/cookbooks/bass_web.zip")
-      expect(chef_run).to create_remote_file("#{home}/cookbooks/site-config.zip")
       expect(chef_run).to create_remote_file("#{home}/cookbooks/bjc-ecommerce.zip")
       expect(chef_run).to create_remote_file("#{home}/cookbooks/bjc_bass.zip")
     end
 
-    it 'creates the .kitchen.yml file for site-config' do
-      expect(chef_run).to render_file("#{home}/cookbooks/site-config/.kitchen.yml").with_content('sg-2560a741')
+    it 'creates the .kitchen.yml file for bjc-ecommerce' do
+      expect(chef_run).to render_file("#{home}/cookbooks/bjc-ecommerce/.kitchen.yml").with_content('sg-2560a741')
     end
 
     it 'converges successfully' do

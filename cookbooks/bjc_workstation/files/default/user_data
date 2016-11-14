@@ -1,0 +1,6 @@
+#!/bin/bash
+echo 'Defaults:centos !requiretty' > /etc/sudoers.d/888-centos-cloud-init-requiretty
+setenforce 0
+echo -e "SELINUX=disabled\nSELINUXTYPE=targeted\nSETLOCALDEFS=0" > /etc/sysconfig/selinux
+service iptables stop
+chkconfig iptables off

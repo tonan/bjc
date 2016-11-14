@@ -10,14 +10,14 @@
   ],
   "ttl": 8,
   "linux": "ubuntu",
-  "version": "0.2.6",
+  "version": "0.9.11",
   "products": {
     "chef": "stable-12.13.37",
     "chef-server": "stable-12.9.1",
-    "chefdk": "stable-0.16.28",
+    "chefdk": "stable-0.18.30",
     "compliance": "stable-1.6.8",
     "automate": "stable-0.5.204",
-    "push-jobs-server": "stable-latest",
+    "push-jobs-server": "stable-1.1.6",
     "manage": "stable-2.4.3"
   },
   "build-nodes": {
@@ -29,13 +29,6 @@
     "count": 1
   },
   "infranodes": {
-    "acceptance": {
-      "environment": "acceptance-automate-demo-automate-site-config-master",
-      "run_list": [
-        "recipe[site-config]",
-        "recipe[bjc_bass]"
-      ]
-    },
     "ecomacceptance": {
       "environment": "acceptance-automate-demo-automate-bjc-ecommerce-master",
       "run_list": [
@@ -46,7 +39,6 @@
     "delivered": {
       "environment": "delivered",
       "run_list": [
-        "recipe[site-config]",
         "recipe[bjc-ecommerce]",
         "recipe[bjc_bass]"
       ]
@@ -54,7 +46,6 @@
     "rehearsal": {
       "environment": "rehearsal",
       "run_list": [
-        "recipe[site-config]",
         "recipe[bjc-ecommerce]",
         "recipe[bjc_bass]"
       ]
@@ -62,7 +53,6 @@
     "union": {
       "environment": "union",
       "run_list": [
-        "recipe[site-config]",
         "recipe[bjc-ecommerce]",
         "recipe[bjc_bass]"
       ]
@@ -98,27 +88,24 @@
   },
   "amis": {
     "us-west-2": {
-      "bjc-automate": "ami-8df253ed",
-      "build-node": {
-        "node": "ami-9b9134fb",
-        "1": "ami-83f253e3",
-        "2": "ami-2ef7564e",
-        "3": "ami-68f75608"
-      },
-      "bjc-chef-server": "ami-7bf4551b",
-      "bjc-compliance": "ami-538d2c33",
       "workstation": {
-        "workstation": null,
-        "1": "ami-1d95347d"
+        "1": null
+      },
+      "automate": "ami-3b4ae85b",
+      "build-node": {
+        "1": "ami-db41e3bb",
+        "3": "ami-8d47e5ed",
+        "2": "ami-3645e756"
       },
       "infranodes": {
-        "acceptance": "ami-ecf3528c",
-        "delivered": "ami-a8f756c8",
-        "ecomacceptance": "ami-e3f35283",
-        "rehearsal": "ami-f4f25394",
-        "union": "ami-72f45512"
-      }
+        "rehearsal": "ami-d046e4b0",
+        "ecomacceptance": "ami-f146e491",
+        "delivered": "ami-314ae851",
+        "union": "ami-d146e4b1"
+      },
+      "compliance": "ami-a445e7c4",
+      "chef-server": "ami-0c4be96c"
     }
   },
-  "last_updated": "20161103093532"
+  "last_updated": "20161114200629"
 }

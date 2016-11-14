@@ -34,9 +34,9 @@ describe 'bjc_chef_server::content' do
       expect(chef_run).to render_file("#{home}/.chef/config.rb").with_content("#{home}/cookbooks")
     end
 
-    it 'runs berks install and upload for site-config' do
-      expect(chef_run).to run_execute('berks install site-config')
-      expect(chef_run).to run_execute('berks upload site-config')
+    it 'runs berks install and upload for bjc-ecommerce' do
+      expect(chef_run).to run_execute('berks install bjc-ecommerce')
+      expect(chef_run).to run_execute('berks upload bjc-ecommerce')
     end
 
     it 'converges successfully' do

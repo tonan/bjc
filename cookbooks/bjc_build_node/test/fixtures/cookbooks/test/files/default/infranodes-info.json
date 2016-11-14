@@ -1,6 +1,42 @@
-{
-	"acceptance" : [ "recipe[push-jobs]", "recipe[site-config]" ],
-	"union" : [ "recipe[push-jobs]", "recipe[site-config]" ],
-	"rehearsal" : [ "recipe[push-jobs]", "recipe[site-config]" ],
-	"delivered" : [ "recipe[push-jobs]", "recipe[site-config]" ]
-}
+[
+  [
+    "delivered",
+    {
+      "environment": "delivered",
+      "run_list": [
+        "recipe[bjc-ecommerce]",
+        "recipe[bjc_bass]"
+      ]
+    }
+  ],
+  [
+    "ecomacceptance",
+    {
+      "environment": "acceptance-automate-demo-automate-bjc-ecommerce-master",
+      "run_list": [
+        "recipe[bjc-ecommerce]",
+        "recipe[bjc_bass]"
+      ]
+    }
+  ],
+  [
+    "rehearsal",
+    {
+      "environment": "rehearsal",
+      "run_list": [
+        "recipe[bjc-ecommerce]",
+        "recipe[bjc_bass]"
+      ]
+    }
+  ],
+  [
+    "union",
+    {
+      "environment": "union",
+      "run_list": [
+        "recipe[bjc-ecommerce]",
+        "recipe[bjc_bass]"
+      ]
+    }
+  ]
+]
