@@ -18,7 +18,7 @@ products:
   chefdk: stable-0.18.30
   compliance: stable-1.6.8
   automate: stable-0.5.204
-  push-jobs-server: stable-latest
+  push-jobs-server: stable-1.1.6
   manage: stable-2.4.3
 build-nodes:
   count: 3
