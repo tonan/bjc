@@ -10,7 +10,7 @@
   ],
   "ttl": 8,
   "linux": "ubuntu",
-  "version": "0.9.11",
+  "version": "0.9.12",
   "products": {
     "chef": "stable-12.13.37",
     "chef-server": "stable-12.9.1",
@@ -89,9 +89,9 @@
   "amis": {
     "us-west-2": {
       "workstation": {
-        "1": null
+        "1": "ami-ce03a0ae"
       },
-      "automate": "ami-3b4ae85b",
+      "automate": "ami-8555f7e5",
       "build-node": {
         "1": "ami-db41e3bb",
         "3": "ami-8d47e5ed",
@@ -104,8 +104,8 @@
         "union": "ami-d146e4b1"
       },
       "compliance": "ami-a445e7c4",
-      "chef-server": "ami-0c4be96c"
+      "chef-server": "ami-2e5bf94e"
     }
   },
-  "last_updated": "20161114200629"
+  "last_updated": "20161114230622"
 }
