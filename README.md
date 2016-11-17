@@ -4,6 +4,8 @@
 
 Here you will find instructions on how to spin up a standard Chef Demo environment in AWS, as well as instructions on how you can contribute to demo development.  This document assumes you have basic familiarity with AWS, Cloudformation, and SSH keys.
 
+The talk track script for the standard demo is located here: https://github.com/chef-cft/bjc/blob/master/SSL_Demo_Script.md
+
 ---
 ## What is BJC?
 ---
