@@ -2,8 +2,8 @@ source 'https://supermarket.chef.io'
 
 metadata
 
-cookbook 'wombat', github: 'chef-cft/wombat', rel: 'generator_files/cookbooks/wombat', tag: 'v0.3.0'
-cookbook 'build_node', github: 'chef-cft/wombat', rel: 'generator_files/cookbooks/build_node', tag: 'v0.3.0'
+cookbook 'wombat', github: 'chef-cft/wombat', rel: 'generator_files/cookbooks/wombat', tag: 'v0.3.3'
+cookbook 'build_node', github: 'chef-cft/wombat', rel: 'generator_files/cookbooks/build_node', tag: 'v0.3.3'
 # This probably ought to be moved into chef-cft
 cookbook 'delivery_build', git: "https://github.com/andrewelizondo/delivery_build"
 cookbook 'delivery-base', git: "https://github.com/chef-cookbooks/delivery-base"
