@@ -8,7 +8,7 @@ scp -3 compliance:/tmp/OIDC_CLIENT_ID chef:/tmp/CHEF_GATE_OIDC_CLIENT_ID
 ssh chef 'sudo mv /tmp/CHEF_GATE_OIDC_CLIENT_ID /opt/opscode/sv/chef_gate/env/CHEF_GATE_OIDC_CLIENT_ID && sudo /opt/opscode/embedded/bin/sv restart chef_gate'
 sleep 60
 echo "Preparing AURD nodes for demo..."
-knife ssh *:* sudo chef-client -a name
+knife job start chef-client -s *:*
 echo "Importing infrastructure SSL certs..."
 scp ecomacceptance:/home/ubuntu/ecomacceptance.automate-demo.com.crt /c/Users/Administrator/Downloads/
 scp union:/home/ubuntu/union.automate-demo.com.crt /c/Users/Administrator/Downloads/
@@ -19,7 +19,7 @@ Import-Certificate -FilePath C:\Users\Administrator\Downloads\union.automate-dem
 Import-Certificate -FilePath C:\Users\Administrator\Downloads\rehearsal.automate-demo.com.crt -CertStoreLocation Cert:/LocalMachine/Root
 Import-Certificate -FilePath C:\Users\Administrator\Downloads\delivered.automate-demo.com.crt -CertStoreLocation Cert:/LocalMachine/Root
 echo "second run to report compliance results"
-knife ssh *:* sudo chef-client -a name
+knife job start chef-client -s *:*
 echo "Restart the jankmobile"
 ssh automate 'sudo delivery-ctl restart'
 echo "Starting cmder..."
