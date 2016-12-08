@@ -6,7 +6,7 @@
 
 execute "build-the-things" do
   command <<-EOH
-  
+    echo "¯\_(ツ)_/¯"
   EOH
   cwd node['delivery']['workspace_path']
 end
