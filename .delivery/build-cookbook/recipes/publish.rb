@@ -8,6 +8,7 @@ log node['delivery']['workspace_path']
 
 execute "build-the-things" do
   command "wombat build --parallel"
+  live_stream True
   cwd "#{node['delivery']['workspace_path']}/bjc-automate-server-5g9aorii6yvcetdi.us-west-2.opsworks-cm.io/default/chef-sas/bjc/master/build/publish/repo"
   action :run
 end
