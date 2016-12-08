@@ -8,6 +8,6 @@ log node['delivery']['workspace_path']
 
 execute "build-the-things" do
   command "wombat --version"
-  cwd node['delivery']['workspace_path']
+  cwd "#{node['delivery']['workspace_path']}/bjc-automate-server-5g9aorii6yvcetdi.us-west-2.opsworks-cm.io/default/chef-sas/bjc/master/build/publish/repo"
   action :run
 end
