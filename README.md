@@ -89,6 +89,8 @@ The different parts of the project are described below:
 
 #### Contributing
 
+##### NOTE: This will be changing shorlty as we re-enable a workflow pipeline. If you're unsure of whether you're clear to push a new change, contact the team in #chef-demo-project
+
 1. Visit the waffle.io board for this repository to see all open issues [https://waffle.io/chef-cft/bjc](https://waffle.io/chef-cft/bjc)
 2. Either pick an existing Kanban card or create a new one.
     * Read it and make sure you understand what you are supposed to do.
