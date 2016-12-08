@@ -4,6 +4,12 @@
 #
 # Copyright (c) 2016 The Authors, All Rights Reserved.
 
+if node['platform'] == 'ubuntu'
+  apt_update 'update ubuntu packages' do
+    action :update
+  end
+end
+
 include_recipe 'packer'
 chef_gem 'wombat-cli'
 
