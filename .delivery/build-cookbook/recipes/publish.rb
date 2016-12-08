@@ -5,9 +5,7 @@
 # Copyright (c) 2016 The Authors, All Rights Reserved.
 
 execute "build-the-things" do
-  command <<-EOH
-    echo "¯\_(ツ)_/¯"
-    wombat build --parallel
-  EOH
+  command 'wombat build --parallel'
   cwd node['delivery']['workspace_path']
+  action :run
 end

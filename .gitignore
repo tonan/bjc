@@ -2,6 +2,7 @@
 vendored-cookbooks
 packer/keys
 .delivery/cli.toml
+.delivery/build-cookbook/.kitchen
 chef.crt
 chef.key
 automate.crt
