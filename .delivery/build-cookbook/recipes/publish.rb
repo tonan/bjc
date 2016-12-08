@@ -7,6 +7,7 @@
 execute "build-the-things" do
   command <<-EOH
     echo "¯\_(ツ)_/¯"
+    wombat build --parallel
   EOH
   cwd node['delivery']['workspace_path']
 end
