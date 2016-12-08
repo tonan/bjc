@@ -5,7 +5,7 @@
 # Copyright (c) 2016 The Authors, All Rights Reserved.
 
 execute "build-the-things" do
-  command "cd #{['delivery']['workspace_path']}; wombat build --parallel"
+  command "wombat --version"
   cwd node['delivery']['workspace_path']
   action :run
 end
