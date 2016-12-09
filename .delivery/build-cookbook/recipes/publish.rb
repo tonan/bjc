@@ -8,14 +8,14 @@
 
 # Build new Chef Demo AMIs and associated Cloudformation Template
 execute "build-the-things" do
-  command "/var/opt/delivery/workspace/load_aws_env_vars.sh; wombat build --parallel"
+  command "/var/opt/delivery/workspace/wombat_build.sh"
   live_stream true
   cwd "#{node['delivery']['workspace_path']}/bjc-automate-server-5g9aorii6yvcetdi.us-west-2.opsworks-cm.io/default/chef-sas/bjc/master/build/publish/repo"
   action :run
 end
 
 execute "generate-json" do
-  command "source /var/opt/delivery/workspace/load_aws_env_vars.sh; wombat update"
+  command "source /var/opt/delivery/workspace/wombat_update.sh"
   live_stream true
   cwd "#{node['delivery']['workspace_path']}/bjc-automate-server-5g9aorii6yvcetdi.us-west-2.opsworks-cm.io/default/chef-sas/bjc/master/build/publish/repo"
   action :run
