@@ -14,7 +14,7 @@ linux: ubuntu
 version: 1.1.2
 products:
   chef: stable-12.13.37
-  chef-server: stable-12.11.1
+  chef-server: stable-12.10.0
   chefdk: stable-0.18.30
   compliance: stable-1.6.8
   automate: stable-0.6.7
