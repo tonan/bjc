@@ -4,7 +4,7 @@
 #
 # Copyright (c) 2016 The Authors, All Rights Reserved.
 
-log node['delivery']['workspace_path']
+# log node['delivery']['workspace_path']
 
 # Build new Chef Demo AMIs and associated Cloudformation Template
 execute "build-the-things" do
