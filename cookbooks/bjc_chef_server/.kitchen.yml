@@ -32,6 +32,7 @@ suites:
   - name: default
     run_list:
       - recipe[test::default]
+      - recipe[wombat::etc_hosts]
       - recipe[bjc_chef_server::default]
     attributes:
       demo:
