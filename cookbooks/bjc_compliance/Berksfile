@@ -2,8 +2,8 @@ source 'https://supermarket.chef.io'
 
 metadata
 
-cookbook 'wombat', github: 'chef-cft/wombat', rel: 'generator_files/cookbooks/wombat', tag: 'v0.3.3'
-cookbook 'compliance', github: 'chef-cft/wombat', rel: 'generator_files/cookbooks/compliance', tag: 'v0.3.3'
+cookbook 'wombat', github: 'chef-cft/wombat', rel: 'generator_files/cookbooks/wombat', tag: 'v0.3.4'
+cookbook 'compliance', github: 'chef-cft/wombat', rel: 'generator_files/cookbooks/compliance', tag: 'v0.3.4'
 # This should be moved into chef-cft
 cookbook 'ccc', git: 'https://github.com/cheeseplus/ccc.git', branch: "updates"
 cookbook 'audit', git: 'https://github.com/chef-cookbooks/audit', branch: "master"

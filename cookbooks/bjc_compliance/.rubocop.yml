@@ -1,7 +1,7 @@
 AllCops:
   Exclude:
-    - 'spec/**/*'
-    - 'test/**/*'
+    - test/**/*
+    - spec/**/*
 LineLength:
   Enabled: false
 StringLiterals:
