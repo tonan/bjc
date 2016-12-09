@@ -1,8 +1,7 @@
 AllCops:
   Exclude:
-    - 'recipes/chef_gate.rb'
-    - 'spec/**/*'
-    - 'test/**/*'
+    - test/**/*
+    - spec/**/*
 LineLength:
   Enabled: false
 StringLiterals:
