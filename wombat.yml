@@ -11,7 +11,7 @@ ttl: 8
 linux: ubuntu
 # Must meet the minimum Microsoft Complexity Requirements
 # https://technet.microsoft.com/en-us/library/hh994562(v=ws.11).aspx)
-version: 1.1.0
+version: 1.1.1
 products:
   chef: stable-12.13.37
   chef-server: stable-12.9.1
@@ -61,7 +61,7 @@ aws:
   iam_roles: ['testKitchenAndKnifeEc2']
   source_ami:
     ubuntu: ami-70b67d10
-    windows: ami-4428fa24
+    windows: ami-1c7ad77c
     centos: ami-6d1c2007
 gce:
   zone: us-east1-b
