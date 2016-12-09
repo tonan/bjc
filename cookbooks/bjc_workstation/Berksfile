@@ -2,9 +2,9 @@ source 'https://supermarket.chef.io'
 
 metadata
 
-cookbook 'workstation', git: 'git@github.com:chef-cft/wombat.git', rel: 'generator_files/cookbooks/workstation', tag: 'v0.3.3'
+cookbook 'workstation', git: 'git@github.com:chef-cft/wombat.git', rel: 'generator_files/cookbooks/workstation', tag: 'v0.3.4'
 
-cookbook 'wombat', git: 'git@github.com:chef-cft/wombat.git', rel: 'generator_files/cookbooks/wombat', tag: 'v0.3.3'
+cookbook 'wombat', git: 'git@github.com:chef-cft/wombat.git', rel: 'generator_files/cookbooks/wombat', tag: 'v0.3.4'
 
 group :integration do
   cookbook 'test', path: './test/fixtures/cookbooks/test'
