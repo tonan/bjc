@@ -20,7 +20,8 @@ describe 'bjc_chef_server::default' do
       expect(chef_run).to include_recipe('bjc_chef_server::content')
       expect(chef_run).to include_recipe('bjc_chef_server::chef_gate')
       expect(chef_run).to include_recipe('wombat::authorized-keys')
-      expect(chef_run).to include_recipe('wombat::etc-hosts')
+      # Moved to either .kitchen.yml or Packer template.
+      # expect(chef_run).to include_recipe('wombat::etc-hosts')
     end
 
     it 'converges successfully' do
