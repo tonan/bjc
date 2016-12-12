@@ -32,6 +32,8 @@ suites:
   - name: default
     run_list:
       - recipe[test::default]
+      - recipe[wombat::etc-hosts]
+      - recipe[test::fixhosts]
       - recipe[bjc_chef_server::default]
     attributes:
       demo:
@@ -42,5 +44,5 @@ suites:
         org: 'automate'
         hosts:
         versions:
-          chef-server: 'stable-12.9.1'
+          chef-server: 'stable-12.11.1'
           chefdk: 'stable-0.16.28'

@@ -24,4 +24,3 @@ omnibus_service ' ' do
 end
 
 include_recipe 'wombat::authorized-keys'
-include_recipe 'wombat::etc-hosts'
