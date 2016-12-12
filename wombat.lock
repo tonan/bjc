@@ -10,13 +10,13 @@
   ],
   "ttl": 8,
   "linux": "ubuntu",
-  "version": "1.1.0",
+  "version": "1.1.2",
   "products": {
     "chef": "stable-12.13.37",
-    "chef-server": "stable-12.9.1",
+    "chef-server": "stable-12.11.1",
     "chefdk": "stable-0.18.30",
     "compliance": "stable-1.6.8",
-    "automate": "stable-0.5.204",
+    "automate": "stable-0.6.7",
     "push-jobs-server": "stable-1.1.6",
     "manage": "stable-2.4.3"
   },
@@ -75,7 +75,7 @@
     ],
     "source_ami": {
       "ubuntu": "ami-70b67d10",
-      "windows": "ami-4428fa24",
+      "windows": "ami-1c7ad77c",
       "centos": "ami-6d1c2007"
     }
   },
@@ -88,46 +88,24 @@
   },
   "amis": {
     "us-west-2": {
-      "automate": "ami-b7b51cd7",
+      "automate": "ami-a0872dc0",
       "build-node": {
-        "1": "ami-3fb71e5f",
-        "2": "ami-8eb019ee",
-        "3": "ami-d0bf16b0",
-        "4": "ami-f2379992",
-        "5": "ami-86359be6",
-        "6": "ami-fb329c9b"
+        "1": "ami-0e872d6e",
+        "2": "ami-46822826",
+        "3": "ami-978d27f7"
       },
-      "chef-server": "ami-edb41d8d",
-      "compliance": "ami-5ab51c3a",
+      "chef-server": null,
+      "compliance": "ami-828329e2",
       "infranodes": {
-        "delivered": "ami-b2b41dd2",
-        "ecomacceptance": "ami-0cb41d6c",
-        "rehearsal": "ami-d8b118b8",
-        "union": "ami-b1b41dd1"
+        "delivered": "ami-7d872d1d",
+        "ecomacceptance": "ami-9b8d27fb",
+        "rehearsal": "ami-88812be8",
+        "union": "ami-7f872d1f"
       },
       "workstation": {
-        "1": null,
-        "10": null,
-        "11": null,
-        "12": null,
-        "13": null,
-        "14": null,
-        "15": null,
-        "16": null,
-        "17": null,
-        "18": null,
-        "19": null,
-        "2": null,
-        "20": null,
-        "3": null,
-        "4": null,
-        "5": null,
-        "6": null,
-        "7": null,
-        "8": null,
-        "9": null
+        "1": null
       }
     }
   },
-  "last_updated": "20161201174350"
+  "last_updated": "20161212191011"
 }

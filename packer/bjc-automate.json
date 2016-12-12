@@ -89,7 +89,7 @@
       "type": "chef-solo",
       "install_command": "{{user `chef_install_url`}} | sudo bash -s -- -c {{user `chef_channel`}} -v {{user `chef_ver`}}",
       "cookbook_paths": [ "{{pwd}}/vendored-cookbooks/bjc_automate" ],
-      "run_list": [ "bjc_automate" ],
+      "run_list": [ "wombat::etc-hosts","bjc_automate" ],
       "json": {
         "demo": {
           "admin-user": "{{user `ssh_username`}}",
