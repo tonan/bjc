@@ -20,7 +20,8 @@ describe 'bjc_automate::default' do
     it 'includes required recipes from other cookbooks' do
       expect(chef_run).to include_recipe('automate::default')
       expect(chef_run).to include_recipe('wombat::authorized-keys')
-      expect(chef_run).to include_recipe('wombat::etc-hosts')
+      # etc-hosts recipe moved to either .kitchen.yml or Packer template
+      # expect(chef_run).to include_recipe('wombat::etc-hosts')
     end
 
     it 'creates the delivery_backup tar file' do
