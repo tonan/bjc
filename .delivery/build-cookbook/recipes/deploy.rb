@@ -13,6 +13,16 @@ remote_file "#{node['delivery']['workspace_path']}/stacks/bjc-demo.json" do
   action :create
 end
 
+execute 'Copy wombat.yml' do
+  command "cp #{node['delivery']['workspace_path']}/bjc-automate-server-5g9aorii6yvcetdi.us-west-2.opsworks-cm.io/default/chef-sas/bjc/master/acceptance/deploy/repo/wombat.yml #{node['delivery']['workspace_path']}/wombat.yml"
+  action :run
+end
+
+execute 'Copy wombat.lock' do
+  command "cp #{node['delivery']['workspace_path']}/bjc-automate-server-5g9aorii6yvcetdi.us-west-2.opsworks-cm.io/default/chef-sas/bjc/master/acceptance/deploy/repo/wombat.lock #{node['delivery']['workspace_path']}/wombat.lock"
+  action :run
+end
+
 execute 'Deploy Demo Stack' do
   command "wombat deploy bjc-demo"
   cwd node['delivery']['workspace_path']
