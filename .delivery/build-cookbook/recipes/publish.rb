@@ -35,5 +35,5 @@ end
 
 # Use the Ruby AWS SDK to upload bjc-demo.json to S3
 s3 = Aws::S3::Resource.new(region:'us-west-2')
-obj = s3.bucket('bjc-public').object('key')
+obj = s3.bucket('bjc-public').object('bjc-demo.json')
 obj.upload_file("#{workspace}/stacks/bjc-demo.json")
