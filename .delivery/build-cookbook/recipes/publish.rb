@@ -28,3 +28,5 @@ execute "generate-json" do
   cwd "#{node['delivery']['workspace_path']}/bjc-automate-server-5g9aorii6yvcetdi.us-west-2.opsworks-cm.io/default/chef-sas/bjc/master/build/publish/repo"
   action :run
 end
+
+# Here is where we will use the Ruby AWS SDK to upload bjc-demo.json to S3

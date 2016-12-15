@@ -12,4 +12,4 @@ end
 
 include_recipe 'packer'
 chef_gem 'wombat-cli'
-
+chef_gem 'aws-sdk'
