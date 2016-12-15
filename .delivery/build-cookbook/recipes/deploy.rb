@@ -3,9 +3,14 @@
 # Recipe:: deploy
 #
 # Copyright (c) 2016 The Authors, All Rights Reserved.
+workspace = "#{node['delivery']['workspace_path']}/bjc-automate-server-5g9aorii6yvcetdi.us-west-2.opsworks-cm.io/default/chef-sas/bjc/master/acceptance/deploy/repo"
 
-directory "#{node['delivery']['workspace_path']}/stacks" do
-  action :create
+# Copy keys into the packer directory
+execute "copy-packer-keys" do
+  command "tar -zxvf /var/opt/delivery/workspace/Downloads/keys.tar.gz -C packer/keys"
+  live_stream true
+  cwd workspace
+  action :run
 end
 
 # This is kind of an ugly hack but it allows us to use wombat as intended.
@@ -17,7 +22,7 @@ end
 
 execute 'Deploy Demo Stack' do
   command "#{node['delivery']['workspace_path']}/wombat_deploy.sh"
-  cwd "#{node['delivery']['workspace_path']}/bjc-automate-server-5g9aorii6yvcetdi.us-west-2.opsworks-cm.io/default/chef-sas/bjc/master/acceptance/deploy/repo"
+  cwd workspace
   live_stream true
   action :run
 end
