@@ -3,29 +3,26 @@
 # Recipe:: deploy
 #
 # Copyright (c) 2016 The Authors, All Rights Reserved.
+workspace = "#{node['delivery']['workspace_path']}/bjc-automate-server-5g9aorii6yvcetdi.us-west-2.opsworks-cm.io/default/chef-sas/bjc/master/acceptance/deploy/repo"
 
-directory "#{node['delivery']['workspace_path']}/stacks" do
-  action :create
+# Copy keys into the packer directory
+execute "copy-packer-keys" do
+  command "tar -zxvf /var/opt/delivery/workspace/Downloads/keys.tar.gz -C packer/keys"
+  live_stream true
+  cwd workspace
+  action :run
 end
 
-remote_file "#{node['delivery']['workspace_path']}/stacks/bjc-demo.json" do
+# This is kind of an ugly hack but it allows us to use wombat as intended.
+# Fetch the bjc-demo.json that was just created in the build stage
+remote_file "#{node['delivery']['workspace_path']}/bjc-automate-server-5g9aorii6yvcetdi.us-west-2.opsworks-cm.io/default/chef-sas/bjc/master/acceptance/deploy/repo/stacks/bjc-demo.json" do
   source 'https://s3-us-west-2.amazonaws.com/bjcpublic/bjc-demo.json'
   action :create
 end
 
-execute 'Copy wombat.yml' do
-  command "cp #{node['delivery']['workspace_path']}/bjc-automate-server-5g9aorii6yvcetdi.us-west-2.opsworks-cm.io/default/chef-sas/bjc/master/acceptance/deploy/repo/wombat.yml #{node['delivery']['workspace_path']}/wombat.yml"
-  action :run
-end
-
-execute 'Copy wombat.lock' do
-  command "cp #{node['delivery']['workspace_path']}/bjc-automate-server-5g9aorii6yvcetdi.us-west-2.opsworks-cm.io/default/chef-sas/bjc/master/acceptance/deploy/repo/wombat.lock #{node['delivery']['workspace_path']}/wombat.lock"
-  action :run
-end
-
 execute 'Deploy Demo Stack' do
   command "#{node['delivery']['workspace_path']}/wombat_deploy.sh"
-  cwd node['delivery']['workspace_path']
+  cwd workspace
   live_stream true
   action :run
 end
