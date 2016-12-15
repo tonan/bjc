@@ -36,4 +36,11 @@ end
 # Use the Ruby AWS SDK to upload bjc-demo.json to S3
 s3 = Aws::S3::Resource.new(region:'us-west-2')
 obj = s3.bucket('bjcpublic').object('bjc-demo.json')
-obj.upload_file("#{workspace}/stacks/bjc-demo.json", acl:'public_read')
+obj.upload_file("/var/opt/delivery/workspace/bjc-automate-server-5g9aorii6yvcetdi.us-west-2.opsworks-cm.io/default/chef-sas/bjc/master/build/publish/repo/stacks/bjc-demo.json", acl:'public_read')
+#ruby_block "upload bjc-demo.json to S3" do
+#  block do
+#    s3 = Aws::S3::Resource.new(region:'us-west-2')
+#    obj = s3.bucket('bjcpublic').object('bjc-demo.json')
+#    obj.upload_file("/var/opt/delivery/workspace/bjc-automate-server-5g9aorii6yvcetdi.us-west-2.opsworks-cm.io/default/chef-sas/bjc/master/build/publish/repo/stacks/bjc-demo.json", acl:'public_read')
+#  end
+#end
