@@ -16,7 +16,6 @@
   },
   "skip_phases": [
     "provision",
-    "deploy",
     "smoke",
     "functional",
     "quality",

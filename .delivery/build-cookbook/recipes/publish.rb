@@ -34,13 +34,17 @@ execute "generate-json" do
 end
 
 # Use the Ruby AWS SDK to upload bjc-demo.json to S3
-s3 = Aws::S3::Resource.new(region:'us-west-2')
-obj = s3.bucket('bjcpublic').object('bjc-demo.json')
-obj.upload_file("/var/opt/delivery/workspace/bjc-automate-server-5g9aorii6yvcetdi.us-west-2.opsworks-cm.io/default/chef-sas/bjc/master/build/publish/repo/stacks/bjc-demo.json", acl:'public-read')
-#ruby_block "upload bjc-demo.json to S3" do
-#  block do
-#    s3 = Aws::S3::Resource.new(region:'us-west-2')
-#    obj = s3.bucket('bjcpublic').object('bjc-demo.json')
-#    obj.upload_file("/var/opt/delivery/workspace/bjc-automate-server-5g9aorii6yvcetdi.us-west-2.opsworks-cm.io/default/chef-sas/bjc/master/build/publish/repo/stacks/bjc-demo.json", acl:'public_read')
-#  end
-#end
+
+# Use ruby in the compile phase for testing
+#s3 = Aws::S3::Resource.new(region:'us-west-2')
+#obj = s3.bucket('bjcpublic').object('bjc-demo.json')
+#obj.upload_file("/var/opt/delivery/workspace/bjc-automate-server-5g9aorii6yvcetdi.us-west-2.opsworks-cm.io/default/chef-sas/bjc/master/build/publish/repo/stacks/bjc-demo.json", acl:'public-read')
+
+# And a ruby_block for executing *after* the builds are done
+ruby_block "upload bjc-demo.json to S3" do
+  block do
+    s3 = Aws::S3::Resource.new(region:'us-west-2')
+    obj = s3.bucket('bjcpublic').object('bjc-demo.json')
+    obj.upload_file("/var/opt/delivery/workspace/bjc-automate-server-5g9aorii6yvcetdi.us-west-2.opsworks-cm.io/default/chef-sas/bjc/master/build/publish/repo/stacks/bjc-demo.json", acl:'public-read')
+  end
+end
