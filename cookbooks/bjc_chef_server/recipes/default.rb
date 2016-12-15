@@ -29,4 +29,3 @@ delete_lines "Remove temporary hostfile entry we added earlier" do
 end
 
 include_recipe 'wombat::authorized-keys'
-
