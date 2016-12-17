@@ -6,6 +6,11 @@
 
 include_recipe 'automate::default'
 
+directory '/var/opt/delivery/backups' do
+  action :create
+  recursive true
+end
+
 cookbook_file '/var/opt/delivery/backups/chef-automate-backup.zst' do
   source 'chef-automate-backup.zst'
   notifies :run, 'execute[restore backup data into automate]'
