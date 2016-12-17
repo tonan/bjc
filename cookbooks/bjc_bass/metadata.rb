@@ -1,0 +1,12 @@
+name 'bjc_bass'
+maintainer 'The Authors'
+maintainer_email 'you@example.com'
+issues_url 'https://github.com/chef-cft/bjc/issues'
+source_url 'https://github.com/chef-cft/bjc'
+license 'all_rights'
+description 'Installs/Configures bjc_bass'
+long_description 'Installs/Configures bjc_bass'
+version '0.1.7'
+
+depends 'push-jobs', '= 3.2.0'
+depends 'audit',     '= 0.14.4'
