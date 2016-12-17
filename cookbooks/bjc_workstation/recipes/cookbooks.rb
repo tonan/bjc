@@ -37,5 +37,6 @@ end
 
 windows_zipfile "#{home}/cookbooks/bjc-ecommerce" do
   action :unzip
+  overwrite true
   source "#{home}/git_dir.zip"
 end
