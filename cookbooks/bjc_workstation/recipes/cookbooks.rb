@@ -35,8 +35,7 @@ cookbook_file "#{home}/git_dir.zip" do
   source 'git_dir.zip'
 end
 
-execute 'unzip the git config dir' do
-  action :run
-  command "unzip #{home}/git_dir.zip"
-  cwd "#{home}/cookbooks/bjc-ecommerce"
+windows_zipfile "#{home}/cookbooks/bjc-ecommerce" do
+  action :unzip
+  source "#{home}/git_dir.zip"
 end
