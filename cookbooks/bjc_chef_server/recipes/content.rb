@@ -24,31 +24,25 @@ ssl_verify_mode :verify_none
 EOS
 end
 
+git "#{Chef::Config[:file_cache_path]}/bjc" do
+  repository 'https://github.com/chef-cft/bjc'
+  revision 'master'
+  action :sync
+end
+
 %w(
   bjc-ecommerce
   bjc_bass
 ).each do |cookbook|
-  cookbook_source = "https://s3-us-west-2.amazonaws.com/bjcpublic/demo_cookbooks/#{cookbook}.zip"
-
-  remote_file "#{home}/cookbooks/#{cookbook}.zip" do
-    source cookbook_source
-  end
-
-  execute "extract the #{cookbook} zipfile" do
-    cwd "#{home}/cookbooks/"
-    command "unzip #{cookbook}.zip"
-    creates "#{home}/cookbooks/#{cookbook}"
-    action :run
-  end
 
   execute "berks install #{cookbook}" do
-    cwd "#{home}/cookbooks/#{cookbook}"
+    cwd "#{Chef::Config[:file_cache_path]}/bjc/cookbooks/#{cookbook}"
     command '/opt/opscode/embedded/bin/berks install'
     action :run
   end
 
   execute "berks upload #{cookbook}" do
-    cwd "#{home}/cookbooks/#{cookbook}"
+    cwd "#{Chef::Config[:file_cache_path]}/bjc/cookbooks/#{cookbook}"
     command '/opt/opscode/embedded/bin/berks upload --no-ssl-verify'
     action :run
   end

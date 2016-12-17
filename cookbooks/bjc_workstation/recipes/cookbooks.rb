@@ -6,20 +6,22 @@
 
 home = Dir.home
 
+git "#{Chef::Config[:file_cache_path]}/bjc" do
+  repository 'https://github.com/chef-cft/bjc'
+  revision 'master'
+  action :sync
+end
+
 directory "#{home}/cookbooks" do
   action :create
 end
 
-node['bjc_workstation']['cookbooks'].each do |cookbook|
-  remote_file "#{home}/cookbooks/#{cookbook}.zip" do
-    source "https://s3-us-west-2.amazonaws.com/bjcpublic/demo_cookbooks/#{cookbook}.zip"
-  end
-
-  windows_zipfile "#{home}/cookbooks/" do
-    source "#{home}/cookbooks/#{cookbook}.zip"
-    action :unzip
-    not_if { File.exist?("#{home}/cookbooks/#{cookbook}") }
-  end
+execute "Copy cookbooks into home directory" do
+  action :run
+  command <<-EOH
+  cp -r #{Chef::Config[:file_cache_path]}/bjc/cookbooks/bjc-ecommerce #{home}/cookbooks/
+  cp -r #{Chef::Config[:file_cache_path]}/bjc/cookbooks/bjc_bass #{home}/cookbooks/
+EOH
 end
 
 template "#{home}/cookbooks/bjc-ecommerce/.kitchen.yml" do
