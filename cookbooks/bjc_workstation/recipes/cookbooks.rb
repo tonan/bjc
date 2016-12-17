@@ -28,3 +28,15 @@ template "#{home}/cookbooks/bjc-ecommerce/.kitchen.yml" do
   action :create
   source 'kitchen_ecom.yml.erb'
 end
+
+# This puts a minimal working git config and commit history in place
+cookbook_file "#{home}/git_dir.zip" do
+  action :create
+  source 'git_dir.zip'
+end
+
+execute 'unzip the git config dir' do
+  action :run
+  command "unzip #{home}/git_dir.zip"
+  cwd "#{home}/cookbooks/bjc-ecommerce"
+end

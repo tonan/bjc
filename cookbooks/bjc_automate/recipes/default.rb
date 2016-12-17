@@ -6,14 +6,15 @@
 
 include_recipe 'automate::default'
 
-cookbook_file '/tmp/delivery_backup.tar' do
-  source 'delivery_backup.tar'
+cookbook_file '/var/opt/delivery/backups/chef-automate-backup.zst' do
+  source 'chef-automate-backup.zst'
   notifies :run, 'execute[restore backup data into automate]'
-  checksum 'c9f2faf8228bfeecc08acc99fd3d47af3021b1b2c42e232d0701f80234823a45'
+  checksum 'bc91b02f8faf055da5886fa28b45d12ee551b8daf7168f16829cbcd5be710a83'
 end
 
 execute 'restore backup data into automate' do
-  command 'delivery-ctl restore-data -b /tmp/delivery_backup.tar --no-confirm'
+  command 'automate-ctl restore-backup chef-automate-backup.zst --force'
+  cwd '/var/opt/delivery/backups'
   notifies :restart, 'omnibus_service[ ]'
   action :nothing
 end

@@ -25,11 +25,11 @@ describe 'bjc_automate::default' do
     end
 
     it 'creates the delivery_backup tar file' do
-      expect(chef_run).to create_cookbook_file('/tmp/delivery_backup.tar')
+      expect(chef_run).to create_cookbook_file('/var/opt/delivery/backups/chef-automate-backup.zst')
     end
 
     it 'runs the restore backup command' do
-      expect(chef_run).to_not run_execute('delivery-ctl restore-data -b /tmp/delivery_backup.tar --no-confirm')
+      expect(chef_run).to_not run_execute('automate-ctl restore-backup chef-automate-backup.zst --force')
     end
 
     it 'converges successfully' do
