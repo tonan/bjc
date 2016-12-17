@@ -20,11 +20,6 @@ describe 'bjc_workstation::cookbooks' do
       expect(chef_run).to create_directory("#{home}/cookbooks")
     end
 
-    it 'downloads the payload cookbooks' do
-      expect(chef_run).to create_remote_file("#{home}/cookbooks/bjc-ecommerce.zip")
-      expect(chef_run).to create_remote_file("#{home}/cookbooks/bjc_bass.zip")
-    end
-
     it 'creates the .kitchen.yml file for bjc-ecommerce' do
       expect(chef_run).to render_file("#{home}/cookbooks/bjc-ecommerce/.kitchen.yml").with_content('sg-2560a741')
     end

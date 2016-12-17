@@ -10,7 +10,7 @@
   ],
   "ttl": 8,
   "linux": "ubuntu",
-  "version": "1.1.2",
+  "version": "1.1.10",
   "products": {
     "chef": "stable-12.13.37",
     "chef-server": "stable-12.11.1",
@@ -88,24 +88,24 @@
   },
   "amis": {
     "us-west-2": {
-      "automate": "ami-a0872dc0",
+      "automate": "ami-1901b479",
       "build-node": {
-        "1": "ami-0e872d6e",
-        "2": "ami-46822826",
-        "3": "ami-978d27f7"
+        "1": "ami-fd1aaf9d",
+        "2": "ami-921aaff2",
+        "3": "ami-bd07b2dd"
       },
-      "chef-server": null,
-      "compliance": "ami-828329e2",
+      "chef-server": "ami-e31bae83",
+      "compliance": "ami-2a06b34a",
       "infranodes": {
-        "delivered": "ami-7d872d1d",
-        "ecomacceptance": "ami-9b8d27fb",
-        "rehearsal": "ami-88812be8",
-        "union": "ami-7f872d1f"
+        "delivered": "ami-7c04b11c",
+        "ecomacceptance": "ami-fa1aaf9a",
+        "rehearsal": "ami-7b04b11b",
+        "union": "ami-a204b1c2"
       },
       "workstation": {
-        "1": null
+        "1": "ami-2d07b24d"
       }
     }
   },
-  "last_updated": "20161212191011"
+  "last_updated": "20161217201102"
 }

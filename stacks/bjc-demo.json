@@ -16,7 +16,7 @@
     "Version": {
       "Description": "Version",
       "Type": "String",
-      "Default": "1.1.8"
+      "Default": "1.1.10"
     },
     "KeyName": {
       "Description": "Name of an existing ec2 KeyPair to enable SSH access",
@@ -41,57 +41,57 @@
     },
     "ChefServerAMI": {
       "Type": "String",
-      "Default": "ami-01893c61",
+      "Default": "ami-e31bae83",
       "Description": "AMI ID for the Chef Server"
     },
     "ComplianceAMI": {
       "Type": "String",
-      "Default": "ami-098e3b69",
+      "Default": "ami-2a06b34a",
       "Description": "AMI ID for the Compliance Server"
     },
     "BuildNode1AMI": {
       "Type": "String",
-      "Default": "ami-c88d38a8",
+      "Default": "ami-fd1aaf9d",
       "Description": "AMI ID for Build Node 1"
     },
     "BuildNode2AMI": {
       "Type": "String",
-      "Default": "ami-5e8c393e",
+      "Default": "ami-921aaff2",
       "Description": "AMI ID for Build Node 2"
     },
     "BuildNode3AMI": {
       "Type": "String",
-      "Default": "ami-5d8c393d",
+      "Default": "ami-bd07b2dd",
       "Description": "AMI ID for Build Node 3"
     },
     "deliveredAMI": {
       "Type": "String",
-      "Default": "ami-5b8c393b",
+      "Default": "ami-7c04b11c",
       "Description": "AMI ID for delivered"
     },
     "ecomacceptanceAMI": {
       "Type": "String",
-      "Default": "ami-e48c3984",
+      "Default": "ami-fa1aaf9a",
       "Description": "AMI ID for ecomacceptance"
     },
     "rehearsalAMI": {
       "Type": "String",
-      "Default": "ami-698e3b09",
+      "Default": "ami-7b04b11b",
       "Description": "AMI ID for rehearsal"
     },
     "unionAMI": {
       "Type": "String",
-      "Default": "ami-9e8237fe",
+      "Default": "ami-a204b1c2",
       "Description": "AMI ID for union"
     },
     "WindowsWorkstation1AMI": {
       "Type": "String",
-      "Default": "ami-078f3a67",
+      "Default": "ami-2d07b24d",
       "Description": "AMI ID for the Windows Workstation"
     },
     "AutomateAMI": {
       "Type": "String",
-      "Default": "ami-848f3ae4",
+      "Default": "ami-1901b479",
       "Description": "AMI ID for the Automate Server"
     }
   },
