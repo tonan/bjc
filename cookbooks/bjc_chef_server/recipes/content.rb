@@ -28,7 +28,7 @@ end
   bjc-ecommerce
   bjc_bass
 ).each do |cookbook|
-  cookbook_source = "https://s3-us-west-2.amazonaws.com/bjcpublic/#{cookbook}.zip"
+  cookbook_source = "https://s3-us-west-2.amazonaws.com/bjcpublic/demo_cookbooks/#{cookbook}.zip"
 
   remote_file "#{home}/cookbooks/#{cookbook}.zip" do
     source cookbook_source

@@ -12,7 +12,7 @@ end
 
 node['bjc_workstation']['cookbooks'].each do |cookbook|
   remote_file "#{home}/cookbooks/#{cookbook}.zip" do
-    source "https://s3-us-west-2.amazonaws.com/bjcpublic/#{cookbook}.zip"
+    source "https://s3-us-west-2.amazonaws.com/bjcpublic/demo_cookbooks/#{cookbook}.zip"
   end
 
   windows_zipfile "#{home}/cookbooks/" do
