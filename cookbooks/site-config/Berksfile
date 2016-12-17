@@ -1,0 +1,5 @@
+source 'https://supermarket.chef.io'
+
+metadata
+
+cookbook 'base-web', git: 'git://github.com/binamov/bass_web.git'

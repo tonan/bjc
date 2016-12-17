@@ -1,0 +1,1 @@
+default['bjc-ecommerce']['company-name'] = 'Planeta Express'
