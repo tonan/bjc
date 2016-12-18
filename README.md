@@ -2,7 +2,7 @@
 # Welcome to Project BJC
 ![Magic!](http://i.imgur.com/hknf3Wx.jpg)
 
-Here you will find instructions on how to spin up a standard Chef Demo environment in AWS, as well as instructions on how you can contribute to demo development.  This document assumes you have basic familiarity with AWS, Cloudformation, and SSH keys.
+Here you will find instructions on how to spin up a standard Chef Demo environment in AWS, as well as instructions on how you can contribute to demo development.  This document assumes you have basic familiarity with AWS, Cloudformation, and SSH keys.  This project is maintained by the Solutions Architects team at Chef.  Issues, pull requests and general feedback are all welcome.  You may email us at saleseng [at] chef.io if you want to get in touch.
 
 The talk track script for the standard demo is [located here](https://github.com/chef-cft/bjc/blob/master/SSL_Demo_Script.md)
 
@@ -17,7 +17,7 @@ BJC stands for Blue Jean Committee. It's also the code name for the Chef Demo pr
 #### First, setup your environment:
 1. Clone this repository: `git clone https://github.com/chef-cft/bjc`
 2. Change into the bjc directory: `cd bjc`
-3. Set environment variables for your AWS SSH key name and path, like so.
+3. Set environment variables for your AWS SSH key name and path, like so.  This must match one of the authorized ec2 ssh keys in your AWS account.
     * Put these lines into your ~/.bashrc or ~/.zshrc if you want to make them permanent.
 
    ```bash
@@ -26,7 +26,7 @@ BJC stands for Blue Jean Committee. It's also the code name for the Chef Demo pr
    ```
 
 #### Next, follow these steps to spin up your own dev/test environment:
-The demo environment will provision in AWS fairly quickly; within a few minutes.  However, there is a start-up script, which configures the demo environment, that also needs to be run.  This script can take 10 minutes or more to complete.  Be sure to give yourself plenty of time prior to the start of your demo for the environment to spin up and for the startup script to run to completion.
+The demo environment will provision in AWS fairly quickly, usually within a few minutes.  Once the environment is up there is a startup script you must run to prep the demo.  This script can take 10 minutes or more to complete.  Be sure to give yourself plenty of time prior to the start of your demo for the environment to spin up and for the startup script to run to completion.  We generally recommend setting up at least 30 minutes before your demo to ensure you have enough time.
 
 1.  `git pull` to fetch the latest changes.
 2.  Use the `build_demo.sh` script in the ./bin directory to stand up the latest stack in us-west-2.
@@ -39,10 +39,11 @@ The demo environment will provision in AWS fairly quickly; within a few minutes.
 
 3.  Log onto your stack's workstation
     * The IP is listed under your stack's outputs in the AWS CloudFormation Management Console.
-    * Workstation credentials are pinned in #chef-demo-project.
+    * Workstation credentials are pinned in #chef-demo-project slack channel.  
+    * If you are not a Chef employee please contact the maintainers to get the username and password.
 
 4.  Run the "start me up" script on the desktop and get your demo on!
-    * This is the script that can take 10+ minutes to complete
+    * This is the script that can take 10+ minutes to complete.
     * Report any issues you find here:  [https://waffle.io/chef-cft/bjc](https://waffle.io/chef-cft/bjc)
 
 ---
@@ -63,7 +64,7 @@ The different parts of the project are described below:
 * You can successfully spin up a BJC-based demo as outlined above
 * Slack #chef-demo-project and ask to be added as a collaborator
 * Setup an SSH key on your github account
-  * Create a new key like this:  `ssh-keygen -t rsa -b 4096 -C "your_email@example.com"`
+  * Create a new key like this if you don't have one already:  `ssh-keygen -t rsa -b 4096 -C "your_email@example.com"`
     * Substitute your github e-mail address & make a note of the location and name of the key
   * Go here:  [https://github.com/settings/keys](https://github.com/settings/keys)
   * Select 'New SSH Key' at the top right
@@ -72,8 +73,8 @@ The different parts of the project are described below:
   * Click 'Add SSH Key'
 * Clone this repo:  `git clone git@github.com:chef-cft/wombat.git `
 * Install the wombat-cli gem:  `chef gem install wombat-cli`
-* Uninstall the wombat gem:  `chef gem uninstall wombat`
-* Install the necessary SSL certs and keys required to build new AMIs
+* Uninstall the wombat gem (this is a *different* wombat project than ours!):  `chef gem uninstall wombat`
+* Install the necessary SSL certs and keys required to build new AMIs.  See below:
 
   Download the `keys.tar.gz` file that is pinned to the #chef-demo-project slack channel.  This tarball contains the SSL certs and keys that are required to build new AMIs with Packer and Test Kitchen.  You'll need to unpack this into six directories: the `test/fixtures/cookbooks/test/files/default` directory inside each of the bjc_automate, bjc_compliance, bjc_workstation, bjc_chef_server, bjc_infranodes, bjc_build_node cookbooks, and the packer/keys directory as well.  This only needs to be done once, and these files will be excluded from your git commits by the .gitignore file in the repository root directory. So for example, if you downloaded `keys.tar.gz` into your Downloads directory you could run the following scripticle:
 
@@ -89,8 +90,7 @@ The different parts of the project are described below:
 
 #### Contributing
 
-##### NOTE: This will be changing shorlty as we re-enable a workflow pipeline. If you're unsure of whether you're clear to push a new change, contact the team in #chef-demo-project
-
+0. Contributors need to clone the project directly from our delivery server.  We do not commit code directly to github, rather we send it through our Workflow pipeline instead.  The easiest way to do this is just rename or delete your existing `bjc` repo and clone it fresh from the new Opsworks Automate server.  See #chef-demo-project for help getting an account. https://bjc-automate-server-5g9aorii6yvcetdi.us-west-2.opsworks-cm.io
 1. Visit the waffle.io board for this repository to see all open issues [https://waffle.io/chef-cft/bjc](https://waffle.io/chef-cft/bjc)
 2. Either pick an existing Kanban card or create a new one.
     * Read it and make sure you understand what you are supposed to do.
@@ -99,8 +99,8 @@ The different parts of the project are described below:
     * Once you begin work on the card you can move it to the 'In Progress' column.
 3. Create a branch in which to do your work:
     * `git checkout -b scarolan/myFeatureBranch`
-4. Bump the version in `wombat.yml`
-5. `cd` into the cookbook you want to work on, and bump the version in its `metadata.rb`
+4. Bump the version in `wombat.yml`.
+5. `cd` into the first cookbook you want to work on, and bump the version in its `metadata.rb`
 6. Spin up a TK instance with the `kitchen converge` command.
     * The provided .kitchen.yml files inside of each cookbook should work as long as you set the environment variables for your SSH key as noted in "How to spin up a demo" above.
     * Keep in mind that some parts of the demo will not work since you only have one isolated instance in Test Kitchen.
@@ -109,7 +109,7 @@ The different parts of the project are described below:
     * *OPTIONAL:* If you are working with the Windows workstation and wish to RDP into the TK instance, just fetch the windows Administrator password from the state file located in the `.kitchen/default-windows-2012r2.yml` file.
 8. Edit the cookbooks, recipes, or attributes that built the machine.
     * Continue to test your work in test kitchen.
-9. Write at least three InSpec tests to verify your assumptions.
+9. Write some InSpec tests to verify your assumptions.  Run `kitchen verify` to make sure they work.
 10. Once you are reasonably certain that the target machine is getting built to the correct specification, do a `kitchen test` to build it once more from scratch.
     * Make sure everything is working before you proceed!
     * It can take up to 45 minutes to build the Windows workstation AMI.
@@ -136,14 +136,20 @@ AMIs are built using the 'wombat' CLI command (provided by the `wombat-cli` gem 
 15. Log onto the stack you just created and do manual testing
     * E.G. Try to run the demo, send a change through Automate Workflow, etc.
     * If you find things wrong, go back to step #8 and fix whatever issues you found.
-16. If you things work as expected and you are happy with the change, commit your changes to your branch and push it to the remote github master repo:
-    * `git add .`
-    * `git commit -m "My awesome new feature"`
-    * `git push origin scarolan/myFeatureBranch`
-17. Go to [https://github.com/chef-cft/bjc](https://github.com/chef-cft/bjc) and submit your pull request.
-    * If your change(s) are addressing specific cards in waffle, be sure to include that in your PR.
-      * In the body of the PR, above all other text, include `Fixes #XXX` where `XXX` is the number of the card you are addressing.
-      * If you are addressing multiple cards, put one `Fixes` line in for each card you are addressing
-        *  See this [PR](https://github.com/chef-cft/bjc/pull/197) as an example
-18. Bug your co-workers in #chef-demo-project to review, approve and deliver your change.
-19. Now your changes to the demo are stored both as code (Chef cookbooks) and built artifacts (AMI and CloudFormation template).
+16. If you things work as expected and you are happy with the change, commit your changes to your local branch and run a `delivery review` command to send your changes to the pipeline.
+    * Protip: Go to your new PR in waffle.io and add a `Fixes` line in for each card you are addressing
+      *  See this [PR](https://github.com/chef-cft/bjc/pull/197) as an example
+17. Bug your co-workers in #chef-demo-project to review, approve and deliver your change.
+18. Now your changes to the demo are stored both as code (Chef cookbooks) and built artifacts (AMI and CloudFormation template).
+
+##### Special instructions for updating the "payload" cookbooks such as bjc-ecommerce.
+
+If you need to update the content of the bjc-ecommerce cookbook or any other cookbooks that are *part of the demo*, there are some extra steps you need to take.  The reason for this is we want to have a clean history inside the demo and have the cookbook properly synced with the Automate server in the demo.  Here are the steps for updating bjc-ecommerce or other cookbooks:
+
+1. Build and test all your changes in test kitchen as usual.
+2. Spin up a demo and make all the exact same changes inside the demo.  Probably easiest to just copy/paste whatever work you did into the demo.
+3.  Push your change all the way through the demo to the 'delivered' stage.
+4.  On the workstation, `git checkout master` and `git pull` to sync back from the Automate server.  Now you are ready to zip up your changes.
+5.  Go into the cookbook and look for the .git directory.  It might be hidden.  If it is enable 'show hidden files' in the file explorer.  Right click it and do "Send to >> Compressed file".  Name the file git_dir.zip.  You'll need to get this file off the workstation and into the files/default directory in the bjc-ecommerce cookbook.
+6.  Log onto the automate server.  You simply `ssh automate` and `sudo /bin/su - root` from the workstation.  Now that you have a root prompt run the following:  `automate-ctl create-backup`.  This will generate a new backup file in /var/opt/delivery/backups.  It will have a long name with a timestamp.  Take that file and rename it simply `chef-demo-project.zst`.  Put that file into the files/default directory in the bjc_automate cookbook.  This restores the backup so the automate server comes up in the correct state with all data and accounts.  
+7.  Commit your changes into the pipeline above as usual.  Now when your demo is built it will download the latest cookbook code from our github repo, but you'll still have all the git and delivery data baked in as well.
