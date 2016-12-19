@@ -18,7 +18,7 @@ execute "copy-packer-keys" do
 end
 
 # Only build if there are changed cookbooks
-unless changed_cookbooks.empty? do
+unless changed_cookbooks.empty?
   # Build new Chef Demo AMIs
   execute "build-the-things" do
     command "/var/opt/delivery/workspace/wombat_build.sh"
