@@ -95,12 +95,12 @@ control 'bjc-configfiles' do
   end
 end
 
-control "bjc-cookbooks" do
-  title "Required cookbooks are downloaded from S3"
-  cookbooks = %w(bjc-ecommerce.zip bjc_bass.zip bjc-web-base.zip)
-  cookbooks.each do |cb|
-    describe file("C:\\Users\\Administrator\\cookbooks\\#{cb}") do
-      it { should be_file }
-    end
-  end
-end
+# control "bjc-cookbooks" do
+#   title "Required cookbooks are downloaded from S3"
+#   cookbooks = %w(bjc-ecommerce.zip bjc_bass.zip bjc-web-base.zip)
+#   cookbooks.each do |cb|
+#     describe file("C:\\Users\\Administrator\\cookbooks\\#{cb}") do
+#       it { should be_file }
+#     end
+#   end
+# end
