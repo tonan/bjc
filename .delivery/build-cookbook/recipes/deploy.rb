@@ -11,7 +11,7 @@ workspace = "#{node['delivery']['workspace_path']}/bjc-automate-server-5g9aorii6
 return unless ['acceptance'].include?(node['delivery']['change']['stage'])
 
 # Only build if we have changed cookbooks.
-unless changed_cookbooks.empty? do
+unless changed_cookbooks.empty?
   # Copy keys into the packer directory
   execute "copy-packer-keys" do
     command "tar -zxvf /var/opt/delivery/workspace/Downloads/keys.tar.gz -C packer/keys"
