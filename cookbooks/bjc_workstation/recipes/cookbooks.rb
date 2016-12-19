@@ -20,6 +20,7 @@ execute "Copy cookbooks into home directory" do
   action :run
   command <<-EOH
   cp -r #{Chef::Config[:file_cache_path]}/bjc/cookbooks/bjc-ecommerce #{home}/cookbooks/
+  cp -r #{Chef::Config[:file_cache_path]}/bjc/cookbooks/bjc-web-base #{home}/cookbooks/
   cp -r #{Chef::Config[:file_cache_path]}/bjc/cookbooks/bjc_bass #{home}/cookbooks/
 EOH
 end
