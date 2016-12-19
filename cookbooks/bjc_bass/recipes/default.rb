@@ -3,9 +3,6 @@
 # Recipe:: default
 #
 # Copyright (c) 2016 The Authors, All Rights Reserved.
-node.default['audit']['collector'] = 'chef-visibility'
-node.default['audit']['profiles']['admin/ssl-benchmark'] = true
-node.default['push_jobs']['allow_unencrypted'] = true
 
 chef_gem 'inspec' do
   compile_time true
