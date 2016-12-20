@@ -19,9 +19,11 @@ end
 registry_key 'HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Google\Update' do
   values [{:name => 'AutoUpdateCheckPeriodMinutes', :type => :dword, :data => '00000000'}]
   action :create
+  recursive true
 end
 
 registry_key 'HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Google\Update' do
   values [{:name => 'UpdateDefault', :type => :dword, :data => '00000000'}]
   action :create
+  recursive true
 end
