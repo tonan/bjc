@@ -13,3 +13,15 @@ template 'C:\Users\Administrator\AppData\Local\Google\Chrome\User Data\Default\B
   action :create
   source 'bookmarks.erb'
 end
+
+# Disable Google Chrome Updates
+# https://www.chromium.org/administrators/turning-off-auto-updates
+registry_key 'HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Google\Update' do
+  values [{:name => 'AutoUpdateCheckPeriodMinutes', :type => :dword, :data => '00000000'}]
+  action :create
+end
+
+registry_key 'HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Google\Update' do
+  values [{:name => 'UpdateDefault', :type => :dword, :data => '00000000'}]
+  action :create
+end
