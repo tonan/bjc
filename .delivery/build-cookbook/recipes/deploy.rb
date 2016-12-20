@@ -5,6 +5,7 @@
 # Copyright (c) 2016 The Authors, All Rights Reserved.
 
 require 'json'
+require 'aws-sdk'
 include_recipe 'chef-sugar::default'
 
 # This part runs only in 'Acceptance'.  Stand up a demo for testing.
