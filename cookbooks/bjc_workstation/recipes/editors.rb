@@ -10,18 +10,28 @@ chocolatey_package 'VisualStudioCode' do
   action :install
 end
 
-# Disable Visual Studio Code Updates
-# https://code.visualstudio.com/docs/supporting/faq#_how-do-i-opt-out-of-vs-code-autoupdates
 directory "#{home}/AppData/Roaming/Code/User" do
   recursive true
 end
 
+# Disable Visual Studio Code Updates, Crash Reporting, and Telemetry Reporting
+# https://code.visualstudio.com/docs/supporting/faq#_how-do-i-opt-out-of-vs-code-autoupdates
 cookbook_file "#{home}/AppData/Roaming/Code/User/settings.json" do
   source 'vscode.settings.json'
   action :create
 end
 
 # Disable Atom Updates
+directory "#{home}/AppData/Roaming/Code/Local Storage" do
+  recursive true
+end
+
+# Set Visual Studio Code Color and Icon Theme, Disable Welcome Message
+# Stubbed SLQite3 Database File from Visual Studio Code
+cookbook_file "#{home}/AppData/Roaming/Code/Local Storage/file__0.localstorage" do
+  source 'vscode.file__0.localstorage'
+  action :create
+end
 directory "#{home}/.atom"
 
 cookbook_file "#{home}/.atom/config.cson" do
