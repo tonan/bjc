@@ -3,3 +3,7 @@
     showOnStartup: false
   core:
     automaticallyUpdate: false
+    themes: [
+      "one-light-ui"
+      "solarized-light-syntax"
+    ]
