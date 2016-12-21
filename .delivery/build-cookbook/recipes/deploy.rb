@@ -23,8 +23,8 @@ if ['acceptance'].include?(node['delivery']['change']['stage'])
     
     # This is kind of an ugly hack but it allows us to use wombat as intended.
     # Fetch the bjc-demo.json that was just created in the build stage
-    remote_file "#{workspace}/stacks/bjc-demo.json" do
-      source 'https://s3-us-west-2.amazonaws.com/bjcpublic/bjc-demo.json'
+    remote_file "#{workspace}/stacks/acceptance-bjc-demo.json" do
+      source 'https://s3-us-west-2.amazonaws.com/bjcpublic/acceptance-bjc-demo.json'
       action :create
     end
     
@@ -42,21 +42,21 @@ if ['delivered'].include?(node['delivery']['change']['stage'])
 
   workspace = "#{node['delivery']['workspace_path']}/bjc-automate-server-5g9aorii6yvcetdi.us-west-2.opsworks-cm.io/default/chef-sas/bjc/master/delivered/deploy/repo" 
 
-  remote_file "#{workspace}/stacks/bjc-demo.json" do
+  remote_file "#{workspace}/stacks/acceptance-bjc-demo.json" do
     action :create
-    source 'https://s3-us-west-2.amazonaws.com/bjcpublic/bjc-demo.json'
+    source 'https://s3-us-west-2.amazonaws.com/bjcpublic/acceptance-bjc-demo.json'
   end
 
-  cfjson = File.read("#{workspace}/stacks/bjc-demo.json")
+  cfjson = File.read("#{workspace}/stacks/acceptance-bjc-demo.json")
  
   data_hash = JSON.parse(cfjson)
 
   version = data_hash['Parameters']['Version']['Default']
 
-  ruby_block "Publish bjc-demo.json to S3" do
+  ruby_block "Publish acceptance-bjc-demo.json to S3" do
     block do
       s3 = Aws::S3::Resource.new(region:'us-west-2')
-      obj = s3.bucket('bjcpublic').object("cloudformation/bjc-demo-#{version}.json")
+      obj = s3.bucket('bjcpublic').object("cloudformation/acceptance-bjc-demo-#{version}.json")
       obj.upload_file("#{workspace}/stacks/bjc-demo.json", acl:'public-read')
     end
   end
