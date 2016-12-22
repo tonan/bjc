@@ -6,6 +6,6 @@ issues_url 'https://baby.dont.hurt.me'
 license 'all_rights'
 description 'Installs/Configures site-config'
 long_description 'Installs/Configures site-config'
-version '0.2.6'
+version '0.2.7'
 
 depends 'base-web'
