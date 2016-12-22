@@ -13,7 +13,7 @@ if ['acceptance'].include?(node['delivery']['change']['stage'])
   workspace = "#{node['delivery']['workspace_path']}/bjc-automate-server-5g9aorii6yvcetdi.us-west-2.opsworks-cm.io/default/chef-sas/bjc/master/acceptance/deploy/repo"
   # Only build if we have changed cookbooks.
   unless changed_cookbooks.empty?
-    # Copy keys into the packer directory
+    # Copy keys into the packer directory.  Not sure this is necessary here.
     execute "copy-packer-keys" do
       command "tar -zxvf #{node['delivery']['workspace_path']}/Downloads/keys.tar.gz -C packer/keys"
       live_stream true
@@ -21,13 +21,13 @@ if ['acceptance'].include?(node['delivery']['change']['stage'])
       action :run
     end
     
-    # This is kind of an ugly hack but it allows us to use wombat as intended.
-    # Fetch the bjc-demo.json that was just created in the build stage
+    # Fetch the bjc-demo.json that was created in the last successful build
     remote_file "#{workspace}/stacks/acceptance-bjc-demo.json" do
       source 'https://s3-us-west-2.amazonaws.com/bjcpublic/acceptance-bjc-demo.json'
       action :create
     end
-    
+   
+    # Use this wrapper script to stand up the demo.
     execute 'Deploy Demo Stack' do
       command "#{node['delivery']['workspace_path']}/wombat_deploy.sh"
       cwd workspace
