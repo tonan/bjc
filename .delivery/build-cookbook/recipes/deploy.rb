@@ -57,7 +57,7 @@ if ['delivered'].include?(node['delivery']['change']['stage'])
     block do
       s3 = Aws::S3::Resource.new(region:'us-west-2')
       obj = s3.bucket('bjcpublic').object("cloudformation/acceptance-bjc-demo-#{version}.json")
-      obj.upload_file("#{workspace}/stacks/bjc-demo.json", acl:'public-read')
+      obj.upload_file("#{workspace}/stacks/acceptance-bjc-demo.json", acl:'public-read')
     end
   end
 end
