@@ -37,7 +37,7 @@ windows_zipfile Chef::Config[:file_cache_path] + '/Pendrica.Chef-0.6.2' do
   source "https://Pendrica.gallery.vsassets.io/_apis/public/gallery/publisher/Pendrica/extension/Chef/0.6.2/assetbyname/Microsoft.VisualStudio.Services.VSIXPackage"
   checksum '0436ca5b7ed0e46cbc1059f9ec509cb74cf8e913eacd6c2b7e805d88f0ce953f'
   action :unzip
-  not_if {::File.exists?(Chef::Config[:file_cache_path] + '/Pendrica.Chef-0.6.2/extension/README.md')}
+  not_if { ::File.exist?(Chef::Config[:file_cache_path] + '/Pendrica.Chef-0.6.2/extension/README.md') }
 end
 
 directory "#{home}/.vscode/extensions/Pendrica.Chef-0.6.2" do
@@ -49,7 +49,7 @@ ruby_block 'Copy Chef Extension for Visual Studio Code' do
   block do
     FileUtils.cp_r Chef::Config[:file_cache_path] + '/Pendrica.Chef-0.6.2/extension/.', "#{home}/.vscode/extensions/Pendrica.Chef-0.6.2"
   end
-  not_if {::File.exists?("#{home}/.vscode/extensions/Pendrica.Chef-0.6.2/README.md")}
+  not_if { ::File.exist?("#{home}/.vscode/extensions/Pendrica.Chef-0.6.2/README.md") }
 end
 
 # Disable Atom Updates, Crash Reporting, Telemetry Reporting, Set Color Theme, and Disable Welcome Message
