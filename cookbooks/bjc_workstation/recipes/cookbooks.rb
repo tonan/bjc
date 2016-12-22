@@ -16,12 +16,11 @@ directory "#{home}/cookbooks" do
   action :create
 end
 
-execute "Copy cookbooks into home directory" do
-  action :run
-  command <<-EOH
-  cp -r #{Chef::Config[:file_cache_path]}/bjc/cookbooks/bjc-ecommerce #{home}/cookbooks/
-  cp -r #{Chef::Config[:file_cache_path]}/bjc/cookbooks/bjc_bass #{home}/cookbooks/
-EOH
+node['bjc_workstation']['cookbooks'].each do |cb|
+  execute "Copy cookbooks into home directory" do
+    action :run
+    command "cp -r #{Chef::Config[:file_cache_path]}/bjc/cookbooks/#{cb} #{home}/cookbooks/"
+  end
 end
 
 template "#{home}/cookbooks/bjc-ecommerce/.kitchen.yml" do
