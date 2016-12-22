@@ -1,0 +1,10 @@
+"*":
+  welcome:
+    showOnStartup: false
+  core:
+    automaticallyUpdate: false
+    telemetryConsent: "no"
+    themes: [
+      "one-light-ui"
+      "solarized-light-syntax"
+    ]

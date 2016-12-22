@@ -27,10 +27,10 @@ control 'bjc-packages' do
   packages = [
     'Atom',
     'Microsoft Visual Studio Code',
-    'Chef Client v12.15.19',
+    'Chef Client v12.17.44',
     'Chef Development Kit v0.16.28',
-    'Git Extensions 2.48.05',
-    'Git version 2.10.2',
+    'Git Extensions 2.49',
+    'Git version 2.11.0',
     'Google Chrome',
     'Microsoft Git Credential Manager for Windows 1.5.0'
   ]
@@ -41,11 +41,15 @@ control 'bjc-packages' do
     end
   end
 
-  describe command('choco list putty') do
-    it { should exist }
+  describe command('choco upgrade putty --noop') do
     its('exit_status') { should eq 0 }
+    its('stdout') { should match('putty v0.67 is the latest') }
   end
 
+  describe command('choco upgrade cmder --noop') do
+     its('exit_status') { should eq 0 }
+     its('stdout') { should match('cmder v1.3.0 installed') }
+   end
 end
 
 control 'bjc-configfiles' do
@@ -92,6 +96,28 @@ control 'bjc-configfiles' do
   describe file('C:\Users\Administrator\.ssh\id_rsa.ppk') do
     it { should be_file }
     its('content') { should match('g4wKcFFd9aO0dA')}
+  end
+  describe file ('C:\Users\Administrator\AppData\Roaming\Code\User\settings.json') do
+    it { should be_file }
+    its('content') { should match('"update.channel": "none"')}
+  end
+  describe file ('C:\Users\Administrator\AppData\Roaming\Code\Local Storage\file__0.localstorage') do
+    it { should be_file }
+  end
+  describe file ('C:\Users\Administrator\.vscode\extensions\Pendrica.Chef-0.6.2\README.md') do
+    it { should be_file }
+    its('content') { should match('# Chef Extension for Visual Studio Code')}
+  end
+  describe file ('C:\Users\Administrator\.atom\config.cson') do
+    it { should be_file }
+    its('content') { should match('automaticallyUpdate: false')}
+  end
+end
+control 'bjc-regkeys' do
+  describe registry_key('Google Update','HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Google\Update') do
+    it { should exist }
+    its('AutoUpdateCheckPeriodMinutes') { should eq 0 }
+    its('UpdateDefault') { should eq 0 }
   end
 end
 

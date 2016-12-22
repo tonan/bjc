@@ -1,0 +1,6 @@
+{
+    "update.channel": "none",
+    "telemetry.enableCrashReporter": false,
+    "telemetry.enableTelemetry": false,
+    "foodcritic.enable": true
+}
