@@ -56,7 +56,7 @@ if ['delivered'].include?(node['delivery']['change']['stage'])
   ruby_block "Publish acceptance-bjc-demo.json to S3" do
     block do
       s3 = Aws::S3::Resource.new(region:'us-west-2')
-      obj = s3.bucket('bjcpublic').object("cloudformation/acceptance-bjc-demo-#{version}.json")
+      obj = s3.bucket('bjcpublic').object("cloudformation/bjc-demo-#{version}.json")
       obj.upload_file("#{workspace}/stacks/acceptance-bjc-demo.json", acl:'public-read')
     end
   end
