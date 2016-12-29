@@ -54,7 +54,7 @@ if ['delivered'].include?(node['delivery']['change']['stage'])
       version = data_hash['Parameters']['Version']['Default']
       s3 = Aws::S3::Resource.new(region:'us-west-2')
       obj = s3.bucket('bjcpublic').object("cloudformation/bjc-demo-#{version}.json")
-      if obj.exists?
+      unless obj.exists?
         obj.upload_file("#{workspace}/stacks/acceptance-bjc-demo.json", acl:'public-read')
       end
     end
