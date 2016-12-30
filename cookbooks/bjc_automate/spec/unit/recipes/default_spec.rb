@@ -24,7 +24,7 @@ describe 'bjc_automate::default' do
       # expect(chef_run).to include_recipe('wombat::etc-hosts')
     end
 
-    it 'creates the delivery_backup tar file' do
+    it 'creates the chef-automate-backup.zst file' do
       expect(chef_run).to create_cookbook_file('/var/opt/delivery/backups/chef-automate-backup.zst')
     end
 
