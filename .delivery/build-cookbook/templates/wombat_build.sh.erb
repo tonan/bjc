@@ -1,0 +1,19 @@
+#!/bin/sh
+
+# This script should be placed on the build nodes inside the dbuild user's 
+# home directory, /var/opt/delivery/workspace
+# 
+# Make sure you have the correct keys and region in the dbuild user's ~/.bashrc
+
+source ~/.bashrc
+workdir='/var/opt/delivery/workspace/bjc-automate-server-5g9aorii6yvcetdi.us-west-2.opsworks-cm.io/default/chef-sas/bjc/master/build/publish/repo/'
+
+wombat build --parallel
+
+numamis=$(grep "amazon-ebs: AMI: " ${workdir}packer/logs/* | wc -l)
+grep "amazon-ebs: AMI: " ${workdir}packer/logs/*
+
+if [ $numamis -ne 12 ]; then
+  echo "Something went wrong. Only $numamis found, there should be 12."
+  exit 1
+fi

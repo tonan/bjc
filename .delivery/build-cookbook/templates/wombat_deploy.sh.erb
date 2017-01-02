@@ -1,0 +1,12 @@
+#!/bin/sh
+
+# This script should be placed on the build nodes inside the dbuild user's
+# home directory, /var/opt/delivery/workspace
+#
+# Make sure you have the correct keys and region in the dbuild user's ~/.bashrc
+
+source ~/.bashrc
+
+wombat deploy acceptance-bjc-demo
+sleep 180
+wombat outputs acceptance-bjc-demo
