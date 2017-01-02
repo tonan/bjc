@@ -23,3 +23,9 @@ end
 
 include_recipe 'wombat::authorized-keys'
 include_recipe 'wombat::etc-hosts'
+
+#Sync so we can get all our compliance profiles downloaded
+git '/home/ubuntu/bjc' do
+  action :sync
+  repository 'https://github.com/chef-cft/bjc'
+end
