@@ -27,8 +27,8 @@ control 'bjc-packages' do
   packages = [
     'Atom',
     'Microsoft Visual Studio Code',
-    'Chef Client v12.17.44',
-    'Chef Development Kit v0.16.28',
+    'Chef Client',
+    'Chef Development Kit',
     'Git Extensions 2.49',
     'Git version 2.11.0',
     'Google Chrome',
@@ -102,13 +102,13 @@ control 'bjc-configfiles' do
   #  it { should be_file }
   #  its('content') { should match('"update.channel": "none"')}
   #end
-  describe file ('C:\Users\Administrator\AppData\Roaming\Code\Local Storage\file__0.localstorage') do
-    it { should be_file }
-  end
-  describe file ('C:\Users\Administrator\.vscode\extensions\Pendrica.Chef-0.6.2\README.md') do
-    it { should be_file }
-    its('content') { should match('# Chef Extension for Visual Studio Code')}
-  end
+  #describe file ('C:\Users\Administrator\AppData\Roaming\Code\Local Storage\file__0.localstorage') do
+  #  it { should be_file }
+  #end
+  #describe file ('C:\Users\Administrator\.vscode\extensions\Pendrica.Chef-0.6.2\README.md') do
+  #  it { should be_file }
+  #  its('content') { should match('# Chef Extension for Visual Studio Code')}
+  #end
   # Also broken
   #describe file ('C:\Users\Administrator\.atom\config.cson') do
   #  it { should be_file }
