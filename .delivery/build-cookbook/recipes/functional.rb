@@ -12,10 +12,12 @@
 # shown below contains the commands to run inspec against our machines.
 
 # Run inspec tests on the Windows workstation if any cookbooks changed
-unless changed_cookbooks.empty?
-  execute 'Run inspec tests on workstation' do
-    command '/var/opt/delivery/workspace/inspec_workstation.sh'
-    cwd '/var/opt/delivery/workspace'
-    action :run
+if ['acceptance'].include?(node['delivery']['change']['stage'])
+  unless changed_cookbooks.empty?
+    execute 'Run inspec tests on workstation' do
+      command '/var/opt/delivery/workspace/inspec_workstation.sh'
+      cwd '/var/opt/delivery/workspace'
+      action :run
+    end
   end
 end
