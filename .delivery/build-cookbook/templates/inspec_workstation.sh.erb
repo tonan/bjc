@@ -2,14 +2,16 @@
 # We need to store passwords securely so they can be rendered here safely...
 # This template isn't in any recipes yet. 
 PASSWORD='yourpassword'
+#!/bin/sh
+# This should be refactored so that the password is not stored in plaintext
 
 # Get the instance ID of the compliance server in the acceptance stack
-COMPLIANCE=$(aws cloudformation describe-stack-resources --stack-name acceptance-bjc-demo | jq -r '.[] | .[] | select(.ResourceType == "AWS::EC2::Instance") | select(.LogicalResourceId == "Compliance") | .PhysicalResourceId')
+COMPLIANCE=$(aws cloudformation describe-stack-resources --region us-west-2 --stack-name acceptance-bjc-demo | jq -r '.[] | .[] | select(.ResourceType == "AWS::EC2::Instance") | select(.LogicalResourceId == "Compliance") | .PhysicalResourceId')
 
 # Get the IP address of the compliance server
-IPADDR=$(aws ec2 describe-instances --instance-id i-00d8edae3e04c7d5f --query 'Reservations[].Instances[].[PublicIpAddress]' | jq -r '.[] | .[] | @text')
+IPADDR=$(aws ec2 describe-instances --region us-west-2 --instance-id i-00d8edae3e04c7d5f --query 'Reservations[].Instances[].[PublicIpAddress]' | jq -r '.[] | .[] | @text')
 
 # Remote in and run inspec on the windows workstation
-ssh -i ~/.ssh/compliance.pem ubuntu@${IPADDR} sudo /opt/chef-compliance/embedded/bin/inspec exec /home/ubuntu/bjc/cookbooks/bjc_workstation/test/integration/default/controls/bjc_workstation_test.rb -t winrm://Administrator@workstation-1 --password ${PASSWORD}
+ssh -i /var/opt/delivery/workspace/.ssh/compliance.pem ubuntu@${IPADDR} sudo /opt/chef-compliance/embedded/bin/inspec exec /home/ubuntu/bjc/cookbooks/bjc_workstation/test/integration/default/controls/bjc_workstation_test.rb -t winrm://Administrator@workstation-1 --password ${PASSWORD}
 
 # Add more inspec tests here, using the above as a guide (SSH syntax might be different)
