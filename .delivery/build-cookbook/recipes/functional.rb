@@ -4,8 +4,11 @@
 #
 # Copyright (c) 2016 The Authors, All Rights Reserved.
 
-# Run inspec tests on the Windows workstation
-execute 'Run inspec tests on workstation' do
-  command "/var/opt/delivery/workspace/inspec_workstation.sh"
-  action :run
+# Run inspec tests on the Windows workstation if any cookbooks changed
+unless changed_cookbooks.empty?
+  execute 'Run inspec tests on workstation' do
+    command '/var/opt/delivery/workspace/inspec_workstation.sh'
+    cwd '/var/opt/delivery/workspace'
+    action :run
+  end
 end
