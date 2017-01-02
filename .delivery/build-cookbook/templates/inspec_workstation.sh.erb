@@ -1,9 +1,9 @@
 #!/bin/sh
 # We need to store passwords securely so they can be rendered here safely...
 # This template isn't in any recipes yet. 
+# Also may be possible to simply reference inspec profiles directly from github.
+# This would obviate the need to copy the bjc git repo onto the compliance box.
 PASSWORD='yourpassword'
-#!/bin/sh
-# This should be refactored so that the password is not stored in plaintext
 
 # Get the instance ID of the compliance server in the acceptance stack
 COMPLIANCE=$(aws cloudformation describe-stack-resources --region us-west-2 --stack-name acceptance-bjc-demo | jq -r '.[] | .[] | select(.ResourceType == "AWS::EC2::Instance") | select(.LogicalResourceId == "Compliance") | .PhysicalResourceId')

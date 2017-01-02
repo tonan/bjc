@@ -4,6 +4,13 @@
 #
 # Copyright (c) 2016 The Authors, All Rights Reserved.
 
+# This multi-function recipe has different purposes depending on what stage
+# it gets run it.  During acceptance it will stand up an demo using the current
+# acceptance-bjc-demo Cloudformation template.  During the Delivered stage it
+# will instead publish the latest JSON template to S3 with a version number.
+# When new demos are published an AWS lambda function announces the new demo
+# in the #chef-demo-project slack channel.
+
 require 'json'
 require 'aws-sdk'
 include_recipe 'chef-sugar::default'

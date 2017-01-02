@@ -30,6 +30,7 @@ end
 
 #Sync so we can get all our compliance profiles downloaded
 git '/home/ubuntu/bjc' do
+  revision 'master'
   action :sync
   repository 'https://github.com/chef-cft/bjc'
 end

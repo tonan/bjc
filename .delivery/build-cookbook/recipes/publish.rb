@@ -4,6 +4,12 @@
 #
 # Copyright (c) 2016 The Authors, All Rights Reserved.
 
+# During the publish phase we want to build an entirely new set of AMIs as 
+# well as a new JSON template, but only if cookbooks have changed.  If any
+# cookbooks have changed we trigger a build via the wrapper scripts 
+# wombat_build.sh and wombat_update.sh.  Once these have run successfully 
+# we go ahead and publish the new JSON template to S3 for acceptance testing.
+
 require 'aws-sdk'
 
 # This could probably be refactored a bit
