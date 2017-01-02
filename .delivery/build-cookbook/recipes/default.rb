@@ -13,3 +13,10 @@ end
 include_recipe 'packer'
 chef_gem 'wombat-cli'
 chef_gem 'aws-sdk'
+
+%w(build update deploy).each do |s|
+  template "/var/opt/delivery/workspace/wombat_#{s}.sh" do
+    source "wombat_#{s}.sh.erb"
+    action :create
+  end
+end
