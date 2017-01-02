@@ -12,6 +12,6 @@ COMPLIANCE=$(aws cloudformation describe-stack-resources --region us-west-2 --st
 IPADDR=$(aws ec2 describe-instances --region us-west-2 --instance-id i-00d8edae3e04c7d5f --query 'Reservations[].Instances[].[PublicIpAddress]' | jq -r '.[] | .[] | @text')
 
 # Remote in and run inspec on the windows workstation
-ssh -i /var/opt/delivery/workspace/.ssh/compliance.pem ubuntu@${IPADDR} sudo /opt/chef-compliance/embedded/bin/inspec exec /home/ubuntu/bjc/cookbooks/bjc_workstation/test/integration/default/controls/bjc_workstation_test.rb -t winrm://Administrator@workstation-1 --password ${PASSWORD}
+ssh -o StrictHostKeyChecking no -i /var/opt/delivery/workspace/.ssh/compliance.pem ubuntu@${IPADDR} sudo /opt/chef-compliance/embedded/bin/inspec exec /home/ubuntu/bjc/cookbooks/bjc_workstation/test/integration/default/controls/bjc_workstation_test.rb -t winrm://Administrator@workstation-1 --password ${PASSWORD}
 
 # Add more inspec tests here, using the above as a guide (SSH syntax might be different)
