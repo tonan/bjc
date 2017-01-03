@@ -15,7 +15,6 @@ describe 'bjc_compliance::default' do
 
     it 'includes required recipes for setup' do
       expect(chef_run).to include_recipe('compliance::default')
-      expect(chef_run).to include_recipe('audit::default')
       expect(chef_run).to include_recipe('bjc_compliance::restore_backup')
       expect(chef_run).to include_recipe('bjc_compliance::load_profiles')
       expect(chef_run).to include_recipe('wombat::authorized-keys')
