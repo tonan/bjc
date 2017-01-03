@@ -20,3 +20,8 @@ chef_gem 'aws-sdk'
     action :create
   end
 end
+
+template "/var/opt/delivery/workspace/inspec_tests.sh" do
+  action :create
+  source "inspec_tests.sh.erb"
+end

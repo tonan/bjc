@@ -15,7 +15,7 @@
 if ['acceptance'].include?(node['delivery']['change']['stage'])
   unless changed_cookbooks.empty?
     execute 'Run inspec tests' do
-      command '/var/opt/delivery/workspace/inspec_scan.sh'
+      command '/var/opt/delivery/workspace/inspec_tests.sh'
       cwd '/var/opt/delivery/workspace'
       action :run
     end
