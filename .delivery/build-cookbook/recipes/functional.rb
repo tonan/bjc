@@ -17,6 +17,7 @@ if ['acceptance'].include?(node['delivery']['change']['stage'])
     execute 'Run inspec tests' do
       command '/var/opt/delivery/workspace/inspec_tests.sh'
       cwd '/var/opt/delivery/workspace'
+      live_stream true
       action :run
     end
   end
