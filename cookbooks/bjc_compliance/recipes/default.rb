@@ -34,3 +34,16 @@ git '/home/ubuntu/bjc' do
   action :sync
   repository 'https://github.com/chef-cft/bjc'
 end
+
+#Set up SSH key
+file '/home/ubuntu/.ssh/id_rsa' do
+  content lazy { IO.read("/tmp/private.pem") }
+  action :create
+end
+
+#Put the inspec scan script in place
+template '/home/ubuntu/inspec_scan.sh' do
+  action :create
+  source 'inspec_scan.sh.erb'
+  mode '0755'
+end

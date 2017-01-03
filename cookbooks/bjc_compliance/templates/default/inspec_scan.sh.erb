@@ -1,0 +1,12 @@
+#!/bin/sh
+INSPEC_PATH='/opt/chef-compliance/embedded/bin'
+COOKBOOKS='/home/ubuntu/bjc/cookbooks'
+CONTROLS='test/integration/default/controls'
+
+# Run inspec tests on the Windows workstation
+# Use this pattern for Windows machines
+${INSPEC_PATH}/inspec exec ${COOKBOOKS}/bjc_workstation/${CONTROLS}/bjc_workstation_test.rb -t winrm://Administrator@workstation-1 --password 'RL9@T40BTmXh'
+
+# Run inspec tests on the Automate server
+# Use this pattern for Linux machines
+${INSPEC_PATH}/inspec exec ${COOKBOOKS}/bjc_automate/${CONTROLS}/bjc_automate_test.rb -i /home/ubuntu/.ssh/id_rsa -t ssh://ubuntu@compliance
