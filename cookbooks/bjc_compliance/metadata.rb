@@ -6,7 +6,7 @@ description 'Installs/Configures bjc_compliance'
 long_description 'Installs/Configures bjc_compliance'
 issues_url 'https://waffle.io/chef-cft/bjc'
 source_url 'https://github.com/chef-cft/bjc'
-version '0.1.22'
+version '0.1.23'
 
 depends 'compliance'
 depends 'audit'
