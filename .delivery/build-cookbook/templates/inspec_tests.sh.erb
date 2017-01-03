@@ -8,4 +8,4 @@ COMPLIANCE=$(aws cloudformation describe-stack-resources --region us-west-2 --st
 IPADDR=$(aws ec2 describe-instances --region us-west-2 --instance-id $COMPLIANCE --query 'Reservations[].Instances[].[PublicIpAddress]' | jq -r '.[] | .[] | @text')
 
 # Remote in and run inspec. This script is stored in the bjc_compliance cookbook as a template.
-ssh -o StrictHostKeyChecking=no -i /var/opt/delivery/workspace/.ssh/compliance.pem ubuntu@${IPADDR} sudo /home/ubuntu/inspec_tests.sh
+ssh -o StrictHostKeyChecking=no -i /var/opt/delivery/workspace/.ssh/compliance.pem ubuntu@${IPADDR} sudo /home/ubuntu/inspec_scan.sh
