@@ -11,11 +11,11 @@
 # compliance box and kicking off `inspec exec` commands.  The wrapper script
 # shown below contains the commands to run inspec against our machines.
 
-# Run inspec tests on the Windows workstation if any cookbooks changed
+# Run inspec tests on the machines in our environment
 if ['acceptance'].include?(node['delivery']['change']['stage'])
   unless changed_cookbooks.empty?
-    execute 'Run inspec tests on workstation' do
-      command '/var/opt/delivery/workspace/inspec_workstation.sh'
+    execute 'Run inspec tests' do
+      command '/var/opt/delivery/workspace/inspec_scan.sh'
       cwd '/var/opt/delivery/workspace'
       action :run
     end
