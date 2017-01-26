@@ -12,7 +12,7 @@ describe 'bjc_workstation::cookbooks' do
   context 'When all attributes are default, on Windows Server 2012R2 platform' do
     let(:chef_run) do
       ChefSpec::ServerRunner.new do |node|
-        node.normal['bjc_workstation']['cookbooks'] = ['bjc-ecommerce', 'bjc_bass', 'bjc-web-base']
+        node.normal['bjc_workstation']['cookbooks'] = ['bjc-ecommerce', 'bjc_bass']
       end.converge(described_recipe)
     end
 

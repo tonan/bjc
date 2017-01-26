@@ -32,27 +32,19 @@ infranodes:
     run_list:
       - recipe[bjc-ecommerce]
       - recipe[bjc_bass]
-  webbaseacceptance:
-    environment: acceptance-automate-demo-automate-bjc-web-base-master
-    run_list:
-      - recipe[bjc-web-base]
-      - recipe[bjc_bass]
   delivered:
     environment: delivered
     run_list:
-      - recipe[bjc-web-base]
       - recipe[bjc-ecommerce]
       - recipe[bjc_bass]
   rehearsal:
     environment: rehearsal
     run_list:
-      - recipe[bjc-web-base]
       - recipe[bjc-ecommerce]
       - recipe[bjc_bass]
   union:
     environment: union
     run_list:
-      - recipe[bjc-web-base]
       - recipe[bjc-ecommerce]
       - recipe[bjc_bass]
 conf:

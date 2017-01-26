@@ -32,7 +32,6 @@ end
 
 %w(
   bjc-ecommerce
-  bjc-web-base
   bjc_bass
 ).each do |cookbook|
   execute "berks install #{cookbook}" do
