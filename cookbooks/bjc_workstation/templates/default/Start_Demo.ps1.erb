@@ -29,5 +29,6 @@ $subnet = curl http://169.254.169.254/latest/meta-data/network/interfaces/macs/$
 cp C:\Users\Administrator\cookbooks\bjc-ecommerce\.kitchen.yml C:\Users\Administrator\cookbooks\bjc-ecommerce\.kitchen.local.yml
 perl -p -i -e "s/  security_group_ids:.*/  security_group_ids: $sg/" C:\Users\Administrator\cookbooks\bjc-ecommerce\.kitchen.local.yml
 perl -p -i -e "s/  subnet_id:.*/  subnet_id: $subnet/" C:\Users\Administrator\cookbooks\bjc-ecommerce\.kitchen.local.yml
+Remove-Item C:\Users\Administrator\cookbooks\bjc-ecommerce\.kitchen.local.yml.bak
 echo "Starting cmder..."
 & "C:\tools\cmder\Cmder.exe"
