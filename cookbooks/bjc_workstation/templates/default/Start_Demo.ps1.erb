@@ -26,7 +26,8 @@ echo "Updating C:\Users\Administrator\cookbooks\bjc-ecommerce\.kitchen.yml"
 $mac = curl http://169.254.169.254/latest/meta-data/network/interfaces/macs | grep 'Content           :' | awk '{ print $3 }'
 $sg = curl http://169.254.169.254/latest/meta-data/network/interfaces/macs/$mac/security-group-ids | grep 'Content           :' | awk '{ print $3 }'
 $subnet = curl http://169.254.169.254/latest/meta-data/network/interfaces/macs/$mac/subnet-id | grep 'Content           :' | awk '{ print $3 }'
-perl -p -i -e "s/  security_group_ids:.*/  security_group_ids: $sg/" C:\Users\Administrator\cookbooks\bjc-ecommerce\.kitchen.yml
-perl -p -i -e "s/  subnet_id:.*/  subnet_id: $subnet/" C:\Users\Administrator\cookbooks\bjc-ecommerce\.kitchen.yml
+cp C:\Users\Administrator\cookbooks\bjc-ecommerce\.kitchen.yml C:\Users\Administrator\cookbooks\bjc-ecommerce\.kitchen.local.yml
+perl -p -i -e "s/  security_group_ids:.*/  security_group_ids: $sg/" C:\Users\Administrator\cookbooks\bjc-ecommerce\.kitchen.local.yml
+perl -p -i -e "s/  subnet_id:.*/  subnet_id: $subnet/" C:\Users\Administrator\cookbooks\bjc-ecommerce\.kitchen.local.yml
 echo "Starting cmder..."
 & "C:\tools\cmder\Cmder.exe"
