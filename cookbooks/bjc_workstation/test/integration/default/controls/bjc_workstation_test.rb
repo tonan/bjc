@@ -32,7 +32,7 @@ control 'bjc-packages' do
     'Git Extensions 2.49',
     'Git version 2.11.0',
     'Google Chrome',
-    'Microsoft Git Credential Manager for Windows 1.5.0'
+    'Microsoft Git Credential Manager for Windows 1.8.0'
   ]
 
   packages.each do |p|
