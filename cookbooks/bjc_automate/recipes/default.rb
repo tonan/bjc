@@ -14,7 +14,7 @@ end
 cookbook_file '/var/opt/delivery/backups/chef-automate-backup.zst' do
   source 'chef-automate-backup.zst'
   notifies :run, 'execute[restore backup data into automate]'
-  checksum 'bc91b02f8faf055da5886fa28b45d12ee551b8daf7168f16829cbcd5be710a83'
+  checksum '33f51f8914cdf0ab29b457a3ea3b75890ca63a8b2fd193c465270ffdb555cc79'
 end
 
 execute 'restore backup data into automate' do
