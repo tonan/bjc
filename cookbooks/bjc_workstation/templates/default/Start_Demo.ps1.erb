@@ -1,50 +1,78 @@
+function Get-Mac {
+  Invoke-RestMethod -Uri http://169.254.169.254/latest/meta-data/network/interfaces/macs
+}
+
+function Get-Subnet {
+  $mac = Get-Mac
+  Invoke-RestMethod -Uri http://169.254.169.254/latest/meta-data/network/interfaces/macs/$mac/subnet-id 
+}
+
+function Get-SecurityGroup {
+  $mac = Get-Mac
+  Invoke-RestMethod -Uri http://169.254.169.254/latest/meta-data/network/interfaces/macs/$mac/security-group-ids
+} 
+
+function Write-KitchenYaml {
+    Write-Output "Updating C:\Users\Administrator\cookbooks\bjc-ecommerce\.kitchen.yml"
+
+    $subnet = Get-Subnet
+    $sg = Get-SecurityGroup
+
+    New-Item C:\Users\Administrator\cookbooks\bjc-ecommerce\.kitchen.local.yml -type file -value "driver:`n  security_group_ids: $sg`n  subnet_id: $subnet`n" -force
+}
+
+function Import-RemoteCertificate {
+    $name = $args[0]
+
+    scp ${name}:/home/ubuntu/${name}.automate-demo.com.crt /c/Users/Administrator/Downloads 
+    Import-Certificate -FilePath  C:\Users\Administrator\Downloads\${name}.automate-demo.com.crt -CertStoreLocation Cert:/LocalMachine/Root
+}
+
 set-executionpolicy -executionpolicy unrestricted -force -scope LocalMachine
-<% home = Dir.home -%>
-echo "Copying compliance OIDC_CLIENT_ID to chef CHEF_GATE_OIDC_CLIENT_ID"
+
+Write-Output "Copying compliance OIDC_CLIENT_ID to chef CHEF_GATE_OIDC_CLIENT_ID"
 scp ~/.ssh/id_rsa.pub compliance:/tmp/CHEF_GATE_COMPLIANCE_SECRET
 ssh compliance 'sudo mv /tmp/CHEF_GATE_COMPLIANCE_SECRET /opt/chef-compliance/sv/core/env/CHEF_GATE_COMPLIANCE_SECRET && sudo chef-compliance-ctl restart core'
 ssh compliance 'sudo cp /opt/chef-compliance/sv/core/env/OIDC_CLIENT_ID /tmp && sudo chmod +r /tmp/OIDC_CLIENT_ID'
 scp -3 compliance:/tmp/OIDC_CLIENT_ID chef:/tmp/CHEF_GATE_OIDC_CLIENT_ID
 ssh chef 'sudo mv /tmp/CHEF_GATE_OIDC_CLIENT_ID /opt/opscode/sv/chef_gate/env/CHEF_GATE_OIDC_CLIENT_ID && sudo /opt/opscode/embedded/bin/sv restart chef_gate'
-sleep 60
-echo "Preparing AURD nodes for demo..."
+
+# TODO:  Does this need to be here?
+# sleep 60
+
+Write-Output "Preparing AURD nodes for demo..."
 knife job start chef-client -s *:*
-echo "Importing infrastructure SSL certs..."
-scp ecomacceptance:/home/ubuntu/ecomacceptance.automate-demo.com.crt /c/Users/Administrator/Downloads/
-scp union:/home/ubuntu/union.automate-demo.com.crt /c/Users/Administrator/Downloads/
-scp rehearsal:/home/ubuntu/rehearsal.automate-demo.com.crt /c/Users/Administrator/Downloads/
-scp delivered:/home/ubuntu/delivered.automate-demo.com.crt /c/Users/Administrator/Downloads/
-Import-Certificate -FilePath C:\Users\Administrator\Downloads\ecomacceptance.automate-demo.com.crt -CertStoreLocation Cert:/LocalMachine/Root
-Import-Certificate -FilePath C:\Users\Administrator\Downloads\union.automate-demo.com.crt -CertStoreLocation Cert:/LocalMachine/Root
-Import-Certificate -FilePath C:\Users\Administrator\Downloads\rehearsal.automate-demo.com.crt -CertStoreLocation Cert:/LocalMachine/Root
-Import-Certificate -FilePath C:\Users\Administrator\Downloads\delivered.automate-demo.com.crt -CertStoreLocation Cert:/LocalMachine/Root
-echo "second run to report compliance results"
+
+Write-Output "Importing infrastructure SSL certs..."
+Import-RemoteCertificate "ecomacceptance"
+Import-RemoteCertificate "union"
+Import-RemoteCertificate "rehearsal"
+Import-RemoteCertificate "delivered"
+
+Write-Output "second run to report compliance results"
 knife job start chef-client -s *:*
-echo "Atomic Batteries to Power."
+Write-Output "Atomic Batteries to Power."
 ssh automate 'sudo delivery-ctl restart'
-echo "Turbines to Speed.."
-echo "Updating C:\Users\Administrator\cookbooks\bjc-ecommerce\.kitchen.yml"
-$mac = curl http://169.254.169.254/latest/meta-data/network/interfaces/macs | grep 'Content           :' | awk '{ print $3 }'
-$sg = curl http://169.254.169.254/latest/meta-data/network/interfaces/macs/$mac/security-group-ids | grep 'Content           :' | awk '{ print $3 }'
-$subnet = curl http://169.254.169.254/latest/meta-data/network/interfaces/macs/$mac/subnet-id | grep 'Content           :' | awk '{ print $3 }'
-cp C:\Users\Administrator\cookbooks\bjc-ecommerce\.kitchen.yml C:\Users\Administrator\cookbooks\bjc-ecommerce\.kitchen.local.yml
-perl -p -i -e "s/  security_group_ids:.*/  security_group_ids: $sg/" C:\Users\Administrator\cookbooks\bjc-ecommerce\.kitchen.local.yml
-perl -p -i -e "s/  subnet_id:.*/  subnet_id: $subnet/" C:\Users\Administrator\cookbooks\bjc-ecommerce\.kitchen.local.yml
-Remove-Item C:\Users\Administrator\cookbooks\bjc-ecommerce\.kitchen.local.yml.bak
+Write-Output "Turbines to Speed.."
+
 # Grab the public IP of the Chef and Automate servers for use in Test Kitchen.
-echo "Inserting Breakfast Pastry..."
+Write-Output "Inserting Breakfast Pastry..."
 $automateservermac = ssh automate curl -s curl http://169.254.169.254/latest/meta-data/network/interfaces/macs/
 $automateserverip = ssh automate curl -s curl http://169.254.169.254/latest/meta-data/network/interfaces/macs/$automateservermac/public-ipv4s
 $chefservermac = ssh chef curl -s curl http://169.254.169.254/latest/meta-data/network/interfaces/macs/
 $chefserverip = ssh chef curl -s curl http://169.254.169.254/latest/meta-data/network/interfaces/macs/$chefservermac/public-ipv4s
 # Update our ubuntu user data with the right IPs.
-echo "Warming the Syrup...."
+Write-Output "Warming the Syrup...."
 (Get-Content C:\Users\Administrator\ubuntu_user_data).replace('CHEF_SERVER_IP', $chefserverip) | Set-Content C:\Users\Administrator\ubuntu_user_data
 (Get-Content C:\Users\Administrator\ubuntu_user_data).replace('AUTOMATE_SERVER_IP', $automateserverip) | Set-Content C:\Users\Administrator\ubuntu_user_data
 # Ditto for windows user data.
-echo "Increasing Flash Gordon Noise and Putting More Science Stuff Around....."
+Write-Output "Increasing Flash Gordon Noise and Putting More Science Stuff Around....."
 (Get-Content C:\Users\Administrator\windows_user_data).replace('CHEF_SERVER_IP', $chefserverip) | Set-Content C:\Users\Administrator\windows_user_data
 (Get-Content C:\Users\Administrator\windows_user_data).replace('AUTOMATE_SERVER_IP', $automateserverip) | Set-Content C:\Users\Administrator\windows_user_data
 
-echo "Starting cmder..."
+Write-KitchenYaml 
+
+Write-Output "Starting cmder..."
 & "C:\tools\cmder\Cmder.exe"
+
+
