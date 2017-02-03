@@ -85,9 +85,17 @@ control 'bjc-configfiles' do
     it { should be_file }
     its('content') { should match('Defaults:centos !requiretty')}
   end
+  describe file('C:\Users\Administrator\ubuntu_user_data') do
+    it { should be_file }
+    its('content') { should match('AUTOMATE_SERVER_IP automate.automate-demo.com')}
+  end
+  describe file('C:\Users\Administrator\windows_user_data') do
+    it { should be_file }
+    its('content') { should match('<powershell>')}
+  end
   describe file('C:\Users\Administrator\Start_Demo.ps1') do
     it { should be_file }
-    its('content') { should match('Restart the jankmobile')}
+    its('content') { should match('Atomic Batteries to Power.')}
   end
   describe file('C:\Users\Administrator\AppData\Local\Google\Chrome\User Data\Default\Bookmarks') do
     it { should be_file }
