@@ -32,4 +32,3 @@ suites:
     verifier:
       inspec_tests:
       - test/compliance/ssl_benchmark.rb
-      
