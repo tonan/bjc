@@ -18,3 +18,13 @@ end
 cookbook_file 'C:\Users\Administrator\user_data' do
   source 'user_data'
 end
+
+# OS-Specific user_data files to add the automate server to instances' hosts files.
+# Required to send TK data to Visibility.
+cookbook_file 'C:\Users\Administrator\ubuntu_user_data' do
+  source 'ubuntu_user_data'
+end
+
+cookbook_file 'C:\Users\Administrator\windows_user_data' do
+  source 'windows_user_data'
+end

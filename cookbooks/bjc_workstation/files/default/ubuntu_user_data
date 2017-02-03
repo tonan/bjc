@@ -1,0 +1,5 @@
+#!/bin/bash
+cat << EOF | sudo tee --append /etc/hosts
+CHEF_SERVER_IP chef.automate-demo.com
+AUTOMATE_SERVER_IP automate.automate-demo.com
+EOF

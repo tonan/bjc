@@ -20,8 +20,9 @@ Import-Certificate -FilePath C:\Users\Administrator\Downloads\rehearsal.automate
 Import-Certificate -FilePath C:\Users\Administrator\Downloads\delivered.automate-demo.com.crt -CertStoreLocation Cert:/LocalMachine/Root
 echo "second run to report compliance results"
 knife job start chef-client -s *:*
-echo "Restart the jankmobile"
+echo "Atomic Batteries to Power."
 ssh automate 'sudo delivery-ctl restart'
+echo "Turbines to Speed.."
 echo "Updating C:\Users\Administrator\cookbooks\bjc-ecommerce\.kitchen.yml"
 $mac = curl http://169.254.169.254/latest/meta-data/network/interfaces/macs | grep 'Content           :' | awk '{ print $3 }'
 $sg = curl http://169.254.169.254/latest/meta-data/network/interfaces/macs/$mac/security-group-ids | grep 'Content           :' | awk '{ print $3 }'
@@ -30,5 +31,20 @@ cp C:\Users\Administrator\cookbooks\bjc-ecommerce\.kitchen.yml C:\Users\Administ
 perl -p -i -e "s/  security_group_ids:.*/  security_group_ids: $sg/" C:\Users\Administrator\cookbooks\bjc-ecommerce\.kitchen.local.yml
 perl -p -i -e "s/  subnet_id:.*/  subnet_id: $subnet/" C:\Users\Administrator\cookbooks\bjc-ecommerce\.kitchen.local.yml
 Remove-Item C:\Users\Administrator\cookbooks\bjc-ecommerce\.kitchen.local.yml.bak
+# Grab the public IP of the Chef and Automate servers for use in Test Kitchen.
+echo "Inserting Breakfast Pastry..."
+$automateservermac = ssh automate curl -s curl http://169.254.169.254/latest/meta-data/network/interfaces/macs/
+$automateserverip = ssh automate curl -s curl http://169.254.169.254/latest/meta-data/network/interfaces/macs/$automateservermac/public-ipv4s
+$chefservermac = ssh chef curl -s curl http://169.254.169.254/latest/meta-data/network/interfaces/macs/
+$chefserverip = ssh chef curl -s curl http://169.254.169.254/latest/meta-data/network/interfaces/macs/$chefservermac/public-ipv4s
+# Update our ubuntu user data with the right IPs.
+echo "Warming the Syrup...."
+(Get-Content C:\Users\Administrator\ubuntu_user_data).replace('CHEF_SERVER_IP', $chefserverip) | Set-Content C:\Users\Administrator\ubuntu_user_data
+(Get-Content C:\Users\Administrator\ubuntu_user_data).replace('AUTOMATE_SERVER_IP', $automateserverip) | Set-Content C:\Users\Administrator\ubuntu_user_data
+# Ditto for windows user data.
+echo "Increasing Flash Gordon Noise and Putting More Science Stuff Around....."
+(Get-Content C:\Users\Administrator\windows_user_data).replace('CHEF_SERVER_IP', $chefserverip) | Set-Content C:\Users\Administrator\windows_user_data
+(Get-Content C:\Users\Administrator\windows_user_data).replace('AUTOMATE_SERVER_IP', $automateserverip) | Set-Content C:\Users\Administrator\windows_user_data
+
 echo "Starting cmder..."
 & "C:\tools\cmder\Cmder.exe"
