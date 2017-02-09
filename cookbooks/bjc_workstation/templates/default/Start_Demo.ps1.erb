@@ -13,12 +13,12 @@ function Get-SecurityGroup {
 } 
 
 function Write-KitchenYaml {
-    Write-Output "Updating C:\Users\Administrator\cookbooks\bjc-ecommerce\.kitchen.yml"
+    Write-Output "Updating $args[0]"
 
     $subnet = Get-Subnet
     $sg = Get-SecurityGroup
 
-    New-Item C:\Users\Administrator\cookbooks\bjc-ecommerce\.kitchen.local.yml -type file -value "driver:`n  security_group_ids: $sg`n  subnet_id: $subnet`n" -force
+    New-Item $args[0] -type file -value "driver:`n  security_group_ids: $sg`n  subnet_id: $subnet`n" -force
 }
 
 function Import-RemoteCertificate {
@@ -36,9 +36,6 @@ ssh compliance 'sudo mv /tmp/CHEF_GATE_COMPLIANCE_SECRET /opt/chef-compliance/sv
 ssh compliance 'sudo cp /opt/chef-compliance/sv/core/env/OIDC_CLIENT_ID /tmp && sudo chmod +r /tmp/OIDC_CLIENT_ID'
 scp -3 compliance:/tmp/OIDC_CLIENT_ID chef:/tmp/CHEF_GATE_OIDC_CLIENT_ID
 ssh chef 'sudo mv /tmp/CHEF_GATE_OIDC_CLIENT_ID /opt/opscode/sv/chef_gate/env/CHEF_GATE_OIDC_CLIENT_ID && sudo /opt/opscode/embedded/bin/sv restart chef_gate'
-
-# TODO:  Does this need to be here?
-# sleep 60
 
 Write-Output "Preparing AURD nodes for demo..."
 knife job start chef-client -s *:*
@@ -69,8 +66,10 @@ Write-Output "Warming the Syrup...."
 Write-Output "Increasing Flash Gordon Noise and Putting More Science Stuff Around....."
 (Get-Content C:\Users\Administrator\windows_user_data).replace('CHEF_SERVER_IP', $chefserverip) | Set-Content C:\Users\Administrator\windows_user_data
 (Get-Content C:\Users\Administrator\windows_user_data).replace('AUTOMATE_SERVER_IP', $automateserverip) | Set-Content C:\Users\Administrator\windows_user_data
-
-Write-KitchenYaml 
+# Update Test Kitchen files to match the local subnet and security group.
+Write-KitchenYaml C:\Users\Administrator\cookbooks\bjc-ecommerce\.kitchen.local.yml
+Write-KitchenYaml C:\Users\Administrator\Desktop\Test_Kitchen\kitchen_linux.yml
+Write-KitchenYaml C:\Users\Administrator\Desktop\Test_Kitchen\kitchen_windows.yml
 
 Write-Output "Starting cmder..."
 & "C:\tools\cmder\Cmder.exe"
