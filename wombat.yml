@@ -11,7 +11,7 @@ ttl: 8
 linux: ubuntu
 # Must meet the minimum Microsoft Complexity Requirements
 # https://technet.microsoft.com/en-us/library/hh994562(v=ws.11).aspx)
-version: 1.4.6
+version: 1.4.7
 products:
   chef: stable-12.13.37
   chef-server: stable-12.11.1
@@ -49,6 +49,7 @@ infranodes:
       - recipe[bjc_bass]
 conf:
   key_dir: 'packer/keys'
+  files_dir: 'packer/files'
   cookbook_dir: 'cookbooks'
   packer_dir: 'packer'
   template_dir: 'templates'
@@ -63,6 +64,9 @@ aws:
     ubuntu: ami-70b67d10
     windows: ami-1c7ad77c
     centos: ami-6d1c2007
+azure:
+  location: westus
+  storage_account: bjcsgforevuh
 gce:
   zone: us-east1-b
   source_image:
