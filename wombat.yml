@@ -60,7 +60,7 @@ aws:
   keypair: chef-demo-infra
   region: us-west-2
   iam_roles: ['chefDemo']
-  source_ami:
+  source_image:
     ubuntu: ami-70b67d10
     windows: ami-1c7ad77c
     centos: ami-6d1c2007
