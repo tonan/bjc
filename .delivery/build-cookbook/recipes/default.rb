@@ -11,7 +11,11 @@ if node['platform'] == 'ubuntu'
 end
 
 include_recipe 'packer'
-chef_gem 'wombat-cli'
+
+chef_gem 'wombat-cli' do
+  action :upgrade
+end
+
 chef_gem 'aws-sdk'
 
 %w(build update deploy).each do |s|
