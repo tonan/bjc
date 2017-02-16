@@ -9,8 +9,12 @@ require 'spec_helper'
 describe 'bjc_workstation::browser' do
   context 'When all attributes are default, on Windows Server 2012R2 platform' do
     let(:chef_run) do
-      runner = ChefSpec::ServerRunner.new
+      runner = ChefSpec::ServerRunner.new(platform: 'windows', version: '2012R2')
       runner.converge(described_recipe)
+    end
+
+    before do
+      allow(Dir).to receive(:home).and_return('C:\Users\Administrator')
     end
 
     it 'creates the Chrome bookmarks directory' do
