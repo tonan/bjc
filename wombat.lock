@@ -10,13 +10,13 @@
   ],
   "ttl": 8,
   "linux": "ubuntu",
-  "version": "1.1.10",
+  "version": "1.4.7",
   "products": {
     "chef": "stable-12.13.37",
     "chef-server": "stable-12.11.1",
     "chefdk": "stable-0.18.30",
     "compliance": "stable-1.6.8",
-    "automate": "stable-0.6.7",
+    "automate": "stable-0.6.136",
     "push-jobs-server": "stable-1.1.6",
     "manage": "stable-2.4.3"
   },
@@ -60,6 +60,7 @@
   },
   "conf": {
     "key_dir": "packer/keys",
+    "files_dir": "packer/files",
     "cookbook_dir": "cookbooks",
     "packer_dir": "packer",
     "template_dir": "templates",
@@ -71,13 +72,17 @@
     "keypair": "chef-demo-infra",
     "region": "us-west-2",
     "iam_roles": [
-      "testKitchenAndKnifeEc2"
+      "chefDemo"
     ],
     "source_ami": {
       "ubuntu": "ami-70b67d10",
       "windows": "ami-1c7ad77c",
       "centos": "ami-6d1c2007"
     }
+  },
+  "azure": {
+    "location": "westus",
+    "storage_account": "bjcsgforevuh"
   },
   "gce": {
     "zone": "us-east1-b",
@@ -87,25 +92,25 @@
     }
   },
   "amis": {
-    "us-west-2": {
-      "automate": "ami-1901b479",
+    "westus": {
+      "automate": "https://bjcsgforevuh.blob.core.windows.net/system/Microsoft.Compute/Images/images/automate-osDisk.44fe081c-37b8-46c9-a5bb-ab0df6f4843d.vhd",
       "build-node": {
-        "1": "ami-fd1aaf9d",
-        "2": "ami-921aaff2",
-        "3": "ami-bd07b2dd"
+        "1": "https://bjcsgforevuh.blob.core.windows.net/system/Microsoft.Compute/Images/images/build-node-osDisk.2b8f9163-32b0-4198-86a6-9f210f90decc.vhd",
+        "2": "https://bjcsgforevuh.blob.core.windows.net/system/Microsoft.Compute/Images/images/build-node-osDisk.1273c52f-46e7-4b12-bb51-2e9f66e6c43b.vhd",
+        "3": "https://bjcsgforevuh.blob.core.windows.net/system/Microsoft.Compute/Images/images/build-node-osDisk.c02ba917-9922-4a1e-81bf-48199298afc8.vhd"
       },
-      "chef-server": "ami-e31bae83",
-      "compliance": "ami-2a06b34a",
+      "chef-server": "https://bjcsgforevuh.blob.core.windows.net/system/Microsoft.Compute/Images/images/chef-server-osDisk.c01716a6-d54e-4b57-8c32-40c577f5c311.vhd",
+      "compliance": "https://bjcsgforevuh.blob.core.windows.net/system/Microsoft.Compute/Images/images/compliance-osDisk.5cc3c005-e379-403f-9c32-0c0e2c8b7fc6.vhd",
       "infranodes": {
-        "delivered": "ami-7c04b11c",
-        "ecomacceptance": "ami-fa1aaf9a",
-        "rehearsal": "ami-7b04b11b",
-        "union": "ami-a204b1c2"
+        "delivered": "https://bjcsgforevuh.blob.core.windows.net/system/Microsoft.Compute/Images/images/infranode-delivered-osDisk.3fe20d08-d316-4c25-8ef2-320bbcdb2a3a.vhd",
+        "ecomacceptance": "https://bjcsgforevuh.blob.core.windows.net/system/Microsoft.Compute/Images/images/infranode-ecomacceptance-osDisk.d0f4f5dd-6fa9-44ee-920f-48f4a389ab42.vhd",
+        "rehearsal": "https://bjcsgforevuh.blob.core.windows.net/system/Microsoft.Compute/Images/images/infranode-rehearsal-osDisk.98cb1e50-7e81-417b-84da-b98294cc448d.vhd",
+        "union": "https://bjcsgforevuh.blob.core.windows.net/system/Microsoft.Compute/Images/images/infranode-union-osDisk.2d23353f-9a81-4a0d-9680-2aaf5576bd90.vhd"
       },
       "workstation": {
-        "1": "ami-2d07b24d"
+        "1": "https://bjcsgforevuh.blob.core.windows.net/system/Microsoft.Compute/Images/images/workstation-1-1487203391-osDisk.cbca634b-fdaf-4e76-873a-4b0b75ad21c4.vhd"
       }
     }
   },
-  "last_updated": "20161217201102"
+  "last_updated": "20170216004452"
 }
