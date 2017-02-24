@@ -3,6 +3,6 @@ default['audit']['collector'] = 'chef-visibility'
 default['audit']['profiles'] = [
   {
     name: 'admin/ssl-benchmark',
-    url: 'https://github.com/dev-sec/ssl-baseline/archive/master.zip'
+    git: 'https://github.com/dev-sec/ssl-baseline.git'
   }
 ]
