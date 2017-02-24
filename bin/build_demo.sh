@@ -17,12 +17,12 @@ SSH_KEY=$3
 TTL=$4
 CONTACT=$5
 DEPARTMENT=$6
-TERMINATION_DATE=$(date -j -v +$4H +%F)
+TERMINATION_DATE="$(TZ=Etc/UTC date -j -v +$4H +'%Y-%m-%dT%H:%M:%SZ')"
 REGION=us-west-2
 
 # Here's where we create the stack
 aws cloudformation create-stack \
---stack-name "${USER}-${CUSTOMER}-Chef-Demo-$(date +'%Y%m%d%H%M%S')" \
+--stack-name "${USER}-${CUSTOMER}-Chef-Demo-$(TZ=Etc/UTC date +'%Y%m%dT%H%M%SZ')" \
 --capabilities CAPABILITY_IAM \
 --region $REGION \
 --tags Key=TTL,Value=${TTL} Key=X-Contact,Value="${CONTACT}" Key=X-Dept,Value="${DEPARTMENT}" Key=X-Project,Value="${CUSTOMER}" Key=X-Termination-Date,Value=${TERMINATION_DATE} \
