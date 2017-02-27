@@ -6,6 +6,10 @@
 
 home = Dir.home
 
+windows_path 'C:\\Program Files\\Git\\cmd\\' do
+  action :add
+end
+
 git "#{Chef::Config[:file_cache_path]}/bjc" do
   repository 'https://github.com/chef-cft/bjc'
   revision 'master'
@@ -19,7 +23,7 @@ end
 node['bjc_workstation']['cookbooks'].each do |cb|
   execute "Copy cookbooks into home directory" do
     action :run
-    command "cp -r #{Chef::Config[:file_cache_path]}/bjc/cookbooks/#{cb} #{home}/cookbooks/"
+    command "xcopy /E /I /Q /Y \"#{Chef::Config[:file_cache_path]}\\bjc\\cookbooks\\#{cb}\" \"#{home}\\cookbooks\\#{cb}\""
   end
 end
 
