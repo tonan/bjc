@@ -1,0 +1,47 @@
+---
+driver:
+  name: azurerm
+
+driver_config:
+  subscription_id: '1e0b427a-d58b-494e-ae4f-ee558463ebbf'
+  location: 'West US'
+  machine_size: 'Standard_D1'
+  associate_public_ip: true
+  username: 'ubuntu'
+  password: 'RL9@T40BTmXh'
+
+provisioner:
+  name: chef_zero
+
+verifier:
+  name: inspec
+
+platforms:
+  - name: ubuntu-14.04
+    driver_config:
+      image_urn: Canonical:UbuntuServer:14.04.4-LTS:latest
+      vm_name: trusty-vm
+      vm_tags:
+        ostype: linux
+        distro: ubuntu
+
+suites:
+  - name: default
+    run_list:
+      - recipe[test::default]
+      - recipe[bjc_compliance::default]
+      - recipe[bjc_compliance::restore_backup]
+      - recipe[test::fixhosts]
+    attributes:
+      demo:
+        domain_prefix: ''
+        domain: 'automate-demo.com'
+        enterprise: 'automate-demo'
+        org: 'automate'
+        hosts:
+          chef-server: '172.31.54.10'
+          delivery: '172.31.54.11'
+          compliance: '172.31.54.12'
+        versions:
+          chefdk: 'stable-0.16.28'
+          compliance: 'stable-1.6.8-1'

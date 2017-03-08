@@ -66,7 +66,10 @@ aws:
     centos: ami-6d1c2007
 azure:
   location: westus
-  storage_account: bjcsgforevuh
+  storage_account: bjchomp
+  source_image:
+    ubuntu: Canonical:UbuntuServer:14.04.5-LTS
+    windows: MicrosoftWindowsServer:WindowsServer:2012-R2-Datacenter
 gce:
   zone: us-east1-b
   source_image:
