@@ -40,10 +40,7 @@
                 "ec2:UnassignPrivateIpAddresses",
                 "ec2:DescribeImages",
                 "ec2:GetPasswordData",
-                "ec2:GetConsoleOutput",
-                "cloudformation:CreateStack",
-                "cloudformation:DescribeStacks",
-                "cloudformation:DescribeStackResources"
+                "ec2:GetConsoleOutput"
             ],
             "Resource": [
                 "*"
