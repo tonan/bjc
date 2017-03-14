@@ -44,5 +44,5 @@ suites:
         org: 'automate'
         hosts:
         versions:
-          chef-server: 'stable-12.11.1'
-          chefdk: 'stable-0.16.28'
+          chef-server: 'stable-12.13.0'
+          chefdk: 'stable-1.2.22'

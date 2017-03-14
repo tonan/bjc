@@ -40,7 +40,7 @@ suites:
         workstations: 1
         workstation-number: 1
         versions:
-          chefdk: 'stable-0.18.30'
+          chefdk: 'stable-1.2.22'
     verifier:
       inspec_tests:
         - test/integration/default/controls
