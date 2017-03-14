@@ -11,15 +11,15 @@ ttl: 8
 linux: ubuntu
 # Must meet the minimum Microsoft Complexity Requirements
 # https://technet.microsoft.com/en-us/library/hh994562(v=ws.11).aspx)
-version: 1.4.11
+version: 1.5.0
 products:
-  chef: stable-12.13.37
-  chef-server: stable-12.11.1
-  chefdk: stable-0.18.30
-  compliance: stable-1.6.8
-  automate: stable-0.6.136
+  chef: stable-12.19.36
+  chef-server: stable-12.3.0
+  chefdk: stable-1.2.22
+  compliance: stable-1.8.12
+  automate: stable-0.7.85
   push-jobs-server: stable-1.1.6
-  manage: stable-2.4.3
+  manage: stable-2.4.4
 build-nodes:
   count: 3
 workstations:
