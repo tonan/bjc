@@ -11,10 +11,10 @@ ttl: 8
 linux: ubuntu
 # Must meet the minimum Microsoft Complexity Requirements
 # https://technet.microsoft.com/en-us/library/hh994562(v=ws.11).aspx)
-version: 1.5.0
+version: 1.5.1
 products:
   chef: stable-12.19.36
-  chef-server: stable-12.3.0
+  chef-server: stable-12.13.0
   chefdk: stable-1.2.22
   compliance: stable-1.8.12
   automate: stable-0.7.85
