@@ -4,8 +4,6 @@
 #
 # Copyright (c) 2016 The Authors, All Rights Reserved.
 
-home = Dir.home
-
 template "#{home}/.gitconfig" do
   source 'gitconfig.erb'
   variables(

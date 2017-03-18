@@ -3,7 +3,7 @@ source 'https://supermarket.chef.io'
 metadata
 
 #cookbook 'workstation', git: 'git@github.com:chef-cft/wombat.git', rel: 'generator_files/cookbooks/workstation'
-cookbook 'workstation', git: 'https://github.com/chef-cft/wombat.git', rel: 'generator_files/cookbooks/workstation'
+cookbook 'workstation', git: 'https://github.com/chef-cft/wombat.git', branch: "bakh/de-administratoration", rel: 'generator_files/cookbooks/workstation'
 
 #cookbook 'wombat', git: 'git@github.com:chef-cft/wombat.git', rel: 'generator_files/cookbooks/wombat'
 cookbook 'wombat', git: 'https://github.com/chef-cft/wombat.git', rel: 'generator_files/cookbooks/wombat'

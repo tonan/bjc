@@ -30,7 +30,7 @@ platforms:
   - name: ubuntu-14.04
     transport:
       username: ubuntu
-      ssh_key: C:\Users\Administrator\.ssh\id_rsa
+      ssh_key: <%= @home -%>\.ssh\id_rsa
 
 suites:
   - name: default

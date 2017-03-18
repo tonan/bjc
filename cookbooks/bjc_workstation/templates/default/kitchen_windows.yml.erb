@@ -31,7 +31,7 @@ platforms:
     driver_config:
       retryable_tries: 80
     transport:
-      ssh_key: C:\Users\Administrator\.ssh\id_rsa
+      ssh_key: <%= @home -%>\.ssh\id_rsa
 
 suites:
   - name: default

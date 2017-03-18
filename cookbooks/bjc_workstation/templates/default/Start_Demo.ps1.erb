@@ -24,11 +24,11 @@ function Write-KitchenYaml {
 function Import-RemoteCertificate {
     $name = $args[0]
 
-    scp ${name}:/home/ubuntu/${name}.automate-demo.com.crt /c/Users/Administrator/Downloads 
-    Import-Certificate -FilePath  C:\Users\Administrator\Downloads\${name}.automate-demo.com.crt -CertStoreLocation Cert:/LocalMachine/Root
+    scp ${name}:/home/ubuntu/${name}.automate-demo.com.crt /c/Users/Default/Downloads 
+    Import-Certificate -FilePath  <%= @home -%>\Downloads\${name}.automate-demo.com.crt -CertStoreLocation Cert:/LocalMachine/Root
 }
 
-set-executionpolicy -executionpolicy unrestricted -force -scope LocalMachine
+set-executionpolicy -executionpolicy unrestricted -force -scope CurrentUser
 
 Write-Output "Copying compliance OIDC_CLIENT_ID to chef CHEF_GATE_OIDC_CLIENT_ID"
 scp ~/.ssh/id_rsa.pub compliance:/tmp/CHEF_GATE_COMPLIANCE_SECRET
@@ -60,16 +60,16 @@ $chefservermac = ssh chef curl -s curl http://169.254.169.254/latest/meta-data/n
 $chefserverip = ssh chef curl -s curl http://169.254.169.254/latest/meta-data/network/interfaces/macs/$chefservermac/public-ipv4s
 # Update our ubuntu user data with the right IPs.
 Write-Output "Warming the Syrup...."
-(Get-Content C:\Users\Administrator\ubuntu_user_data).replace('CHEF_SERVER_IP', $chefserverip) | Set-Content C:\Users\Administrator\ubuntu_user_data
-(Get-Content C:\Users\Administrator\ubuntu_user_data).replace('AUTOMATE_SERVER_IP', $automateserverip) | Set-Content C:\Users\Administrator\ubuntu_user_data
+(Get-Content <%= @home -%>\ubuntu_user_data).replace('CHEF_SERVER_IP', $chefserverip) | Set-Content <%= @home -%>\ubuntu_user_data
+(Get-Content <%= @home -%>\ubuntu_user_data).replace('AUTOMATE_SERVER_IP', $automateserverip) | Set-Content <%= @home -%>\ubuntu_user_data
 # Ditto for windows user data.
 Write-Output "Increasing Flash Gordon Noise and Putting More Science Stuff Around....."
-(Get-Content C:\Users\Administrator\windows_user_data).replace('CHEF_SERVER_IP', $chefserverip) | Set-Content C:\Users\Administrator\windows_user_data
-(Get-Content C:\Users\Administrator\windows_user_data).replace('AUTOMATE_SERVER_IP', $automateserverip) | Set-Content C:\Users\Administrator\windows_user_data
+(Get-Content <%= @home -%>\windows_user_data).replace('CHEF_SERVER_IP', $chefserverip) | Set-Content <%= @home -%>\windows_user_data
+(Get-Content <%= @home -%>\windows_user_data).replace('AUTOMATE_SERVER_IP', $automateserverip) | Set-Content <%= @home -%>\windows_user_data
 # Update Test Kitchen files to match the local subnet and security group.
-Write-KitchenYaml C:\Users\Administrator\cookbooks\bjc-ecommerce\.kitchen.local.yml
-Write-KitchenYaml C:\Users\Administrator\Desktop\Test_Kitchen\kitchen_linux.yml
-Write-KitchenYaml C:\Users\Administrator\Desktop\Test_Kitchen\kitchen_windows.yml
+Write-KitchenYaml <%= @home -%>\cookbooks\bjc-ecommerce\.kitchen.local.yml
+Write-KitchenYaml <%= @home -%>\Desktop\Test_Kitchen\kitchen_linux.yml
+Write-KitchenYaml <%= @home -%>\Desktop\Test_Kitchen\kitchen_windows.yml
 
 Write-Output "Starting cmder..."
 & "C:\tools\cmder\Cmder.exe"
