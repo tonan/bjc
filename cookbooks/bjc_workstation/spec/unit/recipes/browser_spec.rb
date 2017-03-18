@@ -13,16 +13,12 @@ describe 'bjc_workstation::browser' do
       runner.converge(described_recipe)
     end
 
-    before do
-      allow(Dir).to receive(:home).and_return('C:\Users\Administrator')
-    end
-
     it 'creates the Chrome bookmarks directory' do
-      expect(chef_run).to create_directory('C:\Users\Administrator\AppData\Local\Google\Chrome\User Data\Default')
+      expect(chef_run).to create_directory('C:\Users\Default\AppData\Local\Google\Chrome\User Data\Default')
     end
 
     it 'renders the Chrome bookmarks file' do
-      expect(chef_run).to render_file('C:\Users\Administrator\AppData\Local\Google\Chrome\User Data\Default\Bookmarks')
+      expect(chef_run).to render_file('C:\Users\Default\AppData\Local\Google\Chrome\User Data\Default\Bookmarks')
     end
 
     it 'converges successfully' do

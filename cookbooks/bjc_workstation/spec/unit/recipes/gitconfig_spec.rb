@@ -6,8 +6,6 @@
 
 require 'spec_helper'
 
-home = Dir.home
-
 describe 'bjc_workstation::gitconfig' do
   context 'When all attributes are default, on Windows Server 2012R2 platform' do
     let(:chef_run) do

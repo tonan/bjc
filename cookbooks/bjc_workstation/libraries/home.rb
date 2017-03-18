@@ -1,4 +1,3 @@
-
-        def home
-            'C:\\Users\\Default'
-        end
+def home
+  'C:\\Users\\Default'
+end

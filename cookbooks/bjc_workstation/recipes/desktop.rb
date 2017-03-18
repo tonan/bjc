@@ -8,12 +8,10 @@
 template "#{home}\\Start_Demo.ps1" do
   action :create
   source "Start_Demo.ps1.erb"
-  variables({
+  variables(
     :home => home
-  })
+  )
 end
-
-
 
 windows_shortcut 'C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Startup\start me up.lnk' do
   target "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe"
@@ -53,15 +51,15 @@ end
 template "#{home}/Desktop/Test_Kitchen/kitchen_windows.yml" do
   action :create
   source 'kitchen_windows.yml.erb'
-  variables({
+  variables(
     :home => home
-  })
+  )
 end
 
 template "#{home}/Desktop/Test_Kitchen/kitchen_linux.yml" do
   action :create
   source 'kitchen_linux.yml.erb'
-  variables({
+  variables(
     :home => home
-  })
+  )
 end

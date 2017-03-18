@@ -14,7 +14,7 @@ describe 'bjc_workstation::editors' do
     end
 
     it 'installs Visual Studio Code' do
-      expect(chef_run).to install_chocolatey_package('VisualStudioCode')
+      expect(chef_run).to install_chocolatey_package('visualstudiocode')
     end
 
     it 'converges successfully' do
