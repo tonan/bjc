@@ -4,8 +4,6 @@
 #
 # Copyright (c) 2016 The Authors, All Rights Reserved.
 
-home = Dir.home
-
 directory "#{home}\\AppData\\Local\\Google\\Chrome\\User Data\\Default" do
   action :create
   recursive true

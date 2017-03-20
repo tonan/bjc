@@ -4,8 +4,6 @@
 #
 # Copyright (c) 2016 The Authors, All Rights Reserved.
 
-home = Dir.home
-
 windows_path 'C:\\Program Files\\Git\\cmd\\' do
   action :add
 end

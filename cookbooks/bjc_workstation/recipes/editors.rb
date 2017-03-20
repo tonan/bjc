@@ -4,9 +4,7 @@
 #
 # Copyright (c) 2016 The Authors, All Rights Reserved.
 
-home = Dir.home
-
-chocolatey_package 'VisualStudioCode' do
+chocolatey_package 'visualstudiocode' do
   action :install
 end
 

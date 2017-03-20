@@ -1,11 +1,6 @@
-#
-# Cookbook Name:: bjc_workstation
 # Recipe:: putty
 #
 # Copyright (c) 2016 The Authors, All Rights Reserved.
-
-home = Dir.home
-
 # Install the Putty
 chocolatey 'putty' do
   options( '-allow-empty-checksums' => '' )

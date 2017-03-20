@@ -373,6 +373,17 @@
         "KeyName": {
           "Ref": "KeyName"
         },
+        "UserData" : {
+          "Fn::Base64" : {
+            "Fn::Join" : [
+              "",
+                ["<powershell>\n",
+                  "set-executionpolicy -executionpolicy unrestricted -force -scope LocalMachine",
+                 "</powershell>"
+               ]
+            ]
+          }
+        },
         "ImageId": {
               "Ref": "WindowsWorkstation<%= i.to_s %>AMI"
         },

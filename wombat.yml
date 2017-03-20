@@ -9,9 +9,7 @@ org: automate
 certs: ['automate', 'chef', 'compliance']
 ttl: 8
 linux: ubuntu
-# Must meet the minimum Microsoft Complexity Requirements
-# https://technet.microsoft.com/en-us/library/hh994562(v=ws.11).aspx)
-version: 1.5.1
+version: 2.0.0
 products:
   chef: stable-12.19.36
   chef-server: stable-12.13.0
@@ -66,7 +64,8 @@ aws:
     centos: ami-6d1c2007
 azure:
   location: westus
-  storage_account: bjchomp
+  storage_account: bjconazure
+  use_managed_disks: true
   source_image:
     ubuntu: Canonical:UbuntuServer:14.04.5-LTS
     windows: MicrosoftWindowsServer:WindowsServer:2012-R2-Datacenter

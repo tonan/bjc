@@ -126,12 +126,22 @@
       }
     },
     {
-       "only": [
-          "azure-arm"
+        "only": [
+            "azure-arm"
         ],
         "type": "windows-shell",
         "inline": [
             "C:\\Windows\\System32\\sysprep\\sysprep.exe /quiet /generalize /oobe /shutdown"
+        ]
+    },
+    {
+        "only": [
+            "amazon-ebs"
+        ],
+        "type": "powershell",
+        "scripts": [
+            "{{template_dir}}/scripts/EC2Config.ps1",
+            "{{template_dir}}/scripts/BundleConfig.ps1"
         ]
     }
   ]

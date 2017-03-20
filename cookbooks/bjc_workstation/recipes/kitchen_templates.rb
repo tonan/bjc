@@ -4,8 +4,6 @@
 #
 # Copyright (c) 2016 The Authors, All Rights Reserved.
 
-home = Dir.home
-
 tk_dir = "#{home}/Desktop/Test_Kitchen"
 
 directory tk_dir
