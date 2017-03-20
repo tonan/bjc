@@ -4,7 +4,7 @@ write-output "Running User Data Script"
 write-host "(host) Running User Data Script"
 
 # set administrator password
-# cmd.exe /c net user Administrator <%= @workstation_passwd %>
+cmd.exe /c net user Administrator <%= @workstation_passwd %>
 cmd.exe /c net user chef <%= @workstation_passwd %> /add /LOGONPASSWORDCHG:NO
 cmd.exe /c net localgroup Administrators /add chef
 
