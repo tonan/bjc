@@ -4,11 +4,11 @@
 #
 # Copyright (c) 2016 The Authors, All Rights Reserved.
 
-# During the publish phase we want to build an entirely new set of AMIs as 
-# well as a new JSON template, but only if cookbooks have changed.  If any
+# During the publish phase we want to build an entirely new set of images as 
+# well as new JSON templates, but only if cookbooks have changed.  If any
 # cookbooks have changed we trigger a build via the wrapper scripts 
 # wombat_build.sh and wombat_update.sh.  Once these have run successfully 
-# we go ahead and publish the new JSON template to S3 for acceptance testing.
+# we go ahead and publish the new JSON templates to S3 for acceptance testing.
 
 require 'aws-sdk'
 
@@ -26,6 +26,23 @@ end
 # Only build if there are changed cookbooks
 unless changed_cookbooks.empty?
   # Build new Chef Demo AMIs
+
+  # we're picking ubuntu runners for AWS builds
+  case node['platform']
+  when 'ubuntu'
+    cloud = 'aws'
+  else
+    cloud = 'azure'
+  end
+
+  %w(build update deploy).each do |s|
+    template "/var/opt/delivery/workspace/wombat_#{s}.sh" do
+      source "wombat_#{s}.sh.erb"
+      variables(:cloud => cloud)
+      action :create
+    end
+  end
+
   execute "build-the-things" do
     command "/var/opt/delivery/workspace/wombat_build.sh"
     live_stream true
@@ -49,10 +66,10 @@ unless changed_cookbooks.empty?
   #obj.upload_file("/var/opt/delivery/workspace/bjc-automate-server-5g9aorii6yvcetdi.us-west-2.opsworks-cm.io/default/chef-sas/bjc/master/build/publish/repo/stacks/bjc-demo.json", acl:'public-read')
   
   # And a ruby_block for executing *after* the builds are done
-  ruby_block "upload bjc-demo.json to S3" do
+  ruby_block "upload bjc-demo-#{cloud}.json to S3" do
     block do
       s3 = Aws::S3::Resource.new(region:'us-west-2')
-      obj = s3.bucket('bjcpublic').object('acceptance-bjc-demo.json')
+      obj = s3.bucket('bjcpublic').object('acceptance-bjc-demo-#{cloud}.json')
       obj.upload_file("/var/opt/delivery/workspace/bjc-automate-server-5g9aorii6yvcetdi.us-west-2.opsworks-cm.io/default/chef-sas/bjc/master/build/publish/repo/stacks/bjc-demo.json", acl:'public-read')
     end
   end
