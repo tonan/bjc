@@ -31,7 +31,8 @@ if ['acceptance'].include?(node['delivery']['change']['stage'])
     # Copy keys into the packer directory.  Not sure this is necessary here.
     execute "copy-packer-keys" do
       command "tar -zxvf #{node['delivery']['workspace_path']}/Downloads/keys.tar.gz -C packer/keys"
-      live_stream true
+      # Disabled because it crashes Automate
+      # live_stream true
       cwd workspace
       action :run
     end
@@ -53,7 +54,8 @@ if ['acceptance'].include?(node['delivery']['change']['stage'])
     execute 'Deploy Demo Stack' do
       command "#{node['delivery']['workspace_path']}/wombat_deploy.sh"
       cwd workspace
-      live_stream true
+      # Disabled because it crashes Automate
+      #live_stream true
       action :run
     end
   end
