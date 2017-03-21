@@ -1,4 +1,4 @@
 # bjc_build_node
 
-Creates build nodes for the BJC demo.
+Creates build nodes for the BJC demo. No runners.
 
