@@ -15,6 +15,14 @@ require 'json'
 require 'aws-sdk'
 include_recipe 'chef-sugar::default'
 
+# we're picking ubuntu runners for AWS builds
+case node['platform']
+when 'ubuntu'
+  cloud = 'aws'
+else
+  cloud = 'azure'
+end
+
 # This part runs only in 'Acceptance'.  Stand up a demo for testing.
 if ['acceptance'].include?(node['delivery']['change']['stage'])
   workspace = "#{node['delivery']['workspace_path']}/bjc-automate-server-5g9aorii6yvcetdi.us-west-2.opsworks-cm.io/default/chef-sas/bjc/master/acceptance/deploy/repo"
@@ -29,11 +37,18 @@ if ['acceptance'].include?(node['delivery']['change']['stage'])
     end
     
     # Fetch the bjc-demo.json that was created in the last successful build
-    remote_file "#{workspace}/stacks/acceptance-bjc-demo.json" do
-      source 'https://s3-us-west-2.amazonaws.com/bjcpublic/acceptance-bjc-demo.json'
+    remote_file "#{workspace}/stacks/acceptance-bjc-demo-#{cloud}.json" do
+      source 'https://s3-us-west-2.amazonaws.com/bjcpublic/acceptance-bjc-demo-#{cloud}.json'
       action :create
     end
-   
+
+    %w(deploy).each do |s|
+      template "/var/opt/delivery/workspace/wombat_#{s}.sh" do
+        source "wombat_#{s}.sh.erb"
+        variables(:cloud => cloud)
+        action :create
+      end
+    end
     # Use this wrapper script to stand up the demo.
     execute 'Deploy Demo Stack' do
       command "#{node['delivery']['workspace_path']}/wombat_deploy.sh"
@@ -49,20 +64,20 @@ if ['delivered'].include?(node['delivery']['change']['stage'])
 
   workspace = "#{node['delivery']['workspace_path']}/bjc-automate-server-5g9aorii6yvcetdi.us-west-2.opsworks-cm.io/default/chef-sas/bjc/master/delivered/deploy/repo" 
 
-  remote_file "#{workspace}/stacks/acceptance-bjc-demo.json" do
+  remote_file "#{workspace}/stacks/acceptance-bjc-demo-#{cloud}.json" do
     action :create
-    source 'https://s3-us-west-2.amazonaws.com/bjcpublic/acceptance-bjc-demo.json'
+    source 'https://s3-us-west-2.amazonaws.com/bjcpublic/acceptance-bjc-demo-#{cloud}.json'
   end
 
-  ruby_block "Publish acceptance-bjc-demo.json to S3" do
+  ruby_block "Publish acceptance-bjc-demo-#{cloud}.json to S3" do
     block do
-      cfjson = File.read("#{workspace}/stacks/acceptance-bjc-demo.json")
+      cfjson = File.read("#{workspace}/stacks/acceptance-bjc-demo-#{cloud}.json")
       data_hash = JSON.parse(cfjson)
       version = data_hash['Parameters']['Version']['Default']
       s3 = Aws::S3::Resource.new(region:'us-west-2')
-      obj = s3.bucket('bjcpublic').object("cloudformation/bjc-demo-#{version}.json")
+      obj = s3.bucket('bjcpublic').object("cloudformation/bjc-demo--#{cloud}-#{version}.json")
       unless obj.exists?
-        obj.upload_file("#{workspace}/stacks/acceptance-bjc-demo.json", acl:'public-read')
+        obj.upload_file("#{workspace}/stacks/acceptance-bjc-demo-#{cloud}.json", acl:'public-read')
       end
     end
   end

@@ -1,7 +1,19 @@
 {
   "version": "2",
   "job_dispatch": {
-    "version": "v2"
+    "version": "v2",
+		"filters": {
+			"publish": [{
+				"platform": ["ubuntu"]
+			}, {
+				"platform": ["centos"]
+			}],
+			"deploy": [{
+				"platform": ["ubuntu"]
+			}, {
+				"platform": ["centos"]
+			}]
+		}
   },
   "build_cookbook": {
     "name": "build-cookbook",

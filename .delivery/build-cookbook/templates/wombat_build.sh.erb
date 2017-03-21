@@ -9,10 +9,19 @@
 
 workdir='/var/opt/delivery/workspace/bjc-automate-server-5g9aorii6yvcetdi.us-west-2.opsworks-cm.io/default/chef-sas/bjc/master/build/publish/repo/'
 
-wombat build --parallel
+<% case @cloud -%>
+<% when 'aws' -%>
+<%   @builder = 'amazon-ebs' -%>
+<%   @searchstring = 'amazon-ebs: AMI: ' -%>
+<% when 'azure' -%>
+<%   @builder = 'azure-arm' -%>
+<%   @searchstring = 'ManagedDiskOSDiskUri: https' -%>
+<% end -%>
 
-numamis=$(grep "amazon-ebs: AMI: " ${workdir}packer/logs/* | wc -l)
-grep "amazon-ebs: AMI: " ${workdir}packer/logs/*
+wombat build -o <%= @builder -%> --parallel
+
+numamis=$(grep "<%= @searchstring -%>" ${workdir}packer/logs/* | wc -l)
+grep "<%= @searchstring -%>" ${workdir}packer/logs/*
 
 if [ $numamis -ne 11 ]; then
   echo "Something went wrong. Only $numamis found, there should be 11."
