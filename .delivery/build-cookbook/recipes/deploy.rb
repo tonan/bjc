@@ -1,4 +1,4 @@
-#
+
 # Cookbook Name:: build-cookbook
 # Recipe:: deploy
 #
@@ -39,7 +39,7 @@ if ['acceptance'].include?(node['delivery']['change']['stage'])
     
     # Fetch the bjc-demo.json that was created in the last successful build
     remote_file "#{workspace}/stacks/acceptance-bjc-demo-#{cloud}.json" do
-      source 'https://s3-us-west-2.amazonaws.com/bjcpublic/acceptance-bjc-demo-#{cloud}.json'
+      source "https://s3-us-west-2.amazonaws.com/bjcpublic/acceptance-bjc-demo-#{cloud}.json"
       action :create
     end
 
