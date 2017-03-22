@@ -69,7 +69,7 @@ if ['delivered'].include?(node['delivery']['change']['stage'])
 
   remote_file "#{workspace}/stacks/acceptance-bjc-demo-#{cloud}.json" do
     action :create
-    source 'https://s3-us-west-2.amazonaws.com/bjcpublic/acceptance-bjc-demo-#{cloud}.json'
+    source "https://s3-us-west-2.amazonaws.com/bjcpublic/acceptance-bjc-demo-#{cloud}.json"
   end
 
   ruby_block "Publish acceptance-bjc-demo-#{cloud}.json to S3" do
