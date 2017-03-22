@@ -46,6 +46,7 @@ if ['acceptance'].include?(node['delivery']['change']['stage'])
     %w(deploy).each do |s|
       template "/var/opt/delivery/workspace/wombat_#{s}.sh" do
         source "wombat_#{s}.sh.erb"
+        mode '0755'
         variables(:cloud => cloud)
         action :create
       end

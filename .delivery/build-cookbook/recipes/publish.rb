@@ -38,6 +38,7 @@ unless changed_cookbooks.empty?
   %w(build update deploy).each do |s|
     template "/var/opt/delivery/workspace/wombat_#{s}.sh" do
       source "wombat_#{s}.sh.erb"
+      mode '0755'
       variables(:cloud => cloud)
       action :create
     end
@@ -69,7 +70,7 @@ unless changed_cookbooks.empty?
   ruby_block "upload bjc-demo-#{cloud}.json to S3" do
     block do
       s3 = Aws::S3::Resource.new(region:'us-west-2')
-      obj = s3.bucket('bjcpublic').object('acceptance-bjc-demo-#{cloud}.json')
+      obj = s3.bucket('bjcpublic').object("acceptance-bjc-demo-#{cloud}.json")
       obj.upload_file("/var/opt/delivery/workspace/bjc-automate-server-5g9aorii6yvcetdi.us-west-2.opsworks-cm.io/default/chef-sas/bjc/master/build/publish/repo/stacks/bjc-demo.json", acl:'public-read')
     end
   end
