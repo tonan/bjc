@@ -24,15 +24,17 @@ end
 
 control 'bjc-packages' do
   title 'Required packages are installed'
+  # CHANGED: Pkg names with version in them are wildcard matched
+  # Without this change, we have to pin/modify tests every time a version changes
   packages = [
     'Atom',
     'Microsoft Visual Studio Code',
-    'Chef Client',
-    'Chef Development Kit',
-    'Git Extensions 2.49',
-    'Git version 2.11.0',
+    'Chef Client *',
+    'Chef Development Kit *',
+    'Git Extensions *',
+    'Git *',
     'Google Chrome',
-    'Microsoft Git Credential Manager for Windows 1.8.0'
+    'Microsoft Git Credential Manager for Windows *'
   ]
 
   packages.each do |p|
@@ -41,14 +43,17 @@ control 'bjc-packages' do
     end
   end
 
+
+  # CHANGED: The following two test will fail every time the package is updated
+  # in chocolatey. Is matching /is the latest/ sufficient?
   describe command('choco upgrade putty --noop') do
     its('exit_status') { should eq 0 }
-    its('stdout') { should match('putty v0.67 is the latest') }
+    its('stdout') { should match('is the latest') }
   end
 
   describe command('choco upgrade cmder --noop') do
      its('exit_status') { should eq 0 }
-     its('stdout') { should match('cmder v1.3.0 installed') }
+     its('stdout') { should match('is the latest') }
    end
 end
 
@@ -57,68 +62,68 @@ control 'bjc-configfiles' do
   describe file('C:\tools\cmder\config\ConEmu.xml') do
     it { should be_file }
   end
-  describe file('C:\Users\Administrator\.gitconfig') do
+  describe file('C:\Users\Default\.gitconfig') do
     it { should be_file }
     its('content') { should match('automate-demo.com')}
   end
-  describe file('C:\Users\Administrator\.delivery\cli.toml') do
+  describe file('C:\Users\Default\.delivery\cli.toml') do
     it { should be_file }
     its('content') { should match('automate.automate-demo.com')}
   end
-  describe file('C:\Users\Administrator\.berkshelf\config.json') do
+  describe file('C:\Users\Default\.berkshelf\config.json') do
     it { should be_file }
     its('content') { should match('{"ssl": {"verify": false}}')}
   end
-  describe file('C:\Users\Administrator\cookbooks\bjc-ecommerce\.kitchen.yml') do
+  describe file('C:\Users\Default\cookbooks\bjc-ecommerce\.kitchen.yml') do
     it { should be_file }
     its('content') { should match('sg-2560a741')}
   end
-  describe file('C:\Users\Administrator\Desktop\Test_Kitchen\kitchen_windows.yml') do
+  describe file('C:\Users\Default\Desktop\Test_Kitchen\kitchen_windows.yml') do
     it { should be_file }
     its('content') { should match('sg-2560a741')}
   end
-  describe file('C:\Users\Administrator\Desktop\Test_Kitchen\kitchen_linux.yml') do
+  describe file('C:\Users\Default\Desktop\Test_Kitchen\kitchen_linux.yml') do
     it { should be_file }
     its('content') { should match('sg-2560a741')}
   end
-  describe file('C:\Users\Administrator\user_data') do
+  describe file('C:\Users\Default\user_data') do
     it { should be_file }
     its('content') { should match('Defaults:centos !requiretty')}
   end
-  describe file('C:\Users\Administrator\ubuntu_user_data') do
+  describe file('C:\Users\Default\ubuntu_user_data') do
     it { should be_file }
     its('content') { should match('AUTOMATE_SERVER_IP automate.automate-demo.com')}
   end
-  describe file('C:\Users\Administrator\windows_user_data') do
+  describe file('C:\Users\Default\windows_user_data') do
     it { should be_file }
     its('content') { should match('<powershell>')}
   end
-  describe file('C:\Users\Administrator\Start_Demo.ps1') do
+  describe file('C:\Users\Default\Start_Demo.ps1') do
     it { should be_file }
     its('content') { should match('Atomic Batteries to Power.')}
   end
-  describe file('C:\Users\Administrator\AppData\Local\Google\Chrome\User Data\Default\Bookmarks') do
+  describe file('C:\Users\Default\AppData\Local\Google\Chrome\User Data\Default\Bookmarks') do
     it { should be_file }
     its('content') { should match('delivered.automate-demo.com')}
   end
-  describe file('C:\Users\Administrator\.ssh\id_rsa.ppk') do
+  describe file('C:\Users\Default\.ssh\id_rsa.ppk') do
     it { should be_file }
     its('content') { should match('g4wKcFFd9aO0dA')}
   end
   # This test fails
-  #describe file ('C:\Users\Administrator\AppData\Roaming\Code\User\settings.json') do
+  #describe file ('C:\Users\Default\AppData\Roaming\Code\User\settings.json') do
   #  it { should be_file }
   #  its('content') { should match('"update.channel": "none"')}
   #end
-  #describe file ('C:\Users\Administrator\AppData\Roaming\Code\Local Storage\file__0.localstorage') do
+  #describe file ('C:\Users\Default\AppData\Roaming\Code\Local Storage\file__0.localstorage') do
   #  it { should be_file }
   #end
-  #describe file ('C:\Users\Administrator\.vscode\extensions\Pendrica.Chef-0.6.2\README.md') do
+  #describe file ('C:\Users\Default\.vscode\extensions\Pendrica.Chef-0.6.2\README.md') do
   #  it { should be_file }
   #  its('content') { should match('# Chef Extension for Visual Studio Code')}
   #end
   # Also broken
-  #describe file ('C:\Users\Administrator\.atom\config.cson') do
+  #describe file ('C:\Users\Default\.atom\config.cson') do
   #  it { should be_file }
   #  its('content') { should match('automaticallyUpdate: false')}
   #end
@@ -137,7 +142,7 @@ end
 #   title "Required cookbooks are downloaded from S3"
 #   cookbooks = %w(bjc-ecommerce.zip bjc_bass.zip)
 #   cookbooks.each do |cb|
-#     describe file("C:\\Users\\Administrator\\cookbooks\\#{cb}") do
+#     describe file("C:\\Users\\Default\\cookbooks\\#{cb}") do
 #       it { should be_file }
 #     end
 #   end

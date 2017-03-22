@@ -5,12 +5,9 @@
 # Copyright (c) 2016 The Authors, All Rights Reserved.
 
 # Ye olde startup script
-template "#{home}\\Start_Demo.ps1" do
+cookbook_file "#{home}\\Start_Demo.ps1" do
   action :create
-  source "Start_Demo.ps1.erb"
-  variables(
-    :home => home
-  )
+  source "Start_Demo.ps1"
 end
 
 windows_shortcut 'C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Startup\start me up.lnk' do
