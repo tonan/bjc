@@ -76,7 +76,11 @@ if ['delivered'].include?(node['delivery']['change']['stage'])
     block do
       cfjson = File.read("#{workspace}/stacks/acceptance-bjc-demo-#{cloud}.json")
       data_hash = JSON.parse(cfjson)
-      version = data_hash['Parameters']['Version']['Default']
+      if cloud == 'aws'
+        version = data_hash['Parameters']['Version']['Default']
+      elsif cloud =='azure'
+        version = data_hash['contentVersion']
+      end
       s3 = Aws::S3::Resource.new(region:'us-west-2')
       obj = s3.bucket('bjcpublic').object("cloudformation/bjc-demo-#{cloud}-#{version}.json")
       unless obj.exists?
