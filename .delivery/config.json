@@ -27,7 +27,6 @@
     }
   },
   "skip_phases": [
-    "provision",
     "smoke",
     "quality",
     "security"
