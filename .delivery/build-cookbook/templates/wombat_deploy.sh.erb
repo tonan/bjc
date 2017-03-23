@@ -7,6 +7,6 @@
 
 . /var/opt/delivery/workspace/.bashrc
 
-wombat deploy -c <%= @cloud -%> acceptance-bjc-demo-<%= @cloud %>
+wombat deploy -c <%= @cloud -%> bjc-demo
 sleep 180
-wombat outputs -c <%= @cloud -%> acceptance-bjc-demo-<%= @cloud %>
+wombat outputs -c <%= @cloud -%> bjc-demo
