@@ -11,9 +11,15 @@
 # compliance box and kicking off `inspec exec` commands.  The wrapper script
 # shown below contains the commands to run inspec against our machines.
 
+
 # Run inspec tests on the machines in our environment
 if ['acceptance'].include?(node['delivery']['change']['stage'])
   unless changed_cookbooks.empty?
+    ruby_block 'Waiting for Acceptance stack to be ready...' do
+      block do
+        sleep 60
+      end
+    end
     execute 'Run inspec tests' do
       command '/var/opt/delivery/workspace/inspec_tests.sh'
       cwd '/var/opt/delivery/workspace'
