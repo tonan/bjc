@@ -38,7 +38,7 @@ if ['acceptance'].include?(node['delivery']['change']['stage'])
     end
     
     # Fetch the bjc-demo.json that was created in the last successful build
-    remote_file "#{workspace}/stacks/acceptance-bjc-demo-#{cloud}.json" do
+    remote_file "#{workspace}/stacks/bjc-demo.json" do
       source "https://s3-us-west-2.amazonaws.com/bjcpublic/acceptance-bjc-demo-#{cloud}.json"
       action :create
     end
