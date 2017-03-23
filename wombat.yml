@@ -9,7 +9,7 @@ org: automate
 certs: ['automate', 'chef', 'compliance']
 ttl: 8
 linux: ubuntu
-version: 2.0.1
+version: 2.0.2
 products:
   chef: stable-12.19.36
   chef-server: stable-12.13.0
