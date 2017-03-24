@@ -6,7 +6,17 @@ CONTROLS='test/integration/default/controls'
 # Run inspec tests on the Windows workstation
 # Use this pattern for Windows machines
 ${INSPEC_PATH}/inspec exec ${COOKBOOKS}/bjc_workstation/${CONTROLS}/bjc_workstation_test.rb -t winrm://Administrator@workstation-1 --password 'RL9@T40BTmXh'
+RETVAL=$?
+if [ $RETVAL -ne 0 ]; then
+  echo "Inspec tests failed."
+  exit 1
+fi
 
 # Run inspec tests on the Automate server
 # Use this pattern for Linux machines
 ${INSPEC_PATH}/inspec exec ${COOKBOOKS}/bjc_automate/${CONTROLS}/bjc_automate_test.rb -i /home/ubuntu/.ssh/id_rsa -t ssh://ubuntu@automate
+RETVAL=$?
+if [ $RETVAL -ne 0 ]; then
+  echo "Inspec tests failed."
+  exit 1
+fi
