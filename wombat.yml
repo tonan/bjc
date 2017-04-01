@@ -6,7 +6,14 @@ name: bjc-demo
 domain: automate-demo.com
 enterprise: automate-demo
 org: automate
-certs: ['automate', 'chef', 'compliance']
+certs: 
+  - automate
+  - chef
+  - compliance
+  - ecommacceptance
+  - union
+  - rehearsal
+  - delivered
 ttl: 8
 linux: ubuntu
 version: 2.0.3
