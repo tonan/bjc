@@ -12,11 +12,11 @@ template '/etc/rc.local' do
 end
 
 file "/etc/ssl/certs/#{node['hostname']}.#{node['demo']['domain']}.crt" do
-  source lazy { File.read("/tmp/#{node['hostname']}.crt") }
+  content lazy { File.read("/tmp/#{node['hostname']}.crt") }
 end
 
 file "/home/ubuntu/#{node['hostname']}.#{node['demo']['domain']}.crt" do
-  source lazy { File.read("/tmp/#{node['hostname']}.crt") }
+  content lazy { File.read("/tmp/#{node['hostname']}.crt") }
 end
 
 include_recipe 'wombat::authorized-keys'
