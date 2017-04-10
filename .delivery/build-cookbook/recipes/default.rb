@@ -22,4 +22,5 @@ chef_gem 'aws-sdk'
 template "/var/opt/delivery/workspace/inspec_tests.sh" do
   action :create
   source "inspec_tests.sh.erb"
+  mode 0755
 end
