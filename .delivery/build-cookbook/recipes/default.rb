@@ -30,10 +30,11 @@ package 'awscli'
 if node['platform'] == 'ubuntu'
   package 'jq'
 elsif node['platform'] == 'centos'
-  # This is horrible, but there EPELs release is 1.3 for CentOS 6
+  # This is horrible, but EPELs release of jq is 1.3 for CentOS 6
   remote_file "/usr/local/bin/jq" do 
     source "https://github.com/stedolan/jq/releases/download/jq-1.5/jq-linux64"
     checksum "c6b3a7d7d3e7b70c6f51b706a3b90bd01833846c54d32ca32f0027f00226ff6d"
     action :create_if_missing
+    mode 0755
   end
 end
