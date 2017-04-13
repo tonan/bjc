@@ -13,11 +13,11 @@
 require 'aws-sdk'
 
 # This could probably be refactored a bit
-workspace = "#{node['delivery']['workspace_path']}/bjc-automate-server-5g9aorii6yvcetdi.us-west-2.opsworks-cm.io/default/chef-sas/bjc/master/build/publish/repo"
+workspace = "#{workflow_workspace}/bjc-automate-server-5g9aorii6yvcetdi.us-west-2.opsworks-cm.io/default/chef-sas/bjc/master/build/publish/repo"
 
 # Copy keys into the packer directory
 execute "copy-packer-keys" do
-  command "tar -zxvf /var/opt/delivery/workspace/Downloads/keys.tar.gz -C packer/keys"
+  command "tar -zxvf #{workflow_workspace}/Downloads/keys.tar.gz -C packer/keys"
   live_stream true
   cwd workspace
   action :run
@@ -36,7 +36,7 @@ unless changed_cookbooks.empty?
   end
 
   %w(build update deploy).each do |s|
-    template "/var/opt/delivery/workspace/wombat_#{s}.sh" do
+    template "#{workflow_workspace}/wombat_#{s}.sh" do
       source "wombat_#{s}.sh.erb"
       mode '0755'
       variables(:cloud => cloud)
@@ -45,7 +45,7 @@ unless changed_cookbooks.empty?
   end
 
   execute "build-the-things" do
-    command "/var/opt/delivery/workspace/wombat_build.sh"
+    command "#{workflow_workspace}/wombat_build.sh"
     live_stream true
     cwd workspace
     action :run
@@ -53,7 +53,7 @@ unless changed_cookbooks.empty?
   
   # Create a new bjc-demo.json template
   execute "generate-json" do
-    command "/var/opt/delivery/workspace/wombat_update.sh"
+    command "#{workflow_workspace}/wombat_update.sh"
     live_stream true
     cwd workspace
     action :run
@@ -71,7 +71,7 @@ unless changed_cookbooks.empty?
     block do
       s3 = Aws::S3::Resource.new(region:'us-west-2')
       obj = s3.bucket('bjcpublic').object("acceptance-bjc-demo-#{cloud}.json")
-      obj.upload_file("/var/opt/delivery/workspace/bjc-automate-server-5g9aorii6yvcetdi.us-west-2.opsworks-cm.io/default/chef-sas/bjc/master/build/publish/repo/stacks/bjc-demo.json", acl:'public-read')
+      obj.upload_file("#{workflow_workspace}/bjc-automate-server-5g9aorii6yvcetdi.us-west-2.opsworks-cm.io/default/chef-sas/bjc/master/build/publish/repo/stacks/bjc-demo.json", acl:'public-read')
     end
   end
 end

@@ -14,15 +14,15 @@
 
 # Run inspec tests on the machines in our environment
 if ['acceptance'].include?(node['delivery']['change']['stage'])
-  unless changed_cookbooks.empty?
+  if changed_cookbooks.any? || build_cookbook_changed?
     ruby_block 'Waiting for Acceptance stack to be ready...' do
       block do
         sleep 60
       end
     end
     execute 'Run inspec tests' do
-      command '/var/opt/delivery/workspace/inspec_tests.sh'
-      cwd '/var/opt/delivery/workspace'
+      command "#{workflow_workspace}/inspec_tests.sh"
+      cwd workflow_workspace
       live_stream true
       action :run
     end
