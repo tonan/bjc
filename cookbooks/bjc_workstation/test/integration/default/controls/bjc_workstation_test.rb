@@ -27,7 +27,6 @@ control 'bjc-packages' do
   # CHANGED: Pkg names with version in them are wildcard matched
   # Without this change, we have to pin/modify tests every time a version changes
   packages = [
-    'Atom',
     'Microsoft Visual Studio Code',
     'Chef Client *',
     'Chef Development Kit *',
@@ -43,17 +42,21 @@ control 'bjc-packages' do
     end
   end
 
+  # CHANGED: Updated chocolatey tests for to no longer look for 'latest'. Also, moved Atom test to the method below.
 
-  # CHANGED: The following two test will fail every time the package is updated
-  # in chocolatey. Is matching /is the latest/ sufficient?
-  describe command('choco upgrade putty --noop') do
+  describe command('choco list atom --exact --local-only --limit-output') do
     its('exit_status') { should eq 0 }
-    its('stdout') { should match('is the latest') }
+    its('stdout') { should match('atom|') }
   end
 
-  describe command('choco upgrade cmder --noop') do
+  describe command('choco list putty --exact --local-only --limit-output') do
+    its('exit_status') { should eq 0 }
+    its('stdout') { should match('putty|') }
+  end
+
+  describe command('choco list cmder --exact --local-only --limit-output') do
      its('exit_status') { should eq 0 }
-     its('stdout') { should match('is the latest') }
+     its('stdout') { should match('cmder|') }
    end
 end
 
