@@ -6,7 +6,7 @@ name: bjc-demo
 domain: automate-demo.com
 enterprise: automate-demo
 org: automate
-certs: 
+certs:
   - automate
   - chef
   - compliance
@@ -16,7 +16,7 @@ certs:
   - delivered
 ttl: 8
 linux: ubuntu
-version: 2.1.0
+version: 2.1.1
 products:
   chef: stable-12.19.36
   chef-server: stable-12.13.0

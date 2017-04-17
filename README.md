@@ -36,7 +36,12 @@ The demo environment will provision in AWS fairly quickly, usually within a few 
   ```bash
   ./bin/build_demo.sh 0.2.1 RobCo scarolan_sa 4 'Sean Carolan' 'Solutions Architects'
   ```
+    * **IMPORTANT:** As of demo version 2.0.0, our pipeline now builds in both AWS and azure. To deploy a demo to AWS, the version number must be prepended with "aws-". Example:
 
+  ```bash
+  ./bin/build_demo.sh aws-2.1.0 RobCo rycar_sa 4 'Nick Rycar' 'Solutions Architects'
+  ```
+  
 3.  Log onto your stack's workstation
     * The IP is listed under your stack's outputs in the AWS CloudFormation Management Console.
     * Workstation credentials are pinned in #chef-demo-project slack channel.  
