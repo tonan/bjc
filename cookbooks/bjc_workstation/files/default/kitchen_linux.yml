@@ -23,7 +23,7 @@ platforms:
   - name: ubuntu-14.04
     transport:
       username: ubuntu
-      ssh_key: C:\Users\Administrator\.ssh\id_rsa
+      ssh_key: C:\Users\chef\.ssh\id_rsa
   - name: centos-6
     transport:
       username: root
