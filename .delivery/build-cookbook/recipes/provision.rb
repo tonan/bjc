@@ -12,7 +12,7 @@ if ['union'].include?(node['delivery']['change']['stage'])
     block do
       stack = Aws::CloudFormation::Client.new(region:'us-west-2')
       stack.delete_stack({
-        stack_name: "bjc-demo"
+        stack_name: "acceptance-bjc-demo"
       })
     end
   end
