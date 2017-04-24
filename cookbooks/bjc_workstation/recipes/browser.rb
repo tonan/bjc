@@ -27,3 +27,8 @@ registry_key 'HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Google\Update' do
   action :create
   recursive true
 end
+
+directory 'C:\Program Files (x86)\Google\Update' do
+  action :delete
+  recursive true
+end
