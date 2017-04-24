@@ -8,5 +8,10 @@
 . /var/opt/delivery/workspace/.bashrc
 
 wombat deploy -c <%= @cloud -%> -n acceptance-bjc-demo bjc-demo
+
+<% case @cloud -%>
+<% when 'aws' -%>
 sleep 180
+<% end -%>
+
 wombat outputs -c <%= @cloud -%> acceptance-bjc-demo
