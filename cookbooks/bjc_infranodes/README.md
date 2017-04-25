@@ -1,3 +1,3 @@
 # bjc_infranodes
 
-This cookbook makes awesome infranodes.
+This cookbook makes awesome infranodes!
