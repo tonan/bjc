@@ -52,7 +52,7 @@ if ['acceptance'].include?(node['delivery']['change']['stage'])
       end
     end
     # Use this wrapper script to stand up the demo.
-    execute 'Deploy Demo Stack' do
+    execute "Deploy Acceptance Stack in #{cloud}" do
       command "#{workflow_workspace}/wombat_deploy.sh"
       cwd workspace
       # Disabled because it crashes Automate
