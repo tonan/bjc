@@ -107,6 +107,7 @@
     {
       "type": "chef-solo",
       "install_command": "powershell.exe -Command \". { iwr -useb https://omnitruck.chef.io/install.ps1 } | iex; install -channel {{user `chef_channel`}} -version {{user `chef_ver`}}\"",
+      "execute_command": "c:/opscode/chef/bin/chef-solo.bat --no-color -c {{.ConfigPath}} -j {{.JsonPath}} -L c:/opscode/chef/chef-solo.log",
       "guest_os_type": "windows",
       "cookbook_paths": [ "{{pwd}}/vendored-cookbooks/bjc_workstation" ],
       "run_list": [ "bjc_workstation", "wombat::etc-hosts" ],

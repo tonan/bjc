@@ -17,3 +17,5 @@ include_recipe 'bjc_workstation::browser'
 include_recipe 'bjc_workstation::environment'
 include_recipe 'bjc_workstation::kitchen_templates'
 include_recipe 'bjc_workstation::freedoms'
+
+delete_resource(:chocolatey_package, 'hub')
