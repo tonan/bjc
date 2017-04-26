@@ -10,7 +10,7 @@ if node['platform'] == 'ubuntu'
   end
 end
 
-node.default['packer']['version'] = '0.12.1'
+node.default['packer']['version'] = '1.0.0'
 include_recipe 'sbp_packer'
 
 chef_gem 'wombat-cli' do
