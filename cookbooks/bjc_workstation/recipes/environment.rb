@@ -1,13 +1,14 @@
-#
-# Cookbook Name:: bjc_workstation
-# Recipe:: environment
-#
-# Copyright (c) 2016 The Authors, All Rights Reserved.
-
-# We need to drop this PuTTY-formatted SSH key in ~/.ssh so PuTTY will work.
-# Packer drops keys into C:/Windows/Temp, so we mimic that behavior here.
+run_home = Dir.home
 
 cookbook_file "#{home}/.ssh/id_rsa.ppk" do
   source 'putty.ppk'
   action :create
+end
+
+[ "#{run_home}\\AppData\\Local\\atom\\bin", 
+  'C:\tools\cmder',
+  'C:\Program Files (x86)\Microsoft VS Code\bin'].each do |p|
+  windows_path p do
+    action :add
+  end
 end
