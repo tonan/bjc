@@ -8,6 +8,12 @@ if node['platform'] == 'ubuntu'
   apt_update 'update ubuntu packages' do
     action :update
   end
+else
+  node.default['build-essential']['compile_time'] = true
+  include_recipe 'build-essential::default'
+  chef_gem 'http-cookie' do
+    version '1.0.0'
+  end
 end
 
 node.default['packer']['version'] = '1.0.0'
@@ -25,10 +31,6 @@ end
 
 chef_gem 'rake' do
   version '11.2.0'
-end
-
-chef_gem 'http-cookie' do
-  version '1.0.0'
 end
 
 template "#{workflow_workspace}/inspec_tests.sh" do
