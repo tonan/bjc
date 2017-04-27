@@ -5,7 +5,7 @@ cookbook_file "#{home}/.ssh/id_rsa.ppk" do
   action :create
 end
 
-[ "#{run_home}\\AppData\\Local\\atom\\bin", 
+[ "#{run_home}\\AppData\\Local\\atom\\bin",
   'C:\tools\cmder',
   'C:\Program Files (x86)\Microsoft VS Code\bin'].each do |p|
   windows_path p do
