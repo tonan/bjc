@@ -18,9 +18,9 @@ ttl: 8
 linux: ubuntu
 version: 2.1.7
 products:
-  chef: stable-12.19.36
+  chef: stable-13.0.118
   chef-server: stable-12.13.0
-  chefdk: stable-1.2.22
+  chefdk: stable-1.3.43
   compliance: stable-1.8.12
   automate: stable-0.7.85
   push-jobs-server: stable-1.1.6
