@@ -1,14 +1,21 @@
 ---
 driver:
-  name: azurerm
-
-driver_config:
-  subscription_id: '1e0b427a-d58b-494e-ae4f-ee558463ebbf'
-  location: 'West US'
-  machine_size: 'Standard_D1'
+  name: ec2
+  aws_ssh_key_id: <%= ENV["EC2_SSH_KEY_NAME"] %>
+  region: us-west-2
+  availability_zone: us-west-2c
+  security_group_ids: sg-401e0e25
+  iam_profile_name: testKitchenAndKnifeEc2
+  subnet_id: subnet-5b32ef02
+  instance_type: m3.large
   associate_public_ip: true
-  username: 'azure'
-  password: 'RL9@T40BTmXh'
+  tags:
+    Name: "bjc_workstation-localdev-kitchen-instance"
+    created-by: "test-kitchen"
+    user: <%= ENV['USER'] %>
+    X-Dept: Sales
+    X-Contact: <%= ENV['USER'] %>
+    X-Production: "false"
 
 provisioner:
   name: chef_zero
@@ -17,11 +24,12 @@ verifier:
   name: inspec
 
 platforms:
-  - name: windows2012-r2
+  - name: windows-2012r2
     driver_config:
-      image_urn: MicrosoftWindowsServer:WindowsServer:2012-R2-Datacenter:latest
+      image_id: ami-1562d075
+      retryable_tries: 80
     transport:
-      name: winrm
+      ssh_key: <%= ENV["EC2_SSH_KEY_PATH"] %> # change it; this is needed so kitchen can retrieve the Admin password
 
 suites:
   - name: default

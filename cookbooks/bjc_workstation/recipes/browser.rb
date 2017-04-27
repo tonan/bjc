@@ -16,24 +16,10 @@ end
 
 # Disable Google Chrome Updates
 # https://www.chromium.org/administrators/turning-off-auto-updates
-registry_key 'HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Google\Update' do
-  values [{:name => 'AutoUpdateCheckPeriodMinutes', :type => :dword, :data => '00000000'}]
-  action :create
-  recursive true
-end
 
 registry_key 'HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Google\Update' do
-  values [{:name => 'UpdateDefault', :type => :dword, :data => '00000000'}]
+  values [{:name => 'AutoUpdateCheckPeriodMinutes', :type => :dword, :data => '00000000'},
+          {:name => 'UpdateDefault', :type => :dword, :data => '00000000'}]
   action :create
-  recursive true
-end
-
-chocolatey_package 'GoogleChrome' do
-  options '--ignorechecksum --allow-downgrade'
-  version '57.0.2987.13301'
-end
-
-directory 'C:\Program Files (x86)\Google\Update' do
-  action :delete
   recursive true
 end

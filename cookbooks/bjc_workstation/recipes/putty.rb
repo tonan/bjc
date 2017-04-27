@@ -2,8 +2,8 @@
 #
 # Copyright (c) 2016 The Authors, All Rights Reserved.
 # Install the Putty
-chocolatey 'putty' do
-  options( '-allow-empty-checksums' => '' )
+chocolatey_package 'putty' do
+  options '--allow-empty-checksums'
 end
 
 # Make the shortcut
