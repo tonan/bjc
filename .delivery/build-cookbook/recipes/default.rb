@@ -19,6 +19,14 @@ end
 
 chef_gem 'aws-sdk'
 
+chef_gem 'net-ssh' do
+  version '3.2.0'
+end
+
+chef_gem 'rake' do
+  version '11.2.0'
+end
+
 template "#{workflow_workspace}/inspec_tests.sh" do
   action :create
   source "inspec_tests.sh.erb"
