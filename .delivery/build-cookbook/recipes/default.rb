@@ -27,6 +27,10 @@ chef_gem 'rake' do
   version '11.2.0'
 end
 
+chef_gem 'http-cookie' do
+  version '1.0.0'
+end
+
 template "#{workflow_workspace}/inspec_tests.sh" do
   action :create
   source "inspec_tests.sh.erb"
