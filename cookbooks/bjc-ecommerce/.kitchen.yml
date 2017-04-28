@@ -5,7 +5,7 @@ driver:
   region: us-west-2
   security_group_ids: sg-2560a741
   instance_type: c3.large
-  aws_ssh_key_id: chef_demo
+  aws_ssh_key_id: chef_demo_2x
   tags:
     Name: "Chef Demo Test Kitchen Instance"
     created-by: "test-kitchen"
@@ -27,8 +27,10 @@ platforms:
 suites:
   - name: default
     run_list:
+      - recipe[bjc-ecommerce::tksetup]
       - recipe[bjc-ecommerce::default]
     attributes:
     verifier:
       inspec_tests:
-      - test/compliance/ssl_benchmark.rb
+        - name: ssl-baseline
+          url: https://github.com/dev-sec/ssl-baseline/archive/v1.1.1.tar.gz
