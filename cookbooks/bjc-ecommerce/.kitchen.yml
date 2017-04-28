@@ -27,8 +27,10 @@ platforms:
 suites:
   - name: default
     run_list:
+      - recipe[bjc-ecommerce::tksetup]
       - recipe[bjc-ecommerce::default]
     attributes:
     verifier:
       inspec_tests:
-      - test/compliance/ssl_benchmark.rb
+        - name: ssl-baseline
+          url: https://github.com/dev-sec/ssl-baseline/archive/v1.1.1.tar.gz

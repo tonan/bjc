@@ -4,22 +4,6 @@
 #
 # Copyright (c) 2016 The Authors, All Rights Reserved.
 
-# Enables SSL and mod_jk
-
-home = Dir.home
-
-file "/etc/ssl/private/#{node['hostname']}.automate-demo.com.key" do
-  content lazy { IO.read("/#{home}/#{node['hostname']}.key") }
-  action :create
-  sensitive true
-end
-
-file "/etc/ssl/certs/#{node['hostname']}.automate-demo.com.crt" do
-  content lazy { IO.read("/#{home}/#{node['hostname']}.crt") }
-  action :create
-  sensitive true
-end
-
 package 'apache2'
 
 package 'libapache2-mod-jk'
