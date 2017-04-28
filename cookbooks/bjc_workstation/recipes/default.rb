@@ -4,6 +4,15 @@
 #
 # Copyright (c) 2016 The Authors, All Rights Reserved.
 
+node.default['demo']['certs'] = %w(
+  automate
+  chef
+  compliance
+  ecomacceptance
+  union
+  rehearsal
+  delivered
+)
 include_recipe 'workstation'
 include_recipe 'bjc_workstation::cmder'
 include_recipe 'bjc_workstation::cookbooks'

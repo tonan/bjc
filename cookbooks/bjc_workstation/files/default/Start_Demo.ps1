@@ -21,13 +21,6 @@ function Write-KitchenYaml {
     New-Item $args[0] -type file -value "driver:`n  security_group_ids: $sg`n  subnet_id: $subnet`n" -force
 }
 
-function Import-RemoteCertificate {
-    $name = $args[0]
-    Write-Host ${Unix-Path $env:userprofile}/Downloads
-    scp ${name}:/home/ubuntu/${name}.automate-demo.com.crt /c/Users/${env:USERNAME}/Downloads 
-    Import-Certificate -FilePath  ${env:userprofile}\Downloads\${name}.automate-demo.com.crt -CertStoreLocation Cert:/LocalMachine/Root
-}
-
 set-executionpolicy -executionpolicy unrestricted -force -scope CurrentUser
 
 Write-Host "Copying compliance OIDC_CLIENT_ID to chef CHEF_GATE_OIDC_CLIENT_ID"
@@ -40,11 +33,6 @@ ssh chef 'sudo mv /tmp/CHEF_GATE_OIDC_CLIENT_ID /opt/opscode/sv/chef_gate/env/CH
 Write-Host "Preparing AURD nodes for demo..."
 knife job start chef-client -s *:*
 
-Write-Host "Importing infrastructure SSL certs..."
-Import-RemoteCertificate "ecomacceptance"
-Import-RemoteCertificate "union"
-Import-RemoteCertificate "rehearsal"
-Import-RemoteCertificate "delivered"
 sleep 100
 Write-Host "second run to report compliance results"
 knife job start chef-client -s *:*
@@ -74,5 +62,3 @@ $host.UI.RawUI.ReadKey("NoEcho,IncludeKeyDown")
 
 Write-Host "Starting cmder..."
 & "C:\tools\cmder\Cmder.exe"
-
-
