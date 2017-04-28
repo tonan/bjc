@@ -10,13 +10,13 @@ certs:
   - automate
   - chef
   - compliance
-  - ecommacceptance
+  - ecomacceptance
   - union
   - rehearsal
   - delivered
 ttl: 8
 linux: ubuntu
-version: 2.1.7
+version: 2.1.8
 products:
   chef: stable-12.19.36
   chef-server: stable-12.13.0
