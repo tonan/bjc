@@ -36,6 +36,7 @@ platforms:
 suites:
   - name: default
     run_list:
+      - recipe[bjc-ecommerce::tksetup]
       - recipe[bjc-ecommerce::default]
     attributes:
     verifier:
