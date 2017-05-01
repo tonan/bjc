@@ -7,11 +7,17 @@
 
 . /var/opt/delivery/workspace/.bashrc
 
-wombat deploy -c <%= @cloud -%> -n acceptance-bjc-demo bjc-demo
+wombat deploy -c <%= @cloud -%> -n acceptance-bjc-demo bjc-demo > deploy-<%= @cloud -%>.log
 
 <% case @cloud -%>
 <% when 'aws' -%>
 sleep 180
+<% when 'azure' -%>
+if grep -q 'Resource Template deployment reached end state of Succeeded' deploy-<%= @cloud -%>.log; then
+  echo "all good"
+else
+  echo "Wombat deploy failed."
+fi
 <% end -%>
 
 wombat outputs -c <%= @cloud -%> acceptance-bjc-demo
