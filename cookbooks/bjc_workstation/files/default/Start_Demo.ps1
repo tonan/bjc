@@ -58,7 +58,8 @@ Write-Host "Increasing Flash Gordon Noise and Putting More Science Stuff Around.
 Write-KitchenYaml ${env:userprofile}\cookbooks\bjc-ecommerce\.kitchen.local.yml
 Write-KitchenYaml ${env:userprofile}\Desktop\Test_Kitchen\kitchen.local.yml
 
-$host.UI.RawUI.ReadKey("NoEcho,IncludeKeyDown")
+# This causes the script to hang
+# $host.UI.RawUI.ReadKey("NoEcho,IncludeKeyDown")
 
 Write-Host "Starting cmder..."
 & "C:\tools\cmder\Cmder.exe"

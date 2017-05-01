@@ -20,3 +20,11 @@ if [ $RETVAL -ne 0 ]; then
   echo "Inspec tests failed."
   exit 1
 fi
+
+# Run inspec tests on the Chef server
+${INSPEC_PATH}/inspec exec ${COOKBOOKS}/bjc_chef_server/${CONTROLS}/bjc_chef_server_test.rb -i /home/ubuntu/.ssh/id_rsa -t ssh://ubuntu@chef
+RETVAL=$?
+if [ $RETVAL -ne 0 ]; then
+  echo "Inspec tests failed."
+  exit 1
+fi
