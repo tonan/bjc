@@ -9,6 +9,9 @@
       "chef_server": true
     }
   },
+  "job_dispatch": {
+    "version": "v1"
+  },
   "skip_phases": [
     "quality",
     "security"
