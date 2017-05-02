@@ -6,7 +6,7 @@ description 'Installs/Configures bjc-automate'
 long_description 'Installs/Configures bjc-automate'
 issues_url 'https://waffle.io/chef-cft/bjc'
 source_url 'https://github.com/chef-cft/bjc'
-version '0.1.31'
+version '0.1.32'
 
 depends 'wombat'
 depends 'automate'
