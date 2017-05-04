@@ -94,7 +94,7 @@ if ['delivered'].include?(node['delivery']['change']['stage'])
   acct_hash = JSON.parse(accounts)
   acct_hash['accounts'].each do |acct|
     execute "Export BJC demo to other AWS accounts." do
-      command "#{workflow_workspace}/bin/publish_demo_to_account.sh #{acct}"
+      command "wget -O /tmp/acceptance-bjc-demo.json https://s3-us-west-2.amazonaws.com/bjcpublic/acceptance-bjc-demo-aws.json; #{workspace}/bin/publish_demo_to_account.sh /tmp/acceptance-bjc-demo.json #{acct}"
     end
   end
 end
