@@ -88,4 +88,13 @@ if ['delivered'].include?(node['delivery']['change']['stage'])
       end
     end
   end
+
+  # Publish the demo to all the accounts listed in accounts.json
+  accounts = File.read("#{workspace}/accounts.json")
+  acct_hash = JSON.parse(accounts)
+  acct_hash['accounts'].each do |acct|
+    execute "Export BJC demo to other AWS accounts." do
+      command "#{workflow_workspace}/bin/publish_demo_to_account.sh #{acct}"
+    end
+  end
 end
