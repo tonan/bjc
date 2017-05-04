@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 # Use this script to make Chef Demo AMIs available to other AWS accounts.
 # Simply run the script with the CF template file and account you want to publish to as arguments.
 
