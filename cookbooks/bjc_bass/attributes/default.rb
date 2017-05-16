@@ -1,5 +1,6 @@
 default['push_jobs']['allow_unencrypted'] = true
 default['audit']['collector'] = 'chef-visibility'
+default['audit']['inspec_version'] = '1.19.2'
 default['audit']['profiles'] = [
   {
     name: 'admin/ssl-benchmark',
