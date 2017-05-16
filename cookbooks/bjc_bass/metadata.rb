@@ -6,7 +6,7 @@ source_url 'https://github.com/chef-cft/bjc'
 license 'all_rights'
 description 'Installs/Configures bjc_bass'
 long_description 'Installs/Configures bjc_bass'
-version '0.2.4'
+version '0.2.5'
 
 depends 'push-jobs'
 depends 'git'
