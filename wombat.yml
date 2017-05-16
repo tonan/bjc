@@ -67,7 +67,7 @@ aws:
   iam_roles: ['chefDemo']
   source_image:
     ubuntu: ami-70b67d10
-    windows: ami-1562d075
+    windows: ami-2ad04f4a
     centos: ami-6d1c2007
 azure:
   location: westus
