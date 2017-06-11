@@ -2,7 +2,7 @@ name 'build-cookbook'
 maintainer 'The Authors'
 maintainer_email 'you@example.com'
 license 'all_rights'
-version '0.2.4'
+version '0.2.5'
 
 depends 'sbp_packer'
 depends 'delivery-truck'
