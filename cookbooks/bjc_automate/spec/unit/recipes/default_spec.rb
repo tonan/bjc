@@ -15,6 +15,8 @@ describe 'bjc_automate::default' do
 
     before do
       stub_command("delivery-ctl list-enterprises | grep mammals").and_return(true)
+      stub_command("delivery-ctl list-users mammals | grep automate").and_return(true)
+      stub_command("delivery-ctl list-users mammals | grep workstation-1").and_return(true)
     end
 
     it 'includes required recipes from other cookbooks' do
