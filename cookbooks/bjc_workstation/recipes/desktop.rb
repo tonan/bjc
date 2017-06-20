@@ -10,6 +10,11 @@ cookbook_file "#{home}\\Start_Demo.ps1" do
   source "Start_Demo.ps1"
 end
 
+cookbook_file "#{home}\\Desktop\\email.html" do
+  action :create
+  source "email.html"
+end
+
 windows_shortcut 'C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Startup\start me up.lnk' do
   target "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe"
   arguments " #{home}\\Start_Demo.ps1"
