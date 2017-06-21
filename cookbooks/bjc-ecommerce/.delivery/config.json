@@ -13,8 +13,15 @@
     "version": "v1"
   },
   "skip_phases": [
+    "lint",
+    "unit",
     "quality",
-    "security"
+    "security",
+    "publish",
+    "provision",
+    "deploy",
+    "smoke",
+    "functional"
   ],
   "build_nodes": {},
   "dependencies": []
