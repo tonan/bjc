@@ -1,7 +1,7 @@
 ---
 driver:
   name: ec2
-  aws_ssh_key_id: chef_demo
+  aws_ssh_key_id: chef_demo_2x
   region: us-west-2
   security_group_ids: sg-2560a741
   associate_public_ip: true
@@ -10,7 +10,7 @@ driver:
     # Replace YOURNAME and YOURCOMPANY here
     Name: "Chef Training Node for YOURNAME, YOURCOMPANY"
     created-by: "test-kitchen"
-    user: Administrator
+    user: chef
 
 provisioner:
   name: chef_zero
@@ -27,15 +27,15 @@ platforms:
   - name: centos-6
     transport:
       username: root
-      ssh_key:  C:\Users\Administrator\.ssh\id_rsa
+      ssh_key:  C:\Users\chef\.ssh\id_rsa
     driver_config:
-      user_data: C:\Users\Administrator\user_data
+      user_data: C:\Users\chef\user_data
   - name: centos-7
     transport:
       username: root
-      ssh_key:  C:\Users\Administrator\.ssh\id_rsa
+      ssh_key:  C:\Users\chef\.ssh\id_rsa
     driver_config:
-      user_data: C:\Users\Administrator\user_data
+      user_data: C:\Users\chef\user_data
 
 suites:
   - name: default
