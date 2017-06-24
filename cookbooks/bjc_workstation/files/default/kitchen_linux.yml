@@ -43,5 +43,5 @@ suites:
       #- recipe[cookbook_name::recipe_name]
     verifier:
       inspec_tests:
-        - test/recipes
+        - test/smoke
     attributes:
