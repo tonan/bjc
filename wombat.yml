@@ -16,7 +16,7 @@ certs:
   - delivered
 ttl: 8
 linux: ubuntu
-version: 3.0.0
+version: 3.0.1
 products:
   chef: stable-12.19.36
   chef-server: stable-12.15.7

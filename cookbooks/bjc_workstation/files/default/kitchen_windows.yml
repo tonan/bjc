@@ -1,7 +1,7 @@
 ---
 driver:
   name: ec2
-  aws_ssh_key_id: chef_demo
+  aws_ssh_key_id: chef_demo_2x
   region: us-west-2
   security_group_ids: sg-2560a741
   associate_public_ip: true
@@ -10,14 +10,14 @@ driver:
     # Replace YOURNAME and YOURCOMPANY here
     Name: "Chef Training Node for YOURNAME,YOURCOMPANY"
     created-by: "test-kitchen"
-    user: Administrator
+    user: chef
 
 provisioner:
   name: chef_zero
 
 verifier:
   name: inspec
-    format: documentation
+  format: documentation
 
 platforms:
   - name: windows-2012r2
@@ -32,5 +32,5 @@ suites:
       #- recipe[cookbook_name::recipe_name]
     verifier:
       inspec_tests:
-        - test/recipes
+        - test/smoke
     attributes:
