@@ -1,5 +1,5 @@
 default['push_jobs']['allow_unencrypted'] = true
-default['audit']['reporter'] = 'chef-automate'
+default['audit']['reporter'] = 'chef-server-automate'
 
 default['audit']['profiles'] = [
   {
