@@ -1,0 +1,8 @@
+name 'demo_gitlab'
+maintainer 'Sean Carolan'
+maintainer_email 'scarolan@chef.io'
+license 'all_rights'
+description 'Installs/Configures demo_gitlab'
+long_description 'Wrapper cookbook to install gitlab community edition'
+version '0.1.3'
+depends 'omnibus-gitlab', '= 0.2.1'
