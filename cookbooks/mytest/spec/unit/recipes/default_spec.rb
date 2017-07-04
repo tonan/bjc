@@ -1,12 +1,12 @@
 #
-# Cookbook Name:: bjc_jenkins
+# Cookbook:: mytest
 # Spec:: default
 #
-# Copyright (c) 2015 The Authors, All Rights Reserved.
+# Copyright:: 2017, The Authors, All Rights Reserved.
 
 require 'spec_helper'
 
-describe 'bjc_jenkins::default' do
+describe 'mytest::default' do
   context 'When all attributes are default, on an unspecified platform' do
     let(:chef_run) do
       runner = ChefSpec::ServerRunner.new
