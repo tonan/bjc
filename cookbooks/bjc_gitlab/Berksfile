@@ -1,5 +1,0 @@
-source 'https://supermarket.chef.io'
-
-metadata
-
-cookbook 'omnibus-gitlab', git: 'https://gitlab.com/gitlab-org/cookbook-omnibus-gitlab.git'
