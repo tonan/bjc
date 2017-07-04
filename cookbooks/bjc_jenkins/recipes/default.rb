@@ -18,12 +18,12 @@ include_recipe 'jenkins::master'
 
 package 'git'
 
-remote_file "#{Chef::Config['file_cache_path']}/chefdk.rpm" do
-  action :create
-  source node['bjc_jenkins']['chefdk_url']
+remote_file "#{Chef::Config['file_cache_path']}/chefdk.deb" do
+    action :create
+      source node['bjc_jenkins']['chefdk_url']
 end
 
-package "ChefDK" do
-  action :install
-  source "#{Chef::Config['file_cache_path']}/chefdk.rpm"
+dpkg_package "ChefDK" do
+    action :install
+      source "#{Chef::Config['file_cache_path']}/chefdk.deb"
 end

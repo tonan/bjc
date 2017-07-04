@@ -9,13 +9,14 @@ driver:
   associate_public_ip: true
   instance_type: c3.large
   aws_ssh_key_id: chef_demo_2x
+  user_data: 'C:/Users/chef/ubuntu_user_data'
   tags:
     Name: "Chef Demo Test Kitchen Instance"
     created-by: "test-kitchen"
     user: Administrator
 
 transport:
-  username: centos
+  username: ubuntu
   ssh_key: ~/.ssh/id_rsa
 
 provisioner:
@@ -31,7 +32,7 @@ verifier:
   name: inspec
 
 platforms:
-  - name: centos-7
+  - name: ubuntu-16.04
 
 suites:
   - name: default
@@ -40,4 +41,3 @@ suites:
     attributes:
     verifier:
       inspec_tests:
-        - test/smoke/default
