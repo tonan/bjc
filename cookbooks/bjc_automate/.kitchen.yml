@@ -33,5 +33,5 @@ suites:
           automate: 172.31.54.11
           compliance: 172.31.54.12
         versions:
-          automate: 'stable-0.7.85'
+          automate: 'stable-1.5.46'
           chefdk: 'stable-latest'
