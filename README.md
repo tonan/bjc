@@ -38,12 +38,6 @@ The demo environment will provision in AWS fairly quickly, usually within a few 
   For example:
 
   ```bash
-  ./bin/build_demo.sh 0.2.1 'RobCo' scarolan_sa 4 'Sean Carolan' 'Solutions Architects'
-  ```
-
-  **IMPORTANT:** As of demo version 2.0.0, our pipeline now builds in both AWS and azure. To deploy a demo to AWS, the version number must be prepended with "aws-". Example:
-
-  ```bash
   ./bin/build_demo.sh aws-2.1.0 'RobCo' rycar_sa 4 'Nick Rycar' 'Solutions Architects'
   ```
 
@@ -54,7 +48,5 @@ The demo environment will provision in AWS fairly quickly, usually within a few 
 
 4.  Optional:  If you want to use Test Kitchen inside your demo environment, you'll need to go into the AWS control panel, select EC2, and then go into 'Key Pairs'.  Choose "Import New Key Pair" and import the chef_demo.pub file stored in this repo into the us-west-2 region of your account.  Alternatively you can simply edit the existing .kitchen.yml file inside the cookbook with any valid SSH key name in us-west-2 in your account.
 
-5.  Run the "start me up" script on the desktop and get your demo on!
-    * This is the script that can take 10+ minutes to complete.
-    * Report any issues you find here:  [https://waffle.io/chef-cft/bjc](https://waffle.io/chef-cft/bjc)
+5.  Report any issues you find here:  [https://waffle.io/chef-cft/bjc](https://waffle.io/chef-cft/bjc)
 ---
