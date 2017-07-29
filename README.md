@@ -33,7 +33,7 @@ The demo environment will provision in AWS fairly quickly, usually within a few 
     * Your command will look something like the command below.
 
     ```bash
-    ./bin/build_demo.sh <version> <customer_name> <EC2 key pair name> <TTL> <your_name> <team_name>
+    ./bin/build_demo.sh <cloud>-<version> <customer_name> <EC2 key pair name> <TTL> <your_name> <team_name>
     ```
   For example:
 
