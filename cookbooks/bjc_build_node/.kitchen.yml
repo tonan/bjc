@@ -42,4 +42,4 @@ suites:
         org: 'automate'
         hosts:
         versions:
-          chefdk: 'stable-0.16.28'
+          chefdk: 'stable-2.1.11'

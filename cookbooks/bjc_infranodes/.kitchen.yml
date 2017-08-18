@@ -45,4 +45,4 @@ suites:
           delivery: '172.31.54.11'
           compliance: '172.31.54.12'
         versions:
-          chefdk: 'stable-1.2.22'
+          chefdk: 'stable-2.1.11'
