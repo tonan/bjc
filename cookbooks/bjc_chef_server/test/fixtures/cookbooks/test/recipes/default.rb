@@ -6,7 +6,7 @@
 
 %w(chef.crt
    chef.key
-   delivery.crt
+   automate.crt
    compliance.crt
    public.pub
    private.pem

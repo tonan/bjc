@@ -20,12 +20,12 @@ end
 execute 'restore backup data into automate' do
   command 'automate-ctl restore-backup chef-automate-backup.zst --force'
   cwd '/var/opt/delivery/backups'
-  notifies :restart, 'omnibus_service[ ]'
+  notifies :restart, 'omnibus_service[automate-server/cli]'
   action :nothing
 end
 
-omnibus_service ' ' do
-  ctl_command 'delivery-ctl'
+omnibus_service 'automate-server/cli' do
+  ctl_command 'automate-ctl'
   action :nothing
 end
 

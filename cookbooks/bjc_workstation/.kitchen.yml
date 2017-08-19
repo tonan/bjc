@@ -33,7 +33,7 @@ suites:
         workstations: 1
         workstation-number: 1
         versions:
-          chefdk: 'stable-1.3.43'
+          chefdk: 'stable-2.1.11'
     verifier:
       inspec_tests:
         - test/integration/default/controls
