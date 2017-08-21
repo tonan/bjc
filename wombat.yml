@@ -22,7 +22,7 @@ products:
   chef-server: stable-12.16.2
   chefdk: stable-2.1.11
   compliance: stable-1.10.2
-  automate: stable-1.6.95
+  automate: stable-1.6.99
   push-jobs-server: stable-1.1.6
   manage: stable-2.5.4
 build-nodes:
