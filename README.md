@@ -48,5 +48,7 @@ The demo environment will provision in AWS fairly quickly, usually within a few 
 
 4.  Optional:  If you want to use Test Kitchen inside your demo environment, you'll need to go into the AWS control panel, select EC2, and then go into 'Key Pairs'.  Choose "Import New Key Pair" and import the chef_demo.pub file stored in this repo into the us-west-2 region of your account.  Alternatively you can simply edit the existing .kitchen.yml file inside the cookbook with any valid SSH key name in us-west-2 in your account.
 
-5.  Report any issues you find here:  [https://waffle.io/chef-cft/bjc](https://waffle.io/chef-cft/bjc)
+5. Optional: To generate CCRs quickly, run the 'Generate_CCRs.ps1' script from the home directory. It will trigger client runs on all nodes until closed.
+
+6.  Report any issues you find here:  [https://waffle.io/chef-cft/bjc](https://waffle.io/chef-cft/bjc)
 ---

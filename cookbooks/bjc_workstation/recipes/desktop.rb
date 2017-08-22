@@ -10,6 +10,11 @@ cookbook_file "#{home}\\Start_Demo.ps1" do
   source "Start_Demo.ps1"
 end
 
+cookbook_file "#{home}\\Generate_CCRs.ps1" do
+  action :create
+  source "Generate_CCRs.ps1"
+end
+
 cookbook_file "#{home}\\Desktop\\email.html" do
   action :create
   source "email.html"
