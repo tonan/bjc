@@ -6,7 +6,7 @@ description 'Installs/Configures bjc_workstation'
 long_description 'Installs/Configures bjc_workstation'
 issues_url 'https://waffle.io/chef-cft/bjc'
 source_url 'https://github.com/chef-cft/bjc'
-version '1.3.2'
+version '1.3.4'
 
 depends 'workstation'
 depends 'windows'

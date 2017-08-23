@@ -78,8 +78,4 @@ Write-Host -ForegroundColor Green "[12/13] Visiting Automate"
 
 Write-Host -ForegroundColor Green "[13/13] Start_Demo complete, you may close this console!"
 
-
-while($true) {
-  Write-Host -ForegroundColor Yellow "Your Demo Is Ready! Now generating client converges, feel free to close."
-  knife job start chef-client -s *:*; sleep $(Get-Random -Maximum 240 -Minimum 60)
-}
+Write-Host -ForegroundColor Yellow "Your Demo Is Ready! Run 'Generate_CCRs.ps1' if you'd like to generate client converges."

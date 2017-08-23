@@ -10,6 +10,11 @@ cookbook_file "#{home}\\Start_Demo.ps1" do
   source "Start_Demo.ps1"
 end
 
+cookbook_file "#{home}\\Generate_CCRs.ps1" do
+  action :create
+  source "Generate_CCRs.ps1"
+end
+
 cookbook_file "#{home}\\Desktop\\email.html" do
   action :create
   source "email.html"
@@ -19,6 +24,12 @@ windows_shortcut 'C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Startup\s
   target "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe"
   arguments " #{home}\\Start_Demo.ps1"
   description "Start the Chef demo"
+end
+
+windows_shortcut "#{home}\\Desktop\\Generate_CCRs.lnk" do
+  target "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe"
+  arguments " #{home}\\Generate_CCRs.ps1"
+  description "Kick off a converge loop"
 end
 
 # Remove EC2 shortcuts
