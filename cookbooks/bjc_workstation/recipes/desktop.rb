@@ -26,7 +26,7 @@ windows_shortcut 'C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Startup\s
   description "Start the Chef demo"
 end
 
-windows_shortcut 'C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Startup\Generate_CCRs.lnk' do
+windows_shortcut "#{home}\\Desktop\\Generate_CCRs.lnk" do
   target "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe"
   arguments " #{home}\\Generate_CCRs.ps1"
   description "Kick off a converge loop"
