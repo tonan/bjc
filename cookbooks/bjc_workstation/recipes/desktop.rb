@@ -15,6 +15,16 @@ cookbook_file "#{home}\\Generate_CCRs.ps1" do
   source "Generate_CCRs.ps1"
 end
 
+cookbook_file "#{home}\\Start_DCA.ps1" do
+  action :create
+  source "Start_DCA.ps1"
+end
+
+cookbook_file "#{home}\\Finish_DCA.ps1" do
+  action :create
+  source "Finish_DCA.ps1"
+end
+
 cookbook_file "#{home}\\Desktop\\email.html" do
   action :create
   source "email.html"
@@ -30,6 +40,18 @@ windows_shortcut "#{home}\\Desktop\\Generate_CCRs.lnk" do
   target "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe"
   arguments " #{home}\\Generate_CCRs.ps1"
   description "Kick off a converge loop"
+end
+
+windows_shortcut "#{home}\\Desktop\\Start_DCA.lnk" do
+  target "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe"
+  arguments " #{home}\\Start_DCA.ps1"
+  description "Kick off a DCA Demo"
+end
+
+windows_shortcut "#{home}\\Desktop\\Finish_DCA.lnk" do
+  target "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe"
+  arguments " #{home}\\Finish_DCA.ps1"
+  description "Wrap up a DCA Demo"
 end
 
 # Remove EC2 shortcuts
