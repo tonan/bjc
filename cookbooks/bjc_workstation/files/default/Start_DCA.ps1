@@ -33,6 +33,8 @@ $hostsfile = "C:\Windows\System32\drivers\etc\hosts"
 
 Write-Host -ForegroundColor Green "[7/7] Opening Chrome Tabs"
 start-process "chrome.exe" "https://automate.automate-demo.com",'--profile-directory="Default"'
+start-process "chrome.exe" "https://supermarket.chef.io/cookbooks/audit",'--profile-directory="Default"'
+start-process "chrome.exe" "https://supermarket.chef.io/cookbooks/os-hardening",'--profile-directory="Default"'
 start-process "chrome.exe" "https://prod1/cart",'--profile-directory="Default"'
 
 
