@@ -6,6 +6,6 @@
 
 include_recipe 'audit'
 
-# include_recipe 'dca_baseline::hardening'
+# include_recipe 'os-hardening'
 
 # include_recipe 'dca_baseline::install_site'

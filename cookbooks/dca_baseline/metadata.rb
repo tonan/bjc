@@ -18,3 +18,7 @@ chef_version '>= 12.1' if respond_to?(:chef_version)
 # a Supermarket.
 #
 # source_url 'https://github.com/<insert_org_here>/dca_baseline'
+
+depends 'audit'
+depends 'os-hardening'
+depends 'bjc-ecommerce'

@@ -10,12 +10,21 @@ end
 
 git "#{Chef::Config[:file_cache_path]}/bjc" do
   repository 'https://github.com/chef-cft/bjc'
-  revision 'master'
+  revision 'rycar/add_dca'
   action :sync
 end
 
 directory "#{home}/cookbooks" do
   action :create
+end
+
+directory "#{home}/dca" do
+  action :create
+end
+
+cookbook_file "#{home}/dca/linux_baseline_wrapper-0.1.0.tar.gz" do
+  source 'linux_baseline_wrapper-0.1.0.tar.gz'
+  mode '0644'
 end
 
 node['bjc_workstation']['cookbooks'].each do |cb|
