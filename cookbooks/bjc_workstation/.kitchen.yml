@@ -1,12 +1,15 @@
+
+---
 driver:
   name: vagrant
   provider: virtualbox
+  linked_clone: true
+  customize:
+    memory: 4096
 
 provisioner:
   name: chef_zero
-  require_chef_omnibus: 12.19.36
-  # chef_omnibus_install_options: -P chefdk
-  # chef_omnibus_root: c:/opscode/chefdk
+  require_chef_omnibus: 13.3.42
 
 verifier:
   name: inspec
@@ -15,6 +18,9 @@ platforms:
   - name: windows-2012r2
     driver_config:
       box: mwrock/Windows2012R2
+  - name: windows-2016
+    driver_config:
+      box: mwrock/Windows2016
 
 suites:
   - name: default
@@ -24,6 +30,8 @@ suites:
       - recipe[test::default]
       - recipe[bjc_workstation::default]
     attributes:
+      chocolatey:
+        upgrade: true
       demo:
         domain_prefix: ''
         domain: 'automate-demo.com'
@@ -36,4 +44,4 @@ suites:
           chefdk: 'stable-2.1.11'
     verifier:
       inspec_tests:
-        - test/integration/default/controls
+        - test/integration/default

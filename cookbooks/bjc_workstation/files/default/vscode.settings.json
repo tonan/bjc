@@ -2,5 +2,8 @@
     "update.channel": "none",
     "telemetry.enableCrashReporter": false,
     "telemetry.enableTelemetry": false,
-    "foodcritic.enable": true
+    "foodcritic.enable": true,
+    "workbench.colorTheme": "Solarized Light",
+    "terminal.integrated.shell.windows": "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
+    "workbench.startupEditor": "none"
 }

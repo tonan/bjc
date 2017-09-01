@@ -39,7 +39,8 @@
       "secret_key": "{{user `aws_secret_key`}}",
       "region": "{{user `aws_region`}}",
       "source_ami": "{{user `aws_source_ami`}}",
-      "instance_type": "m4.large",
+      "instance_type": "c4.large",
+      "ebs_optimized": true,
       "communicator": "winrm",
       "associate_public_ip_address": true,
       "winrm_port": 5985,
@@ -67,7 +68,7 @@
       "location": "{{user `azure_location`}}",
       "vm_size": "Standard_DS3_v2",
       "communicator": "winrm",
-      "winrm_username": "packer",
+      "winrm_username": "azure",
       "winrm_use_ssl": "true",
       "winrm_insecure": "true",
       "winrm_port": 5986,
@@ -139,9 +140,16 @@
             "amazon-ebs"
         ],
         "type": "powershell",
-        "scripts": [
-            "{{template_dir}}/scripts/EC2Config.ps1",
-            "{{template_dir}}/scripts/BundleConfig.ps1"
+            "script": "{{template_dir}}/scripts/PreSysprep.ps1"
+        },
+        {
+            "only": [
+                "amazon-ebs"
+            ],
+            "type": "powershell",
+            "inline": [
+                "C:\\ProgramData\\Amazon\\EC2-Windows\\Launch\\Scripts\\InitializeInstance.ps1 -Schedule",
+                "C:\\ProgramData\\Amazon\\EC2-Windows\\Launch\\Scripts\\SysprepInstance.ps1 -NoShutdown"
         ]
     }
   ]
