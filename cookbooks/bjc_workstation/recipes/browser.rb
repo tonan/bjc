@@ -23,3 +23,11 @@ registry_key 'HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Google\Update' do
   action :create
   recursive true
 end
+
+cookbook_file Chef::Config[:file_cache_path] + '\chromedefault.xml' do
+  source 'chromedefault.xml'
+end
+
+execute 'Set Chrome as Default Browser' do
+  command "Dism.exe /online /Import-DefaultAppAssociations:#{Chef::Config[:file_cache_path]}\\chromedefault.xml"
+end

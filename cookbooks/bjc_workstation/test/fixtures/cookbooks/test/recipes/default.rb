@@ -12,6 +12,10 @@ end
   chef.crt
   automate.crt
   compliance.crt
+  ecomacceptance.crt
+  union.crt
+  rehearsal.crt
+  delivered.crt
   public.pub
   private.pem
   putty.ppk

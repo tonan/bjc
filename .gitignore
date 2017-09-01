@@ -14,6 +14,16 @@ compliance.key
 delivery.crt
 delivery.key
 delivery.license
+ecomacceptance.crt
+ecomacceptance.key
+union.crt
+union.key
+rehearsal.crt
+rehearsal.key
+delivered.crt
+delivered.key
 private.pem
 public.pub
 cookbooks/*/test/fixtures/cookbooks/test/files/default/putty.ppk
+.direnv
+.envrc
