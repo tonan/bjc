@@ -8,7 +8,7 @@ registry_key 'HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\ServerManager\Oobe' do
   values [{
     name: 'DoNotOpenInitialConfigurationTasksAtLogon',
     type: :dword,
-    data: 1,
+    data: 1
   }]
   action :create
 end
@@ -17,7 +17,7 @@ registry_key 'HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\ServerManager' do
   values [{
     name: 'DoNotOpenServerManagerAtLogon',
     type: :dword,
-    data: 1,
+    data: 1
   }]
   action :create
 end
@@ -26,7 +26,7 @@ registry_key 'HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Active Setup\Installed Compo
   values [{
     name: 'IsInstalled',
     type: :dword,
-    data: 0,
+    data: 0
   }]
   action :create
 end
@@ -35,7 +35,7 @@ registry_key 'HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Active Setup\Installed Compo
   values [{
     name: 'IsInstalled',
     type: :dword,
-    data: 0,
+    data: 0
   }]
   action :create
 end
@@ -45,13 +45,13 @@ registry_key 'HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Polic
     {
       name: 'EnableLUA',
       type: :dword,
-      data: 0,
+      data: 0
     },
     {
       name: 'ConsentPromptBehaviorAdmin',
       type: :dword,
-      data: 0,
-    },
+      data: 0
+    }
   ]
   action :create
 end
