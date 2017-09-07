@@ -30,24 +30,27 @@ cookbook_file "#{home}/AppData/Roaming/Code/Local Storage/file__0.localstorage" 
   action :create
 end
 
+vscode_chef_ver = '0.6.3'
+vscode_dl_path = Chef::Config[:file_cache_path] + "/Pendrica.Chef-#{vscode_chef_ver}"
+vscode_inst_path = "#{home}/.vscode/extensions/Pendrica.Chef-#{vscode_chef_ver}"
+
 # Download and Unzip Chef Extension for Visual Studio Code
-windows_zipfile Chef::Config[:file_cache_path] + '/Pendrica.Chef-0.6.2' do
-  source "https://Pendrica.gallery.vsassets.io/_apis/public/gallery/publisher/Pendrica/extension/Chef/0.6.2/assetbyname/Microsoft.VisualStudio.Services.VSIXPackage"
-  checksum '0436ca5b7ed0e46cbc1059f9ec509cb74cf8e913eacd6c2b7e805d88f0ce953f'
+windows_zipfile vscode_dl_path do
+  source "https://Pendrica.gallery.vsassets.io/_apis/public/gallery/publisher/Pendrica/extension/Chef/#{vscode_chef_ver}/assetbyname/Microsoft.VisualStudio.Services.VSIXPackage"
   action :unzip
-  not_if { ::File.exist?(Chef::Config[:file_cache_path] + '/Pendrica.Chef-0.6.2/extension/README.md') }
+  not_if { ::File.exist?(vscode_dl_path + "/extension/README.md") }
 end
 
-directory "#{home}/.vscode/extensions/Pendrica.Chef-0.6.2" do
+directory vscode_inst_path do
   recursive true
 end
 
 # Copy Chef Extension for Visual Studio Code Into Place
 ruby_block 'Copy Chef Extension for Visual Studio Code' do
   block do
-    FileUtils.cp_r Chef::Config[:file_cache_path] + '/Pendrica.Chef-0.6.2/extension/.', "#{home}/.vscode/extensions/Pendrica.Chef-0.6.2"
+    FileUtils.cp_r vscode_dl_path + "/extension/.", vscode_inst_path
   end
-  not_if { ::File.exist?("#{home}/.vscode/extensions/Pendrica.Chef-0.6.2/README.md") }
+  not_if { ::File.exist?(vscode_inst_path + "/README.md") }
 end
 
 # Disable Atom Updates, Crash Reporting, Telemetry Reporting, Set Color Theme, and Disable Welcome Message
