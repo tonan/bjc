@@ -1,41 +1,60 @@
-Write-Host -ForegroundColor Green "[1/7] Warming up kitchen instance..."
+Write-Host -ForegroundColor Green "[1/10] Warming up kitchen instance..."
 
 cd ${env:userprofile}\cookbooks\dca_baseline
 kitchen converge
 
 sleep 5
 
-Write-Host -ForegroundColor Green "[2/7] Deleting data from automate server & reconfiguring"
-ssh automate "sudo curl -X DELETE 'http://localhost:9200/_all' && sudo automate-ctl reconfigure"
-
-Write-Host -ForegroundColor Green "[3/7] Logging into automate with inspec"
+Write-Host -ForegroundColor Green "[2/10] Logging into automate with inspec"
 inspec compliance login_automate https://automate.automate-demo.com --insecure --user='leela' --ent='automate-demo' --dctoken='93a49a4f2482c64126f7b6015e6b0f30284287ee4054ff8807fb63d9cbd1c506'
 
-Write-Host -ForegroundColor Green "[4/7] Uploading baseline wrapper profile"
+Write-Host -ForegroundColor Green "[3/10] Uploading baseline wrapper profile"
 inspec compliance upload C:\Users\chef\dca\linux_baseline_wrapper-0.1.0.tar.gz
 inspec compliance login_automate https://automate.automate-demo.com --insecure --user='workstation-1' --ent='automate-demo' --dctoken='93a49a4f2482c64126f7b6015e6b0f30284287ee4054ff8807fb63d9cbd1c506'
 
-Write-Host -ForegroundColor Green "[5/7] Deleting existing bjc clients"
+Write-Host -ForegroundColor Green "[4/10] Installing bjc-ecommerce on build nodes"
 cd ~
-foreach($node in @("ecomacceptance","union","rehearsal","delivered")) {
+foreach($node in @("build-node-1","build-node-2","build-node-3")) {
+  ssh $node "sudo chef-client -o '''recipe[bjc-ecommerce::tksetup],recipe[bjc-ecommerce]'''"
+}
+
+Write-Host -ForegroundColor Green "[5/10] Deleting existing nodes from Chef Server"
+foreach($node in @("ecomacceptance","union","rehearsal","delivered","build-node-1","build-node-2","build-node-3")) {
     knife node delete $node -y
     ssh $node "sudo rm -Rf /etc/chef"
 }
 
-Write-Host -ForegroundColor Green "[6/7] Updating hosts file with alternate hostnames"
+Write-Host -ForegroundColor Green "[6/10] Assimilating Hostsfile"
 
 $hostsfile = "C:\Windows\System32\drivers\etc\hosts"
 
-"172.31.54.101" + "`t`t" + "prod2" | Out-File -encoding ASCII -append $hostsfile
-"172.31.54.102" + "`t`t" + "dev" | Out-File -encoding ASCII -append $hostsfile
-"172.31.54.103" + "`t`t" + "stage" | Out-File -encoding ASCII -append $hostsfile
-"172.31.54.104" + "`t`t" + "prod1" | Out-File -encoding ASCII -append $hostsfile
+"172.31.54.101" + "`t`t" + "dev1" | Out-File -encoding ASCII -append $hostsfile
+"172.31.54.102" + "`t`t" + "dev2" | Out-File -encoding ASCII -append $hostsfile
+"172.31.54.103" + "`t`t" + "stage1" | Out-File -encoding ASCII -append $hostsfile
+"172.31.54.104" + "`t`t" + "stage2" | Out-File -encoding ASCII -append $hostsfile
+"172.31.54.51" + "`t`t" + "prod1" | Out-File -encoding ASCII -append $hostsfile
+"172.31.54.52" + "`t`t" + "prod2" | Out-File -encoding ASCII -append $hostsfile
+"172.31.54.53" + "`t`t" + "prod3" | Out-File -encoding ASCII -append $hostsfile
 
-Write-Host -ForegroundColor Green "[7/7] Opening Chrome Tabs"
+Write-Host -ForegroundColor Green "[7/10] Deleting data from automate server & reconfiguring"
+ssh automate "sudo curl -X DELETE 'http://localhost:9200/_all' && sudo automate-ctl reconfigure"
+
+Write-Host -ForegroundColor Green "[8/10] Rebootstrapping nodes."
+Foreach ($node in @("dev1","dev2","stage1","stage2","prod1","prod2","prod3"))
+{
+  knife bootstrap $node -i ~/.ssh/id_rsa -x ubuntu --sudo
+}
+
+Write-Host -ForegroundColor Green "[9/10] Preparing dev for DCA"
+foreach($node in @("dev1","dev2")) {
+  knife node run_list add $node '''recipe[dca_baseline]'''
+}
+
+Write-Host -ForegroundColor Green "[10/10] Opening Chrome Tabs"
 start-process "chrome.exe" "https://automate.automate-demo.com",'--profile-directory="Default"'
 start-process "chrome.exe" "https://supermarket.chef.io/cookbooks/audit",'--profile-directory="Default"'
 start-process "chrome.exe" "https://supermarket.chef.io/cookbooks/os-hardening",'--profile-directory="Default"'
-start-process "chrome.exe" "https://prod1/cart",'--profile-directory="Default"'
+start-process "chrome.exe" "https://dev1/cart",'--profile-directory="Default"'
 
 
 Write-Host -ForegroundColor Yellow "You're all ready for DCA!"
