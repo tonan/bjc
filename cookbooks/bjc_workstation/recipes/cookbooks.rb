@@ -18,15 +18,6 @@ directory "#{home}/cookbooks" do
   action :create
 end
 
-directory "#{home}/dca" do
-  action :create
-end
-
-cookbook_file "#{home}/dca/linux_baseline_wrapper-0.1.0.tar.gz" do
-  source 'linux_baseline_wrapper-0.1.0.tar.gz'
-  mode '0644'
-end
-
 node['bjc_workstation']['cookbooks'].each do |cb|
   execute "Copy cookbooks into home directory" do
     action :run

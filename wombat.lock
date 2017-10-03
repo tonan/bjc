@@ -6,19 +6,23 @@
   "certs": [
     "automate",
     "chef",
-    "compliance"
+    "compliance",
+    "ecomacceptance",
+    "union",
+    "rehearsal",
+    "delivered"
   ],
   "ttl": 8,
   "linux": "ubuntu",
-  "version": "2.0.0",
+  "version": "3.3.0",
   "products": {
-    "chef": "stable-12.19.36",
-    "chef-server": "stable-12.13.0",
-    "chefdk": "stable-1.2.22",
-    "compliance": "stable-1.8.12",
-    "automate": "stable-0.7.85",
-    "push-jobs-server": "stable-1.1.6",
-    "manage": "stable-2.4.4"
+    "chef": "stable-13.3.42",
+    "chef-server": "stable-12.16.9",
+    "chefdk": "stable-2.1.11",
+    "compliance": "stable-1.11.5",
+    "automate": "stable-1.6.99",
+    "push-jobs-server": "stable-2.2.2",
+    "manage": "stable-2.5.4"
   },
   "build-nodes": {
     "count": 3
@@ -76,7 +80,7 @@
     ],
     "source_image": {
       "ubuntu": "ami-70b67d10",
-      "windows": "ami-1562d075",
+      "windows": "ami-48b4bf31",
       "centos": "ami-6d1c2007"
     }
   },
@@ -86,7 +90,7 @@
     "use_managed_disks": true,
     "source_image": {
       "ubuntu": "Canonical:UbuntuServer:14.04.5-LTS",
-      "windows": "MicrosoftWindowsServer:WindowsServer:2012-R2-Datacenter"
+      "windows": "MicrosoftWindowsServer:WindowsServer:2016-Datacenter"
     }
   },
   "gce": {
@@ -98,24 +102,24 @@
   },
   "amis": {
     "us-west-2": {
-      "automate": "ami-1825ac78",
+      "automate": "ami-1db55e65",
       "build-node": {
-        "1": "ami-2c22ab4c",
-        "2": "ami-6625ac06",
-        "3": "ami-9f20a9ff"
+        "1": "ami-9cb05be4",
+        "2": "ami-9ab05be2",
+        "3": "ami-c8b05bb0"
       },
-      "chef-server": "ami-bc24addc",
-      "compliance": "ami-fb20a99b",
+      "chef-server": "ami-029b707a",
+      "compliance": "ami-c3b65dbb",
       "infranodes": {
-        "delivered": "ami-f820a998",
-        "ecomacceptance": "ami-6525ac05",
-        "rehearsal": "ami-ff20a99f",
-        "union": "ami-2827ae48"
+        "delivered": "ami-8eb15af6",
+        "ecomacceptance": "ami-0bb45f73",
+        "rehearsal": "ami-40b55e38",
+        "union": "ami-2cb55e54"
       },
       "workstation": {
-        "1": "ami-34b73f54"
+        "1": "ami-000ff478"
       }
     }
   },
-  "last_updated": "20170318210537"
+  "last_updated": "20171002165606"
 }

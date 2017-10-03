@@ -40,36 +40,39 @@ Write-Host -ForegroundColor Green "[7/10] Deleting data from automate server & r
 ssh automate "sudo curl -X DELETE 'http://localhost:9200/_all' && sudo automate-ctl reconfigure"
 
 Write-Host -ForegroundColor Green "[8/10] Rebootstrapping nodes."
-Foreach ($node in @("dev1","dev2","stage1","stage2","prod1","prod2","prod3"))
-{
-  knife bootstrap $node -i ~/.ssh/id_rsa -x ubuntu --sudo
+foreach ($env in @("development","staging","production")) {
+  knife environment create $env -d $env
 }
 
-Write-Host -ForegroundColor Green "[9/10] Preparing dev for DCA"
-foreach($node in @("dev1","dev2")) {
-  knife node run_list add $node '''recipe[dca_baseline]'''
+Foreach ($node in @("dev1","dev2")) {
+  knife bootstrap $node -N $node -E development -i ~/.ssh/id_rsa -x ubuntu --sudo
 }
 
-Write-Host -ForegroundColor Green "[10/10] Opening Chrome Tabs"
-start-process "chrome.exe" "https://automate.automate-demo.com",'--profile-directory="Default"'
-start-process "chrome.exe" "https://supermarket.chef.io/cookbooks/audit",'--profile-directory="Default"'
-start-process "chrome.exe" "https://supermarket.chef.io/cookbooks/os-hardening",'--profile-directory="Default"'
+Foreach ($node in @("stage1","stage2")) {
+  knife bootstrap $node -N $node -E staging -i ~/.ssh/id_rsa -x ubuntu --sudo
+}
+
+Foreach ($node in @("prod1","prod2","prod3")) {
+  knife bootstrap $node -N $node -E production -i ~/.ssh/id_rsa -x ubuntu --sudo
+}
+
+Write-Host -ForegroundColor Green "[9/10] Updating cmder directory"
+rm C:\tools\cmder\config\user-ConEmu.xml
+rm C:\tools\cmder\vendor\conemu-maximus5\ConEmu.xml
+sed -i -e "s/bjc-ecommerce/dca_baseline/g" C:\tools\cmder\config\ConEmu.xml
+
+Write-Host -ForegroundColor Green "[10/10] Opening Chrome Tabs & Cmder"
+start-process "chrome.exe" "https://automate.automate-demo.com/", '--profile-directory="Default"'
 start-process "chrome.exe" "https://dev1/cart",'--profile-directory="Default"'
+start-process "chrome.exe" "https://dev2/cart",'--profile-directory="Default"'
 
+$env:path = "C:\Users\chef\dca;$env:path"
 
-Write-Host -ForegroundColor Yellow "You're all ready for DCA!"
-Write-Host -ForegroundColor Yellow "After installing the security baseline, run it against a host like so:"
-Write-Host -ForegroundColor White "..."
-Write-Host -ForegroundColor White "inspec compliance exec workstation-1/linux-baseline -t ssh://ubuntu@prod1 -i ~/.ssh/id_rsa"
-Write-Host -ForegroundColor Yellow "To converge your kitchen instance:"
-Write-Host -ForegroundColor White "..."
-Write-Host -ForegroundColor White "cd ~/dca/dca_baseline"
-Write-Host -ForegroundColor White "kitchen converge"
-Write-Host -ForegroundColor Red "......................................"
-Write-Host -ForegroundColor Yellow "To bootstrap 'prod1':"
-Write-Host -ForegroundColor White "..."
-Write-Host -ForegroundColor White "knife bootstrap union -N prod1 -x ubuntu -i ~/.ssh/id_rsa --sudo -r 'recipe[dca_baseline]'"
-Write-Host -ForegroundColor Red "......................................"
-Write-Host -ForegroundColor Yellow "To show everything else, double-click 'Finish_DCA.ps1' on the desktop"
+# Uncomment to open e-mails.
+# & ${env:userprofile}\dca\DCA_email_wk1.html
+
+& C:\tools\cmder\Cmder.exe
+cd ${env:userprofile}\cookbooks\dca_baseline
+code .
 
 Read-Host -Prompt "Press Enter to exit"
