@@ -16,15 +16,15 @@ certs:
   - delivered
 ttl: 8
 linux: ubuntu
-version: 3.2.0
+version: 3.3.0
 products:
-  chef: stable-13.3.42
-  chef-server: stable-12.16.9
-  chefdk: stable-2.1.11
-  compliance: stable-1.11.5
-  automate: stable-1.6.99
-  push-jobs-server: stable-2.2.2
-  manage: stable-2.5.4
+  chef: stable-13.5.3
+  chef-server: stable-12.16.14
+  chefdk: stable-2.3.4
+  compliance: stable-1.11.6
+  automate: stable-1.6.179
+  push-jobs-server: stable-2.2.6
+  manage: stable-2.5.8
 build-nodes:
   count: 3
 workstations:
