@@ -13,10 +13,10 @@
 require 'aws-sdk'
 
 # This could probably be refactored a bit
-workspace = "#{workflow_workspace}/bjc-automate-server-5g9aorii6yvcetdi.us-west-2.opsworks-cm.io/default/chef-sas/bjc/master/build/publish/repo"
+workspace = "#{workflow_workspace}/#{node['owca']['fqdn']}/default/chef-sas/bjc/master/build/publish/repo"
 
 # Copy keys into the packer directory
-execute "copy-packer-keys" do
+execute 'copy-packer-keys' do
   command "tar -zxvf #{workflow_workspace}/Downloads/keys.tar.gz -C packer/keys"
   live_stream true
   cwd workspace
@@ -28,23 +28,24 @@ unless changed_cookbooks.empty?
   # Build new Chef Demo AMIs
 
   # we're picking ubuntu runners for AWS builds
-  case node['platform']
-  when 'ubuntu'
-    cloud = 'aws'
-  else
-    cloud = 'azure'
-  end
+  cloud = case node['platform']
+          when 'ubuntu'
+            'aws'
+          else
+            'azure'
+          end
 
-  %w(build update deploy).each do |s|
+  %w[build update deploy].each do |s|
     template "#{workflow_workspace}/wombat_#{s}.sh" do
       source "wombat_#{s}.sh.erb"
       mode '0755'
-      variables(:cloud => cloud)
+      variables(cloud: cloud,
+                owca_fqdn: node['owca']['fqdn'])
       action :create
     end
   end
 
-  execute "build-the-things" do
+  execute 'build-the-things' do
     command "#{workflow_workspace}/wombat_build.sh"
     live_stream true
     cwd workspace
@@ -52,7 +53,7 @@ unless changed_cookbooks.empty?
   end
 
   # Create a new bjc-demo.json template
-  execute "generate-json" do
+  execute 'generate-json' do
     command "#{workflow_workspace}/wombat_update.sh"
     live_stream false
     cwd workspace
@@ -62,16 +63,16 @@ unless changed_cookbooks.empty?
   # Use the Ruby AWS SDK to upload bjc-demo.json to S3
 
   # Use ruby in the compile phase for testing
-  #s3 = Aws::S3::Resource.new(region:'us-west-2')
-  #obj = s3.bucket('bjcpublic').object('bjc-demo.json')
-  #obj.upload_file("/var/opt/delivery/workspace/bjc-automate-server-5g9aorii6yvcetdi.us-west-2.opsworks-cm.io/default/chef-sas/bjc/master/build/publish/repo/stacks/bjc-demo.json", acl:'public-read')
+  # s3 = Aws::S3::Resource.new(region:'us-west-2')
+  # obj = s3.bucket('bjcpublic').object('bjc-demo.json')
+  # obj.upload_file("/var/opt/delivery/workspace/#{node['owca']['fqdn']}/default/chef-sas/bjc/master/build/publish/repo/stacks/bjc-demo.json", acl:'public-read')
 
   # And a ruby_block for executing *after* the builds are done
   ruby_block "upload bjc-demo-#{cloud}.json to S3" do
     block do
-      s3 = Aws::S3::Resource.new(region:'us-west-2')
+      s3 = Aws::S3::Resource.new(region: 'us-west-2')
       obj = s3.bucket('bjcpublic').object("acceptance-bjc-demo-#{cloud}.json")
-      obj.upload_file("#{workflow_workspace}/bjc-automate-server-5g9aorii6yvcetdi.us-west-2.opsworks-cm.io/default/chef-sas/bjc/master/build/publish/repo/stacks/bjc-demo.json", acl:'public-read')
+      obj.upload_file("#{workflow_workspace}/#{node['owca']['fqdn']}/default/chef-sas/bjc/master/build/publish/repo/stacks/bjc-demo.json", acl: 'public-read')
     end
   end
 end
