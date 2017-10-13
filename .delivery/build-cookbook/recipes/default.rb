@@ -22,7 +22,7 @@ end
 node.default['build-essential']['compile_time'] = true
 include_recipe 'build-essential::default'
 
-node.default['packer']['version'] = '1.0.0'
+node.default['packer']['version'] = '1.1.0'
 include_recipe 'sbp_packer'
 
 chef_gem 'wombat-cli' do
