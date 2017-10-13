@@ -6,7 +6,7 @@ description 'Installs/Configures bjc_build_node'
 long_description 'Installs/Configures bjc_build_node'
 issues_url 'https://waffle.io/chef-cft/bjc'
 source_url 'https://github.com/chef-cft/bjc'
-version '0.1.13'
+version '0.1.15'
 
 depends 'build_node'
 depends 'wombat'
