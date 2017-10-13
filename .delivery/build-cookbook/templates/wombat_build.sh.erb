@@ -7,7 +7,7 @@
 
 . /var/opt/delivery/workspace/.bashrc
 
-workdir='/var/opt/delivery/workspace/bjc-automate-server-5g9aorii6yvcetdi.us-west-2.opsworks-cm.io/default/chef-sas/bjc/master/build/publish/repo/'
+workdir='/var/opt/delivery/workspace/<%= @owca_fqdn -%>/default/chef-sas/bjc/master/build/publish/repo/'
 
 <% case @cloud -%>
 <% when 'aws' -%>

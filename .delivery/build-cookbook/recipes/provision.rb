@@ -15,7 +15,7 @@ end
 
 # Only run in the Union phase
 if ['union'].include?(node['delivery']['change']['stage'])
-  workspace = "#{workflow_workspace}/bjc-automate-server-5g9aorii6yvcetdi.us-west-2.opsworks-cm.io/default/chef-sas/bjc/master/union/provision/repo"
+  workspace = "#{workflow_workspace}/#{node['owca']['fqdn']}/default/chef-sas/bjc/master/union/provision/repo"
   # Only build if we have changed cookbooks.
   if changed_cookbooks.any?
     # Copy keys into the packer directory.  Not sure this is necessary here.
@@ -26,7 +26,7 @@ if ['union'].include?(node['delivery']['change']['stage'])
       cwd workspace
       action :run
     end
-    
+
     # Fetch the bjc-demo.json that was created in the last successful build
     remote_file "#{workspace}/stacks/bjc-demo.json" do
       source "https://s3-us-west-2.amazonaws.com/bjcpublic/acceptance-bjc-demo-#{cloud}.json"

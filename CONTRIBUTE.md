@@ -42,7 +42,7 @@ The different parts of the project are described below:
 
 #### Contributing
 
-0. Contributors need to clone the project directly from our delivery server.  We do not commit code directly to github, rather we send it through our Workflow pipeline instead.  The easiest way to do this is just rename or delete your existing `bjc` repo and clone it fresh from the new Opsworks Automate server.  See #chef-demo-project for help getting an account. https://bjc-automate-server-5g9aorii6yvcetdi.us-west-2.opsworks-cm.io
+0. Contributors need to clone the project directly from our delivery server.  We do not commit code directly to github, rather we send it through our Workflow pipeline instead.  The easiest way to do this is just rename or delete your existing `bjc` repo and clone it fresh from the new Opsworks Automate server.  See #chef-demo-project for help getting an account. https://sa-ww-owca-xt2op7nztjiiy95s.us-west-2.opsworks-cm.io
 1. Visit the waffle.io board for this repository to see all open issues [https://waffle.io/chef-cft/bjc](https://waffle.io/chef-cft/bjc)
 2. Either pick an existing Kanban card or create a new one.
     * Read it and make sure you understand what you are supposed to do.
