@@ -20,7 +20,7 @@ if ['union'].include?(node['delivery']['change']['stage'])
   if changed_cookbooks.any?
     # Copy keys into the packer directory.  Not sure this is necessary here.
     execute "copy-packer-keys" do
-      command "tar -zxvf #{workflow_workspace}/Downloads/keys.tar.gz -C packer/keys"
+      command "tar -zxvf #{workflow_workspace}/Downloads/keys.tar.gz -C packer/keys --strip-components 1"
       # Disabled because it crashes Automate
       # live_stream true
       cwd workspace

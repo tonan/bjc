@@ -17,7 +17,7 @@ workspace = "#{workflow_workspace}/#{node['owca']['fqdn']}/default/chef-sas/bjc/
 
 # Copy keys into the packer directory
 execute 'copy-packer-keys' do
-  command "tar -zxvf #{workflow_workspace}/Downloads/keys.tar.gz -C packer/keys"
+  command "tar -zxvf #{workflow_workspace}/Downloads/keys.tar.gz -C packer/keys --strip-components 1"
   live_stream true
   cwd workspace
   action :run
