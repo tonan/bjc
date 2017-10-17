@@ -39,6 +39,7 @@
     { "type": "amazon-ebs",
       "access_key": "{{user `aws_access_key`}}",
       "secret_key": "{{user `aws_secret_key`}}",
+      "ami_regions": ["eu-west-1", "ap-southeast-2"],
       "region": "{{user `aws_region`}}",
       "source_ami": "{{user `aws_source_ami`}}",
       "instance_type": "m4.large",
