@@ -30,9 +30,14 @@ cookbook_file "#{home}\\Finish_DCA.ps1" do
   source "Finish_DCA.ps1"
 end
 
-cookbook_file "#{home}\\dca\\DCA_functions.ps1" do
+directory "#{home}\\Documents\\WindowsPowershell\\Modules\\DCA_functions" do
+  recursive true
   action :create
-  source 'DCA_functions.ps1'
+end
+
+cookbook_file "#{home}\\Documents\\WindowsPowershell\\Modules\\DCA_functions\\DCA_functions.psm1" do
+  action :create
+  source 'DCA_functions.psm1'
 end
 
 cookbook_file "#{home}\\dca\\DCA_email_wk1.html" do
