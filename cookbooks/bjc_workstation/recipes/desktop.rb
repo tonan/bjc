@@ -32,6 +32,24 @@ windows_shortcut "#{home}\\Desktop\\Generate_CCRs.lnk" do
   description "Kick off a converge loop"
 end
 
+windows_shortcut "#{home}\\Desktop\\Start_DCA.lnk" do
+  target "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe"
+  arguments " #{home}\\Start_DCA.ps1"
+  description "Kick off a DCA Demo"
+end
+
+windows_shortcut "#{home}\\Desktop\\DCA_Correct.lnk" do
+  target "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe"
+  arguments " #{home}\\Start_Correct.ps1"
+  description "Prepare for correct phase"
+end
+
+windows_shortcut "#{home}\\Desktop\\Finish_DCA.lnk" do
+  target "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe"
+  arguments " #{home}\\Finish_DCA.ps1"
+  description "Wrap up a DCA Demo"
+end
+
 # Remove EC2 shortcuts
 file "#{home}/Desktop/EC2 Feedback.website" do
   action :delete

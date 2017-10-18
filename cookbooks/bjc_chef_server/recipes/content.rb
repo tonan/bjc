@@ -33,6 +33,7 @@ end
 %w(
   bjc-ecommerce
   bjc_bass
+  dca_baseline
 ).each do |cookbook|
   execute "berks install #{cookbook}" do
     cwd "#{Chef::Config[:file_cache_path]}/bjc/cookbooks/#{cookbook}"
