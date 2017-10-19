@@ -1,7 +1,7 @@
-wallpaper = "#{ENV['PUBLIC']}\\Pictures\\wallpaper.png"
+wallpaper = "#{ENV['PUBLIC']}\\Pictures\\wallpaper.jpg"
 
 cookbook_file wallpaper do
-  source 'wallpaper.png'
+  source 'wallpaper.jpg'
 end
 
 directory "#{ENV['SystemRoot']}\\System32\\GroupPolicy\\User" do

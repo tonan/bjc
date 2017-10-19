@@ -16,13 +16,13 @@ certs:
   - delivered
 ttl: 8
 linux: ubuntu
-version: 4.0.0
+version: 4.0.1
 products:
   chef: stable-13.5.3
-  chef-server: stable-12.16.14
+  chef-server: stable-12.17.3
   chefdk: stable-2.3.4
   compliance: stable-1.11.6
-  automate: stable-1.6.179
+  automate: stable-1.7.10
   push-jobs-server: stable-2.2.6
   manage: stable-2.5.8
 build-nodes:
@@ -67,7 +67,7 @@ aws:
   iam_roles: ['chefDemo']
   source_image:
     ubuntu: ami-70b67d10
-    windows: ami-47897a3f 
+    windows: ami-47897a3f
     centos: ami-6d1c2007
 azure:
   location: westus
