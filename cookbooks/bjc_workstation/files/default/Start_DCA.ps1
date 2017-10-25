@@ -81,6 +81,9 @@ Import-Module DCA_functions
 
 & C:\tools\cmder\Cmder.exe
 cd ${env:userprofile}\cookbooks\dca_baseline
+git init .
+git add .
+git commit -m "initial dca_baseline cookbook"
 code .
 
 Read-Host -Prompt "Press Enter to exit"
