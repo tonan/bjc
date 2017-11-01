@@ -1,5 +1,6 @@
 Write-Host -ForegroundColor Green "[1/11] Warming up kitchen instance..."
 
+cp ${env:userprofile}\Desktop\Test_Kitchen\kitchen.local.yml ${env:userprofile}\cookbooks\dca_baseline\.kitchen.local.yml
 cd ${env:userprofile}\cookbooks\dca_baseline
 kitchen converge
 
