@@ -4,7 +4,7 @@ maintainer_email 'nrycar@chef.io'
 license 'All Rights Reserved'
 description 'Installs/Configures dca_baseline'
 long_description 'Installs/Configures dca_baseline'
-version '0.2.0'
+version '0.2.1'
 chef_version '>= 12.1' if respond_to?(:chef_version)
 
 # The `issues_url` points to the location where issues for this cookbook are
