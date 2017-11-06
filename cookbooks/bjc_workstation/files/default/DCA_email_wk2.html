@@ -105,7 +105,7 @@
                                 <div>Okay, I know this looks bad, but I think we're in luck. There are a ton of issues, but our rep told me about the <a href="https://supermarket.chef.io/cookbooks/os-hardening">OS Hardening</a> cookbook, that they say should correct most of the issues uncovered.<br></div>
                                 <div>Keep in mind that we need to make sure this won't negatively impact our site! If testing is positive, be sure to apply the change only to development, and ensure that the site still loads properly.<br></div>
                                   <ol>
-                                    <li>I've added a "hardening" recipe to dca_baseline to run the os-hardening cookbook. To test, update the "run list" in .kitchen.yml to include "recipe[dca_baseline::hardening]", then run kitchen converge.
+                                    <li>I've added a "hardening" recipe to dca_demo to run the os-hardening cookbook. To test, update the "run list" in .kitchen.yml to include "recipe[dca_demo::hardening]", then run kitchen converge.
                                     <li>If audits pass on the test instance, update run lists and apply the change to development.</li>
                                     <li>Confirm that audits pass on dev and <b>make sure you can still add items to the shopping cart on dev1!</b></li>
                                   </ol>

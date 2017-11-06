@@ -3,9 +3,9 @@ function Update-RunLists {
         $env,
         $recipe
     )
-    Write-Output "Adding the dca_baseline::$recipe to nodes in $env"
+    Write-Output "Adding the dca_demo::$recipe to nodes in $env"
     foreach( $node in ` knife node list -E $env ` ) {
-    knife node run_list add $node "'''recipe[dca_baseline::$recipe]'''"
+    knife node run_list add $node "'''recipe[dca_demo::$recipe]'''"
     }
 }
 

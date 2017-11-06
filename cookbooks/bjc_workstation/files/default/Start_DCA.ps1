@@ -1,7 +1,7 @@
 Write-Host -ForegroundColor Green "[1/11] Warming up kitchen instance..."
 
-cp ${env:userprofile}\Desktop\Test_Kitchen\kitchen.local.yml ${env:userprofile}\cookbooks\dca_baseline\.kitchen.local.yml
-cd ${env:userprofile}\cookbooks\dca_baseline
+cp ${env:userprofile}\Desktop\Test_Kitchen\kitchen.local.yml ${env:userprofile}\cookbooks\dca_demo\.kitchen.local.yml
+cd ${env:userprofile}\cookbooks\dca_demo
 kitchen converge
 
 sleep 5
@@ -66,7 +66,7 @@ Else {
     Write-Host "Cmder config file not Found. Skipping."
  }
 }
-sed -i -e "s/bjc-ecommerce/dca_baseline/g" C:\tools\cmder\config\ConEmu.xml
+sed -i -e "s/bjc-ecommerce/dca_demo/g" C:\tools\cmder\config\ConEmu.xml
 
 Write-Host -ForegroundColor Green "[10/11] Opening Chrome Tabs & Cmder"
 start-process "chrome.exe" "https://automate.automate-demo.com/", '--profile-directory="Default"'
@@ -81,10 +81,10 @@ Import-Module DCA_functions
 # & ${env:userprofile}\dca\DCA_email_wk1.html
 
 & C:\tools\cmder\Cmder.exe
-cd ${env:userprofile}\cookbooks\dca_baseline
+cd ${env:userprofile}\cookbooks\dca_demo
 git init .
 git add .
-git commit -m "initial dca_baseline cookbook"
+git commit -m "initial dca_demo cookbook"
 code .
 
 Read-Host -Prompt "Press Enter to exit"
