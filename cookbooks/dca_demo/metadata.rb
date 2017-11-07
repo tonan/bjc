@@ -4,7 +4,7 @@ maintainer_email 'nrycar@chef.io'
 license 'All Rights Reserved'
 description 'Installs/Configures dca_demo'
 long_description 'Installs/Configures dca_demo'
-version '0.2.1'
+version '0.2.2'
 chef_version '>= 12.1' if respond_to?(:chef_version)
 
 # The `issues_url` points to the location where issues for this cookbook are
@@ -19,7 +19,7 @@ chef_version '>= 12.1' if respond_to?(:chef_version)
 #
 # source_url 'https://github.com/<insert_org_here>/dca_demo'
 
-depends 'audit'
-depends 'os-hardening'
-depends 'windows-hardening'
+depends 'dca_audit_baseline'
+depends 'dca_hardening_linux'
+depends 'dca_hardening_windows'
 depends 'bjc-ecommerce'
