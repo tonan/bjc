@@ -4,3 +4,6 @@ source 'https://supermarket.chef.io'
 metadata
 
 cookbook 'bjc-ecommerce', git: 'https://github.com/chef-cft/bjc.git', rel: 'cookbooks/bjc-ecommerce'
+cookbook 'dca_audit_baseline', git: 'https://github.com/chef-cft/bjc.git', rel: 'cookbooks/dca_audit_baseline'
+cookbook 'dca_hardening_linux', git: 'https://github.com/chef-cft/bjc.git', rel: 'cookbooks/dca_hardening_linux'
+cookbook 'dca_hardening_windows', git: 'https://github.com/chef-cft/bjc.git', rel: 'cookbooks/dca_hardening_windows'
