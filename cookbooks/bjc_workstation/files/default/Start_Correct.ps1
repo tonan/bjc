@@ -1,7 +1,7 @@
 Write-Host -ForegroundColor Green "[1/3] Adding Audits to all servers"
 
 Foreach ($node in @("stage1","stage2","prod1","prod2","prod3")) {
-  knife node run_list add $node '''recipe[dca_baseline]'''
+  knife node run_list add $node '''recipe[dca_demo::audit]'''
 }
 
 Write-Host -ForegroundColor Green "[2/3] Converging non-dev nodes"

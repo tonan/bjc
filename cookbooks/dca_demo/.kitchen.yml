@@ -36,7 +36,7 @@ platforms:
 suites:
   - name: baseline
     run_list:
-      - recipe[dca_baseline::default]
+      - recipe[dca_demo::default]
     verifier:
       inspec_tests:
         - test/smoke/default
