@@ -16,13 +16,13 @@ certs:
   - delivered
 ttl: 8
 linux: ubuntu
-version: 4.1.0
+version: 4.1.1
 products:
-  chef: stable-13.5.3
-  chef-server: stable-12.17.3
-  chefdk: stable-2.3.4
-  compliance: stable-1.11.6
-  automate: stable-1.7.10
+  chef: stable-13.6.4
+  chef-server: stable-12.17.5
+  chefdk: stable-2.4.17
+  compliance: stable-1.12.1
+  automate: stable-1.7.39
   push-jobs-server: stable-2.2.6
   manage: stable-2.5.8
 build-nodes:
