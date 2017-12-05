@@ -36,5 +36,5 @@ function DCA-Update-Nodes {
     knife node run_list add $node "'''recipe[dca_demo::$recipe]'''"
   }
   Write-Output "Converging nodes in the $environment environment"
-  knife ssh "chef_environment:$env" 'sudo chef-client'
+  knife ssh "chef_environment:$environment" 'sudo chef-client'
 }
