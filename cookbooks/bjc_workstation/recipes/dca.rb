@@ -10,11 +10,6 @@ directory "#{home}/dca" do
   action :create
 end
 
-cookbook_file "#{home}/dca/linux_baseline_wrapper-0.1.0.tar.gz" do
-  source 'linux_baseline_wrapper-0.1.0.tar.gz'
-  mode '0644'
-end
-
 cookbook_file "#{home}\\Start_DCA.ps1" do
   action :create
   source "Start_DCA.ps1"
