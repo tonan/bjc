@@ -18,10 +18,21 @@ directory "#{home}/cookbooks" do
   action :create
 end
 
+directory "#{home}/profiles" do
+  action :create
+end
+
 node['bjc_workstation']['cookbooks'].each do |cb|
   execute "Copy cookbooks into home directory" do
     action :run
     command "xcopy /E /I /Q /Y \"#{Chef::Config[:file_cache_path]}\\bjc\\cookbooks\\#{cb}\" \"#{home}\\cookbooks\\#{cb}\""
+  end
+end
+
+node['bjc_workstation']['profiles'].each do |inspec_profile|
+  execute "Copy profiles into home directory" do
+    action :run
+    command "xcopy /E /I /Q /Y \"#{Chef::Config[:file_cache_path]}\\bjc\\profiles\\#{inspec_profile}\" \"#{home}\\profiles\\#{inspec_profile}\""
   end
 end
 

@@ -10,8 +10,10 @@ Write-Host -ForegroundColor Green "[2/11] Logging into automate with inspec"
 inspec compliance login_automate https://automate.automate-demo.com --insecure --user='leela' --ent='automate-demo' --dctoken='93a49a4f2482c64126f7b6015e6b0f30284287ee4054ff8807fb63d9cbd1c506'
 
 Write-Host -ForegroundColor Green "[3/11] Uploading baseline wrapper profile"
-inspec compliance upload C:\Users\chef\dca\linux_baseline_wrapper-0.1.0.tar.gz
+cd C:\Users\chef\dca\
+inspec archive C:\Users\chef\profiles\linux_baseline_wrapper
 inspec compliance login_automate https://automate.automate-demo.com --insecure --user='workstation-1' --ent='automate-demo' --dctoken='93a49a4f2482c64126f7b6015e6b0f30284287ee4054ff8807fb63d9cbd1c506'
+inspec compliance upload C:\Users\chef\dca\linux_baseline_wrapper-0.1.1.tar.gz
 
 Write-Host -ForegroundColor Green "[4/11] Installing bjc-ecommerce on build nodes"
 cd ~
