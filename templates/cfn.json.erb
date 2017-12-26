@@ -403,7 +403,7 @@
     "BuildNode<%= i.to_s %>": {
       "Type": "AWS::EC2::Instance",
       "Properties": {
-        "InstanceType": "m3.large",
+        "InstanceType": "m4.large",
         "AvailabilityZone": { "Ref": "AvailabilityZone" },
         "NetworkInterfaces": [
           {
@@ -424,7 +424,9 @@
         "KeyName": { "Ref": "KeyName" },
         "UserData": { "Fn::Base64" : { "Fn::Join" : ["", [
              "#!/bin/bash -xe\n",
-             "hostnamectl set-hostname build-node-<%= i.to_s %>\n"]]}
+             "hostnamectl set-hostname build-node-<%= i.to_s %>\n",
+             "sleep 90\n",
+             "sudo chef-client\n"]]}
         },
         "ImageId": {
               "Ref": "BuildNode<%= i.to_s %>AMI"
@@ -444,7 +446,7 @@
     "<%= name %>": {
       "Type": "AWS::EC2::Instance",
       "Properties": {
-        "InstanceType": "m3.large",
+        "InstanceType": "m4.large",
         "AvailabilityZone": { "Ref": "AvailabilityZone" },
         "NetworkInterfaces": [
           {
@@ -464,8 +466,19 @@
         ],
         "KeyName": { "Ref": "KeyName" },
         "UserData": { "Fn::Base64" : { "Fn::Join" : ["", [
+<% if name.include? "win" -%>
+             "<powershell>\n",
+               "set-executionpolicy -executionpolicy unrestricted -force -scope LocalMachine\n",
+               "Start-Sleep -Seconds 90\n",
+               "chef-client\n",
+             "</powershell>"
+<% else -%>
              "#!/bin/bash -xe\n",
-             "hostnamectl set-hostname <%= name %>\n"]]}
+             "hostnamectl set-hostname <%= name %>\n",
+             "sleep 90\n",
+             "sudo chef-client\n"
+<% end -%>
+             ]]}
         },
         "ImageId": {
               "Ref": "<%= name %>AMI"
@@ -484,7 +497,7 @@
     "Chef": {
       "Type": "AWS::EC2::Instance",
       "Properties": {
-        "InstanceType": "c3.xlarge",
+        "InstanceType": "c4.xlarge",
         "AvailabilityZone": { "Ref": "AvailabilityZone" },
       	"BlockDeviceMappings" : [
          	{
@@ -530,7 +543,7 @@
     "Automate": {
       "Type": "AWS::EC2::Instance",
       "Properties": {
-        "InstanceType": "c3.xlarge",
+        "InstanceType": "c4.xlarge",
         "AvailabilityZone": { "Ref": "AvailabilityZone" },
       	"BlockDeviceMappings" : [
          	{
@@ -576,7 +589,7 @@
     "Compliance": {
       "Type": "AWS::EC2::Instance",
       "Properties": {
-        "InstanceType": "c3.large",
+        "InstanceType": "c4.large",
         "AvailabilityZone": { "Ref": "AvailabilityZone" },
         "BlockDeviceMappings" : [
           {
