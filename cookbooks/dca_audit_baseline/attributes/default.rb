@@ -1,5 +1,5 @@
-default['audit']['fetcher'] = 'chef-automate'
-default['audit']['reporter'] = 'chef-automate'
+default['audit']['fetcher'] = 'chef-server-automate'
+default['audit']['reporter'] = 'chef-server-automate'
 
 if node['os'] == 'linux'
   default['audit']['profiles'] = [

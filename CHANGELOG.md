@@ -1,5 +1,16 @@
 # Change Log
 
+## 4.2.0
+
+**Updates:**
+- Added MVP Windows wrapper profile to repo, and updated workstation recipe to upload.
+- Moved initial CCR to user_data in the cfn json. The start_demo script now waits for machines to register, and runs a second CCR via push jobs.
+- Minor release due to change in default instance types and launch behavior. Should be non-impacting to demo workflows.
+
+**Closed Issues:**
+- [\#632](https://github.com/chef-cft/bjc/issues/632) - *enhancement* - Updated json template to use m4/c4 instances instead of m3/c3. Should slightly improve performance, and reduce instance costs.
+- [\#634]((https://github.com/chef-cft/bjc/issues/634) - *enhancement* - Updated DCA launch scripts to speed up demo prep. No longer spins up TK by default (can be turned on by uncommenting in Start_DCA), and makes use of powershell parallelization to speed up re-bootstrap of nodes.
+
 ## 4.1.0
 
 **Closed Issues:**

@@ -23,12 +23,15 @@ function Write-KitchenYaml {
 
 Set-ExecutionPolicy -ExecutionPolicy Unrestricted -Force -Scope CurrentUser
 
-Write-Host -ForegroundColor Green "[1/12] Preparing AURD nodes for demo..."
-knife job start chef-client -s *:*
-Start-Sleep -Seconds 90
+Write-Host -ForegroundColor Green "[1/12] Waiting for AURD nodes for to converge..."
+$linuxhosts = 0
+while($linuxhosts -lt 7){
+  "Searching for converged nodes..."
+  $linuxhosts = knife search node 'os:linux' -i | wc -l
+}
 
 Write-Host -ForegroundColor Green "[2/12] Second run to report compliance results..."
-knife job start chef-client -s *:*
+knife job start chef-client -s os:linux
 
 Write-Host -ForegroundColor Green "[3/12] Atomic Batteries to Power..."
 ssh automate 'sudo delivery-ctl restart'

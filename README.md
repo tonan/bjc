@@ -6,6 +6,8 @@ Here you will find instructions on how to spin up a standard Chef Demo environme
 
 The talk track script for the risk demo is [located here](https://github.com/chef-cft/bjc/blob/master/AUTOMATE_RISK_DEMO_SCRIPT.md)
 
+A project changelog can be found in [CHANGELOG.md](https://github.com/chef-cft/bjc/blob/master/CHANGELOG.md).
+
 ---
 ## What is BJC?
 ---
@@ -38,7 +40,7 @@ The demo environment will provision in AWS fairly quickly, usually within a few 
   For example:
 
   ```bash
-  ./bin/build_demo.sh aws-2.1.0 'RobCo' rycar_sa 4 'Nick Rycar' 'Solutions Architects'
+  ./bin/build_demo.sh aws-4.2.0 'RobCo' rycar_sa 4 'Nick Rycar' 'Solutions Architects'
   ```
 
 3.  Log onto your stack's workstation
@@ -50,5 +52,7 @@ The demo environment will provision in AWS fairly quickly, usually within a few 
 
 5. Optional: To generate CCRs quickly, double-click the 'Generate_CCRs.ps1' link on the desktop. It will trigger client runs on all nodes until closed.
 
-6.  Report any issues you find here:  [https://waffle.io/chef-cft/bjc](https://waffle.io/chef-cft/bjc)
+6. Optional: To start a DCA demo (demo script to be updated), run the 'Start_DCA' link on the desktop. This will rebootstrap the environment to prepare for the updated demo.
+
+7.  Report any issues you find here:  [https://waffle.io/chef-cft/bjc](https://waffle.io/chef-cft/bjc)
 ---

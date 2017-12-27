@@ -2,7 +2,8 @@ Write-Host -ForegroundColor Green "[1/11] Warming up kitchen instance..."
 
 cp ${env:userprofile}\Desktop\Test_Kitchen\kitchen.local.yml ${env:userprofile}\cookbooks\dca_demo\.kitchen.local.yml
 cd ${env:userprofile}\cookbooks\dca_demo
-kitchen converge
+# Commented out to speed up setup. If you'd like to warm test kitchen, uncomment the line below.
+# kitchen converge
 
 sleep 5
 
@@ -13,13 +14,20 @@ Write-Host -ForegroundColor Green "[3/11] Uploading baseline wrapper profile"
 cd C:\Users\chef\dca\
 inspec archive C:\Users\chef\profiles\linux_baseline_wrapper
 inspec compliance upload C:\Users\chef\dca\linux_baseline_wrapper-0.1.2.tar.gz
+inspec archive C:\Users\chef\profiles\windows_baseline_wrapper
+inspec compliance upload C:\Users\chef\dca\windows_baseline_wrapper-0.1.2.tar.gz
 inspec compliance login_automate https://automate.automate-demo.com --insecure --user='workstation-1' --ent='automate-demo' --dctoken='93a49a4f2482c64126f7b6015e6b0f30284287ee4054ff8807fb63d9cbd1c506'
 
 Write-Host -ForegroundColor Green "[4/11] Installing bjc-ecommerce on build nodes"
-cd ~
-foreach($node in @("build-node-1","build-node-2","build-node-3")) {
-  ssh $node "sudo chef-client -o '''recipe[bjc-ecommerce::tksetup],recipe[bjc-ecommerce]'''"
+
+Workflow buildnode-update {
+  foreach -parallel ($node in @("build-node-1","build-node-2","build-node-3")) {
+    ssh $node "sudo chef-client -o '''recipe[bjc-ecommerce::tksetup],recipe[bjc-ecommerce]'''"
+  }
 }
+
+cd ~
+buildnode-update
 
 Write-Host -ForegroundColor Green "[5/11] Deleting existing nodes from Chef Server"
 foreach($node in @("ecomacceptance","union","rehearsal","delivered","build-node-1","build-node-2","build-node-3")) {
@@ -43,21 +51,29 @@ Write-Host -ForegroundColor Green "[7/11] Deleting data from automate server & r
 ssh automate "sudo curl -X DELETE 'http://localhost:9200/_all' && sudo automate-ctl reconfigure"
 
 Write-Host -ForegroundColor Green "[8/11] Rebootstrapping nodes."
-foreach ($env in @("development","staging","production")) {
+
+Foreach ($env in @("development","staging","production")) {
   knife environment create $env -d $env
 }
 
-Foreach ($node in @("dev1","dev2")) {
-  knife bootstrap $node -N $node -E development -i ~/.ssh/id_rsa -x ubuntu --sudo
+Workflow rebootstrapper {
+  Parallel {
+    Foreach -Parallel ($node in @("dev1","dev2")) {
+      knife bootstrap $node -N $node -E development -i ~/.ssh/id_rsa -x ubuntu --sudo -y
+    }
+
+    Foreach -Parallel ($node in @("stage1","stage2")) {
+      knife bootstrap $node -N $node -E staging -i ~/.ssh/id_rsa -x ubuntu --sudo -y
+    }
+
+    Foreach -Parallel ($node in @("prod1","prod2","prod3")) {
+      knife bootstrap $node -N $node -E production -i ~/.ssh/id_rsa -x ubuntu --sudo -y
+    }
+
+  }
 }
 
-Foreach ($node in @("stage1","stage2")) {
-  knife bootstrap $node -N $node -E staging -i ~/.ssh/id_rsa -x ubuntu --sudo
-}
-
-Foreach ($node in @("prod1","prod2","prod3")) {
-  knife bootstrap $node -N $node -E production -i ~/.ssh/id_rsa -x ubuntu --sudo
-}
+rebootstrapper
 
 Write-Host -ForegroundColor Green "[9/11] Updating cmder directory"
 ForEach ($file in @("C:\tools\cmder\config\user-ConEmu.xml","C:\tools\cmder\config\user-ConEmu.xml")){
