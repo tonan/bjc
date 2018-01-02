@@ -1,11 +1,11 @@
 #!/bin/sh
 # Usage and help
-USAGE="Usage: $0 STACKNAME"
+USAGE="Usage: $0 [STACKNAME]"
 
-if [[ $# -ne 1 ]]; then
-  echo $USAGE
-  exit 1
+if [[ $# -eq 1 ]]; then
+  NAME="${1}"
+else
+  NAME="${USER}"
 fi
 
-NAME=$1
-aws cloudformation describe-stacks --stack-name $NAME | jq '.[] | .[] | .Outputs'
+aws cloudformation describe-stacks | jq -r '.[] | .[] | select(.StackName | contains("'"$NAME"'")) | ["\(.StackName)", "\(.Outputs | .[] | .OutputValue)"] | @tsv' | awk -v FS="\t" 'BEGIN {printf("%-69s %-25s\n" ,"\033[32mStackName\033[0m", "\033[32mWorkstationIP\033[0m")}{printf("%-60s %-16s\n", $1, $2)}'
