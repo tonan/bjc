@@ -26,5 +26,5 @@ aws cloudformation create-stack \
 --capabilities CAPABILITY_IAM \
 --region ${REGION} \
 --tags Key=TTL,Value=${TTL} Key=X-Contact,Value="${CONTACT}" Key=X-Dept,Value="${DEPARTMENT}" Key=X-Project,Value="${CUSTOMER}" Key=X-Termination-Date,Value=${TERMINATION_DATE} \
---template-url https://s3-us-west-2.amazonaws.com/bjcpublic/cloudformation/bjc-demo-${VERSION}.json \
---parameters ParameterKey=KeyName,ParameterValue=${SSH_KEY} ParameterKey=TTL,ParameterValue=${TTL} ParameterKey=AvailabilityZone,ParameterValue=${REGION}
+--template-url https://s3-us-west-2.amazonaws.com/bjcpublic/cloudformation/ap-southeast-2-bjc-${VERSION}.json \
+--parameters ParameterKey=KeyName,ParameterValue=${SSH_KEY} ParameterKey=TTL,ParameterValue=${TTL}
