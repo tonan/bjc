@@ -18,13 +18,13 @@ TTL=$4
 CONTACT=$5
 DEPARTMENT=$6
 TERMINATION_DATE="$(TZ=Etc/UTC date -j -v +$4H +'%Y-%m-%dT%H:%M:%SZ')"
-REGION=$AWS_DEFAULT_REGION
+REGION=${AWS_DEFAULT_REGION}
 
 # Here's where we create the stack
 aws cloudformation create-stack \
 --stack-name "${CUSTOMER}-Chef-Demo-$(TZ=Etc/UTC date +'%Y%m%dT%H%M%SZ')" \
 --capabilities CAPABILITY_IAM \
---region $REGION \
+--region ${REGION} \
 --tags Key=TTL,Value=${TTL} Key=X-Contact,Value="${CONTACT}" Key=X-Dept,Value="${DEPARTMENT}" Key=X-Project,Value="${CUSTOMER}" Key=X-Termination-Date,Value=${TERMINATION_DATE} \
 --template-url https://s3-us-west-2.amazonaws.com/bjcpublic/cloudformation/bjc-demo-${VERSION}.json \
---parameters ParameterKey=KeyName,ParameterValue=${SSH_KEY} ParameterKey=TTL,ParameterValue=${TTL}
+--parameters ParameterKey=KeyName,ParameterValue=${SSH_KEY} ParameterKey=TTL,ParameterValue=${TTL} ParameterKey=AvailabilityZone,ParameterValue=${REGION}
